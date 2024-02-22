@@ -64,8 +64,8 @@
 			<element name="Eindtijd" type="time" minOccurs="0" maxOccurs="1"/>
 			<element name="AgendapuntKenmerk" type="string" minOccurs="0" maxOccurs="1"/>
 			<element name="AgendapuntTitel" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Indicatiehamerstuk" type="boolean"/>
-			<element name="IndicatorBehandeld" type="boolean"/>
+			<element name="Indicatiehamerstuk" type="boolean" minOccurs="0" maxOccurs="1"/>
+			<element name="IndicatorBehandeld" type="boolean" minOccurs="0" maxOccurs="1"/>
 			<element name="IndicatorBesloten" type="boolean"/>
 			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1"/>
 			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1"/>
