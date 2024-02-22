@@ -66,7 +66,7 @@
 			<element name="AgendapuntTitel" type="string" minOccurs="0" maxOccurs="1"/>
 			<element name="Indicatiehamerstuk" type="boolean" minOccurs="0" maxOccurs="1"/>
 			<element name="IndicatorBehandeld" type="boolean" minOccurs="0" maxOccurs="1"/>
-			<element name="IndicatorBesloten" type="boolean"/>
+			<element name="IndicatorBesloten" type="boolean" minOccurs="1" maxOccurs="1"/>
 			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1"/>
 			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1"/>
 			<element name="Waterschap" type="tns:WATERSCHAP" minOccurs="0" maxOccurs="1"/>
