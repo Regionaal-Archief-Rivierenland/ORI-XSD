@@ -43,9 +43,7 @@
 			<xsd:element name="AanvangVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="EindeVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="Publicatiedatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Gemeente" type="GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Provincie" type="Provincie" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Waterschap" type="WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="IsVastgelegdMiddels" type="Mediabron" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="IsGenotuleerdIn" type="Informatieobject" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="HeeftAlsBijlage" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
@@ -67,9 +65,7 @@
 			<xsd:element name="Indicatiehamerstuk" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="IndicatorBehandeld" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="IndicatorBesloten" type="xsd:boolean" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="Gemeente" type="GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Provincie" type="Provincie" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Waterschap" type="WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="WordtBehandeldTijdens" type="Vergadering" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="HeeftAlsSubagendapunt" type="Agendapunt" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="HeeftBehandelendAmbtenaar" type="NatuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
@@ -191,9 +187,7 @@
 			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="DagelijksBestuursnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="DagelijksBestuurstype" type="DagelijksBestuursType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Gemeente" type="GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Provincie" type="Provincie" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Waterschap" type="WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 		</xsd:all>
 	</xsd:complexType>
 	<xsd:complexType name="Zaak">
@@ -213,9 +207,7 @@
 			<xsd:element name="Creatiedatum" type="xsd:date" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="Link" type="anyURI" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="Vertrouwelijkheidsaanduiding" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Gemeente" type="GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Provincie" type="Provincie" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Waterschap" type="WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="Zaken" type="Zaak" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -324,9 +316,7 @@
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="Fractienaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Gemeente" type="GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Provincie" type="Provincie" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Waterschap" type="WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="FractieNeemtDeelAanStemming" type="StemresultaatPerFractie" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -381,6 +371,13 @@
 			<xsd:element name="Waterschapnaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
+	<complexType name="Bestuurslaag">
+		<choice>
+			<element name="WATERSCHAP" type="string"/>
+			<element name="Provincie" type="string"/>
+			<element name="GEMEENTE" type="string"/>
+		</choice>
+	</complexType>
 	<xsd:simpleType name="vraagType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Technische vraag"/>
