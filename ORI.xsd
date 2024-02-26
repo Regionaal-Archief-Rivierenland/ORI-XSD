@@ -373,9 +373,9 @@
 	</xsd:complexType>
 	<complexType name="Bestuurslaag">
 		<choice>
-			<element name="WATERSCHAP" type="string"/>
-			<element name="Provincie" type="string"/>
-			<element name="GEMEENTE" type="string"/>
+			<element name="WATERSCHAP" type="WATERSCHAP"/>
+			<element name="Provincie" type="Provincie"/>
+			<element name="GEMEENTE" type="GEMEENTE"/>
 		</choice>
 	</complexType>
 	<xsd:simpleType name="vraagType">
