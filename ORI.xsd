@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.vng.nl/standaarden/ORI-XSD" targetNamespace="https://www.vng.nl/standaarden/ORI-XSD" elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.vng.nl/standaarden/ORI-XSD" targetNamespace="https://www.vng.nl/standaarden/ORI-XSD" elementFormDefault="qualified" version="v0.0.1">
 	<element name="OpenRaadsinformatie" type="tns:OpenRaadsinformatie"/>
 	<complexType name="OpenRaadsinformatie">
 		<sequence>
