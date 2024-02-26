@@ -43,9 +43,7 @@
 			<element name="AanvangVergadering" type="time" minOccurs="0" maxOccurs="1"/>
 			<element name="EindeVergadering" type="time" minOccurs="0" maxOccurs="1"/>
 			<element name="Publicatiedatum" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1"/>
-			<element name="Waterschap" type="tns:WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<element name="IsVastgelegdMiddels" type="tns:Mediabron" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="IsGenotuleerdIn" type="tns:Informatieobject" minOccurs="0" maxOccurs="1"/>
 			<element name="HeeftAlsBijlage" type="tns:Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
@@ -67,9 +65,7 @@
 			<element name="Indicatiehamerstuk" type="boolean" minOccurs="0" maxOccurs="1"/>
 			<element name="IndicatorBehandeld" type="boolean" minOccurs="0" maxOccurs="1"/>
 			<element name="IndicatorBesloten" type="boolean" minOccurs="1" maxOccurs="1"/>
-			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1"/>
-			<element name="Waterschap" type="tns:WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<element name="WordtBehandeldTijdens" type="tns:Vergadering" minOccurs="1" maxOccurs="1"/>
 			<element name="HeeftAlsSubagendapunt" type="tns:Agendapunt" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="HeeftBehandelendAmbtenaar" type="tns:NatuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
@@ -191,9 +187,7 @@
 			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
 			<element name="DagelijksBestuursnaam" type="string" minOccurs="0" maxOccurs="1"/>
 			<element name="DagelijksBestuurstype" type="tns:DagelijksBestuursType" minOccurs="0" maxOccurs="1"/>
-			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1"/>
-			<element name="Waterschap" type="tns:WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 		</all>
 	</complexType>
 	<complexType name="Zaak">
@@ -213,9 +207,7 @@
 			<element name="Creatiedatum" type="date" minOccurs="1" maxOccurs="1"/>
 			<element name="Link" type="anyURI" minOccurs="0" maxOccurs="1"/>
 			<element name="Vertrouwelijkheidsaanduiding" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1"/>
-			<element name="Waterschap" type="tns:WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<element name="Zaken" type="tns:Zaak" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 	</complexType>
@@ -324,9 +316,7 @@
 		<sequence>
 			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
 			<element name="Fractienaam" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1"/>
-			<element name="Waterschap" type="tns:WATERSCHAP" minOccurs="0" maxOccurs="1"/>
+			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<element name="FractieNeemtDeelAanStemming" type="tns:StemresultaatPerFractie" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 	</complexType>
@@ -380,6 +370,13 @@
 			<element name="Waterschapcode" type="string" minOccurs="1" maxOccurs="1"/>
 			<element name="Waterschapnaam" type="string" minOccurs="1" maxOccurs="1"/>
 		</sequence>
+	</complexType>
+	<complexType name="Bestuurslaag">
+		<choice>
+			<element name="WATERSCHAP" type="string"/>
+			<element name="Provincie" type="string"/>
+			<element name="GEMEENTE" type="string"/>
+		</choice>
 	</complexType>
 	<simpleType name="vraagType">
 		<restriction base="string">
