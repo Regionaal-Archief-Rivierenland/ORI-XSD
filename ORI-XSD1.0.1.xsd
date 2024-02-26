@@ -3,7 +3,11 @@
 	<element name="OpenRaadsinformatie" type="tns:OpenRaadsinformatie"/>
 	<complexType name="OpenRaadsinformatie">
 		<sequence>
-			<element name="Vergadering" type="tns:Vergadering" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Vergadering" type="tns:Vergadering" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Een bijeenkomst van meerdere mensen die met elkaar spreken en/of afspraken maken over onderwerpen die op de agenda staan.</documentation>
+				</annotation>
+			</element>
 			<element name="Agendapunt" type="tns:Agendapunt" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="Stemming" type="tns:Stemming" minOccurs="0" maxOccurs="unbounded"/>
 			<element name="Besluit" type="tns:Besluit" minOccurs="0" maxOccurs="unbounded"/>
@@ -29,33 +33,124 @@
 	</complexType>
 	<complexType name="Vergadering">
 		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="Naam" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="VergaderToelichting" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="GeorganiseerddoorGremium" type="tns:GREMIUM" minOccurs="0" maxOccurs="1"/>
-			<element name="Vergaderingstype" type="tns:vergaderingsType" minOccurs="0" maxOccurs="1"/>
-			<element name="Locatie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Status" type="tns:vergaderingStatus" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandeVergaderdatum" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="Vergaderdatum" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandeAanvangVergadering" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandeEindeVergadering" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="AanvangVergadering" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="EindeVergadering" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="Publicatiedatum" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1"/>
-			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1"/>
-			<element name="Waterschap" type="tns:WATERSCHAP" minOccurs="0" maxOccurs="1"/>
-			<element name="IsVastgelegdMiddels" type="tns:Mediabron" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="IsGenotuleerdIn" type="tns:Informatieobject" minOccurs="0" maxOccurs="1"/>
-			<element name="HeeftAlsBijlage" type="tns:Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="HeeftAlsDeelvergadering" type="tns:Vergadering" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ID" type="ID" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>De identificatie van een vergadering.</documentation>
+				</annotation>
+			</element>
+			<element name="Naam" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De naam van een vergadering.</documentation>
+				</annotation>
+			</element>
+			<element name="VergaderToelichting" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De toelichting of nadere omschrijving van de vergadering.</documentation>
+				</annotation>
+			</element>
+			<element name="GeorganiseerddoorGremium" type="tns:GREMIUM" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De vergadering is georganiseerd door een gremium.</documentation>
+				</annotation>
+			</element>
+			<element name="Vergaderingstype" type="tns:vergaderingsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De type-aanduiding van de vergadering.</documentation>
+				</annotation>
+			</element>
+			<element name="Locatie" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Omschrijving van de locatie waar de vergadering wordt gehouden.</documentation>
+				</annotation>
+			</element>
+			<element name="Status" type="tns:vergaderingStatus" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De status van de vergadering.</documentation>
+				</annotation>
+			</element>
+			<element name="GeplandeVergaderdatum" type="date" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De geplande datum van de vergadering.</documentation>
+				</annotation>
+			</element>
+			<element name="Vergaderdatum" type="date" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De datum van de vergadering.</documentation>
+				</annotation>
+			</element>
+			<element name="GeplandeAanvangVergadering" type="time" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De geplande datum en tijdstip waarop de vergadering start.</documentation>
+				</annotation>
+			</element>
+			<element name="GeplandeEindeVergadering" type="time" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De geplande datum en tijdstip waarop de vergadering eindigt.</documentation>
+				</annotation>
+			</element>
+			<element name="AanvangVergadering" type="time" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De datum en tijdstip waarop de vergadering is gestart.</documentation>
+				</annotation>
+			</element>
+			<element name="EindeVergadering" type="time" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De datum en tijdstip waarop de vergadering is geëindigd.</documentation>
+				</annotation>
+			</element>
+			<element name="Publicatiedatum" type="date" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De datum waarop de vergadering voor het laatst gepubliceerd is. Het kan zijn dat er wijzigingen hebben plaatsgevonden en dat de vergadering opnieuw is gepubliceerd. Dit veld bevat de meest recente publicatiedatum.</documentation>
+				</annotation>
+			</element>
+			<element name="Gemeente" type="tns:GEMEENTE" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De referentielijst met alle gemeenten Tabel 33 van de landelijke tabellen.</documentation>
+				</annotation>
+			</element>
+			<element name="Provincie" type="tns:Provincie" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Een vastewaardenlijst met alle Nederlandse provincies.</documentation>
+				</annotation>
+			</element>
+			<element name="Waterschap" type="tns:WATERSCHAP" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>De referentielijst met alle waterschappen volgens CBS.</documentation>
+				</annotation>
+			</element>
+			<element name="IsVastgelegdMiddels" type="tns:Mediabron" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Referentie naar de mediabron waarin de vergadering is vastgelegd.</documentation>
+				</annotation>
+			</element>
+			<element name="IsGenotuleerdIn" type="tns:Informatieobject" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Referentie naar de notulen van deze vergadering.</documentation>
+				</annotation>
+			</element>
+			<element name="HeeftAlsBijlage" type="tns:Informatieobject" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Een vergadering kan één of meer vergaderstukken als bijlage hebben.</documentation>
+				</annotation>
+			</element>
+			<element name="HeeftAlsDeelvergadering" type="tns:Vergadering" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Een vergadering kan uit één of meerdere deelvergaderingen bestaan.</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
 	<complexType name="Agendapunt">
 		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
+			<element name="ID" type="ID" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>De identificatie van een vergadering.</documentation>
+				</annotation>
+			</element>
 			<element name="AgendapuntOmschrijving" type="string" minOccurs="0" maxOccurs="1"/>
+				<xsd:annotation>
+					<xsd:documentation>       </xsd:documentation>
+				</xsd:annotation>
 			<element name="GeplandAgendapuntvolgnummer" type="string" minOccurs="0" maxOccurs="1"/>
 			<element name="Agendapuntvolgnummer" type="string" minOccurs="0" maxOccurs="1"/>
 			<element name="GeplandeEindtijd" type="time" minOccurs="0" maxOccurs="1"/>
