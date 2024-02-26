@@ -1,376 +1,376 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.vng.nl/standaarden/ORI-XSD" targetNamespace="https://www.vng.nl/standaarden/ORI-XSD" elementFormDefault="qualified" version="v0.0.1">
-	<element name="OpenRaadsinformatie" type="tns:OpenRaadsinformatie"/>
-	<complexType name="OpenRaadsinformatie">
-		<sequence>
-			<element name="Vergadering" type="tns:Vergadering" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Agendapunt" type="tns:Agendapunt" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Stemming" type="tns:Stemming" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Besluit" type="tns:Besluit" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Indiener" type="tns:Indiener" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="OrganisatorischeEenheid" type="tns:OrganisatorischeEenheid" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Zaak" type="tns:Zaak" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Informatieobject" type="tns:Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="EnkelvoudigInformatieobject" type="tns:EnkelvoudigInformatieobject" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Motie" type="tns:Motie" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Amendement" type="tns:Amendement" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Voorstel" type="tns:Voorstel" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="IngekomenStuk" type="tns:IngekomenStuk" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Vraag" type="tns:Vraag" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Antwoord" type="tns:Antwoord" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Toezegging" type="tns:Toezegging" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Mededeling" type="tns:Mededeling" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="NatuurlijkPersoon" type="tns:NatuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="AanwezigeDeelnemer" type="tns:AanwezigeDeelnemer" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="DagelijksBestuur" type="tns:DagelijksBestuur" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Fractie" type="tns:Fractie" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="Mediabron" type="tns:Mediabron" minOccurs="0" maxOccurs="unbounded"/>
-		</sequence>
-	</complexType>
-	<complexType name="Vergadering">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="Naam" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="VergaderToelichting" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="GeorganiseerddoorGremium" type="tns:GREMIUM" minOccurs="0" maxOccurs="1"/>
-			<element name="Vergaderingstype" type="tns:vergaderingsType" minOccurs="0" maxOccurs="1"/>
-			<element name="Locatie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Status" type="tns:vergaderingStatus" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandeVergaderdatum" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="Vergaderdatum" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandeAanvangVergadering" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandeEindeVergadering" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="AanvangVergadering" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="EindeVergadering" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="Publicatiedatum" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
-			<element name="IsVastgelegdMiddels" type="tns:Mediabron" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="IsGenotuleerdIn" type="tns:Informatieobject" minOccurs="0" maxOccurs="1"/>
-			<element name="HeeftAlsBijlage" type="tns:Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="HeeftAlsDeelvergadering" type="tns:Vergadering" minOccurs="0" maxOccurs="unbounded"/>
-		</sequence>
-	</complexType>
-	<complexType name="Agendapunt">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="AgendapuntOmschrijving" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandAgendapuntvolgnummer" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Agendapuntvolgnummer" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandeEindtijd" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="GeplandeStarttijd" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="Starttijd" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="Eindtijd" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="AgendapuntKenmerk" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="AgendapuntTitel" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Indicatiehamerstuk" type="boolean" minOccurs="0" maxOccurs="1"/>
-			<element name="IndicatorBehandeld" type="boolean" minOccurs="0" maxOccurs="1"/>
-			<element name="IndicatorBesloten" type="boolean" minOccurs="1" maxOccurs="1"/>
-			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
-			<element name="WordtBehandeldTijdens" type="tns:Vergadering" minOccurs="1" maxOccurs="1"/>
-			<element name="HeeftAlsSubagendapunt" type="tns:Agendapunt" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="HeeftBehandelendAmbtenaar" type="tns:NatuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="HeeftAlsBijlage" type="tns:Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-		</sequence>
-	</complexType>
-	<complexType name="Spreekfragment">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="AanvangSpreekfragment" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="EindeSpreekfragment" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="Taal" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="TekstSpreekfragment" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="TitelSpreekfragment" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="PositieNotulen" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="AudioTijdsaanduidingAanvang" type="integer" minOccurs="0" maxOccurs="1"/>
-			<element name="AudioTijdsaanduidingEinde" type="integer" minOccurs="0" maxOccurs="1"/>
-			<element name="VideoTijdsaanduidingAanvang" type="integer" minOccurs="0" maxOccurs="1"/>
-			<element name="VideoTijdsaanduidingEinde" type="integer" minOccurs="0" maxOccurs="1"/>
-			<element name="IsVastgelegdIn" type="tns:Mediabron" minOccurs="0" maxOccurs="1"/>
-			<element name="SpreektTijdens" type="tns:Agendapunt" minOccurs="1" maxOccurs="unbounded"/>
-		</sequence>
-	</complexType>
-	<complexType name="Stemming">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="StemmingsType" type="tns:stemmingsType" minOccurs="0" maxOccurs="1"/>
-			<element name="ResultaatMondelingeStemming" type="tns:stemmingResultaat" minOccurs="0" maxOccurs="1"/>
-			<element name="ResultaatStemmingoverPersonen" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="StemmingoverPersonen" type="tns:StemmingoverPersonen" minOccurs="0" maxOccurs="1"/>
-			<element name="HeeftBetrekkingOpAgendapunt" type="tns:Agendapunt" minOccurs="0" maxOccurs="1"/>
-			<element name="HeeftBetrekkingOpBesluitvormingsstuk" type="tns:Besluitvormingsstuk" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="LeidtTotBesluit" type="tns:Besluit" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="Mediabron">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="LocatieWebvttbestand" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Mimetype" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Mediabrontype" type="tns:mediabronType" minOccurs="0" maxOccurs="1"/>
-			<element name="URL" type="anyURI" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="NatuurlijkPersoon">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="Geslachtsaanduiding" type="tns:geslacht" minOccurs="0" maxOccurs="1"/>
-			<element name="Functie" type="tns:functie" minOccurs="0" maxOccurs="1"/>
-			<element name="NaamNatuurlijkPersoon" type="tns:NaamNatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
-			<element name="NevenfunctieNatuurlijkPersoon" type="tns:NevenfunctieNatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
-			<element name="IsLidVanFractie" type="tns:Fractielidmaatschap" minOccurs="0" maxOccurs="1"/>
-			<element name="IsLidVanDagelijksBestuur" type="tns:DagelijksBestuurLidmaatschap" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="NaamNatuurlijkPersoon">
-		<sequence>
-			<element name="Achternaam" type="string" minOccurs="1" maxOccurs="1"/>
-			<element name="Tussenvoegsel" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Voorletters" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Voornamen" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="VolledigeNaam" type="string" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="NevenfunctieNatuurlijkPersoon">
-		<sequence>
-			<element name="OmschrijvingNevenfunctie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="NaamOrganisatieNevenfunctie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="AantalUrenperMaand" type="integer" minOccurs="0" maxOccurs="1"/>
-			<element name="IndicatorBezoldigd" type="boolean" minOccurs="0" maxOccurs="1"/>
-			<element name="IndicatorNevenfunctieVanwegeLidmaatschap" type="boolean" minOccurs="0" maxOccurs="1"/>
-			<element name="DatumMelding" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="DatumAanvangNevenfunctie" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="DatumEindeNevenfunctie" type="date" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="OrganisatorischeEenheid">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="E-mailadres" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Faxnummer" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Naam" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="NaamVerkort" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Omschrijving" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Telefoonnummer" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Toelichting" type="string" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="StemmingoverPersonen">
-		<sequence>
-			<element name="NaamKandidaat" type="string" minOccurs="1" maxOccurs="1"/>
-			<element name="AantalUitgebrachteStemmen" type="integer" minOccurs="1" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="AanwezigeDeelnemer">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="Rolnaam" type="tns:rolNaam" minOccurs="0" maxOccurs="1"/>
-			<element name="Organisatie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Deelnemerspositie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="AanvangAanwezigheid" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="EindeAanwezigheid" type="time" minOccurs="0" maxOccurs="1"/>
-			<element name="NeemtDeelAanVergadering" type="tns:Vergadering" minOccurs="0" maxOccurs="1"/>
-			<element name="IsNatuurlijkPersoon" type="tns:NatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
-			<element name="NeemtDeelAanStemming" type="tns:Stem" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="SpreektTijdens" type="tns:Spreekfragment" minOccurs="0" maxOccurs="unbounded"/>
-		</sequence>
-	</complexType>
-	<complexType name="DagelijksBestuurLidmaatschap">
-		<all>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="DatumBeginDagelijkseBestuurLidmaatschap" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="DatumEindeDagelijkseBestuurLidmaatschap" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="DagelijksBestuur" type="tns:DagelijksBestuur" minOccurs="0" maxOccurs="1"/>
-		</all>
-	</complexType>
-	<complexType name="DagelijksBestuur">
-		<all>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="DagelijksBestuursnaam" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="DagelijksBestuurstype" type="tns:DagelijksBestuursType" minOccurs="0" maxOccurs="1"/>
-			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
-		</all>
-	</complexType>
-	<complexType name="Zaak">
-		<sequence>
-			<element name="ZaakID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="Zaakregistratie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Omschrijving" type="string" minOccurs="1" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="Informatieobject">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="Titel" type="string" minOccurs="1" maxOccurs="1"/>
-			<element name="Bronorganisatie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Versie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Auteur" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Creatiedatum" type="date" minOccurs="1" maxOccurs="1"/>
-			<element name="Link" type="anyURI" minOccurs="0" maxOccurs="1"/>
-			<element name="Vertrouwelijkheidsaanduiding" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
-			<element name="Zaken" type="tns:Zaak" minOccurs="0" maxOccurs="unbounded"/>
-		</sequence>
-	</complexType>
-	<complexType name="EnkelvoudigInformatieobject">
-		<complexContent>
-			<extension base="tns:Informatieobject">
-				<sequence>
-					<element name="Taal" type="string" minOccurs="0" maxOccurs="1"/>
-					<element name="Inhoud" type="string" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="Motie">
-		<complexContent>
-			<extension base="tns:Besluitvormingsstuk">
-				<sequence>
-					<element name="Motietype" type="tns:motieType" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="Toezegging">
-		<complexContent>
-			<extension base="tns:EnkelvoudigInformatieobject">
-				<sequence>
-					<element name="Toezeggingsomschrijving" type="string" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="Antwoord">
-		<complexContent>
-			<extension base="tns:EnkelvoudigInformatieobject">
-				<sequence>
-					<element name="Antwoordomschrijving" type="string" minOccurs="0" maxOccurs="1"/>
-					<element name="BehorendBijVraag" type="tns:Vraag" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="Voorstel">
-		<complexContent>
-			<extension base="tns:Besluitvormingsstuk">
-				<sequence>
-					<element name="Portefeuillehouder" type="string" minOccurs="0" maxOccurs="1"/>
-					<element name="IsIngediendDoor" type="tns:DagelijksBestuur" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="Mededeling">
-		<complexContent>
-			<extension base="tns:EnkelvoudigInformatieobject">
-				<sequence>
-					<element name="Mededelingomschrijving" type="string" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="IngekomenStuk">
-		<complexContent>
-			<extension base="tns:EnkelvoudigInformatieobject"/>
-		</complexContent>
-	</complexType>
-	<complexType name="Amendement">
-		<complexContent>
-			<extension base="tns:Besluitvormingsstuk">
-				<sequence>
-					<element name="Toelichting" type="string" minOccurs="0" maxOccurs="1"/>
-					<element name="HoortBijVoorstel" type="tns:Voorstel" minOccurs="0" maxOccurs="1"/>
-					<element name="SubamendementVan" type="tns:Amendement" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="Besluit">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="BesluitToelichting" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Toezegging" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="BesluitResultaat" type="tns:besluitResultaat" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="Indiener">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="Naam" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="AdresBinnenland" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="HeeftIngediend" type="tns:Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="IsNatuurlijkPersoon" type="tns:NatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
-			<element name="IsOrganisatorischeEenheid" type="tns:OrganisatorischeEenheid" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="Besluitvormingsstuk" abstract="true">
-		<complexContent>
-			<extension base="tns:EnkelvoudigInformatieobject">
-				<sequence>
-					<element name="Omschrijving" type="string" minOccurs="0" maxOccurs="1"/>
-					<element name="DatumIngediend" type="date" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="Fractie">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="Fractienaam" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="Bestuurslaag" type="tns:Bestuurslaag" minOccurs="1" maxOccurs="1"/>
-			<element name="FractieNeemtDeelAanStemming" type="tns:StemresultaatPerFractie" minOccurs="0" maxOccurs="unbounded"/>
-		</sequence>
-	</complexType>
-	<complexType name="StemresultaatPerFractie">
-		<all>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="FractieStemresultaat" type="tns:fractieStemResultaat" minOccurs="0" maxOccurs="1"/>
-			<element name="GegevenOpStemming" type="tns:Stemming" minOccurs="0" maxOccurs="1"/>
-		</all>
-	</complexType>
-	<complexType name="Fractielidmaatschap">
-		<sequence>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="DatumBeginFractielidmaatschap" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="DatumEindeFractielidmaatschap" type="date" minOccurs="0" maxOccurs="1"/>
-			<element name="IndicatieVoorzitter" type="boolean" minOccurs="0" maxOccurs="1"/>
-			<element name="Fractie" type="tns:Fractie" minOccurs="0" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="Vraag">
-		<complexContent>
-			<extension base="tns:EnkelvoudigInformatieobject">
-				<sequence>
-					<element name="Vraagomschrijving" type="string" minOccurs="0" maxOccurs="1"/>
-					<element name="VraagType" type="tns:vraagType" minOccurs="0" maxOccurs="1"/>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
-	<complexType name="Stem">
-		<all>
-			<element name="ID" type="ID" minOccurs="1" maxOccurs="1"/>
-			<element name="KeuzeStemming" type="tns:stemKeuze" minOccurs="0" maxOccurs="1"/>
-			<element name="GegevenOpStemming" type="tns:Stemming" minOccurs="0" maxOccurs="1"/>
-		</all>
-	</complexType>
-	<complexType name="GREMIUM">
-		<all>
-			<element name="Gremiumidentificatie" type="string" minOccurs="0" maxOccurs="1"/>
-			<element name="GremiumNaam" type="string" minOccurs="0" maxOccurs="1"/>
-		</all>
-	</complexType>
-	<complexType name="GEMEENTE">
-		<sequence>
-			<element name="Gemeentecode" type="string" minOccurs="1" maxOccurs="1"/>
-			<element name="Gemeentenaam" type="string" minOccurs="1" maxOccurs="1"/>
-		</sequence>
-	</complexType>
-	<complexType name="WATERSCHAP">
-		<sequence>
-			<element name="Waterschapcode" type="string" minOccurs="1" maxOccurs="1"/>
-			<element name="Waterschapnaam" type="string" minOccurs="1" maxOccurs="1"/>
-		</sequence>
-	</complexType>
+<xsd:schema xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns="https://github.com/lmasrarsaml/ORI-XSD" targetNamespace="https://github.com/lmasrarsaml/ORI-XSD" elementFormDefault="qualified" version="v0.0.1">
+	<xsd:element name="OpenRaadsinformatie" type="OpenRaadsinformatie"/>
+	<xsd:complexType name="OpenRaadsinformatie">
+		<xsd:sequence>
+			<xsd:element name="Vergadering" type="Vergadering" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Agendapunt" type="Agendapunt" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Stemming" type="Stemming" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Besluit" type="Besluit" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Indiener" type="Indiener" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="OrganisatorischeEenheid" type="OrganisatorischeEenheid" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Zaak" type="Zaak" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Informatieobject" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="EnkelvoudigInformatieobject" type="EnkelvoudigInformatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Motie" type="Motie" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Amendement" type="Amendement" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Voorstel" type="Voorstel" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="IngekomenStuk" type="IngekomenStuk" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Vraag" type="Vraag" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Antwoord" type="Antwoord" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Toezegging" type="Toezegging" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Mededeling" type="Mededeling" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="NatuurlijkPersoon" type="NatuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="AanwezigeDeelnemer" type="AanwezigeDeelnemer" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="DagelijksBestuur" type="DagelijksBestuur" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Fractie" type="Fractie" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Mediabron" type="Mediabron" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Vergadering">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="VergaderToelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GeorganiseerddoorGremium" type="GREMIUM" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Vergaderingstype" type="vergaderingsType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Locatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Status" type="vergaderingStatus" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GeplandeVergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Vergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GeplandeAanvangVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GeplandeEindeVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AanvangVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="EindeVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Publicatiedatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="IsVastgelegdMiddels" type="Mediabron" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="IsGenotuleerdIn" type="Informatieobject" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="HeeftAlsBijlage" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="HeeftAlsDeelvergadering" type="Vergadering" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Agendapunt">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="AgendapuntOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GeplandAgendapuntvolgnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Agendapuntvolgnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GeplandeEindtijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GeplandeStarttijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Starttijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Eindtijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AgendapuntKenmerk" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AgendapuntTitel" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Indicatiehamerstuk" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IndicatorBehandeld" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IndicatorBesloten" type="xsd:boolean" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="WordtBehandeldTijdens" type="Vergadering" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="HeeftAlsSubagendapunt" type="Agendapunt" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="HeeftBehandelendAmbtenaar" type="NatuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="HeeftAlsBijlage" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Spreekfragment">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="AanvangSpreekfragment" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="EindeSpreekfragment" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Taal" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="TekstSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="TitelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="PositieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AudioTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AudioTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="VideoTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="VideoTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IsVastgelegdIn" type="Mediabron" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="SpreektTijdens" type="Agendapunt" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Stemming">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="StemmingsType" type="stemmingsType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ResultaatMondelingeStemming" type="stemmingResultaat" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ResultaatStemmingoverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="StemmingoverPersonen" type="StemmingoverPersonen" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="HeeftBetrekkingOpAgendapunt" type="Agendapunt" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="HeeftBetrekkingOpBesluitvormingsstuk" type="Besluitvormingsstuk" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="LeidtTotBesluit" type="Besluit" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Mediabron">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="LocatieWebvttbestand" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Mimetype" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Mediabrontype" type="mediabronType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="URL" type="anyURI" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NatuurlijkPersoon">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Geslachtsaanduiding" type="geslacht" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Functie" type="functie" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="NaamNatuurlijkPersoon" type="NaamNatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="NevenfunctieNatuurlijkPersoon" type="NevenfunctieNatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IsLidVanFractie" type="Fractielidmaatschap" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IsLidVanDagelijksBestuur" type="DagelijksBestuurLidmaatschap" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NaamNatuurlijkPersoon">
+		<xsd:sequence>
+			<xsd:element name="Achternaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Tussenvoegsel" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Voorletters" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Voornamen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="VolledigeNaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NevenfunctieNatuurlijkPersoon">
+		<xsd:sequence>
+			<xsd:element name="OmschrijvingNevenfunctie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="NaamOrganisatieNevenfunctie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AantalUrenperMaand" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IndicatorBezoldigd" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IndicatorNevenfunctieVanwegeLidmaatschap" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="DatumMelding" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="DatumAanvangNevenfunctie" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="DatumEindeNevenfunctie" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrganisatorischeEenheid">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="E-mailadres" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Faxnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="NaamVerkort" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Telefoonnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StemmingoverPersonen">
+		<xsd:sequence>
+			<xsd:element name="NaamKandidaat" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="AantalUitgebrachteStemmen" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AanwezigeDeelnemer">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Rolnaam" type="rolNaam" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Organisatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AanvangAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="EindeAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="NeemtDeelAanVergadering" type="Vergadering" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IsNatuurlijkPersoon" type="NatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="NeemtDeelAanStemming" type="Stem" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="SpreektTijdens" type="Spreekfragment" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DagelijksBestuurLidmaatschap">
+		<xsd:all>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="DatumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="DatumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="DagelijksBestuur" type="DagelijksBestuur" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="DagelijksBestuur">
+		<xsd:all>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="DagelijksBestuursnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="DagelijksBestuurstype" type="DagelijksBestuursType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="Zaak">
+		<xsd:sequence>
+			<xsd:element name="ZaakID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Zaakregistratie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Omschrijving" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Informatieobject">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Titel" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Bronorganisatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Versie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Auteur" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Creatiedatum" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Link" type="anyURI" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Vertrouwelijkheidsaanduiding" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Zaken" type="Zaak" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EnkelvoudigInformatieobject">
+		<xsd:complexContent>
+			<xsd:extension base="Informatieobject">
+				<xsd:sequence>
+					<xsd:element name="Taal" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="Inhoud" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Motie">
+		<xsd:complexContent>
+			<xsd:extension base="Besluitvormingsstuk">
+				<xsd:sequence>
+					<xsd:element name="Motietype" type="motieType" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Toezegging">
+		<xsd:complexContent>
+			<xsd:extension base="EnkelvoudigInformatieobject">
+				<xsd:sequence>
+					<xsd:element name="Toezeggingsomschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Antwoord">
+		<xsd:complexContent>
+			<xsd:extension base="EnkelvoudigInformatieobject">
+				<xsd:sequence>
+					<xsd:element name="Antwoordomschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="BehorendBijVraag" type="Vraag" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Voorstel">
+		<xsd:complexContent>
+			<xsd:extension base="Besluitvormingsstuk">
+				<xsd:sequence>
+					<xsd:element name="Portefeuillehouder" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="IsIngediendDoor" type="DagelijksBestuur" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Mededeling">
+		<xsd:complexContent>
+			<xsd:extension base="EnkelvoudigInformatieobject">
+				<xsd:sequence>
+					<xsd:element name="Mededelingomschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="IngekomenStuk">
+		<xsd:complexContent>
+			<xsd:extension base="EnkelvoudigInformatieobject"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Amendement">
+		<xsd:complexContent>
+			<xsd:extension base="Besluitvormingsstuk">
+				<xsd:sequence>
+					<xsd:element name="Toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="HoortBijVoorstel" type="Voorstel" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="SubamendementVan" type="Amendement" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Besluit">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="BesluitToelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Toezegging" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="BesluitResultaat" type="besluitResultaat" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Indiener">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="AdresBinnenland" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="HeeftIngediend" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="IsNatuurlijkPersoon" type="NatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IsOrganisatorischeEenheid" type="OrganisatorischeEenheid" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Besluitvormingsstuk" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="EnkelvoudigInformatieobject">
+				<xsd:sequence>
+					<xsd:element name="Omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="DatumIngediend" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Fractie">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Fractienaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="FractieNeemtDeelAanStemming" type="StemresultaatPerFractie" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StemresultaatPerFractie">
+		<xsd:all>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="FractieStemresultaat" type="fractieStemResultaat" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GegevenOpStemming" type="Stemming" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="Fractielidmaatschap">
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="DatumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="DatumEindeFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="IndicatieVoorzitter" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Fractie" type="Fractie" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Vraag">
+		<xsd:complexContent>
+			<xsd:extension base="EnkelvoudigInformatieobject">
+				<xsd:sequence>
+					<xsd:element name="Vraagomschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="VraagType" type="vraagType" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Stem">
+		<xsd:all>
+			<xsd:element name="ID" type="xsd:ID" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="KeuzeStemming" type="stemKeuze" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GegevenOpStemming" type="Stemming" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="GREMIUM">
+		<xsd:all>
+			<xsd:element name="Gremiumidentificatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="GremiumNaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="GEMEENTE">
+		<xsd:sequence>
+			<xsd:element name="Gemeentecode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Gemeentenaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WATERSCHAP">
+		<xsd:sequence>
+			<xsd:element name="Waterschapcode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="Waterschapnaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
 	<complexType name="Bestuurslaag">
 		<choice>
 			<element name="WATERSCHAP" type="string"/>
@@ -378,154 +378,154 @@
 			<element name="GEMEENTE" type="string"/>
 		</choice>
 	</complexType>
-	<simpleType name="vraagType">
-		<restriction base="string">
-			<enumeration value="Technische vraag"/>
-			<enumeration value="Mondelinge politieke vraag"/>
-			<enumeration value="Schriftelijke politieke vraag"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="besluitResultaat">
-		<restriction base="string">
-			<enumeration value="Unaniem aangenomen"/>
-			<enumeration value="Aangenomen"/>
-			<enumeration value="Geamendeerd aangenomen"/>
-			<enumeration value="Onder voorbehoud aangenomen"/>
-			<enumeration value="Verworpen"/>
-			<enumeration value="Aangehouden"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="motieType">
-		<restriction base="string">
-			<enumeration value="Voorstel"/>
-			<enumeration value="Afkeuring"/>
-			<enumeration value="Treurnis"/>
-			<enumeration value="Wantrouwen"/>
-			<enumeration value="Vreemd"/>
-			<enumeration value="Overig"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="mediabronType">
-		<restriction base="string">
-			<enumeration value="Video"/>
-			<enumeration value="Audio"/>
-			<enumeration value="Transcriptie"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="stemKeuze">
-		<restriction base="string">
-			<enumeration value="Voor"/>
-			<enumeration value="Tegen"/>
-			<enumeration value="Afwezig"/>
-			<enumeration value="Onthouden"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="fractieStemResultaat">
-		<restriction base="string">
-			<enumeration value="Aangenomen"/>
-			<enumeration value="Verworpen"/>
-			<enumeration value="Verdeeld"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="stemmingsType">
-		<restriction base="string">
-			<enumeration value="Hoofdelijk"/>
-			<enumeration value="Regulier"/>
-			<enumeration value="Schriftelijk"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="stemmingResultaat">
-		<restriction base="string">
-			<enumeration value="Voor"/>
-			<enumeration value="Tegen"/>
-			<enumeration value="Gelijk"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="besluitvormingsStukkenType">
-		<restriction base="string">
-			<enumeration value="Hamerstukken"/>
-			<enumeration value="Bespreekstukken"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="vergaderingStatus">
-		<restriction base="string">
-			<enumeration value="Gepland"/>
-			<enumeration value="Gehouden"/>
-			<enumeration value="Geannuleerd"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="vergaderingsType">
-		<restriction base="string">
-			<enumeration value="Raadsvergadering"/>
-			<enumeration value="Commissievergadering"/>
-			<enumeration value="Statenvergadering"/>
-			<enumeration value="Algemene bestuursvergadering"/>
-			<enumeration value="Presidium"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="rolNaam">
-		<restriction base="string">
-			<enumeration value="Voorzitter"/>
-			<enumeration value="Vice-voorzitter"/>
-			<enumeration value="Raadslid"/>
-			<enumeration value="Statenlid"/>
-			<enumeration value="Dagelijks bestuurslid"/>
-			<enumeration value="Algemeen bestuurslid"/>
-			<enumeration value="Inspreker"/>
-			<enumeration value="Portefeuillehouder"/>
-			<enumeration value="Griffier"/>
-			<enumeration value="Overig"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="functie">
-		<restriction base="string">
-			<enumeration value="Burgemeester"/>
-			<enumeration value="Wethouder"/>
-			<enumeration value="Raadslid"/>
-			<enumeration value="Burgerlid"/>
-			<enumeration value="Griffier"/>
-			<enumeration value="Gemeentesecretaris"/>
-			<enumeration value="Commissaris van de Koning"/>
-			<enumeration value="Gedeputeerde"/>
-			<enumeration value="Statenlid"/>
-			<enumeration value="Provinciesecretaris"/>
-			<enumeration value="Dijkgraaf"/>
-			<enumeration value="Dagelijks bestuurslid"/>
-			<enumeration value="Algemeen bestuurslid"/>
-			<enumeration value="Secretarisdirecteur"/>
-			<enumeration value="Ambtenaar/Medewerker"/>
-			<enumeration value="Adviseur of Deskundige"/>
-			<enumeration value="Overig"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="geslacht">
-		<restriction base="string">
-			<enumeration value="Man"/>
-			<enumeration value="Vrouw"/>
-			<enumeration value="Anders"/>
-			<enumeration value="Onbekend"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="DagelijksBestuursType">
-		<restriction base="string">
-			<enumeration value="College"/>
-			<enumeration value="Gedeputeerde Staten"/>
-			<enumeration value="Dagelijks bestuur"/>
-		</restriction>
-	</simpleType>
-	<simpleType name="Provincie">
-		<restriction base="string">
-			<enumeration value="Drenthe"/>
-			<enumeration value="Groningen"/>
-			<enumeration value="Overijssel"/>
-			<enumeration value="Flevoland"/>
-			<enumeration value="Gelderland"/>
-			<enumeration value="Utrecht"/>
-			<enumeration value="Noord-Holland"/>
-			<enumeration value="Zuid-Holland"/>
-			<enumeration value="Zeeland"/>
-			<enumeration value="Noord-Brabant"/>
-			<enumeration value="Limburg"/>
-		</restriction>
-	</simpleType>
-</schema>
+	<xsd:simpleType name="vraagType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Technische vraag"/>
+			<xsd:enumeration value="Mondelinge politieke vraag"/>
+			<xsd:enumeration value="Schriftelijke politieke vraag"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="besluitResultaat">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Unaniem aangenomen"/>
+			<xsd:enumeration value="Aangenomen"/>
+			<xsd:enumeration value="Geamendeerd aangenomen"/>
+			<xsd:enumeration value="Onder voorbehoud aangenomen"/>
+			<xsd:enumeration value="Verworpen"/>
+			<xsd:enumeration value="Aangehouden"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="motieType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Voorstel"/>
+			<xsd:enumeration value="Afkeuring"/>
+			<xsd:enumeration value="Treurnis"/>
+			<xsd:enumeration value="Wantrouwen"/>
+			<xsd:enumeration value="Vreemd"/>
+			<xsd:enumeration value="Overig"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="mediabronType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Video"/>
+			<xsd:enumeration value="Audio"/>
+			<xsd:enumeration value="Transcriptie"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="stemKeuze">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Voor"/>
+			<xsd:enumeration value="Tegen"/>
+			<xsd:enumeration value="Afwezig"/>
+			<xsd:enumeration value="Onthouden"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="fractieStemResultaat">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Aangenomen"/>
+			<xsd:enumeration value="Verworpen"/>
+			<xsd:enumeration value="Verdeeld"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="stemmingsType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Hoofdelijk"/>
+			<xsd:enumeration value="Regulier"/>
+			<xsd:enumeration value="Schriftelijk"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="stemmingResultaat">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Voor"/>
+			<xsd:enumeration value="Tegen"/>
+			<xsd:enumeration value="Gelijk"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="besluitvormingsStukkenType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Hamerstukken"/>
+			<xsd:enumeration value="Bespreekstukken"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="vergaderingStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Gepland"/>
+			<xsd:enumeration value="Gehouden"/>
+			<xsd:enumeration value="Geannuleerd"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="vergaderingsType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Raadsvergadering"/>
+			<xsd:enumeration value="Commissievergadering"/>
+			<xsd:enumeration value="Statenvergadering"/>
+			<xsd:enumeration value="Algemene bestuursvergadering"/>
+			<xsd:enumeration value="Presidium"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="rolNaam">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Voorzitter"/>
+			<xsd:enumeration value="Vice-voorzitter"/>
+			<xsd:enumeration value="Raadslid"/>
+			<xsd:enumeration value="Statenlid"/>
+			<xsd:enumeration value="Dagelijks bestuurslid"/>
+			<xsd:enumeration value="Algemeen bestuurslid"/>
+			<xsd:enumeration value="Inspreker"/>
+			<xsd:enumeration value="Portefeuillehouder"/>
+			<xsd:enumeration value="Griffier"/>
+			<xsd:enumeration value="Overig"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="functie">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Burgemeester"/>
+			<xsd:enumeration value="Wethouder"/>
+			<xsd:enumeration value="Raadslid"/>
+			<xsd:enumeration value="Burgerlid"/>
+			<xsd:enumeration value="Griffier"/>
+			<xsd:enumeration value="Gemeentesecretaris"/>
+			<xsd:enumeration value="Commissaris van de Koning"/>
+			<xsd:enumeration value="Gedeputeerde"/>
+			<xsd:enumeration value="Statenlid"/>
+			<xsd:enumeration value="Provinciesecretaris"/>
+			<xsd:enumeration value="Dijkgraaf"/>
+			<xsd:enumeration value="Dagelijks bestuurslid"/>
+			<xsd:enumeration value="Algemeen bestuurslid"/>
+			<xsd:enumeration value="Secretarisdirecteur"/>
+			<xsd:enumeration value="Ambtenaar/Medewerker"/>
+			<xsd:enumeration value="Adviseur of Deskundige"/>
+			<xsd:enumeration value="Overig"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="geslacht">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Man"/>
+			<xsd:enumeration value="Vrouw"/>
+			<xsd:enumeration value="Anders"/>
+			<xsd:enumeration value="Onbekend"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DagelijksBestuursType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="College"/>
+			<xsd:enumeration value="Gedeputeerde Staten"/>
+			<xsd:enumeration value="Dagelijks bestuur"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Provincie">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Drenthe"/>
+			<xsd:enumeration value="Groningen"/>
+			<xsd:enumeration value="Overijssel"/>
+			<xsd:enumeration value="Flevoland"/>
+			<xsd:enumeration value="Gelderland"/>
+			<xsd:enumeration value="Utrecht"/>
+			<xsd:enumeration value="Noord-Holland"/>
+			<xsd:enumeration value="Zuid-Holland"/>
+			<xsd:enumeration value="Zeeland"/>
+			<xsd:enumeration value="Noord-Brabant"/>
+			<xsd:enumeration value="Limburg"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
