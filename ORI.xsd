@@ -104,10 +104,10 @@
 	<xsd:complexType name="mediabron">
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="locatieWebvttbestand" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="locatiewebvttbestand" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="mimetype" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="mediabrontype" type="mediabronType" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="URL" type="anyURI" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="URL" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="NatuurlijkPersoon">
@@ -205,7 +205,7 @@
 			<xsd:element name="versie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="auteur" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="creatiedatum" type="xsd:date" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="link" type="anyURI" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="link" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="vertrouwelijkheidsaanduiding" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="zaken" type="Zaak" minOccurs="0" maxOccurs="unbounded"/>
