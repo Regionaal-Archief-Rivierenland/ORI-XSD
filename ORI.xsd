@@ -77,7 +77,7 @@
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="AanvangSpreekfragment" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="EindeSpreekfragment" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="Taal" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="Taal" type="xsd:language" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="TekstSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="TitelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="PositieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
@@ -215,7 +215,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="Informatieobject">
 				<xsd:sequence>
-					<xsd:element name="Taal" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="Taal" type="xsd:language" minOccurs="0" maxOccurs="1"/>
 					<xsd:element name="Inhoud" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 				</xsd:sequence>
 			</xsd:extension>
