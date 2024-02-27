@@ -33,7 +33,7 @@
 			<xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="vergaderToelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="georganiseerdDoorGremium" type="gremium" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="vergaderingsType" type="vergaderingsType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="vergaderingstype" type="vergaderingstype" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="locatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="status" type="vergaderingStatus" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="geplandeVergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
@@ -92,7 +92,7 @@
 	<xsd:complexType name="stemming">
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="stemmingsType" type="stemmingsType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="stemmingstype" type="stemmingstype" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="resultaatMondelingeStemming" type="stemmingResultaat" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="stemmingOverPersonen" type="stemmingOverPersonen" minOccurs="0" maxOccurs="1"/>
@@ -186,7 +186,7 @@
 		<xsd:all>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="dagelijksBestuursnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="dagelijksBestuursType" type="dagelijksBestuursType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="dagelijksBestuurstype" type="dagelijksBestuurstype" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
 		</xsd:all>
 	</xsd:complexType>
@@ -427,7 +427,7 @@
 			<xsd:enumeration value="Verdeeld"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-	<xsd:simpleType name="stemmingsType">
+	<xsd:simpleType name="stemmingstype">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Hoofdelijk"/>
 			<xsd:enumeration value="Regulier"/>
@@ -454,7 +454,7 @@
 			<xsd:enumeration value="Geannuleerd"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-	<xsd:simpleType name="vergaderingsType">
+	<xsd:simpleType name="vergaderingstype">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Raadsvergadering"/>
 			<xsd:enumeration value="Commissievergadering"/>
@@ -506,7 +506,7 @@
 			<xsd:enumeration value="Onbekend"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-	<xsd:simpleType name="dagelijksBestuursType">
+	<xsd:simpleType name="dagelijksBestuurstype">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="College"/>
 			<xsd:enumeration value="Gedeputeerde Staten"/>
