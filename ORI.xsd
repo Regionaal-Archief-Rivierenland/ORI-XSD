@@ -54,8 +54,8 @@
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="agendapuntOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="geplandAgendapuntvolgnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="agendapuntvolgnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="geplandAgendapuntVolgnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="agendapuntVolgnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="geplandeEindtijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="geplandeStarttijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="starttijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
