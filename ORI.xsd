@@ -9,22 +9,22 @@
 			<xsd:element name="besluit" type="besluit" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="indiener" type="indiener" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="organisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="zaak" type="Zaak" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="informatieobject" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="enkelvoudigInformatieobject" type="EnkelvoudigInformatieobject" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="motie" type="Motie" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="amendement" type="Amendement" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="voorstel" type="Voorstel" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="ingekomenStuk" type="IngekomenStuk" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="vraag" type="Vraag" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="antwoord" type="Antwoord" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="toezegging" type="Toezegging" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="mededeling" type="Mededeling" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="natuurlijkPersoon" type="NatuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="aanwezigeDeelnemer" type="AanwezigeDeelnemer" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="dagelijksBestuur" type="DagelijksBestuur" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="fractie" type="Fractie" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="mediabron" type="Mediabron" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="zaak" type="zaak" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="informatieobject" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="enkelvoudigInformatieobject" type="enkelvoudigInformatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="motie" type="motie" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="amendement" type="amendement" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="voorstel" type="voorstel" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ingekomenStuk" type="ingekomenStuk" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="vraag" type="vraag" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="antwoord" type="antwoord" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="toezegging" type="toezegging" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="mededeling" type="mededeling" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="natuurlijkPersoon" type="natuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemer" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="fractie" type="fractie" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="mediabron" type="mediabron" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="vergadering">
@@ -32,8 +32,8 @@
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="vergaderToelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="georganiseerddoorGremium" type="gremium" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="vergaderingstype" type="vergaderingsType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="georganiseerdDoorGremium" type="gremium" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="vergaderingsType" type="vergaderingsType" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="locatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="status" type="vergaderingStatus" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="geplandeVergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
@@ -43,10 +43,10 @@
 			<xsd:element name="aanvangVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="eindeVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="publicatiedatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="isVastgelegdMiddels" type="Mediabron" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="isGenotuleerdIn" type="Informatieobject" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="heeftAlsBijlage" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="isVastgelegdMiddels" type="mediabron" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="isGenotuleerdIn" type="informatieobject" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="heeftAlsBijlage" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="heeftAlsDeelvergadering" type="vergadering" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -62,14 +62,14 @@
 			<xsd:element name="eindtijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="agendapuntKenmerk" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="agendapuntTitel" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="indicatiehamerstuk" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="indicatieHamerstuk" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="indicatorBehandeld" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="indicatorBesloten" type="xsd:boolean" minOccurs="1" maxOccurs="1"/>
-           	<xsd:element name="bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="wordtBehandeldTijdens" type="vergadering" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="heeftAlsSubagendapunt" type="agendapunt" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="heeftBehandelendAmbtenaar" type="NatuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="heeftAlsBijlage" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="heeftBehandelendAmbtenaar" type="natuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="heeftAlsBijlage" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="spreekfragment">
@@ -85,7 +85,7 @@
 			<xsd:element name="audioTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="videoTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="videoTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="isVastgelegdIn" type="Mediabron" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="isVastgelegdIn" type="mediabron" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="spreektTijdens" type="agendapunt" minOccurs="1" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -94,31 +94,31 @@
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="stemmingsType" type="stemmingsType" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="resultaatMondelingeStemming" type="stemmingResultaat" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="resultaatStemmingoverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="stemmingoverPersonen" type="StemmingoverPersonen" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="stemmingOverPersonen" type="stemmingOverPersonen" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="heeftBetrekkingOpAgendapunt" type="agendapunt" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="Besluitvormingsstuk" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="besluitvormingsstuk" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="leidtTotBesluit" type="besluit" minOccurs="0" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="mediabron">
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="locatiewebvttbestand" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="locatieWebVTTBestand" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="mimetype" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="mediabrontype" type="mediabronType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="mediabronType" type="mediabronType" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="URL" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="NatuurlijkPersoon">
+	<xsd:complexType name="natuurlijkPersoon">
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="geslachtsaanduiding" type="geslacht" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="functie" type="functie" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="naamNatuurlijkPersoon" type="NaamNatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="nevenfunctieNatuurlijkPersoon" type="NevenfunctieNatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="isLidVanFractie" type="Fractielidmaatschap" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="isLidVanDagelijksBestuur" type="DagelijksBestuurLidmaatschap" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="naamNatuurlijkPersoon" type="naamNatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="nevenfunctieNatuurlijkPersoon" type="nevenfunctieNatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="isLidVanFractie" type="fractielidmaatschap" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="isLidVanDagelijksBestuur" type="dagelijksBestuurLidmaatschap" minOccurs="0" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="naamNatuurlijkPersoon">
@@ -154,7 +154,7 @@
 			<xsd:element name="toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="stemmingoverPersonen">
+	<xsd:complexType name="stemmingOverPersonen">
 		<xsd:sequence>
 			<xsd:element name="naamKandidaat" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="aantalUitgebrachteStemmen" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
@@ -163,15 +163,15 @@
 	<xsd:complexType name="aanwezigeDeelnemer">
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="rolnaam" type="rolNaam" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="rolNaam" type="rolNaam" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="organisatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="aanvangAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="eindeAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="neemtDeelAanVergadering" type="vergadering" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="isNatuurlijkPersoon" type="NatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="neemtDeelAanStemming" type="Stem" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="spreektTijdens" type="Spreekfragment" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="isNatuurlijkPersoon" type="natuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="neemtDeelAanStemming" type="stem" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="spreektTijdens" type="spreekfragment" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="dagelijksBestuurLidmaatschap">
@@ -179,15 +179,15 @@
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="dagelijksBestuur" type="DagelijksBestuur" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="1"/>
 		</xsd:all>
 	</xsd:complexType>
 	<xsd:complexType name="dagelijksBestuur">
 		<xsd:all>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="dagelijksBestuursnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="dagelijksBestuurstype" type="DagelijksBestuursType" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="dagelijksBestuursType" type="dagelijksBestuursType" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
 		</xsd:all>
 	</xsd:complexType>
 	<xsd:complexType name="zaak">
@@ -207,13 +207,13 @@
 			<xsd:element name="creatiedatum" type="xsd:date" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="link" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="vertrouwelijkheidsaanduiding" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="zaken" type="Zaak" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="zaken" type="zaak" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="enkelvoudigInformatieobject">
 		<xsd:complexContent>
-			<xsd:extension base="Informatieobject">
+			<xsd:extension base="informatieobject">
 				<xsd:sequence>
 					<xsd:element name="taal" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 					<xsd:element name="inhoud" type="xsd:string" minOccurs="0" maxOccurs="1"/>
@@ -223,63 +223,63 @@
 	</xsd:complexType>
 	<xsd:complexType name="motie">
 		<xsd:complexContent>
-			<xsd:extension base="Besluitvormingsstuk">
+			<xsd:extension base="besluitvormingsstuk">
 				<xsd:sequence>
-					<xsd:element name="motietype" type="motieType" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="motieType" type="motieType" minOccurs="0" maxOccurs="1"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="toezegging">
 		<xsd:complexContent>
-			<xsd:extension base="EnkelvoudigInformatieobject">
+			<xsd:extension base="enkelvoudigInformatieobject">
 				<xsd:sequence>
-					<xsd:element name="toezeggingsomschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="toezeggingsOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="antwoord">
 		<xsd:complexContent>
-			<xsd:extension base="EnkelvoudigInformatieobject">
+			<xsd:extension base="enkelvoudigInformatieobject">
 				<xsd:sequence>
-					<xsd:element name="antwoordomschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-					<xsd:element name="behorendBijVraag" type="Vraag" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="antwoordOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="behorendBijVraag" type="vraag" minOccurs="0" maxOccurs="1"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="voorstel">
 		<xsd:complexContent>
-			<xsd:extension base="Besluitvormingsstuk">
+			<xsd:extension base="besluitvormingsstuk">
 				<xsd:sequence>
 					<xsd:element name="portefeuillehouder" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-					<xsd:element name="isIngediendDoor" type="DagelijksBestuur" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="isIngediendDoor" type="dagelijksBestuur" minOccurs="0" maxOccurs="1"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="mededeling">
 		<xsd:complexContent>
-			<xsd:extension base="EnkelvoudigInformatieobject">
+			<xsd:extension base="enkelvoudigInformatieobject">
 				<xsd:sequence>
-					<xsd:element name="mededelingomschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="mededelingOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="ingekomenStuk">
 		<xsd:complexContent>
-			<xsd:extension base="EnkelvoudigInformatieobject"/>
+			<xsd:extension base="enkelvoudigInformatieobject"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="amendement">
 		<xsd:complexContent>
-			<xsd:extension base="Besluitvormingsstuk">
+			<xsd:extension base="besluitvormingsstuk">
 				<xsd:sequence>
 					<xsd:element name="toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-					<xsd:element name="hoortBijVoorstel" type="Voorstel" minOccurs="0" maxOccurs="1"/>
-					<xsd:element name="subamendementVan" type="Amendement" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="hoortBijVoorstel" type="voorstel" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="subamendementVan" type="amendement" minOccurs="0" maxOccurs="1"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -297,14 +297,14 @@
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="adresBinnenland" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="heeftIngediend" type="Informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="isNatuurlijkPersoon" type="NatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="heeftIngediend" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="isNatuurlijkPersoon" type="natuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="besluitvormingsstuk" abstract="true">
 		<xsd:complexContent>
-			<xsd:extension base="EnkelvoudigInformatieobject">
+			<xsd:extension base="enkelvoudigInformatieobject">
 				<xsd:sequence>
 					<xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 					<xsd:element name="datumIngediend" type="xsd:date" minOccurs="0" maxOccurs="1"/>
@@ -316,14 +316,14 @@
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="fractienaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            		<xsd:element name="bestuurslaag" type="Bestuurslaag" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="fractieNeemtDeelAanStemming" type="StemresultaatPerFractie" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="fractieNeemtDeelAanStemming" type="stemresultaatPerFractie" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="stemresultaatPerFractie">
 		<xsd:all>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-			<xsd:element name="fractieStemresultaat" type="fractieStemResultaat" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fractieStemresultaat" type="fractieStemresultaat" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="gegevenOpStemming" type="stemming" minOccurs="0" maxOccurs="1"/>
 		</xsd:all>
 	</xsd:complexType>
@@ -333,14 +333,14 @@
 			<xsd:element name="datumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="datumEindeFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
-			<xsd:element name="fractie" type="Fractie" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="fractie" type="fractie" minOccurs="0" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="vraag">
 		<xsd:complexContent>
-			<xsd:extension base="EnkelvoudigInformatieobject">
+			<xsd:extension base="enkelvoudigInformatieobject">
 				<xsd:sequence>
-					<xsd:element name="vraagomschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="vraagOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 					<xsd:element name="vraagType" type="vraagType" minOccurs="0" maxOccurs="1"/>
 				</xsd:sequence>
 			</xsd:extension>
@@ -374,7 +374,7 @@
 	<complexType name="bestuurslaag">
 		<choice>
 			<element name="waterschap" type="waterschap"/>
-			<element name="provincie" type="Provincie"/>
+			<element name="provincie" type="provincie"/>
 			<element name="gemeente" type="gemeente"/>
 		</choice>
 	</complexType>
@@ -420,7 +420,7 @@
 			<xsd:enumeration value="Onthouden"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-	<xsd:simpleType name="fractieStemResultaat">
+	<xsd:simpleType name="fractieStemresultaat">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Aangenomen"/>
 			<xsd:enumeration value="Verworpen"/>
@@ -441,7 +441,7 @@
 			<xsd:enumeration value="Gelijk"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-	<xsd:simpleType name="besluitvormingsStukkenType">
+	<xsd:simpleType name="besluitvormingsstukkenType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Hamerstukken"/>
 			<xsd:enumeration value="Bespreekstukken"/>
@@ -485,7 +485,7 @@
 			<xsd:enumeration value="Burgerlid"/>
 			<xsd:enumeration value="Griffier"/>
 			<xsd:enumeration value="Gemeentesecretaris"/>
-			<xsd:enumeration value="Commissaris van de Koning"/>
+			<xsd:enumeration value="Commissaris van de koning"/>
 			<xsd:enumeration value="Gedeputeerde"/>
 			<xsd:enumeration value="Statenlid"/>
 			<xsd:enumeration value="Provinciesecretaris"/>
@@ -493,8 +493,8 @@
 			<xsd:enumeration value="Dagelijks bestuurslid"/>
 			<xsd:enumeration value="Algemeen bestuurslid"/>
 			<xsd:enumeration value="Secretarisdirecteur"/>
-			<xsd:enumeration value="Ambtenaar/Medewerker"/>
-			<xsd:enumeration value="Adviseur of Deskundige"/>
+			<xsd:enumeration value="Ambtenaar/medewerker"/>
+			<xsd:enumeration value="Adviseur of deskundige"/>
 			<xsd:enumeration value="Overig"/>
 		</xsd:restriction>
 	</xsd:simpleType>
