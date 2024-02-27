@@ -485,7 +485,7 @@
 			<xsd:enumeration value="Burgerlid"/>
 			<xsd:enumeration value="Griffier"/>
 			<xsd:enumeration value="Gemeentesecretaris"/>
-			<xsd:enumeration value="Commissaris van de koning"/>
+			<xsd:enumeration value="Commissaris van de Koning"/>
 			<xsd:enumeration value="Gedeputeerde"/>
 			<xsd:enumeration value="Statenlid"/>
 			<xsd:enumeration value="Provinciesecretaris"/>
