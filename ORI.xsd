@@ -371,13 +371,13 @@
 			<xsd:element name="waterschapnaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<complexType name="bestuurslaag">
-		<choice>
-			<element name="waterschap" type="waterschap"/>
-			<element name="provincie" type="provincie"/>
-			<element name="gemeente" type="gemeente"/>
-		</choice>
-	</complexType>
+	<xsd:complexType name="bestuurslaag">
+		<xsd:choice>
+			<xsd:element name="waterschap" type="waterschap"/>
+			<xsd:element name="provincie" type="provincie"/>
+			<xsd:element name="gemeente" type="gemeente"/>
+		</xsd:choice>
+	</xsd:complexType>
 	<xsd:simpleType name="vraagType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="Technische vraag"/>
