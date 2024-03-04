@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.1">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.1">
 	<xsd:element name="ORI" type="ORI"/>
 	<xsd:complexType name="ORI">
 		<xsd:sequence>
 			<xsd:element name="vergadering" type="vergadering" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation>Een `vergadering` is een bijeenkomst van meerdere mensen die met elkaar spreken en/of afspraken maken over onderwerpen die op de agenda staan.</xsd:documentation>
+			  <xsd:annotation>
+				<!-- Misschien handig om de relaties te documenteren? voor informatieobject is dit al gedaan -->
+				<xsd:documentation>Een bijeenkomst waarin een of meer agendapunten worden besproken.</xsd:documentation>
+				
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="agendapunt" type="agendapunt" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Een onderdeel van de agenda dat als één geheel wordt behandeld. Een `agendapunt` kan weer onderverdeeld zijn in subagendapunten.</xsd:documentation>
+					<xsd:documentation>Een onderdeel van de agenda dat als één geheel wordt behandeld. Een agendapunt kan weer onderverdeeld zijn in subagendapunten.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="stemming" type="stemming" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Een moment waarop een keuze gemaakt moet worden over een bepaald `agendapunt` of `vergaderstuk`, waarbij alle uitgebrachte stemmen geteld worden. Alleen aanwezige raadsleden (gemeente) of statenleden (provincie) kunnen een stem uitbrengen.</xsd:documentation>
+					<xsd:documentation>Een moment waarop aanwezige deelnemers een stemming uitbrengen over een bepaald agendapunt of vergaderstuk.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="besluit" type="besluit" minOccurs="0" maxOccurs="unbounded">
@@ -30,7 +32,7 @@
 			</xsd:element>
 			<xsd:element name="organisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Het deel van een functioneel afgebakend onderdeel binnen de organisatie die verantwoordelijk is voor de behandeling van zaken.</xsd:documentation>
+					<xsd:documentation>Een functioneel afgebakend onderdeel binnen een organisatie die verantwoordelijk is voor het indienen van een informatieobject.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="zaak" type="zaak" minOccurs="0" maxOccurs="unbounded">
@@ -130,7 +132,7 @@
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>Unieke resource identifier.</xsd:documentation>
+					<xsd:documentation>Uniek identificatie kenmerk van de vergadering.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -140,7 +142,7 @@
 			</xsd:element>
 			<xsd:element name="vergaderToelichting" type="xsd:string" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>De toelichting of nadere omschrijving van de vergadering.</xsd:documentation>
+					<xsd:documentation>Toelichting of nadere omschrijving van de vergadering.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="georganiseerdDoorGremium" type="gremium" minOccurs="0" maxOccurs="1">
@@ -150,15 +152,16 @@
 			</xsd:element>
 			<xsd:element name="vergaderingstype" type="vergaderingstype" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>De type-aanduiding van de vergadering. 
+				  <xsd:documentation>
+					De type-aanduiding van de **vergadering**.
 
                     Mogelijke type:
-                      * raadsvergadering 
-                      * commissievergadering
-                      * presidium
-                      * statenvergadering
-                      * algemene_bestuursvergadering
-                    </xsd:documentation>
+					  - `raadsvergadering`
+					  - `commissievergadering`
+					  - presidium
+					  - statenvergadering
+					  - algemene bestuursvergadering
+					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="locatie" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -173,12 +176,12 @@
 			</xsd:element>
 			<xsd:element name="geplandeVergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>De geplande datum van de `vergadering`.</xsd:documentation>
+					<xsd:documentation>De geplande datum van de vergadering.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="vergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>De datum van de `vergadering`.</xsd:documentation>
+					<xsd:documentation>De datum van de vergadering.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="geplandeAanvangVergadering" type="xsd:time" minOccurs="0" maxOccurs="1">
@@ -203,12 +206,13 @@
 			</xsd:element>
 			<xsd:element name="publicatiedatum" type="xsd:date" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>De datum waarop de vergadering voor het laatst gepubliceerd is. Het kan zijn dat er wijzigingen hebben plaatsgevonden en dat de vergadering opnieuw is gepubliceerd. Dit veld bevat de meest recente publicatiedatum.</xsd:documentation>
+					<xsd:documentation>Meest recente publicatiedatum van een vergadering.
+					De datum waarop de vergadering voor het laatst gepubliceerd is. Het kan zijn dat er wijzigingen hebben plaatsgevonden en dat de vergadering opnieuw is gepubliceerd. Dit veld bevat de meest recente publicatiedatum.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>TODO</xsd:documentation>
+					<xsd:documentation>Geeft aan welke bestuurslaag de verantwoordelijk die de vergadering geiniteerd heeft. TODO</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="isVastgelegdMiddels" type="mediabron" minOccurs="0" maxOccurs="unbounded">
@@ -498,7 +502,7 @@
 * `burgerlid` - Burgerlid
 * `griffier` - Griffier
 * `gemeentesecretaris` - Gemeentesecretaris
-* `ambtenaar_of_medewerker` - Ambtenaar of medewerker van gemeente of provincie
+* `ambtenaar of medewerker` - Ambtenaar of medewerker van gemeente of provincie
 * `adviseur_of_deskundige` - Adviseur of deskundige
 * `overig` - Overig
 * `commissaris_van_de_koning` - Commissaris van de koning Commissaris van de Koning of Koningin (hoort bij de provincie)
@@ -1005,7 +1009,7 @@
 		<xsd:sequence>
 			<xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>Unieke resource identifier.</xsd:documentation>
+					<xsd:documentation>Uniek identificatie kenmerk van de vergadering.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1">
