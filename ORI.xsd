@@ -10,7 +10,7 @@
 			</xsd:element>
 			<xsd:element name="agendapunt" type="agendapunt" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Een onderdeel van de agenda dat als één geheel wordt behandeld. Een `agendapunt` kan weer onderverdeeld zijn naar subagendapunten.</xsd:documentation>
+					<xsd:documentation>Een onderdeel van de agenda dat als één geheel wordt behandeld. Een `agendapunt` kan weer onderverdeeld zijn in subagendapunten.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="stemming" type="stemming" minOccurs="0" maxOccurs="unbounded">
@@ -20,7 +20,7 @@
 			</xsd:element>
 			<xsd:element name="besluit" type="besluit" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Een na beraadslaging vastgestelde beslissing Een na overweging of beraadslaging vastgestelde beslissing voor een individueel of concreet geval.</xsd:documentation>
+					<xsd:documentation>Een na beraadslaging vastgestelde beslissing.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="indiener" type="indiener" minOccurs="0" maxOccurs="unbounded">
@@ -30,17 +30,28 @@
 			</xsd:element>
 			<xsd:element name="organisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Het deel van een functioneel afgebakend onderdeel binnen de organisatie dat haar activiteiten uitvoert binnen een `vestiging` `van` `zaakbehandelende` `organisatie` en die verantwoordelijk is voor de behandeling van zaken.</xsd:documentation>
+					<xsd:documentation>Het deel van een functioneel afgebakend onderdeel binnen de organisatie die verantwoordelijk is voor de behandeling van zaken.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="zaak" type="zaak" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Identificatie van de zaak.</xsd:documentation>
+					<xsd:documentation>TODO.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="informatieobject" type="informatieobject" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>TODO</xsd:documentation>
+					<xsd:documentation>
+					<![CDATA[
+					Een op zichzelf staand geheel van gegevens met een eigen identiteit, inclusief
+					bijbehorende metadata ontvangen of gecreëerd door een natuurlijke en/of
+					rechtspersoon bij de uitvoering van diens taken.
+
+					Een informatieobject is altijd gekoppeld aan minimaal een van de volgende objecten:
+					  * Vergadering
+					  * Agendapunt
+					  * Stemming
+					]]>
+					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="enkelvoudigInformatieobject" type="enkelvoudigInformatieobject" minOccurs="0" maxOccurs="unbounded">
@@ -134,17 +145,20 @@
 			</xsd:element>
 			<xsd:element name="georganiseerdDoorGremium" type="gremium" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>De vergadering is georganiseerd door een gremium.</xsd:documentation>
+					<xsd:documentation>Het gremium dat de vergadering georganiseerd heeft.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="vergaderingstype" type="vergaderingstype" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>De mogelijke typen van een `vergadering` behorende bij de gemeenteraad* `raadsvergadering` - Raadsvergadering is van toepassing bij gemeenten
-* `commissievergadering` - Commissievergadering is van toepassing bij gemeenten
-* `presidium` - Presidium
-* `statenvergadering` - Statenvergadering is van toepassing bij provincies
-* `algemene_bestuursvergadering` - Algemene bestuursvergadering is van toepassing bij waterschappen
-.</xsd:documentation>
+					<xsd:documentation>De type-aanduiding van de vergadering. 
+
+                    Mogelijke type:
+                      * raadsvergadering 
+                      * commissievergadering
+                      * presidium
+                      * statenvergadering
+                      * algemene_bestuursvergadering
+                    </xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="locatie" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -189,7 +203,7 @@
 			</xsd:element>
 			<xsd:element name="publicatiedatum" type="xsd:date" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>TODO</xsd:documentation>
+					<xsd:documentation>De datum waarop de vergadering voor het laatst gepubliceerd is. Het kan zijn dat er wijzigingen hebben plaatsgevonden en dat de vergadering opnieuw is gepubliceerd. Dit veld bevat de meest recente publicatiedatum.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1">
