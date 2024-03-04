@@ -2,6 +2,14 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.1">
     <xsd:element name="ORI" type="ORI"/>
     <xsd:complexType name="ORI">
+        <!-- Top level elementen:
+             - agendapunt
+             - vergadering
+             - mediabron
+             Onzeker:
+             - informatieobject
+               - Hoe groot is de kansen dat twee objecten naar hetzelfde informatieobject refereren
+        -->
         <xsd:sequence>
             <xsd:element name="vergadering" type="vergadering" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="agendapunt" type="agendapunt" minOccurs="0" maxOccurs="unbounded"/>
@@ -44,13 +52,15 @@
             <xsd:element name="eindeVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="publicatiedatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="isVastgelegdMiddels" type="mediabron" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="isVastgelegdMiddels" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar de mediabron waarin de vergadering is vastgelegd.
+                    <![CDATA[
+                        Verwijzing naar de mediabron waarin de vergadering is vastgelegd. <br><br>
 
-                        Verwachte waarde:
+                        Verwachte waarde: <br>
                           - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                    ]]>
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -93,9 +103,36 @@
             <xsd:element name="indicatorBehandeld" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatorBesloten" type="xsd:boolean" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="wordtBehandeldTijdens" type="vergadering" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="heeftBehandelendAmbtenaar" type="natuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
-            <xsd:element name="heeftAlsBijlage" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="wordtBehandeldTijdens" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar de vergadering waarin het agendapunt behandeld wordt.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `vergadering`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="heeftBehandelendAmbtenaar" type="natuurlijkPersoon" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar de ambtenaar die het agendapunt behandeld.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="heeftAlsBijlage" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar een bijlage van het agendapunt.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerd `informatieobject`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="heeftAlsSubagendapunt" type="agendapunt" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -112,8 +149,25 @@
             <xsd:element name="audioTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="videoTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="isVastgelegdIn" type="mediabron" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="spreektTijdens" type="agendapunt" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element name="isVastgelegdIn" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar een mediabron.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="spreektTijdens" type="xsd:string" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>         
+                        Verwijzing naar een mediabron.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`                      </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="stemming">
@@ -123,7 +177,17 @@
             <xsd:element name="resultaatMondelingeStemming" type="stemmingResultaat" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="stemmingOverPersonen" type="stemmingOverPersonen" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="heeftBetrekkingOpAgendapunt" type="agendapunt" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="heeftBetrekkingOpAgendapunt" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        `heeftBetrekkingOpAgendapunt`: verwijzing naar agendapunt waarover gestemt wordt  
+                    </xsd:documentation>
+                    <xsd:documentation>
+                         **Verwachte waarde:** &lt;br&gt;
+                           - `ID` (`string`): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="besluitvormingsstuk" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="leidtTotBesluit" type="besluit" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>

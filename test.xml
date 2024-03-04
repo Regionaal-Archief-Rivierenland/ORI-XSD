@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORI xmlns="https://vng.nl/projecten/open-raadsinformatie" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://vng.nl/projecten/open-raadsinformatie file:///home/rw/projecten/werk/ORI-XSD-upstream/ORI.xsd">
+  <vergadering>
+	<ID>1224</ID>
+    <naam>raadsvergadering</naam>
+    <georganiseerdDoorGremium></georganiseerdDoorGremium>
+	<vergaderingstype>Raadsvergadering</vergaderingstype>
+    <publicatiedatum></publicatiedatum>
+    <bestuurslaag></bestuurslaag>
+    <isVastgelegdMiddels>123-abcd</isVastgelegdMiddels>
+    <isGenotuleerdIn></isGenotuleerdIn>
+  </vergadering>
+  <stemming>
+      <ID>1i2i</ID>
+      <heeftBetrekkingOpAgendapunt>12344</heeftBetrekkingOpAgendapunt>
+  </stemming>
+</ORI>
