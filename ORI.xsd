@@ -44,9 +44,36 @@
             <xsd:element name="eindeVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="publicatiedatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="isVastgelegdMiddels" type="mediabron" minOccurs="0" maxOccurs="unbounded"/>
-            <xsd:element name="isGenotuleerdIn" type="informatieobject" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="heeftAlsBijlage" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="isVastgelegdMiddels" type="mediabron" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar de mediabron waarin de vergadering is vastgelegd.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="isGenotuleerdIn" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar de notulen van de vergadering.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerd `informatieobject`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="heeftAlsBijlage" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar een bijlage bij de vergadering.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerd `informatieobject`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="heeftAlsDeelvergadering" type="vergadering" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -378,6 +405,13 @@
             <xsd:element name="gemeente" type="gemeente"/>
         </xsd:choice>
     </xsd:complexType>
+    <xsd:simpleType name="ID">
+    <mytag>
+      <nestedTag>
+        look at me
+      </nestedTag>
+    </mytag>
+    </xsd:simpleType>
     <xsd:simpleType name="vraagType">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="Technische vraag"/>
@@ -528,4 +562,10 @@
             <xsd:enumeration value="Limburg"/>
         </xsd:restriction>
     </xsd:simpleType>
+    <!-- enforce uniqueness on all ID tags within the tree -->
+    <xsd:unique name="uniqueID">
+        <!-- TODO: maybe allow IDs to be non-unique within certain types of tags? -->
+        <xsd:selector xpath=".//ID"/>
+        <xsd:field xpath="."/>
+    </xsd:unique>
 </xsd:schema>
