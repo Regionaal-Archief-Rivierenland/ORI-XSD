@@ -298,8 +298,10 @@
             <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="adresBinnenland" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="heeftIngediend" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-            <xsd:element name="isNatuurlijkPersoon" type="natuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="1"/>
+                  <xsd:choice>
+                    <xsd:element name="isNatuurlijkPersoon" type="natuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="1"/>
+                  </xsd:choice>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="besluitvormingsstuk" abstract="true">
