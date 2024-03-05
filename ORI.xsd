@@ -132,7 +132,7 @@
     </xsd:complexType>
     <xsd:complexType name="nevenfunctieNatuurlijkPersoon">
         <xsd:sequence>
-            <xsd:element name="omschrijvingNevenfunctie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="omschrijvingNevenfunctie" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="naamOrganisatieNevenfunctie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aantalUrenperMaand" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatorBezoldigd" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
