@@ -8,6 +8,7 @@
              - mediabron
              Onzeker:
              - informatieobject
+             - zaak (alleen ref. vanuit informatieobject)
                - Hoe groot is de kansen dat twee objecten naar hetzelfde informatieobject refereren
              - TODO: 
              - enkelvoudiginformatieobject moet verplaats, maybe?
@@ -62,7 +63,7 @@
                         Verwijzing naar de mediabron waarin de vergadering is vastgelegd. <br><br>
 
                         Verwachte waarde: <br>
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
                     ]]>
                     </xsd:documentation>
                 </xsd:annotation>
@@ -73,7 +74,7 @@
                         Verwijzing naar de notulen van de vergadering.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerd `informatieobject`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -83,7 +84,7 @@
                         Verwijzing naar een bijlage bij de vergadering.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerd `informatieobject`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -112,17 +113,17 @@
                         Verwijzing naar de vergadering waarin het agendapunt behandeld wordt.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `vergadering`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `vergadering`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftBehandelendAmbtenaar" type="natuurlijkPersoon" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftBehandelendAmbtenaar" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de ambtenaar die het agendapunt behandeld.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -132,7 +133,7 @@
                         Verwijzing naar een bijlage van het agendapunt.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerd `informatieobject`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -158,7 +159,7 @@
                         Verwijzing naar een mediabron.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -168,7 +169,7 @@
                         Verwijzing naar een mediabron.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
                       </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -188,7 +189,7 @@
                     </xsd:documentation>
                     <xsd:documentation>
                          **Verwachte waarde:** &lt;br&gt;
-                           - `ID` (`string`): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                           - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `agendapunt`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -199,7 +200,7 @@
                         Het besluitvormingsstuk waarover gestemd wordt.
                         
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatie kenmerk van een elders gedefinieerd `besluitvormingsstuk`. 
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `besluitvormingsstuk`. 
                           Een `besluitvormingsstuk` element erft de eigenschappen van `enkelvoudigInformatieobject`, die op haar beurt
                           weer van `informatieobject` erft. 
                     </xsd:documentation>
@@ -213,7 +214,7 @@
                                 <auteur>P. De Vries</auteur>
                                 <taal>nl</taal>
                             </besluitvormingsstuk>
-                            
+
                             <stemming>
                                 ...
                                 <heeftBetrekkingOpBesluitvormingsstuk>abcd-1234</<heeftBetrekkingOpBesluitvormingsstuk>
@@ -304,12 +305,25 @@
                         Verwijzing naar de vergadering waar de deelnemer aanwezig was.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `vergadering`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `vergadering`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="isNatuurlijkPersoon" type="natuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="isNatuurlijkPersoon" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <![CDATA[
+                        Verwijzing naar een <natuurlijkPersoon> element met verdere informatie over de deelnemer.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                        ]]>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <!-- gaat niet veel heen, dus geen intern relatie mechanisme -->
             <xsd:element name="neemtDeelAanStemming" type="stem" minOccurs="0" maxOccurs="unbounded"/>
+            <!-- er kan maar een persoon tegelijk spreken, dus dit ook geen ID maken -->
             <xsd:element name="spreektTijdens" type="spreekfragment" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -318,7 +332,16 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="dagelijksBestuur" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar het dagelijks bestuur waar het lidmaatschap betrekking op heeft.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `dagelijksBestuur`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:all>
     </xsd:complexType>
     <xsd:complexType name="dagelijksBestuur">
@@ -331,7 +354,7 @@
     </xsd:complexType>
     <xsd:complexType name="zaak">
         <xsd:sequence>
-            <xsd:element name="zaakID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="zaakregistratie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="omschrijving" type="xsd:string" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
@@ -347,7 +370,16 @@
             <xsd:element name="link" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="vertrouwelijkheidsaanduiding" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="zaken" type="zaak" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="zaak" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar de zaak waar dit informatieobject betrekking op heeft.
+
+                        Verwachte waarde:
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `zaak`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="enkelvoudigInformatieobject">
@@ -383,7 +415,18 @@
             <xsd:extension base="enkelvoudigInformatieobject">
                 <xsd:sequence>
                     <xsd:element name="antwoordOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="behorendBijVraag" type="vraag" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="behorendBijVraag" type="xsd:string" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Verwijzing naar de vraag waar het antwoord bij hoort.
+                                
+                                Verwachte waarde:
+                                  - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `vraag`.
+                                  Een `vraag` element erft de eigenschappen van `enkelvoudigInformatieobject`, die op haar beurt
+                                  weer van `informatieobject` erft. 
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
@@ -393,7 +436,13 @@
             <xsd:extension base="besluitvormingsstuk">
                 <xsd:sequence>
                     <xsd:element name="portefeuillehouder" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="isIngediendDoor" type="dagelijksBestuur" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="isIngediendDoor" type="xsd:string" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Verwijzing naar het dagelijksbestuur dat het besluitsvormingstuk heeft inge
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
