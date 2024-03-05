@@ -9,6 +9,9 @@
              Onzeker:
              - informatieobject
                - Hoe groot is de kansen dat twee objecten naar hetzelfde informatieobject refereren
+             - TODO: 
+             - enkelvoudiginformatieobject moet verplaats, maybe?
+             - test of dat uniqueness mechanisme werkt
         -->
         <xsd:sequence>
             <xsd:element name="vergadering" type="vergadering" minOccurs="0" maxOccurs="unbounded"/>
@@ -161,11 +164,12 @@
             </xsd:element>
             <xsd:element name="spreektTijdens" type="xsd:string" minOccurs="1" maxOccurs="unbounded">
                 <xsd:annotation>
-                    <xsd:documentation>         
+                    <xsd:documentation>
                         Verwijzing naar een mediabron.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`                      </xsd:documentation>
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `mediabron`
+                      </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
@@ -180,7 +184,7 @@
             <xsd:element name="heeftBetrekkingOpAgendapunt" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        `heeftBetrekkingOpAgendapunt`: verwijzing naar agendapunt waarover gestemt wordt  
+                        `heeftBetrekkingOpAgendapunt`: verwijzing naar agendapunt waarover gestemt wordt.
                     </xsd:documentation>
                     <xsd:documentation>
                          **Verwachte waarde:** &lt;br&gt;
@@ -188,7 +192,38 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="besluitvormingsstuk" minOccurs="0" maxOccurs="unbounded"/>
+            <!-- MAYBE: embed hier een informatieobject? -->
+            <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het besluitvormingsstuk waarover gestemd wordt.
+                        
+                        Verwachte waarde:
+                          - `ID` (`string`): Uniek identificatie kenmerk van een elders gedefinieerd `besluitvormingsstuk`. 
+                          Een `besluitvormingsstuk` element erft de eigenschappen van `enkelvoudigInformatieobject`, die op haar beurt
+                          weer van `informatieobject` erft. 
+                    </xsd:documentation>
+                    <xsd:documentation>
+                        Voorbeeld:
+
+                            <![CDATA[
+                            <besluitvormingsstuk>
+                                <ID>abcd-1234</ID>
+                                <titel>Kapvergunning gemeente Den Haag</titel>
+                                <auteur>P. De Vries</auteur>
+                                <taal>nl</taal>
+                            </besluitvormingsstuk>
+                            
+                            <stemming>
+                                ...
+                                <heeftBetrekkingOpBesluitvormingsstuk>abcd-1234</<heeftBetrekkingOpBesluitvormingsstuk>
+                                ...
+                            </stemming>
+                            ]]>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <!-- besluit heeft maar 1 pijltje, dus geen referentie mechanisme maken -->
             <xsd:element name="leidtTotBesluit" type="besluit" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -206,9 +241,13 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="geslachtsaanduiding" type="geslacht" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="functie" type="functie" minOccurs="0" maxOccurs="1"/>
+            <!-- naamNatuurlijkpersoon heeft maar 1 pijltje, dus geen referentie mechanisme maken -->
             <xsd:element name="naamNatuurlijkPersoon" type="naamNatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
+            <!-- nevenfunctieNatuurlijkPersoon heeft maar 1 pijltje, dus geen referentie mechanisme maken -->
             <xsd:element name="nevenfunctieNatuurlijkPersoon" type="nevenfunctieNatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
+            <!-- fractielidmaatschap heeft maar 1 pijltje, dus geen referentie mechanisme maken -->
             <xsd:element name="isLidVanFractie" type="fractielidmaatschap" minOccurs="0" maxOccurs="1"/>
+            <!-- dagelijksbestuurlidmaatschap heeft maar 1 pijltje, dus geen referentie mechanisme maken -->
             <xsd:element name="isLidVanDagelijksBestuur" type="dagelijksBestuurLidmaatschap" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -469,13 +508,6 @@
             <xsd:element name="gemeente" type="gemeente"/>
         </xsd:choice>
     </xsd:complexType>
-    <xsd:simpleType name="ID">
-    <mytag>
-      <nestedTag>
-        look at me
-      </nestedTag>
-    </mytag>
-    </xsd:simpleType>
     <xsd:simpleType name="vraagType">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="Technische vraag"/>
@@ -627,9 +659,9 @@
         </xsd:restriction>
     </xsd:simpleType>
     <!-- enforce uniqueness on all ID tags within the tree -->
-    <xsd:unique name="uniqueID">
-        <!-- TODO: maybe allow IDs to be non-unique within certain types of tags? -->
-        <xsd:selector xpath=".//ID"/>
-        <xsd:field xpath="."/>
-    </xsd:unique>
+    <!-- <xsd:unique name="uniqueID"> -->
+    <!--     <!-\- TODO: maybe allow IDs to be non-unique within certain types of tags? -\-> -->
+    <!--     <xsd:selector xpath=".//ID"/> -->
+    <!--     <xsd:field xpath="."/> -->
+    <!-- </xsd:unique> -->
 </xsd:schema>

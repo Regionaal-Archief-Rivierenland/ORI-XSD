@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ORI xmlns="https://vng.nl/projecten/open-raadsinformatie" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://vng.nl/projecten/open-raadsinformatie file:///home/rw/projecten/werk/ORI-XSD-upstream/ORI.xsd">
+<ORI xmlns="https://vng.nl/projecten/open-raadsinformatie" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://vng.nl/projecten/open-raadsinformatie ORI.xsd">
   <vergadering>
 	<ID>1224</ID>
     <naam>raadsvergadering</naam>
@@ -13,5 +13,6 @@
   <stemming>
       <ID>1i2i</ID>
       <heeftBetrekkingOpAgendapunt>12344</heeftBetrekkingOpAgendapunt>
+      <heeftBetrekkingOpBesluitvormingsstuk>abcd-1234</heeftBetrekkingOpBesluitvormingsstuk>
   </stemming>
 </ORI>
