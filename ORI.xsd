@@ -152,7 +152,7 @@
             <xsd:element name="audioTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="videoTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="isVastgelegdIn" type="xsd:string" minOccurs="0" maxOccurs="1">
+            <xsd:element name="isVastgelegdIn" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar een mediabron.
@@ -298,7 +298,16 @@
             <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aanvangAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="eindeAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="neemtDeelAanVergadering" type="vergadering" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="neemtDeelAanVergadering" type="vergadering" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar de vergadering waar de deelnemer aanwezig was.
+
+                        Verwachte waarde:
+                          - `ID` (string): Uniek identificatie kenmerk van een elders gedefinieerde `vergadering`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="isNatuurlijkPersoon" type="natuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="neemtDeelAanStemming" type="stem" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="spreektTijdens" type="spreekfragment" minOccurs="0" maxOccurs="unbounded"/>
