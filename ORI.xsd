@@ -74,7 +74,7 @@
             <xsd:element name="heeftAlsBijlage" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar een bijlage bij de vergadering.
+                        Verwijzing naar een bijlage van de vergadering.
 
                         Verwachte waarde:
                           - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
@@ -317,7 +317,7 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="dagelijksBestuur" type="xsd:string" minOccurs="0" maxOccurs="1">
+            <xsd:element name="verwijzingDagelijksBestuur" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar het dagelijks bestuur waar het lidmaatschap betrekking op heeft.
@@ -355,7 +355,7 @@
             <xsd:element name="link" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="vertrouwelijkheidsaanduiding" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="zaak" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="verwijzingZaak" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de zaak waar dit informatieobject betrekking op heeft.
@@ -495,10 +495,12 @@
             <xsd:element name="isNatuurlijkPersoon" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                    Verwijzing naar de natuurlijke persoon die als indiener functioneert.
-                    
-                    Verwachte waarde:
-                      - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                        <![CDATA[
+                        Verwijzing naar een `<natuurlijkPersoon>` element met verdere informatie over de indiener.
+
+                        Verwachte waarde:
+                         - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`                                 
+                        ]]>
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
