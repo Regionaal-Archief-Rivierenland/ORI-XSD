@@ -156,13 +156,13 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="spreektTijdens" type="xsd:string" minOccurs="1" maxOccurs="unbounded">
+            <xsd:element name="spreektTijdensAgendapunt" type="xsd:string" minOccurs="1" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar een mediabron.
+                        Verwijzing naar het agendapunt waar tijdens gesproken wordt.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
+                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `agendapunt`
                       </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
