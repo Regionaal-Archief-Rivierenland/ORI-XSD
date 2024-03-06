@@ -5,13 +5,27 @@
     <naam>raadsvergadering</naam>
     <georganiseerdDoorGremium></georganiseerdDoorGremium>
 	<vergaderingstype>Raadsvergadering</vergaderingstype>
-    <publicatiedatum></publicatiedatum>
-    <bestuurslaag></bestuurslaag>
-    <isVastgelegdMiddels>123-abcd</isVastgelegdMiddels>
+    <publicatiedatum>2002-09-24</publicatiedatum>
+    <bestuurslaag>
+        <gemeente>
+            <gemeentecode>05</gemeentecode>
+            <gemeentenaam>Hoorn</gemeentenaam>
+        </gemeente>
+    </bestuurslaag>
+    <isVastgelegdMiddels>1234</isVastgelegdMiddels>
     <isGenotuleerdIn></isGenotuleerdIn>
   </vergadering>
+  <vergadering>
+      <ID>1234</ID>
+      <bestuurslaag>
+          <gemeente>
+              <gemeentecode>05</gemeentecode>
+              <gemeentenaam>Hoorn</gemeentenaam>
+          </gemeente>
+      </bestuurslaag>
+  </vergadering>
   <stemming>
-      <ID>1i2i</ID>
+      <ID>12345</ID>
       <heeftBetrekkingOpAgendapunt>12344</heeftBetrekkingOpAgendapunt>
       <heeftBetrekkingOpBesluitvormingsstuk>abcd-1234</heeftBetrekkingOpBesluitvormingsstuk>
   </stemming>
