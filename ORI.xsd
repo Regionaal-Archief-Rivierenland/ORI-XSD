@@ -619,9 +619,6 @@
             <xsd:element name="gemeente" type="gemeente"/>
         </xsd:choice>
     </xsd:complexType>
-    <xsd:simpleType name="ID">
-        <xsd:restriction base="xsd:string"/>
-    </xsd:simpleType>
     <xsd:simpleType name="vraagType">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="Technische vraag"/>
