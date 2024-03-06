@@ -178,7 +178,7 @@
             <xsd:element name="heeftBetrekkingOpAgendapunt" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar het agendapunt waarover gestemt wordt.
+                        Verwijzing naar agendapunt waarover gestemt wordt.
 
                         Verwachte waarde:
                            - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `agendapunt`
