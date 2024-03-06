@@ -149,7 +149,7 @@
             <xsd:element name="isVastgelegdIn" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar een mediabron.
+                        Verwijzing naar de mediabron waarin het spreekfragment is vastgelegd.
 
                         Verwachte waarde:
                           - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
