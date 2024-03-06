@@ -298,10 +298,7 @@
             <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="adresBinnenland" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="heeftIngediend" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-                  <xsd:choice>
-                    <xsd:element name="isNatuurlijkPersoon" type="natuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="1"/>
-                  </xsd:choice>
+            <xsd:element name="isEntiteit" type="isEntiteit" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="besluitvormingsstuk" abstract="true">
@@ -378,6 +375,12 @@
             <xsd:element name="waterschap" type="waterschap"/>
             <xsd:element name="provincie" type="provincie"/>
             <xsd:element name="gemeente" type="gemeente"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="isEntiteit">
+        <xsd:choice>
+            <xsd:element name="isNatuurlijkPersoon" type="natuurlijkPersoon"/>
+            <xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid"/>
         </xsd:choice>
     </xsd:complexType>
     <xsd:simpleType name="vraagType">
