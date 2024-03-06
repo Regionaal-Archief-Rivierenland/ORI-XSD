@@ -286,7 +286,7 @@
             <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aanvangAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="eindeAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="neemtDeelAanVergadering" type="vergadering" minOccurs="0" maxOccurs="1">
+            <xsd:element name="neemtDeelAanVergadering" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de vergadering waar de deelnemer aanwezig was.
