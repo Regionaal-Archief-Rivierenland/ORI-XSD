@@ -484,35 +484,14 @@
             <xsd:element name="heeftIngediend" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                    Verwijzing naar het ingediende informatieobject.
-                    
-                    Verwachte waarde:
-                      - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isNatuurlijkPersoon" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        <![CDATA[
-                        Verwijzing naar een `<natuurlijkPersoon>` element met verdere informatie over de indiener.
-
+                        Verwijzing naar het ingediende informatieobject.
+                        
                         Verwachte waarde:
-                         - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`                                 
-                        ]]>
+                        - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="isOrganisatorischeEenheid" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        Verwijzing naar de organisatie waar de indiener een onderdeel van is.
-
-                        Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `organisatorischeEenheid`
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
+            <xsd:element name="isEntiteit" type="isEntiteit" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="besluitvormingsstuk" abstract="true">
@@ -616,6 +595,32 @@
             <xsd:element name="waterschap" type="waterschap"/>
             <xsd:element name="provincie" type="provincie"/>
             <xsd:element name="gemeente" type="gemeente"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="isEntiteit">
+        <xsd:choice>
+            <xsd:element name="isNatuurlijkPersoon" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <![CDATA[
+                        Verwijzing naar een `<natuurlijkPersoon>` element met meer informatie over de indiener.
+
+                        Verwachte waarde:
+                         - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                        ]]>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="isOrganisatorischeEenheid" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar de organisatie waar de indiener een onderdeel van is.
+
+                        Verwachte waarde:
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `organisatorischeEenheid`
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:choice>
     </xsd:complexType>
     <xsd:simpleType name="vraagType">
