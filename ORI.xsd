@@ -299,7 +299,7 @@
                 <xsd:annotation>
                     <xsd:documentation>
                         <![CDATA[
-                        Verwijzing naar een `<natuurlijkPersoon>` element met verdere informatie over de deelnemer.
+                        Verwijzing naar een `<natuurlijkPersoon>` element met meer informatie over de deelnemer.
 
                         Verwachte waarde:
                           - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
