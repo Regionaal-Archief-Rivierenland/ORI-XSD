@@ -57,7 +57,7 @@
                         Verwijzing naar de mediabron waarin de vergadering is vastgelegd.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -67,7 +67,7 @@
                         Verwijzing naar de notulen van de vergadering.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -77,7 +77,7 @@
                         Verwijzing naar een bijlage van de vergadering.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -106,7 +106,7 @@
                         Verwijzing naar de vergadering waarin het agendapunt behandeld wordt.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `vergadering`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `vergadering`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -116,7 +116,7 @@
                         Verwijzing naar de ambtenaar die het agendapunt behandeld.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -126,7 +126,7 @@
                         Verwijzing naar een bijlage van het agendapunt.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -152,7 +152,7 @@
                         Verwijzing naar de mediabron waarin het spreekfragment is vastgelegd.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -162,7 +162,7 @@
                         Verwijzing naar het agendapunt waar tijdens gesproken wordt.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `agendapunt`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `agendapunt`
                       </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -291,7 +291,7 @@
                         Verwijzing naar de vergadering waar de deelnemer aanwezig was.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerde `vergadering`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `vergadering`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -302,7 +302,7 @@
                         Verwijzing naar een `<natuurlijkPersoon>` element met meer informatie over de deelnemer.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
                         ]]>
                     </xsd:documentation>
                 </xsd:annotation>
@@ -322,7 +322,7 @@
                         Verwijzing naar het dagelijks bestuur waar het lidmaatschap betrekking op heeft.
 
                         Verwachte waarde:
-                          - `ID` (string): Uniek identificatiekenmerk van een elders gedefinieerd `dagelijksBestuur`
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `dagelijksBestuur`
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
