@@ -3,15 +3,15 @@
     <xsd:element name="ORI">
         <xsd:complexType>
             <xsd:sequence>
+                <xsd:element name="mediabron" type="mediabron" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="vergadering" type="vergadering" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="agendapunt" type="agendapunt" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="mediabron" type="mediabron" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="stemming" type="stemming" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="fractie" type="fractie" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="organisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="indiener" type="indiener" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="fractie" type="fractie" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="informatieobject" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="enkelvoudigInformatieobject" type="enkelvoudigInformatieobject" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="motie" type="motie" minOccurs="0" maxOccurs="unbounded"/>
