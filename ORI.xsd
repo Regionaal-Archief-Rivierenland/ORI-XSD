@@ -602,7 +602,7 @@
                 <xsd:annotation>
                     <xsd:documentation>
                         <![CDATA[
-                        Verwijzing naar een `<natuurlijkPersoon>` element met meer informatie over de indiener.
+                        Verwijzing naar een `<natuurlijkPersoon>` element.
 
                         Verwachte waarde:
                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
@@ -613,10 +613,12 @@
             <xsd:element name="isOrganisatorischeEenheid" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar de organisatie waar de indiener een onderdeel van is.
+                        <![CDATA[
+                        Verwijzing naar een `<organisatorischeEenheid>` element.
 
                         Verwachte waarde:
                           - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `organisatorischeEenheid`
+                        ]]>
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
