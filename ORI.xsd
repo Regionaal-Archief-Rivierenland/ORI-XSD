@@ -6,7 +6,6 @@
                 <xsd:element name="vergadering" type="vergadering" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="agendapunt" type="agendapunt" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="stemming" type="stemming" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="besluit" type="besluit" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="indiener" type="indiener" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="organisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="zaak" type="zaak" minOccurs="0" maxOccurs="unbounded"/>
