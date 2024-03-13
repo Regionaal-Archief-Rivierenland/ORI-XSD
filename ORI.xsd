@@ -875,7 +875,7 @@
                           - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_gemeenten_compleet%2F4
 
                         Verwachte waarde:
-                          - `Code` (`string`): viercijferige code, eventueel met het voorvoegsel 'gm'. Bijv. 'gm0518' voor Den Haag.
+                          - `string`: viercijferige code, eventueel met het voorvoegsel 'gm'. Bijv. 'gm0518' voor Den Haag.
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
