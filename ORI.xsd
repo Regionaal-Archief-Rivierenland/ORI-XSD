@@ -141,10 +141,10 @@
             <xsd:element name="tekstSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="titelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="positieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="audioTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="videoTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="audioTijdsaanduidingEinde" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="videoTijdsaanduidingEinde" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="isVastgelegdIn" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -250,7 +250,7 @@
         <xsd:sequence>
             <xsd:element name="omschrijvingNevenfunctie" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="naamOrganisatieNevenfunctie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="aantalUrenperMaand" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="aantalUrenperMaand" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatorBezoldigd" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatorNevenfunctieVanwegeLidmaatschap" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumMelding" type="xsd:date" minOccurs="0" maxOccurs="1"/>
@@ -273,7 +273,7 @@
     <xsd:complexType name="stemmingOverPersonen">
         <xsd:sequence>
             <xsd:element name="naamKandidaat" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="aantalUitgebrachteStemmen" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="aantalUitgebrachteStemmen" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="aanwezigeDeelnemer">
@@ -579,7 +579,17 @@
     </xsd:complexType>
     <xsd:complexType name="gemeente">
         <xsd:sequence>
-            <xsd:element name="gemeentecode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="gemeentecode" type="gemeentecode" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Gemeentelijke code uit de waardelijst in het beheer van CBS. 
+                        Zie https://standaarden.overheid.nl/owms/terms/Gemeente.html.
+
+                        Verwachte waarde:
+                          - `Code` (`string`): viercijferige code, eventueel met de prefix 'GM'
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -624,6 +634,11 @@
             </xsd:element>
         </xsd:choice>
     </xsd:complexType>
+    <xsd:simpleType name="gemeentecode">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(GM)?\d\d\d\d"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
     <xsd:simpleType name="vraagType">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="Technische vraag"/>
