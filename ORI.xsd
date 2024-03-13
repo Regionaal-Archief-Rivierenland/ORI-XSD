@@ -39,9 +39,43 @@
             <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="vergaderToelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="georganiseerdDoorGremium" type="gremium" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="vergaderingstype" type="vergaderingstype" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="vergaderingType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het soort vergadering.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Raadsvergadering`, `Commissievergadering`, `Statenvergadering`, `Algemene bestuursvergadering`, `Presidium`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Raadsvergadering"/>
+                        <xsd:enumeration value="Commissievergadering"/>
+                        <xsd:enumeration value="Statenvergadering"/>
+                        <xsd:enumeration value="Algemene bestuursvergadering"/>
+                        <xsd:enumeration value="Presidium"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="locatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="status" type="vergaderingStatus" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="status" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De status van de vergadering.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Gepland`, `Gehouden`, `Geannuleerd`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Gepland"/>
+                        <xsd:enumeration value="Gehouden"/>
+                        <xsd:enumeration value="Geannuleerd"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="geplandeVergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="vergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="geplandeAanvangVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
@@ -87,8 +121,26 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="agendapuntOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="geplandAgendapuntVolgnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="agendapuntVolgnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="geplandAgendapuntVolgnummer" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het geplande agendapunt volgnummer.
+
+                        Verwachte waarde:
+                          - `Volgnummer` (`integer`)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="agendapuntVolgnummer" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het volgnummer van het agendapunt.
+
+                        Verwachte waarde:
+                          - `Volgnummer` (`integer`)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="geplandeEindtijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="geplandeStarttijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="starttijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
@@ -141,10 +193,10 @@
             <xsd:element name="tekstSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="titelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="positieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="audioTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="videoTijdsaanduidingEinde" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="audioTijdsaanduidingEinde" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="videoTijdsaanduidingEinde" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="isVastgelegdIn" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -170,8 +222,40 @@
     <xsd:complexType name="stemming">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="stemmingstype" type="stemmingstype" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="resultaatMondelingeStemming" type="stemmingResultaat" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="stemmingType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het soort stemming.
+
+                        Verwachte waarde:
+                        - Keuze uit: `Hoofdelijk`, `Regulier`, `Schriftelijk`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Hoofdelijk"/>
+                        <xsd:enumeration value="Regulier"/>
+                        <xsd:enumeration value="Schriftelijk"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="resultaatMondelingeStemming" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het resultaat van de mondelinge stemming.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Voor`, `Tegen`, `Gelijk`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Voor"/>
+                        <xsd:enumeration value="Tegen"/>
+                        <xsd:enumeration value="Gelijk"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="stemmingOverPersonen" type="stemmingOverPersonen" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="leidtTotBesluit" type="besluit" minOccurs="0" maxOccurs="1"/>
@@ -220,17 +304,94 @@
     <xsd:complexType name="mediabron">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="locatieWebVTTBestand" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="mimetype" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="mediabronType" type="mediabronType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="locatieWebVTTBestand" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="mimeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het mime type van het bestand. Zie https://en.wikipedia.org/wiki/Media_type
+
+                        Verwachte waarde:
+                          - `string`: Patroon `type/subtype`, bijv. `video/mp4`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\w+/[-+.\w]+"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="mediabronType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het soort mediabron.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Video`, `Audio`, `Transcriptie`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Video"/>
+                        <xsd:enumeration value="Audio"/>
+                        <xsd:enumeration value="Transcriptie"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="URL" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="natuurlijkPersoon">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="geslachtsaanduiding" type="geslacht" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="functie" type="functie" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="geslachtsaanduiding" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het geslacht van de persoon.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Man`, `Vrouw`, `Anders`, `Onbekend`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Man"/>
+                        <xsd:enumeration value="Vrouw"/>
+                        <xsd:enumeration value="Anders"/>
+                        <xsd:enumeration value="Onbekend"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="functie" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De functie van de persoon.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Burgemeester`, `Wethouder`, `Raadslid`, `Burgerlid`, `Griffier`, `Gemeentesecretaris`, `Commissaris van de Koning`, `Gedeputeerde`, `Statenlid`, `Provinciesecretaris`, `Dijkgraaf`, `Dagelijks bestuurslid`, `Algemeen bestuurslid`, `Secretarisdirecteur`, `Ambtenaar/medewerker`, `Adviseur of deskundige`, `Overig`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Burgemeester"/>
+                        <xsd:enumeration value="Wethouder"/>
+                        <xsd:enumeration value="Raadslid"/>
+                        <xsd:enumeration value="Burgerlid"/>
+                        <xsd:enumeration value="Griffier"/>
+                        <xsd:enumeration value="Gemeentesecretaris"/>
+                        <xsd:enumeration value="Commissaris van de Koning"/>
+                        <xsd:enumeration value="Gedeputeerde"/>
+                        <xsd:enumeration value="Statenlid"/>
+                        <xsd:enumeration value="Provinciesecretaris"/>
+                        <xsd:enumeration value="Dijkgraaf"/>
+                        <xsd:enumeration value="Dagelijks bestuurslid"/>
+                        <xsd:enumeration value="Algemeen bestuurslid"/>
+                        <xsd:enumeration value="Secretarisdirecteur"/>
+                        <xsd:enumeration value="Ambtenaar/medewerker"/>
+                        <xsd:enumeration value="Adviseur of deskundige"/>
+                        <xsd:enumeration value="Overig"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="naamNatuurlijkPersoon" type="naamNatuurlijkPersoon" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="nevenfunctieNatuurlijkPersoon" type="nevenfunctieNatuurlijkPersoon" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="isLidVanFractie" type="fractielidmaatschap" minOccurs="0" maxOccurs="1"/>
@@ -250,7 +411,7 @@
         <xsd:sequence>
             <xsd:element name="omschrijvingNevenfunctie" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="naamOrganisatieNevenfunctie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="aantalUrenperMaand" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="aantalUrenperMaand" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatorBezoldigd" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatorNevenfunctieVanwegeLidmaatschap" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumMelding" type="xsd:date" minOccurs="0" maxOccurs="1"/>
@@ -273,13 +434,36 @@
     <xsd:complexType name="stemmingOverPersonen">
         <xsd:sequence>
             <xsd:element name="naamKandidaat" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="aantalUitgebrachteStemmen" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="aantalUitgebrachteStemmen" type="xsd:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="aanwezigeDeelnemer">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="rolNaam" type="rolNaam" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="rolNaam" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De rol waarin iemand aanwezig is.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Voorzitter`, `Vice-voorzitter`, `Raadslid`, `Statenlid`, `Dagelijks bestuurslid`, `Algemeen bestuurslid`, `Inspreker`, `Portefeuillehouder`, `Griffier`, `Overig`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Voorzitter"/>
+                        <xsd:enumeration value="Vice-voorzitter"/>
+                        <xsd:enumeration value="Raadslid"/>
+                        <xsd:enumeration value="Statenlid"/>
+                        <xsd:enumeration value="Dagelijks bestuurslid"/>
+                        <xsd:enumeration value="Algemeen bestuurslid"/>
+                        <xsd:enumeration value="Inspreker"/>
+                        <xsd:enumeration value="Portefeuillehouder"/>
+                        <xsd:enumeration value="Griffier"/>
+                        <xsd:enumeration value="Overig"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="organisatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aanvangAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
@@ -331,7 +515,23 @@
         <xsd:all>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="dagelijksBestuursnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="dagelijksBestuurstype" type="dagelijksBestuurstype" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="dagelijksBestuursType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het soort dagelijks bestuur.
+
+                        Verwachte waarde:
+                          - Keuze uit: `College`, `Gedeputeerde Staten`, `Dagelijks bestuur`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="College"/>
+                        <xsd:enumeration value="Gedeputeerde Staten"/>
+                        <xsd:enumeration value="Dagelijks bestuur"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
         </xsd:all>
     </xsd:complexType>
@@ -379,7 +579,26 @@
         <xsd:complexContent>
             <xsd:extension base="besluitvormingsstuk">
                 <xsd:sequence>
-                    <xsd:element name="motieType" type="motieType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="motieType" minOccurs="0" maxOccurs="1">
+                        <xsd:simpleType>
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Het soort motie.
+
+                                    Verwachte waarde:
+                                      - Keuze uit: `Voorstel`, `Afkeuring`, `Treurnis`, `Wantrouwen`, `Vreemd`, `Overig`
+                                </xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:enumeration value="Voorstel"/>
+                                <xsd:enumeration value="Afkeuring"/>
+                                <xsd:enumeration value="Treurnis"/>
+                                <xsd:enumeration value="Wantrouwen"/>
+                                <xsd:enumeration value="Vreemd"/>
+                                <xsd:enumeration value="Overig"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
@@ -472,7 +691,26 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="besluitToelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="toezegging" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="besluitResultaat" type="besluitResultaat" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="besluitResultaat" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het resultaat van het besluit.
+
+                        Verwachte waarde:
+                        - Keuze uit: `Unaniem aangenomen`, `Aangenomen`, `Geamendeerd aangenomen`, `Onder voorbehoud aangenomen`, `Verworpen`, `Aangehouden`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Unaniem aangenomen"/>
+                        <xsd:enumeration value="Aangenomen"/>
+                        <xsd:enumeration value="Geamendeerd aangenomen"/>
+                        <xsd:enumeration value="Onder voorbehoud aangenomen"/>
+                        <xsd:enumeration value="Verworpen"/>
+                        <xsd:enumeration value="Aangehouden"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="indiener">
@@ -514,7 +752,23 @@
     <xsd:complexType name="stemresultaatPerFractie">
         <xsd:all>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="fractieStemresultaat" type="fractieStemresultaat" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="fractieStemresultaat" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Keuze van de gehele fractie over een stemming.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Aangenomen`, `Verworpen`, `Verdeeld`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Aangenomen"/>
+                        <xsd:enumeration value="Verworpen"/>
+                        <xsd:enumeration value="Verdeeld"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="gegevenOpStemming" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -550,7 +804,23 @@
             <xsd:extension base="enkelvoudigInformatieobject">
                 <xsd:sequence>
                     <xsd:element name="vraagOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="vraagType" type="vraagType" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="vraagType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Het soort vraag.
+
+                                Verwachte waarde:
+                                  - Keuze uit: `Technische vraag`, `Mondelinge politieke vraag`, `Schriftelijke politieke vraag`
+                            </xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:enumeration value="Technische vraag"/>
+                                <xsd:enumeration value="Mondelinge politieke vraag"/>
+                                <xsd:enumeration value="Schriftelijke politieke vraag"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
@@ -558,7 +828,24 @@
     <xsd:complexType name="stem">
         <xsd:all>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="keuzeStemming" type="stemKeuze" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="keuzeStemming" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De uitgebrachte keuze op de stemming.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Voor`, `Tegen`, `Afwezig`, `Onthouden`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Voor"/>
+                        <xsd:enumeration value="Tegen"/>
+                        <xsd:enumeration value="Afwezig"/>
+                        <xsd:enumeration value="Onthouden"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="gegevenOpStemming" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -579,7 +866,22 @@
     </xsd:complexType>
     <xsd:complexType name="gemeente">
         <xsd:sequence>
-            <xsd:element name="gemeentecode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="gemeentecode" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Gemeente code uit de waardelijst in het beheer van CBS.
+                        Zie https://standaarden.overheid.nl/owms/terms/Gemeente.html
+
+                        Verwachte waarde:
+                          - `Code` (`string`): viercijferige code, eventueel met het voorvoegsel 'GM'
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="(GM|gm)?\d{4}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -592,7 +894,31 @@
     <xsd:complexType name="bestuurslaag">
         <xsd:choice>
             <xsd:element name="waterschap" type="waterschap"/>
-            <xsd:element name="provincie" type="provincie"/>
+            <xsd:element name="provincie">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De provincie die het bestuur op zich neemt.
+
+                        Verwachte waarde:
+                          - Keuze uit: `Drenthe`, `Groningen`, `Overijssel`, `Flevoland`, `Gelderland`, `Utrecht`, `Noord-Holland`, `Zuid-Holland`, `Zeeland`, `Noord-Brabant`, `Limburg`
+</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Drenthe"/>
+                        <xsd:enumeration value="Groningen"/>
+                        <xsd:enumeration value="Overijssel"/>
+                        <xsd:enumeration value="Flevoland"/>
+                        <xsd:enumeration value="Gelderland"/>
+                        <xsd:enumeration value="Utrecht"/>
+                        <xsd:enumeration value="Noord-Holland"/>
+                        <xsd:enumeration value="Zuid-Holland"/>
+                        <xsd:enumeration value="Zeeland"/>
+                        <xsd:enumeration value="Noord-Brabant"/>
+                        <xsd:enumeration value="Limburg"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="gemeente" type="gemeente"/>
         </xsd:choice>
     </xsd:complexType>
@@ -624,154 +950,4 @@
             </xsd:element>
         </xsd:choice>
     </xsd:complexType>
-    <xsd:simpleType name="vraagType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Technische vraag"/>
-            <xsd:enumeration value="Mondelinge politieke vraag"/>
-            <xsd:enumeration value="Schriftelijke politieke vraag"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="besluitResultaat">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Unaniem aangenomen"/>
-            <xsd:enumeration value="Aangenomen"/>
-            <xsd:enumeration value="Geamendeerd aangenomen"/>
-            <xsd:enumeration value="Onder voorbehoud aangenomen"/>
-            <xsd:enumeration value="Verworpen"/>
-            <xsd:enumeration value="Aangehouden"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="motieType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Voorstel"/>
-            <xsd:enumeration value="Afkeuring"/>
-            <xsd:enumeration value="Treurnis"/>
-            <xsd:enumeration value="Wantrouwen"/>
-            <xsd:enumeration value="Vreemd"/>
-            <xsd:enumeration value="Overig"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="mediabronType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Video"/>
-            <xsd:enumeration value="Audio"/>
-            <xsd:enumeration value="Transcriptie"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="stemKeuze">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Voor"/>
-            <xsd:enumeration value="Tegen"/>
-            <xsd:enumeration value="Afwezig"/>
-            <xsd:enumeration value="Onthouden"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="fractieStemresultaat">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Aangenomen"/>
-            <xsd:enumeration value="Verworpen"/>
-            <xsd:enumeration value="Verdeeld"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="stemmingstype">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Hoofdelijk"/>
-            <xsd:enumeration value="Regulier"/>
-            <xsd:enumeration value="Schriftelijk"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="stemmingResultaat">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Voor"/>
-            <xsd:enumeration value="Tegen"/>
-            <xsd:enumeration value="Gelijk"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="besluitvormingsstukkenType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Hamerstukken"/>
-            <xsd:enumeration value="Bespreekstukken"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="vergaderingStatus">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Gepland"/>
-            <xsd:enumeration value="Gehouden"/>
-            <xsd:enumeration value="Geannuleerd"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="vergaderingstype">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Raadsvergadering"/>
-            <xsd:enumeration value="Commissievergadering"/>
-            <xsd:enumeration value="Statenvergadering"/>
-            <xsd:enumeration value="Algemene bestuursvergadering"/>
-            <xsd:enumeration value="Presidium"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="rolNaam">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Voorzitter"/>
-            <xsd:enumeration value="Vice-voorzitter"/>
-            <xsd:enumeration value="Raadslid"/>
-            <xsd:enumeration value="Statenlid"/>
-            <xsd:enumeration value="Dagelijks bestuurslid"/>
-            <xsd:enumeration value="Algemeen bestuurslid"/>
-            <xsd:enumeration value="Inspreker"/>
-            <xsd:enumeration value="Portefeuillehouder"/>
-            <xsd:enumeration value="Griffier"/>
-            <xsd:enumeration value="Overig"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="functie">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Burgemeester"/>
-            <xsd:enumeration value="Wethouder"/>
-            <xsd:enumeration value="Raadslid"/>
-            <xsd:enumeration value="Burgerlid"/>
-            <xsd:enumeration value="Griffier"/>
-            <xsd:enumeration value="Gemeentesecretaris"/>
-            <xsd:enumeration value="Commissaris van de Koning"/>
-            <xsd:enumeration value="Gedeputeerde"/>
-            <xsd:enumeration value="Statenlid"/>
-            <xsd:enumeration value="Provinciesecretaris"/>
-            <xsd:enumeration value="Dijkgraaf"/>
-            <xsd:enumeration value="Dagelijks bestuurslid"/>
-            <xsd:enumeration value="Algemeen bestuurslid"/>
-            <xsd:enumeration value="Secretarisdirecteur"/>
-            <xsd:enumeration value="Ambtenaar/medewerker"/>
-            <xsd:enumeration value="Adviseur of deskundige"/>
-            <xsd:enumeration value="Overig"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="geslacht">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Man"/>
-            <xsd:enumeration value="Vrouw"/>
-            <xsd:enumeration value="Anders"/>
-            <xsd:enumeration value="Onbekend"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="dagelijksBestuurstype">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="College"/>
-            <xsd:enumeration value="Gedeputeerde Staten"/>
-            <xsd:enumeration value="Dagelijks bestuur"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="provincie">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Drenthe"/>
-            <xsd:enumeration value="Groningen"/>
-            <xsd:enumeration value="Overijssel"/>
-            <xsd:enumeration value="Flevoland"/>
-            <xsd:enumeration value="Gelderland"/>
-            <xsd:enumeration value="Utrecht"/>
-            <xsd:enumeration value="Noord-Holland"/>
-            <xsd:enumeration value="Zuid-Holland"/>
-            <xsd:enumeration value="Zeeland"/>
-            <xsd:enumeration value="Noord-Brabant"/>
-            <xsd:enumeration value="Limburg"/>
-        </xsd:restriction>
-    </xsd:simpleType>
 </xsd:schema>
