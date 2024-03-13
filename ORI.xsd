@@ -869,11 +869,13 @@
             <xsd:element name="gemeentecode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Gemeente code uit de waardelijst in het beheer van CBS.
-                        Zie https://standaarden.overheid.nl/owms/terms/Gemeente.html
+                        De TOOI gemeente code van de gemeente.
+
+                        Waardelijst:
+                          - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_gemeenten_compleet%2F4
 
                         Verwachte waarde:
-                          - `Code` (`string`): viercijferige code, eventueel met het voorvoegsel 'GM'
+                          - `Code` (`string`): viercijferige code, eventueel met het voorvoegsel 'gm'. Bijv. 'gm0518' voor Den Haag.
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
@@ -887,10 +889,10 @@
     </xsd:complexType>
     <xsd:complexType name="waterschap">
         <xsd:sequence>
-            <xsd:element name="waterschapcode" type="xsd:string" minOccurs="1" maxOccurs="1">
+            <xsd:element name="waterschapcode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De TOOI waterschap-code van het waterschap.
+                        De TOOI waterschap code van het waterschap.
 
                         Waardelijst:
                           - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_waterschappen_compleet%2F1
@@ -901,27 +903,26 @@
                 </xsd:annotation>
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="(ws|WS)?\d{4}" />
+                        <xsd:pattern value="(ws|WS)?\d{4}"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
             <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="bestuurslaag">
-        <xsd:choice>
-            <xsd:element name="waterschap" type="waterschap"/>
-            <xsd:element name="provincie">
+    <xsd:complexType name="provincie">
+        <xsd:sequence>
+            <xsd:element name="provinciecode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De TOOI provincie-code van de provincie.
+                        De TOOI provincie code van de provincie.
 
                         Waardelijst:
                           - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_provincies_compleet%2F1
 
                         Verwachte waarde:
                           - `string`: tweecijferige code, eventueel met het voorvoegsel 'pv'. Bijv. `pv20` voor Groningen.
-                    </xsd:documentation>
+</xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
@@ -929,7 +930,14 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
+            <xsd:element name="provincienaam" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="bestuurslaag">
+        <xsd:choice>
             <xsd:element name="gemeente" type="gemeente"/>
+            <xsd:element name="waterschap" type="waterschap"/>
+            <xsd:element name="provincie" type="provincie"/>
         </xsd:choice>
     </xsd:complexType>
     <xsd:complexType name="entiteitType">
