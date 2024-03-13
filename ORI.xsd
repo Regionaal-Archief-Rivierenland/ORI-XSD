@@ -495,7 +495,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="dagelijksBestuurLidmaatschap">
-        <xsd:all>
+        <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
@@ -509,10 +509,10 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-        </xsd:all>
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="dagelijksBestuur">
-        <xsd:all>
+        <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="dagelijksBestuursnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="dagelijksBestuursType" minOccurs="0" maxOccurs="1">
@@ -533,7 +533,7 @@
                 </xsd:simpleType>
             </xsd:element>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
-        </xsd:all>
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="zaak">
         <xsd:sequence>
@@ -750,7 +750,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="stemresultaatPerFractie">
-        <xsd:all>
+        <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="fractieStemresultaat" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
@@ -779,7 +779,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-        </xsd:all>
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="fractielidmaatschap">
         <xsd:sequence>
@@ -826,7 +826,7 @@
         </xsd:complexContent>
     </xsd:complexType>
     <xsd:complexType name="stem">
-        <xsd:all>
+        <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="keuzeStemming" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
@@ -856,7 +856,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-        </xsd:all>
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="gremium">
         <xsd:all>
@@ -865,7 +865,7 @@
         </xsd:all>
     </xsd:complexType>
     <xsd:complexType name="gemeente">
-        <xsd:sequence>
+        <xsd:all>
             <xsd:element name="gemeentecode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -883,13 +883,13 @@
                 </xsd:simpleType>
             </xsd:element>
             <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-        </xsd:sequence>
+        </xsd:all>
     </xsd:complexType>
     <xsd:complexType name="waterschap">
-        <xsd:sequence>
+        <xsd:all>
             <xsd:element name="waterschapcode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-        </xsd:sequence>
+        </xsd:all>
     </xsd:complexType>
     <xsd:complexType name="bestuurslaag">
         <xsd:choice>
