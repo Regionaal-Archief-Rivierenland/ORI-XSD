@@ -3,9 +3,9 @@
     <xsd:element name="ORI">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="mediabron" type="mediabron" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="vergadering" type="vergadering" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="agendapunt" type="agendapunt" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="mediabron" type="mediabron" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="vergadering" type="vergadering" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="agendapunt" type="agendapunt" minOccurs="1" maxOccurs="unbounded"/>
                 <xsd:element name="stemming" type="stemming" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="fractie" type="fractie" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="unbounded"/>
