@@ -552,7 +552,7 @@
             <xsd:element name="creatiedatum" type="xsd:date" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="link" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="vertrouwelijkheidsaanduiding" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="verwijzingZaak" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
