@@ -13,7 +13,6 @@
                 <xsd:element name="organisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="indiener" type="indiener" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="informatieobject" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="enkelvoudigInformatieobject" type="enkelvoudigInformatieobject" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="motie" type="motie" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="amendement" type="amendement" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="voorstel" type="voorstel" minOccurs="0" maxOccurs="unbounded"/>
