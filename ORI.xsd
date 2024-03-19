@@ -804,7 +804,7 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <xsd:complexType name="besluitvormingsstuk" abstract="true">
+    <xsd:complexType name="besluitvormingsstuk">
         <xsd:complexContent>
             <xsd:extension base="enkelvoudigInformatieobject">
                 <xsd:sequence>
