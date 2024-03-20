@@ -314,8 +314,6 @@
 
                         Verwachte waarde:
                           - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `besluitvormingsstuk`.
-                          Een `besluitvormingsstuk` element erft de eigenschappen van `enkelvoudigInformatieobject`,
-                          die op haar beurt weer van `informatieobject` erft.
                     </xsd:documentation>
                     <xsd:documentation>
                         Voorbeeld:
@@ -741,8 +739,6 @@
                                 
                                 Verwachte waarde:
                                   - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `vraag`.
-                                  Een `vraag` element erft de eigenschappen van `enkelvoudigInformatieobject`, die op haar beurt
-                                  weer van `informatieobject` erft. 
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
