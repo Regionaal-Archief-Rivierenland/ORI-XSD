@@ -783,6 +783,26 @@
             <xsd:extension base="enkelvoudigInformatieobject"/>
         </xsd:complexContent>
     </xsd:complexType>
+    <xsd:complexType name="besluitvormingsstuk">
+        <xsd:complexContent>
+            <xsd:extension base="enkelvoudigInformatieobject">
+                <xsd:sequence>
+                    <xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="datumIngediend" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="isMedeOndertekendDoor" type="xsd:string" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Verwijzing naar een persoon die het stuk heeft ondertekend.
+
+                                Verwachte waarde:
+                                  - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
     <xsd:complexType name="amendement">
         <xsd:complexContent>
             <xsd:extension base="besluitvormingsstuk">
@@ -799,16 +819,6 @@
                         </xsd:annotation>
                     </xsd:element>
                     <xsd:element name="subamendementVan" type="amendement" minOccurs="0" maxOccurs="1"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="besluitvormingsstuk">
-        <xsd:complexContent>
-            <xsd:extension base="enkelvoudigInformatieobject">
-                <xsd:sequence>
-                    <xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="datumIngediend" type="xsd:date" minOccurs="0" maxOccurs="1"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
