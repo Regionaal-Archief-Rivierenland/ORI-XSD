@@ -900,6 +900,7 @@
     <xsd:complexType name="bestuurslaag">
         <xsd:choice>
             <xsd:element name="waterschap" type="waterschap"/>
+            <xsd:element name="gemeente" type="gemeente"/>
             <xsd:element name="provincie">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -907,7 +908,7 @@
 
                         Verwachte waarde:
                           - Keuze uit: `Drenthe`, `Groningen`, `Overijssel`, `Flevoland`, `Gelderland`, `Utrecht`, `Noord-Holland`, `Zuid-Holland`, `Zeeland`, `Noord-Brabant`, `Limburg`
-</xsd:documentation>
+                    </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
@@ -925,7 +926,6 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="gemeente" type="gemeente"/>
         </xsd:choice>
     </xsd:complexType>
     <xsd:complexType name="entiteitType">
