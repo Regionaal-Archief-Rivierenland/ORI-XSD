@@ -348,7 +348,7 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="besluitToelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="toezegging" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="besluitResultaat" minOccurs="0" maxOccurs="1">
+            <xsd:element name="besluitResultaat" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Het resultaat van het besluit.
