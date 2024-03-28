@@ -310,10 +310,10 @@
             <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Het besluitvormingsstuk waarover gestemd wordt.
+                        Verwijzing naar het besluitvormingsstuk waarover gestemd wordt.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `besluitvormingsstuk`.
+                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `besluitvormingsstuk`
                     </xsd:documentation>
                     <xsd:documentation>
                         Voorbeeld:
