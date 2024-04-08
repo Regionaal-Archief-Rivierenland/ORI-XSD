@@ -648,7 +648,7 @@
             <xsd:element name="gegevenOpStemming" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar de stemming waar de fractie over gestemd heeft.
+                        Verwijzing naar de stemming waar de deelnemer over gestemd heeft.
 
                         Verwachte waarde:
                           - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `stemming`
