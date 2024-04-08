@@ -627,7 +627,7 @@
     <xsd:complexType name="stem">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="keuzeStemming" minOccurs="0" maxOccurs="1">
+            <xsd:element name="keuzeStemming" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         De uitgebrachte keuze op de stemming.
@@ -645,7 +645,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="gegevenOpStemming" type="xsd:string" minOccurs="0" maxOccurs="1">
+            <xsd:element name="gegevenOpStemming" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de stemming waar de deelnemer over gestemd heeft.
