@@ -116,11 +116,11 @@
             </xsd:element>
             <xsd:element name="geplandeVergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="vergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="geplandeAanvangVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="geplandeEindeVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="aanvangVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="eindeVergadering" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="publicatiedatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="geplandeAanvangVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="geplandeEindeVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="aanvangVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="eindeVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="publicatiedatum" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="isVastgelegdMiddels" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
@@ -179,10 +179,10 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="geplandeEindtijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="geplandeStarttijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="starttijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="eindtijd" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="geplandeEindtijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="geplandeStarttijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="starttijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="eindtijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="agendapuntKenmerk" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="agendapuntTitel" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatieHamerstuk" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
@@ -225,8 +225,8 @@
     <xsd:complexType name="spreekfragment">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="aanvangSpreekfragment" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="eindeSpreekfragment" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="aanvangSpreekfragment" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="eindeSpreekfragment" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="taal" type="xsd:language" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="tekstSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="titelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
@@ -437,8 +437,8 @@
     <xsd:complexType name="dagelijksBestuurLidmaatschap">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="verwijzingDagelijksBestuur" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -533,8 +533,8 @@
     <xsd:complexType name="fractielidmaatschap">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="datumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="datumEindeFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumBeginFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumEindeFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="verwijzingFractie" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
@@ -596,8 +596,8 @@
             </xsd:element>
             <xsd:element name="organisatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="aanvangAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="eindeAanwezigheid" type="xsd:time" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="aanvangAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="eindeAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="neemtDeelAanVergadering" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
