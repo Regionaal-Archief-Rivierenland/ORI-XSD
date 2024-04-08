@@ -523,10 +523,10 @@
             <xsd:element name="omschrijvingNevenfunctie" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="naamOrganisatieNevenfunctie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aantalUrenperMaand" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="indicatorBezoldigd" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="indicatorBezoldigd" type="xsd:boolean" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="indicatorNevenfunctieVanwegeLidmaatschap" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumMelding" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="datumAanvangNevenfunctie" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumAanvangNevenfunctie" type="xsd:date" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="datumEindeNevenfunctie" type="xsd:date" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
