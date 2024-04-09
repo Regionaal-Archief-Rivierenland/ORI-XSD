@@ -622,7 +622,7 @@
             </xsd:element>
             <xsd:element name="neemtDeelAanStemming" type="stem" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="spreektTijdensSpreekfragment" type="spreekfragment" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>130
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="stem">
         <xsd:sequence>
