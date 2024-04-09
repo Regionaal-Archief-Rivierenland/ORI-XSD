@@ -170,7 +170,7 @@
                 </xsd:annotation>
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="\d+[A-z]*"/>
+                        <xsd:pattern value="\d+\w*"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
@@ -185,7 +185,7 @@
                 </xsd:annotation>
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="\d+[A-z]*"/>
+                        <xsd:pattern value="\d+\w*"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
