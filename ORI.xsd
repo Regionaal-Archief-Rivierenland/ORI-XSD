@@ -231,10 +231,10 @@
             <xsd:element name="tekstSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="titelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="positieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="audioTijdsaanduidingEinde" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="videoTijdsaanduidingEinde" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="audioTijdsaanduidingEinde" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="videoTijdsaanduidingEinde" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="isVastgelegdIn" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
