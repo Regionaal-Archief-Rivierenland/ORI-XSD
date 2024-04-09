@@ -165,12 +165,12 @@
                         Het geplande agendapunt volgnummer.
 
                         Verwachte waarde:
-                          - `Volgnummer` (`string`): een reeks cijfers, eventueel gevolgd door een achtervoegsel. Bijvoorbeeld `10` of `13b`.
+                          - `Volgnummer` (`string`): een of meerdere cijfers, eventueel gevolgd door een reeks letters. Bijvoorbeeld `10` of `13b`.
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="\d+\w*"/>
+                        <xsd:pattern value="\d+[A-z]*"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
@@ -180,12 +180,12 @@
                         Het geplande agendapunt volgnummer.
 
                         Verwachte waarde:
-                          - `Volgnummer` (`string`): een reeks cijfers, eventueel gevolgd door een achtervoegsel. Bijvoorbeeld `10` of `13b`.
+                          - `Volgnummer` (`string`): een of meerdere cijfers, eventueel gevolgd door een reeks letters. Bijvoorbeeld `10` of `13b`.
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="\d+\w*"/>
+                        <xsd:pattern value="\d+[A-z]*"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
