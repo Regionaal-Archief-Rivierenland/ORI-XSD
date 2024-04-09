@@ -159,25 +159,35 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="agendapuntOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="geplandAgendapuntVolgnummer" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xsd:element name="geplandAgendapuntVolgnummer" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Het geplande agendapunt volgnummer.
 
                         Verwachte waarde:
-                          - `Volgnummer` (`integer`)
+                          - `Volgnummer` (`string`): een reeks cijfers, eventueel gevolgd door een achtervoegsel. Bijvoorbeeld `10` of `13b`.
                     </xsd:documentation>
                 </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d+\w*"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="agendapuntVolgnummer" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xsd:element name="agendapuntVolgnummer" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Het volgnummer van het agendapunt.
+                        Het geplande agendapunt volgnummer.
 
                         Verwachte waarde:
-                          - `Volgnummer` (`integer`)
+                          - `Volgnummer` (`string`): een reeks cijfers, eventueel gevolgd door een achtervoegsel. Bijvoorbeeld `10` of `13b`.
                     </xsd:documentation>
                 </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d+\w*"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
             </xsd:element>
             <xsd:element name="geplandeEindtijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="geplandeStarttijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
