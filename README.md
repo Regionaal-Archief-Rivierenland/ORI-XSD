@@ -8,18 +8,19 @@ Vanuit enkele archiefdiensten is de behoefte ontstaan om te komen tot een standa
 
 Het doel van de werkgroep is tweeledig: enerzijds het ontwikkelen, testen en borgen van een ORI XSD, anderzijds het schrijven van implementatiescenario's en het gebruik van de standaard aanmoedigen.
 
-## Deelnemers
-
-* Erfgoed Leiden en Omstreken
-* Regionaal Archief Rivierenland
-* Regionaal Archief Tilburg
-* Regionaal Archief Zutphen
-
-## Versie
+## Status
 
 Het ORI XSD is momenteel in bèta, en [kan hier gedownload worden](https://github.com/Regionaal-Archief-Rivierenland/ORI-XSD/releases). De standaard wordt de komende tijd getest aan enkele praktijkcases en op basis daarvan aangepast. Wijzigingen op het ORI XSD ten gevolge van deze tests worden op deze GitHub-pagina bijgehouden.
 
 ## Documentatie
 
 De documentatie van de XSD is een work-in-progress. De betekenis van de verschillende (sub)elementen kan op dit moment gedeeltelijk achterhaald worden via [de ORI documentatie pagina van de VNG](https://vng-realisatie.github.io/ODS-Open-Raadsinformatie/catalog).
- 
+
+## Werkgroep deelnemers
+
+* Erfgoed Leiden en Omstreken
+* Regionaal Archief Rivierenland
+* Regionaal Archief Tilburg
+* Regionaal Archief Zutphen
+
+
