@@ -234,7 +234,7 @@
     </xsd:complexType>
     <xsd:complexType name="spreekfragment">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aanvangSpreekfragment" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="eindeSpreekfragment" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="taal" type="xsd:language" minOccurs="0" maxOccurs="1"/>
@@ -355,7 +355,7 @@
     </xsd:complexType>
     <xsd:complexType name="besluit">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="besluitToelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="toezegging" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="besluitResultaat" minOccurs="1" maxOccurs="1">
@@ -382,7 +382,7 @@
     </xsd:complexType>
     <xsd:complexType name="fractie">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="fractienaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="fractieNeemtDeelAanStemming" type="stemresultaatPerFractie" minOccurs="0" maxOccurs="unbounded"/>
@@ -390,7 +390,7 @@
     </xsd:complexType>
     <xsd:complexType name="stemresultaatPerFractie">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="fractieStemresultaat" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -446,7 +446,7 @@
     </xsd:complexType>
     <xsd:complexType name="dagelijksBestuurLidmaatschap">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="verwijzingDagelijksBestuur" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -542,7 +542,7 @@
     </xsd:complexType>
     <xsd:complexType name="fractielidmaatschap">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumBeginFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
@@ -560,7 +560,7 @@
     </xsd:complexType>
     <xsd:complexType name="organisatorischeEenheid">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="e-mailadres" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="faxnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
@@ -636,7 +636,7 @@
     </xsd:complexType>
     <xsd:complexType name="stem">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="keuzeStemming" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
