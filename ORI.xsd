@@ -7,7 +7,6 @@
                 <xsd:element name="vergadering" type="vergadering" minOccurs="1" maxOccurs="unbounded"/>
                 <xsd:element name="agendapunt" type="agendapunt" minOccurs="1" maxOccurs="unbounded"/>
                 <xsd:element name="stemming" type="stemming" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="organisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="indiener" type="indiener" minOccurs="0" maxOccurs="unbounded"/>
@@ -408,16 +407,7 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="verwijzingDagelijksBestuur" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        Verwijzing naar het dagelijks bestuur waar het lidmaatschap betrekking op heeft.
-
-                        Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `dagelijksBestuur`
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
+            <xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="natuurlijkPersoon">
