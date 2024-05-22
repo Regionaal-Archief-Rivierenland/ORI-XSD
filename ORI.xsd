@@ -579,7 +579,7 @@
     </xsd:complexType>
     <xsd:complexType name="aanwezigeDeelnemer">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="rolNaam" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
