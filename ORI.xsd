@@ -253,7 +253,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="spreektTijdensAgendapunt" type="xsd:string" minOccurs="1" maxOccurs="unbounded">
+            <xsd:element name="spreektTijdensAgendapunt" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar het agendapunt waar tijdens gesproken wordt.
