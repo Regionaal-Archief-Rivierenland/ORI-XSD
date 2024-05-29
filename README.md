@@ -1,6 +1,6 @@
 # Open Raadsinformatie (ORI) XSD
 
-Het Open Raadsinformatie XSD (ORI XSD) beschrijft de regels voor de uitwisseling van raadsinformatie in XML-formaat. Het is gebaseerd op het informatiemodel onder de [Open API Specificatie voor Raadsinformatie](https://github.com/VNG-Realisatie/ODS-Open-Raadsinformatie). 
+De Open Raadsinformatie XSD (ORI XSD) beschrijft de regels voor de uitwisseling van raadsinformatie in XML-formaat. Het is gebaseerd op het informatiemodel onder de [Open API Specificatie voor Raadsinformatie](https://github.com/VNG-Realisatie/ODS-Open-Raadsinformatie). 
 
 ## Achtergrond
 
