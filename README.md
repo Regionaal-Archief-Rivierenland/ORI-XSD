@@ -10,7 +10,7 @@ Het doel van de werkgroep is tweeledig: enerzijds het ontwikkelen, testen en bor
 
 ## Status
 
-Het ORI XSD is momenteel in bèta, en [kan hier gedownload worden](https://github.com/Regionaal-Archief-Rivierenland/ORI-XSD/releases). De standaard wordt de komende tijd getest aan enkele praktijkcases en op basis daarvan aangepast. Wijzigingen op het ORI XSD ten gevolge van deze tests worden op deze GitHub-pagina bijgehouden.
+De ORI XSD is momenteel in bèta, en [kan hier gedownload worden](https://github.com/Regionaal-Archief-Rivierenland/ORI-XSD/releases). De standaard wordt de komende tijd getest aan enkele praktijkcases en op basis daarvan aangepast. Wijzigingen op de ORI XSD ten gevolge van deze tests worden op deze GitHub-pagina bijgehouden.
 
 ## Documentatie
 
