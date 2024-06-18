@@ -863,11 +863,13 @@
             <xsd:element name="gemeentecode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Gemeente code uit de waardelijst in het beheer van CBS.
-                        Zie https://standaarden.overheid.nl/owms/terms/Gemeente.html
+                        De code van de gemeente uit de TOOI begrippenlijst 'Register gemeenten compleet'.
+
+                        URL Waardelijst:
+                          - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_gemeenten_compleet%2F4
 
                         Verwachte waarde:
-                          - `Code` (`string`): viercijferige code, eventueel met het voorvoegsel 'GM'
+                          - `string`: viercijferige code, eventueel met het voorvoegsel 'gm'. Bijvoorbeeld 'gm0518' voor gemeente Den Haag.
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
@@ -876,44 +878,60 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="waterschap">
         <xsd:sequence>
-            <xsd:element name="waterschapcode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="waterschapcode" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De code van het waterschap uit de TOOI begrippenlijst 'Register waterschappen compleet'.
+
+                        URL Waardelijst:
+                          - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_waterschappen_compleet%2F1
+
+                        Verwachte waarde:
+                          - `string`: viercijferige code, eventueel met het voorvoegsel 'ws'. Bijvoorbeeld `ws0652` voor waterschap Brabantse Delta.
+</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="(ws|WS)?\d{4}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="provincie">
+        <xsd:sequence>
+            <xsd:element name="provinciecode" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De code van de provincie uit de TOOI begrippenlijst 'Register provincies compleet'.
+
+                        URL waardelijst:
+                          - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_provincies_compleet%2F1
+
+                        Verwachte waarde:
+                          - `string`: tweecijferige code, eventueel met het voorvoegsel 'pv'. Bijvoorbeeld `pv20` voor provincie Groningen.
+</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="(pv|PV)?\d{2}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="provincienaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="bestuurslaag">
         <xsd:choice>
-            <xsd:element name="waterschap" type="waterschap"/>
             <xsd:element name="gemeente" type="gemeente"/>
-            <xsd:element name="provincie">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        De provincie die het bestuur op zich neemt.
-
-                        Verwachte waarde:
-                          - Keuze uit: `Drenthe`, `Groningen`, `Overijssel`, `Flevoland`, `Gelderland`, `Utrecht`, `Noord-Holland`, `Zuid-Holland`, `Zeeland`, `Noord-Brabant`, `Limburg`
-                    </xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Drenthe"/>
-                        <xsd:enumeration value="Groningen"/>
-                        <xsd:enumeration value="Overijssel"/>
-                        <xsd:enumeration value="Flevoland"/>
-                        <xsd:enumeration value="Gelderland"/>
-                        <xsd:enumeration value="Utrecht"/>
-                        <xsd:enumeration value="Noord-Holland"/>
-                        <xsd:enumeration value="Zuid-Holland"/>
-                        <xsd:enumeration value="Zeeland"/>
-                        <xsd:enumeration value="Noord-Brabant"/>
-                        <xsd:enumeration value="Limburg"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
+            <xsd:element name="waterschap" type="waterschap"/>
+            <xsd:element name="provincie" type="provincie"/>
         </xsd:choice>
     </xsd:complexType>
     <xsd:complexType name="entiteitType">
