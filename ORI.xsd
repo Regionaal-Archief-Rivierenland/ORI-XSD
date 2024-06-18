@@ -884,7 +884,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="waterschap">
@@ -907,7 +907,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="provincie">
@@ -930,7 +930,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="provincienaam" type="xsd:string"/>
+            <xsd:element name="provincienaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="bestuurslaag">
