@@ -48,7 +48,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="mediabronType" minOccurs="0" maxOccurs="1">
+            <xsd:element name="mediabronType" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Het soort mediabron.
