@@ -37,7 +37,7 @@
             <xsd:element name="mimeType" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Het mime type van het bestand (zie https://en.wikipedia.org/wiki/Media_type).
+                        Het MIME type van het mediabron bestand.
 
                         Verwachte waarde:
                           - `string`: Patroon `type/subtype`, bijv. `video/mp4`
