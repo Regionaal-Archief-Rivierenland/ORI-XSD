@@ -39,7 +39,7 @@
                         Het MIME type van het mediabron bestand.
 
                         Verwachte waarde:
-                          - `string`: Patroon `type/subtype`, bijv. `video/mp4`
+                          - `string`: Patroon `type/subtype`, bijvoorbeeld `video/mp4`
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
