@@ -501,7 +501,7 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumBeginFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="fractie" type="fractie" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
