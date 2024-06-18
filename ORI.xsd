@@ -23,8 +23,7 @@
                 <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemer" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
-        <!-- enforce uniqueness on all ID tags within the tree -->
-        <!-- TODO: maybe allow IDs to be non-unique within certain types of tags? -->
+        <!-- verplicht dat alle IDs in de XML boom uniek zijn -->
         <xsd:unique name="uniqueID">
             <xsd:selector xpath=".//ori:ID"/>
             <xsd:field xpath="."/>
