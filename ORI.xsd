@@ -252,7 +252,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="spreektTijdensAgendapunt" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="spreektTijdensAgendapunt" type="xsd:string" minOccurs="1" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar het agendapunt waar tijdens gesproken wordt.
@@ -406,7 +406,7 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="dagelijksBestuur" type="dagelijksBestuur" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="natuurlijkPersoon">
@@ -499,10 +499,10 @@
     <xsd:complexType name="fractielidmaatschap">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="fractie" type="fractie" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumBeginFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="datumEindeFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="fractie" type="fractie" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="stemresultaatPerFractie">
@@ -525,7 +525,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="gegevenOpStemming" type="xsd:string" minOccurs="0" maxOccurs="1">
+            <xsd:element name="gegevenOpStemming" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de stemming waar de fractie over gestemd heeft.
