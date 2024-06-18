@@ -869,13 +869,13 @@
             <xsd:element name="gemeentecode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De TOOI gemeente code van de gemeente.
+                        De code van de gemeente uit de TOOI begrippenlijst 'Register gemeenten compleet'.
 
-                        Waardelijst:
+                        URL Waardelijst:
                           - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_gemeenten_compleet%2F4
 
                         Verwachte waarde:
-                          - `string`: viercijferige code, eventueel met het voorvoegsel 'gm'. Bijv. 'gm0518' voor Den Haag.
+                          - `string`: viercijferige code, eventueel met het voorvoegsel 'gm'. Bijvoorbeeld 'gm0518' voor gemeente Den Haag.
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
@@ -892,13 +892,13 @@
             <xsd:element name="waterschapcode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De TOOI waterschap code van het waterschap.
+                        De code van het waterschap uit de TOOI begrippenlijst 'Register waterschappen compleet'.
 
-                        Waardelijst:
+                        URL Waardelijst:
                           - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_waterschappen_compleet%2F1
 
                         Verwachte waarde:
-                          - `string`: viercijferige code, eventueel met het voorvoegsel 'ws'. Bijv. `ws0652` voor waterschap Brabantse Delta.
+                          - `string`: viercijferige code, eventueel met het voorvoegsel 'ws'. Bijvoorbeeld `ws0652` voor waterschap Brabantse Delta.
 </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
@@ -915,13 +915,13 @@
             <xsd:element name="provinciecode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De TOOI provincie code van de provincie.
+                        De code van de provincie uit de TOOI begrippenlijst 'Register provincies compleet'.
 
-                        Waardelijst:
+                        URL waardelijst:
                           - https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_provincies_compleet%2F1
 
                         Verwachte waarde:
-                          - `string`: tweecijferige code, eventueel met het voorvoegsel 'pv'. Bijv. `pv20` voor Groningen.
+                          - `string`: tweecijferige code, eventueel met het voorvoegsel 'pv'. Bijvoorbeeld `pv20` voor provincie Groningen.
 </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
