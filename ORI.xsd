@@ -23,12 +23,29 @@
                 <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemer" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
-        <!-- Stel verplicht dat alle IDs in de XML boom uniek zijn -->
+        <!-- Forceer dat alle IDs in de XML boom uniek zijn -->
         <xsd:unique name="uniqueID">
             <xsd:selector xpath=".//ori:ID"/>
             <xsd:field xpath="."/>
         </xsd:unique>
     </xsd:element>
+    <xsd:complexType name="verwijzingGegevens">
+        <xsd:annotation>
+            <xsd:documentation>Gegevens om vanuit een object naar een ander te verwijzen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="verwijzingID" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Het ID van het object waarnaar verwezen wordt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="verwijzingNaam" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Een voor menselijke lezers interpreteerbare naam van het object waarnaar verwezen wordt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
     <xsd:complexType name="mediabron">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
@@ -125,27 +142,30 @@
                         Verwijzing naar de mediabron waarin de vergadering is vastgelegd.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="isGenotuleerdIn" type="xsd:string" minOccurs="0" maxOccurs="1">
+            <xsd:element name="isGenotuleerdIn" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de notulen van de vergadering.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
+                          - `verwijzingNaam` (`string`, optioneel): Naam van het informatieobject waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftAlsBijlage" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftAlsBijlage" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar een bijlage van de vergadering.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
+                          - `verwijzingNaam` (`string`, optioneel): Naam van het informatieobject waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -162,7 +182,7 @@
                         Het geplande agendapunt volgnummer.
 
                         Verwachte waarde:
-                          - `Volgnummer` (`string`): een of meer cijfers, eventueel gevolgd door een reeks letters. Bijvoorbeeld `10` of `13b`.
+                          - `string`: een of meer cijfers, eventueel gevolgd door een reeks letters. Bijvoorbeeld `10` of `13b`.
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
@@ -177,7 +197,7 @@
                         Het geplande agendapunt volgnummer.
 
                         Verwachte waarde:
-                          - `Volgnummer` (`string`): een of meer cijfers, eventueel gevolgd door een reeks letters. Bijvoorbeeld `10` of `13b`.
+                          - `string`: een of meer cijfers, eventueel gevolgd door een reeks letters. Bijvoorbeeld `10` of `13b`.
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
@@ -196,33 +216,36 @@
             <xsd:element name="indicatorBehandeld" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatorBesloten" type="xsd:boolean" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="wordtBehandeldTijdens" type="xsd:string" minOccurs="1" maxOccurs="1">
+            <xsd:element name="wordtBehandeldTijdens" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de vergadering waarin het agendapunt behandeld wordt.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `vergadering`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `vergadering` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `vergadering` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftBehandelendAmbtenaar" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftBehandelendAmbtenaar" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de ambtenaar die het agendapunt behandeld.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam (volledige naam of achternaam) van de persoon die het agendapunt behandeld
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftAlsBijlage" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftAlsBijlage" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar een bijlage van het agendapunt.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
+                          - `verwijzingNaam` (`string`, optioneel): Naam van het informatieobject waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -242,23 +265,25 @@
             <xsd:element name="audioTijdsaanduidingEinde" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="videoTijdsaanduidingEinde" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="isVastgelegdIn" type="xsd:string" minOccurs="1" maxOccurs="1">
+            <xsd:element name="isVastgelegdIn" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de mediabron waarin het spreekfragment is vastgelegd.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `mediabron`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="spreektTijdensAgendapunt" type="xsd:string" minOccurs="1" maxOccurs="unbounded">
+            <xsd:element name="spreektTijdensAgendapunt" type="verwijzingGegevens" minOccurs="1" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar het agendapunt waar tijdens gesproken wordt.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `agendapunt`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                       </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -304,23 +329,25 @@
             <xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="stemmingOverPersonen" type="stemmingOverPersonen" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="leidtTotBesluit" type="besluit" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="heeftBetrekkingOpAgendapunt" type="xsd:string" minOccurs="0" maxOccurs="1">
+            <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar agendapunt waarover gestemt wordt.
 
                         Verwachte waarde:
-                           - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `agendapunt`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar het besluitvormingsstuk waarover gestemd wordt.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `besluitvormingsstuk`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                     <xsd:documentation>
                         Voorbeeld:
@@ -525,13 +552,14 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="gegevenOpStemming" type="xsd:string" minOccurs="1" maxOccurs="1">
+            <xsd:element name="gegevenOpStemming" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de stemming waar de fractie over gestemd heeft.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `stemming`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -587,25 +615,25 @@
             <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aanvangAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="eindeAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="neemtDeelAanVergadering" type="xsd:string" minOccurs="0" maxOccurs="1">
+            <xsd:element name="neemtDeelAanVergadering" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de vergadering waar de deelnemer aanwezig was.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `vergadering`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="isNatuurlijkPersoon" type="xsd:string" minOccurs="1" maxOccurs="1">
+            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        <![CDATA[
-                        Verwijzing naar een `<natuurlijkPersoon>` element met meer informatie over de deelnemer.
+                        Verwijzing naar een `natuurlijkPersoon` element met meer informatie over de deelnemer.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
-                        ]]>
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -640,7 +668,8 @@
                         Verwijzing naar de stemming waar de deelnemer over gestemd heeft.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `stemming`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -663,7 +692,8 @@
                         Verwijzing naar de zaak waar dit informatieobject betrekking op heeft.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `zaak`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -727,7 +757,8 @@
                                 Verwijzing naar de vraag waar het antwoord bij hoort.
                                 
                                 Verwachte waarde:
-                                  - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `vraag`.
+                                  - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                                  - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
@@ -746,7 +777,8 @@
                                 Verwijzing naar het dagelijks bestuur dat het besluitsvormingsstuk heeft ingedient.
 
                                 Verwachte waarde:
-                                  - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `dagelijksBestuur`
+                                  - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                                  - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
@@ -780,7 +812,8 @@
                                 Verwijzing naar een persoon die het stuk heeft ondertekend.
 
                                 Verwachte waarde:
-                                  - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
+                                  - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                                  - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
@@ -799,7 +832,8 @@
                                 Verwijzing naar het voorstel waar dit een amendement van is.
 
                                 Verwachte waarde:
-                                  - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `voorstel`
+                                  - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                                  - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
@@ -819,7 +853,8 @@
                         Verwijzing naar het ingediende informatieobject.
                         
                         Verwachte waarde:
-                        - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `informatieobject`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -939,12 +974,11 @@
             <xsd:element name="isNatuurlijkPersoon" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        <![CDATA[
-                        Verwijzing naar een `<natuurlijkPersoon>` element.
+                        Verwijzing naar een `natuurlijkPersoon` element.
 
                         Verwachte waarde:
-                         - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd `natuurlijkPersoon`
-                        ]]>
+                           - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                           - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -955,7 +989,8 @@
                         Verwijzing naar een `<organisatorischeEenheid>` element.
 
                         Verwachte waarde:
-                          - `ID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerde `organisatorischeEenheid`
+                          - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
                         ]]>
                     </xsd:documentation>
                 </xsd:annotation>
