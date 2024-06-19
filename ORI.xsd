@@ -788,14 +788,14 @@
                 <xsd:sequence>
                     <xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                     <xsd:element name="datumIngediend" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="isMedeOndertekendDoor" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
+                    <xsd:element name="isMedeOndertekendDoor" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
                         <xsd:annotation>
                             <xsd:documentation>
-                                Verwijzing naar een persoon die het stuk heeft ondertekent.
+                                Verwijzing naar een persoon die het stuk heeft ondertekend.
 
                                 Verwachte waarde:
                                   - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
-                                  - `verwijzingNaam` (`string`, optioneel): Naam van de persoon die het stuk heeft ondertekent. 
+                                  - `verwijzingNaam` (`string`, optioneel): Naam van de persoon die het stuk heeft ondertekend. 
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
@@ -811,11 +811,11 @@
                     <xsd:element name="hoortBijVoorstel" type="xsd:string" minOccurs="0" maxOccurs="1">
                         <xsd:annotation>
                             <xsd:documentation>
-                                Verwijzing naar het voorstel waar dit een amendement van is.
+                                Verwijzing naar het voorstel waar dit een amendement op is.
 
                                 Verwachte waarde:
-                                  - `verwijzingID` (`string`): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
-                                  - `verwijzingNaam` (`string`, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
+                                  - `verwijzingID` (`string`): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
+                                  - `verwijzingNaam` (`string`, optioneel): Naam van het informatieobject waarnaar verwezen wordt
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
