@@ -23,7 +23,7 @@
                 <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemer" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
-        <!-- Specificeer dat alle IDs in de XML boom uniek zijn -->
+        <!-- Specificeer dat alle IDs in de XML boom uniek moeten zijn -->
         <xsd:unique name="uniqueID">
             <xsd:selector xpath=".//ori:ID"/>
             <xsd:field xpath="."/>
