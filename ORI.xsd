@@ -945,14 +945,14 @@
     </xsd:complexType>
     <xsd:complexType name="bestuurslaag">
         <xsd:choice>
-            <xsd:element name="gemeente" type="gemeente"/>
-            <xsd:element name="waterschap" type="waterschap"/>
-            <xsd:element name="provincie" type="provincie"/>
+            <xsd:element name="gemeente" type="gemeente" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="waterschap" type="waterschap" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="provincie" type="provincie" minOccurs="1" maxOccurs="1"/>
         </xsd:choice>
     </xsd:complexType>
     <xsd:complexType name="entiteitType">
         <xsd:choice>
-            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
+            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar een `natuurlijkPersoon` element.
@@ -963,7 +963,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid" minOccurs="1" maxOccurs="1"/>
         </xsd:choice>
     </xsd:complexType>
 </xsd:schema>
