@@ -835,8 +835,8 @@
                         Verwijzing naar het ingediende informatieobject.
                         
                         Verwachte waarde:
-                          - `verwijzingID` (string): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
-                          - `verwijzingNaam` (string, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
+                          - `verwijzingID` (string): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
+                          - `verwijzingNaam` (string, optioneel): Naam van het informatieobject waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
