@@ -8,17 +8,6 @@
                 <xsd:element name="agendapunt" type="agendapunt" minOccurs="1" maxOccurs="unbounded"/>
                 <xsd:element name="stemming" type="stemming" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoon" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="indiener" type="indiener" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="informatieobject" type="informatieobject" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="motie" type="motie" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="amendement" type="amendement" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="voorstel" type="voorstel" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="ingekomenStuk" type="ingekomenStuk" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="vraag" type="vraag" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="antwoord" type="antwoord" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="toezegging" type="toezegging" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="mededeling" type="mededeling" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="zaak" type="zaak" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemer" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
@@ -28,6 +17,9 @@
             <xsd:field xpath="."/>
         </xsd:unique>
     </xsd:element>
+
+    <!-- # Algemene datatypes -->
+
     <xsd:complexType name="verwijzingGegevens">
         <xsd:annotation>
             <xsd:documentation>Gegevens om vanuit een object naar een ander te verwijzen.</xsd:documentation>
@@ -45,6 +37,56 @@
             </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
+
+    <xsd:complexType name="informatieobjectGegevens">
+        <xsd:sequence>
+            <xsd:element name="verwijzingInformatieobject" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar een elders gedefinieerd informatieobject.
+
+                        Verwachte waarde:
+                          - `verwijzingID` (string): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
+                          - `verwijzingNaam` (string, optioneel): Naam van het informatieobject waarnaar verwezen wordt
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="informatieobjectType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Het soort informatieobject waarnaar verwezen wordt.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Voorstel"/>
+                        <xsd:enumeration value="Motie"/>
+                        <xsd:enumeration value="Amendement"/>
+                        <xsd:enumeration value="Besluitsvormingsstuk"/>
+                        <xsd:enumeration value="Toezegging"/>
+                        <xsd:enumeration value="Mededeling"/>
+                        <xsd:enumeration value="Vraag"/>
+                        <xsd:enumeration value="Antwoord"/>
+                        <xsd:enumeration value="Ingekomen stuk"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="informatieobjectContextGegevens" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="voorstel" type="voorstelGegevens" minOccurs="1" maxOccurs="1"/>
+                        <xsd:element name="motie" type="motieGegevens" minOccurs="1" maxOccurs="1"/>
+                        <xsd:element name="amendement" type="amendementGegevens" minOccurs="1" maxOccurs="1"/>
+                        <xsd:element name="besluitsvormingsstuk" type="besluitvormingsstukGegevens" minOccurs="1" maxOccurs="1"/>
+                        <xsd:element name="vraag" type="vraagGegevens" minOccurs="1" maxOccurs="1"/>
+                        <xsd:element name="antwoord" type="antwoordGegevens" minOccurs="1" maxOccurs="1"/>
+                        <xsd:element name="toezegging" type="toezeggingGegevens" minOccurs="1" maxOccurs="1"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- # ORI-gerelateerde datatypes -->
+
     <xsd:complexType name="mediabron">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
@@ -146,7 +188,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="isGenotuleerdIn" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
+            <xsd:element name="isGenotuleerdIn" type="informatieobjectGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de notulen van de vergadering.
@@ -157,7 +199,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftAlsBijlage" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftAlsBijlage" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar een bijlage van de vergadering.
@@ -237,7 +279,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftAlsBijlage" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftAlsBijlage" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar een bijlage van het agendapunt.
@@ -339,14 +381,15 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar het besluitvormingsstuk waarover gestemd wordt.
+                        Gegevens omtrent het besluitvormingsstuk waarover gestemd wordt.
 
                         Verwachte waarde:
-                          - `verwijzingID` (string): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
-                          - `verwijzingNaam` (string, optioneel): Naam van het informatieobject waarnaar verwezen wordt
+                          - `verwijzingInformatieobject` (verwijzingGegevens): Verwijzing naar een elders gedefinieerd informatieobject
+                          - `informatieobjectType` (string, optioneel): Het soort besluitsvormingsstuk. Keuze uit `motie`, `voorstel`, `amendement`, of `besluitsvormingsstuk`
+                          - `informatieobjectAanvullendeGegevens` (motieGegevens|voorstelGegevens|amendementGegevens|besluitvormingsstukGegevens, optioneel): Gegevens die het informatieobject nader beschrijven
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -546,25 +589,6 @@
             </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="organisatorischeEenheid">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="e-mailadres" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="faxnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="naam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="naamVerkort" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="telefoonnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="zaak">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="zaakregistratie" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-        </xsd:sequence>
-    </xsd:complexType>
     <xsd:complexType name="aanwezigeDeelnemer">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
@@ -656,43 +680,27 @@
             </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="informatieobject">
+    <xsd:complexType name="besluitvormingsstukGegevens">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="titel" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="bronorganisatie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="versie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="auteur" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="creatiedatum" type="xsd:date" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="link" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="vertrouwelijkheidsaanduiding" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="bestuurslaag" type="bestuurslaag" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="zaak" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumIngediend" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="isMedeOndertekendDoor" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar de zaak waar dit informatieobject betrekking op heeft.
+                        Verwijzing naar een persoon die het stuk heeft ondertekend.
 
                         Verwachte waarde:
-                          - `verwijzingID` (string): Uniek identificatiekenmerk van de `zaak` waarnaar verwezen wordt
-                          - `verwijzingNaam` (string, optioneel): Naam van de `zaak` waarnaar verwezen wordt
+                          - `verwijzingID` (string): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
+                          - `verwijzingNaam` (string, optioneel): Naam van de persoon die het stuk heeft ondertekend. 
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="enkelvoudigInformatieobject">
+    <xsd:complexType name="motieGegevens">
         <xsd:complexContent>
-            <xsd:extension base="informatieobject">
-                <xsd:sequence>
-                    <xsd:element name="taal" type="xsd:language" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="inhoud" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="motie">
-        <xsd:complexContent>
-            <xsd:extension base="besluitvormingsstuk">
+            <xsd:extension base="besluitvormingsstukGegevens">
                 <xsd:sequence>
                     <xsd:element name="motieType" minOccurs="0" maxOccurs="1">
                         <xsd:simpleType>
@@ -700,7 +708,7 @@
                                 <xsd:documentation>
                                     Het soort motie.
 
-                                    Verwachte waarde:
+                                    Verwachte waarde: 
                                       - Keuze uit: `Voorstel`, `Afkeuring`, `Treurnis`, `Wantrouwen`, `Vreemd`, `Overig`
                                 </xsd:documentation>
                             </xsd:annotation>
@@ -718,38 +726,30 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <xsd:complexType name="toezegging">
+    <xsd:complexType name="amendementGegevens">
         <xsd:complexContent>
-            <xsd:extension base="enkelvoudigInformatieobject">
+            <xsd:extension base="besluitvormingsstukGegevens">
                 <xsd:sequence>
-                    <xsd:element name="toezeggingsOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="antwoord">
-        <xsd:complexContent>
-            <xsd:extension base="enkelvoudigInformatieobject">
-                <xsd:sequence>
-                    <xsd:element name="antwoordOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="hoortBijVraag" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                    <xsd:element name="toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="hoortBijVoorstel" type="voorstelGegevens" minOccurs="1" maxOccurs="1">
                         <xsd:annotation>
                             <xsd:documentation>
-                                Verwijzing naar de vraag waar het antwoord bij hoort.
-                                
+                                Verwijzing naar het voorstel waar dit een amendement op is.
+
                                 Verwachte waarde:
-                                  - `verwijzingID` (string): Uniek identificatiekenmerk van de `vraag` waarnaar verwezen wordt
-                                  - `verwijzingNaam` (string, optioneel): Naam van de `vraag` waarnaar verwezen wordt
+                                  - `verwijzingID` (string): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
+                                  - `verwijzingNaam` (string, optioneel): Naam van het informatieobject waarnaar verwezen wordt
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                    <xsd:element name="heeftAlsSubamendement" type="amendementGegevens" minOccurs="0" maxOccurs="1"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <xsd:complexType name="voorstel">
+    <xsd:complexType name="voorstelGegevens">
         <xsd:complexContent>
-            <xsd:extension base="besluitvormingsstuk">
+            <xsd:extension base="besluitvormingsstukGegevens">
                 <xsd:sequence>
                     <xsd:element name="portefeuillehouder" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                     <xsd:element name="isIngediendDoor" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
@@ -767,106 +767,43 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <xsd:complexType name="mededeling">
-        <xsd:complexContent>
-            <xsd:extension base="enkelvoudigInformatieobject">
-                <xsd:sequence>
-                    <xsd:element name="mededelingOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="ingekomenStuk">
-        <xsd:complexContent>
-            <xsd:extension base="enkelvoudigInformatieobject"/>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="besluitvormingsstuk">
-        <xsd:complexContent>
-            <xsd:extension base="enkelvoudigInformatieobject">
-                <xsd:sequence>
-                    <xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="datumIngediend" type="xsd:date" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="isMedeOndertekendDoor" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
-                        <xsd:annotation>
-                            <xsd:documentation>
-                                Verwijzing naar een persoon die het stuk heeft ondertekend.
-
-                                Verwachte waarde:
-                                  - `verwijzingID` (string): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
-                                  - `verwijzingNaam` (string, optioneel): Naam van de persoon die het stuk heeft ondertekend. 
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="amendement">
-        <xsd:complexContent>
-            <xsd:extension base="besluitvormingsstuk">
-                <xsd:sequence>
-                    <xsd:element name="toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="hoortBijVoorstel" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                        <xsd:annotation>
-                            <xsd:documentation>
-                                Verwijzing naar het voorstel waar dit een amendement op is.
-
-                                Verwachte waarde:
-                                  - `verwijzingID` (string): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
-                                  - `verwijzingNaam` (string, optioneel): Naam van het informatieobject waarnaar verwezen wordt
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                    <xsd:element name="heeftAlsSubamendement" type="amendement" minOccurs="0" maxOccurs="1"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="indiener">
+    <xsd:complexType name="toezeggingGegevens">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="adresBinnenland" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="isEntiteit" type="entiteitType" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="heeftIngediend" type="verwijzingGegevens" minOccurs="1" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        Verwijzing naar het ingediende informatieobject.
-                        
-                        Verwachte waarde:
-                          - `verwijzingID` (string): Uniek identificatiekenmerk van een elders gedefinieerd informatieobject
-                          - `verwijzingNaam` (string, optioneel): Naam van het informatieobject waarnaar verwezen wordt
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
+            <xsd:element name="toezeggingsOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="vraag">
-        <xsd:complexContent>
-            <xsd:extension base="enkelvoudigInformatieobject">
-                <xsd:sequence>
-                    <xsd:element name="vraagOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="vraagType" minOccurs="0" maxOccurs="1">
-                        <xsd:annotation>
-                            <xsd:documentation>
-                                Het soort vraag.
+    <xsd:complexType name="antwoordGegevens">
+        <xsd:sequence>
+            <xsd:element name="antwoordOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="hoortBijVraag" type="vraagGegevens" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="mededelingGegevens">
+        <xsd:sequence>
+            <xsd:element name="mededelingOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="vraagGegevens">
+        <xsd:sequence>
+            <xsd:element name="vraagOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="vraagType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het soort vraag.
 
-                                Verwachte waarde:
-                                  - Keuze uit: `Technische vraag`, `Mondelinge politieke vraag`, `Schriftelijke politieke vraag`
-                            </xsd:documentation>
-                        </xsd:annotation>
-                        <xsd:simpleType>
-                            <xsd:restriction base="xsd:string">
-                                <xsd:enumeration value="Technische vraag"/>
-                                <xsd:enumeration value="Mondelinge politieke vraag"/>
-                                <xsd:enumeration value="Schriftelijke politieke vraag"/>
-                            </xsd:restriction>
-                        </xsd:simpleType>
-                    </xsd:element>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
+                        Verwachte waarde:
+                          - Keuze uit: `Technische vraag`, `Mondelinge politieke vraag`, `Schriftelijke politieke vraag`
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Technische vraag"/>
+                        <xsd:enumeration value="Mondelinge politieke vraag"/>
+                        <xsd:enumeration value="Schriftelijke politieke vraag"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="gremium">
         <xsd:sequence>
@@ -948,22 +885,6 @@
             <xsd:element name="gemeente" type="gemeente" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="waterschap" type="waterschap" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="provincie" type="provincie" minOccurs="1" maxOccurs="1"/>
-        </xsd:choice>
-    </xsd:complexType>
-    <xsd:complexType name="entiteitType">
-        <xsd:choice>
-            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        Verwijzing naar een `natuurlijkPersoon` element.
-
-                        Verwachte waarde:
-                           - `verwijzingID` (string): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
-                           - `verwijzingNaam` (string, optioneel): Naam van de persoon waarnaar verwezen wordt
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid" minOccurs="1" maxOccurs="1"/>
         </xsd:choice>
     </xsd:complexType>
 </xsd:schema>
