@@ -731,7 +731,7 @@
             <xsd:extension base="besluitvormingsstukGegevens">
                 <xsd:sequence>
                     <xsd:element name="toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                    <xsd:element name="hoortBijVoorstel" type="voorstelGegevens" minOccurs="0" maxOccurs="1">
+                    <xsd:element name="hoortBijVoorstel" type="voorstelGegevens" minOccurs="1" maxOccurs="1">
                         <xsd:annotation>
                             <xsd:documentation>
                                 Verwijzing naar het voorstel waar dit een amendement op is.
