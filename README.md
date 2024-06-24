@@ -19,8 +19,10 @@ De documentatie van de XSD is een work-in-progress. De betekenis van de verschil
 ## Werkgroep deelnemers
 
 * Erfgoed Leiden en Omstreken
+* Provincie Zeeland
 * Regionaal Archief Rivierenland
 * Regionaal Archief Tilburg
 * Regionaal Archief Zutphen
+* Zeeuws Archief
 
 
