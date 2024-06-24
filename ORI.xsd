@@ -964,17 +964,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="isOrganisatorischeEenheid" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        Verwijzing naar een `organisatorischeEenheid` element.
-
-                        Verwachte waarde:
-                          - `verwijzingID` (string): Uniek identificatiekenmerk van de `organisatorischeEenheid` waarnaar verwezen wordt
-                          - `verwijzingNaam` (string, optioneel): Naam van de organisatie waarnaar verwezen wordt
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
+            <xsd:element name="isOrganisatorischeEenheid" type="organisatorischeEenheid" minOccurs="0" maxOccurs="1"/>
         </xsd:choice>
     </xsd:complexType>
 </xsd:schema>
