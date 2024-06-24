@@ -552,7 +552,7 @@
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="e-mailadres" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="faxnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="naam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="naamVerkort" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="omschrijving" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="telefoonnummer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
@@ -826,10 +826,10 @@
     </xsd:complexType>
     <xsd:complexType name="indiener">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="adresBinnenland" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="heeftIngediend" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftIngediend" type="verwijzingGegevens" minOccurs="1" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar het ingediende informatieobject.
