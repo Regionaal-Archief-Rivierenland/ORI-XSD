@@ -87,10 +87,9 @@
 
     <!-- # ORI-gerelateerde datatypes -->
 
-    <xsd:complexType name="mediabron">
+<xsd:complexType name="mediabron">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="locatieWebVTTBestand" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="mimeType" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -124,6 +123,20 @@
                 </xsd:simpleType>
             </xsd:element>
             <xsd:element name="URL" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="verwijzingMediabron" type="informatieobjectGegevens" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De verwijzing naar het bestand waarin de mediabron is vastgelegd. Afhankelijk van het mediabronType (Audio, Video of Transcriptie) verschilt het verwachte bestandsformaat. Technische gegevens over het bestandsformaat kunnen worden vastgelegd in de bestandslaag in MDTO of ToPX.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="verwijzingOndertitelbestand" type="informatieobjectGegevens" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het ondertitelbestand dat gerelateerd is aan de mediabron. Veelgebruikte formaten hiervoor zijn webVTT of SubRip. Dit element kan alleen van toepassing bij een mediabron met als type Video of Audio. Technische gegevens over het bestandsformaat kunnen worden vastgelegd in de bestandslaag in MDTO of ToPX.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="vergadering">
