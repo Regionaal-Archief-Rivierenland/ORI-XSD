@@ -526,7 +526,7 @@
                 </xsd:simpleType>
             </xsd:element>
             <xsd:element name="naam" type="naamGegevens" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="nevenfunctieNatuurlijkPersoon" type="nevenfunctieGegevens" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="nevenfunctie" type="nevenfunctieGegevens" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="isLidVanFractie" type="fractielidmaatschapGegevens" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="isLidVanDagelijksBestuur" type="dagelijksBestuurLidmaatschapGegevens" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
