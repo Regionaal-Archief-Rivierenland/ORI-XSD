@@ -69,7 +69,10 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="informatieobjectContextgegevens" minOccurs="0" maxOccurs="1">
+            <xsd:element name="informatieobjectAanvullendeGegevens" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Gegevens die een bepaald type informatieobject nader beschrijven. Alleen relevant wanneer deze gegevens niet reeds in MDTO of ToPX zijn opgenomen.</xsd:documentation>
+                </xsd:annotation>
                 <xsd:complexType>
                     <xsd:choice>
                         <xsd:element name="voorstel" type="voorstelGegevens" minOccurs="1" maxOccurs="1"/>
