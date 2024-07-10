@@ -82,6 +82,7 @@
                         <xsd:element name="vraag" type="vraagGegevens" minOccurs="1" maxOccurs="1"/>
                         <xsd:element name="antwoord" type="antwoordGegevens" minOccurs="1" maxOccurs="1"/>
                         <xsd:element name="toezegging" type="toezeggingGegevens" minOccurs="1" maxOccurs="1"/>
+                        <xsd:element name="mededeling" type="mededelingGegevens" minOccurs="1" maxOccurs="1"/>
                     </xsd:choice>
                 </xsd:complexType>
             </xsd:element>
