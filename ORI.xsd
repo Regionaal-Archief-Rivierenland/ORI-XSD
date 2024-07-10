@@ -472,8 +472,8 @@
     <xsd:complexType name="dagelijksBestuurLidmaatschapGegevens">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="dagelijksBestuur" type="dagelijksBestuurGegevens" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -567,8 +567,8 @@
     <xsd:complexType name="fractielidmaatschapGegevens">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="datumBeginFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="datumEindeFractielidmaatschap" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="datumEindeFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="fractie" type="fractieGegevens" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
