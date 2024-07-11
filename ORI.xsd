@@ -290,7 +290,7 @@
             <xsd:element name="publicatiedatum" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Het datum en tijdstip waarop de vergadering voor het laatst gepubliceerd is.
+                        Datum en tijdstip waarop de vergadering voor het laatst gepubliceerd en/of gewijzigd is.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
