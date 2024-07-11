@@ -308,7 +308,7 @@
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar de mediabron waarin de vergadering is vastgelegd.
-
+                        <!-- TODO: misschien beter om hier toch VerwijzingGegeves neer te zetten? -->
                         Verwachte waarde:
                           - `verwijzingID` (string): Uniek identificatiekenmerk van de `mediabron` waarnaar verwezen wordt
                           - `verwijzingNaam` (string, optioneel): Naam van de `mediabron` waarnaar verwezen wordt
