@@ -4,7 +4,7 @@
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="mediabron" type="mediabronGegevens" minOccurs="1" maxOccurs="unbounded"/>
-                <xsd:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="1"/>
                 <xsd:element name="agendapunt" type="agendapuntGegevens" minOccurs="1" maxOccurs="unbounded"/>
                 <xsd:element name="stemming" type="stemmingGegevens" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoonGegevens" minOccurs="0" maxOccurs="unbounded"/>
