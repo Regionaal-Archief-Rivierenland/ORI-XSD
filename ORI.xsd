@@ -1326,7 +1326,7 @@
                     <xsd:documentation>Een uniek identificatiekenmerk</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="rolNaam" minOccurs="0" maxOccurs="1">
+            <xsd:element name="rolnaam" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         De rol waarin iemand bij de vergadering aanwezig was.
@@ -1353,13 +1353,31 @@
             <xsd:element name="organisatie" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        
+                        De naam van de organisatie die wordt vertegenwoordigd door de aanwezige deelnemer. 
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="aanvangAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="eindeAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De plek waar een deelnemer in de zaal zat.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="aanvangAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Datum en tijdstip vanaf wanneer de deelnemer bij de vergadering aanwezig was.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="eindeAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Datum en tijdstip waarna de deelnemer de vergadering verliet.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -1382,15 +1400,33 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="neemtDeelAanStemming" type="stemGegevens" minOccurs="0" maxOccurs="unbounded"/>
-            <xsd:element name="spreektTijdensSpreekfragment" type="spreekfragmentGegevens" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="neemtDeelAanStemming" type="stemGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Gegevens over de stem die de deelnemer heeft uitbracht.
+
+                        Verwachte waarde:
+                          - `stemGegevens`: gegevensgroep met informatie over een uitgebrachte stem, zoals of de stem voor of tegen was, en op welke stemming deze gegeven is
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="spreektTijdensSpreekfragment" type="spreekfragmentGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Gegevens over een spreekfragment waar tijdens de deelnemer spreekt.
+
+                        Verwachte waarde:
+                          - `spreekfragmentGegevens`: gegevensgroep met informatie over een spreekfragment, zoals wanneer dit fragment in de vergadering aanvangt
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="stemGegevens">
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk</xsd:documentation>
+                    <xsd:documentation>Een uniek identificatiekenmerk.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="keuzeStemming" minOccurs="1" maxOccurs="1">
@@ -1418,7 +1454,7 @@
 
                         Verwachte waarde:
                           - `verwijzingID` (string): Uniek identificatiekenmerk van de `stemming` waarnaar verwezen wordt
-                          - `verwijzingNaam` (string, optioneel): Naam van beslissing waarover gestemd wordt
+                          - `verwijzingNaam` (string, optioneel): Naam van beslissing waarover gestemd werdt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -1575,8 +1611,20 @@
     </xsd:complexType>
     <xsd:complexType name="gremiumGegevens">
         <xsd:sequence>
-            <xsd:element name="gremiumIdentificatie" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-            <xsd:element name="gremiumNaam" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="gremiumIdentificatie" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Identificatie kenmerk van het gremium.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gremiumNaam" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Naam van het gremium.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="gemeenteGegevens">
@@ -1599,7 +1647,13 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De naam van de gemeente.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="waterschapGegevens">
@@ -1622,7 +1676,13 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De naam van het waterschap.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="provincieGegevens">
@@ -1645,10 +1705,17 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="provincienaam" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="provincienaam" type="xsd:string" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        De naam van de provincie.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="bestuurslaagGegevens">
+        <!-- TODO: uitleggen dat men hier moet kiezen/hoe men moet kiezen? -->
         <xsd:choice>
             <xsd:element name="gemeente" type="gemeenteGegevens" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="waterschap" type="waterschapGegevens" minOccurs="1" maxOccurs="1"/>
