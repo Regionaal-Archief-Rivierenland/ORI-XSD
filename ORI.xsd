@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" xmlns:ori="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.5">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" xmlns:ori="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.6">
     <xsd:element name="ORI">
         <xsd:complexType>
             <xsd:sequence>
@@ -213,7 +213,7 @@
                 </xsd:simpleType>
             </xsd:element>
             <xsd:element name="URL" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="verwijzingMediabron" type="informatieobjectGegevens" minOccurs="1" maxOccurs="1">
+            <xsd:element name="hoortBijInformatieobject" type="informatieobjectGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         <!-- TODO: rewrite. De verwijzing is naar een informatieobject, niet naar media bestand/mp4 -->
@@ -226,7 +226,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="verwijzingOndertitelbestand" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="heeftOndertitelbestand" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
                         <!-- TODO: rewrite. De verwijzing is naar een informatieobject, niet een ondertitel bestand -->
@@ -617,7 +617,7 @@
             <xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="leidtTotBesluit" type="besluitGegevens" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+            <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Verwijzing naar agendapunt waarover gestemt wordt.
@@ -899,6 +899,17 @@
             <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aanvangAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="eindeAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar een `natuurlijkPersoon` element met contextuele informatie over de deelnemer.
+
+                        Verwachte waarde:
+                          - `verwijzingID` (string): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
+                          - `verwijzingNaam` (string, optioneel): Naam van de persoon waarnaar verwezen wordt
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="neemtDeelAanVergadering" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -907,17 +918,6 @@
                         Verwachte waarde:
                           - `verwijzingID` (string): Uniek identificatiekenmerk van de `vergadering` waarnaar verwezen wordt
                           - `verwijzingNaam` (string, optioneel): Naam van de `vergadering` waarnaar verwezen wordt
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        Verwijzing naar een `natuurlijkPersoon` element met meer informatie over de deelnemer.
-
-                        Verwachte waarde:
-                          - `verwijzingID` (string): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
-                          - `verwijzingNaam` (string, optioneel): Naam van de persoon waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
