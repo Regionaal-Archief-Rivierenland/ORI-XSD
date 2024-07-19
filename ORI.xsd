@@ -513,17 +513,17 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element name="geplandeEindtijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        Het oorspronkelijk geplande datum en tijdstip waarop het agendapunt zou worden afgerond.
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
             <xsd:element name="geplandeStarttijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
                         Het oorspronkelijk geplande datum en tijdstip waarop het agendapunt in behandeling zou werden genomen.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="geplandeEindtijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Het oorspronkelijk geplande datum en tijdstip waarop het agendapunt zou worden afgerond.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
