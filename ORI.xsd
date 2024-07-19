@@ -3,12 +3,79 @@
     <xsd:element name="ORI">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="mediabron" type="mediabronGegevens" minOccurs="1" maxOccurs="unbounded"/>
-                <xsd:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="unbounded"/>
-                <xsd:element name="agendapunt" type="agendapuntGegevens" minOccurs="1" maxOccurs="unbounded"/>
-                <xsd:element name="stemming" type="stemmingGegevens" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoonGegevens" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemerGegevens" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="mediabron" type="mediabronGegevens" minOccurs="1" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Gegevens over de transcriptie, video-opname, of audio-opname van de vergadering.
+                            
+                            Verwachte waarde:
+                              - `mediabronGegevens`: gegevensgroep met informatie over een mediabron, zoals het soort opname wat gemaakt is
+
+                            Relaties:
+                              - `hoortBijInformatieobject` (`informatieobjectGegevens`): verwijzing naar het informatieobject waarin de mediabron is vastgelegd
+                              - `heeftOndertitelbestand` (`informatieobjectGegevens`, optioneel): verwijzing naar het informatieobject waarin het ondertitelbestand van de mediabron is vastgelegd
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Gegevens over de vergadering. Een vergadering kan uit een of meer deelvergaderingen bestaan.
+
+                            Verwachte waarde:
+                              - `vergaderingGegevens`: gegevensgroep met informatie over een vergadering, zoals haar aanvangstdatum en locatie.
+
+                            Relaties: 
+                              - `heeftAlsBijlage` (`informatieobjectGegevens`): verwijzing naar een informatieobject dat als bijlage bij de vergadering heeft gefunctioneerd
+                              - `isGenotuleerdIn` (`informatieobjectGegevens`): verwijzing naar het informatieobject 
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="agendapunt" type="agendapuntGegevens" minOccurs="1" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Gegevens over een agendapunt. Een agendapunt kan uit een of meer deelagendapunten bestaan.
+
+                            Verwachte waarde:
+                              <!-- TODO: check of men de term 'gegevensgroep' inderdaad gebruikt -->
+                              - `agendapuntGegevens`: gegevensgroep met informatie over een agendapunt, zoals haar beslotenheid en aanvangst binnen de vergadering.
+
+                             Relaties:
+                               - `wordtBehandeldTijdens` (`verwijzingGegevens`): verwijzing naar de (deel)vergadering waarin dit agendapunt behandeld werd
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="stemming" type="stemmingGegevens" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Gegevens over een stemming.
+
+                            Verwachte waarde:
+                              - stemming: 
+
+                            Relaties:
+                              - `stemmingOverPersonen` (`stemmingOverPersonenGegevens`): gegevensgroep met informatie over de persoon waarover gestemd is
+                              - `leidtTotBesluit` (`besluitGegevens`): gegevensgroep met informatie over het besluit waartoe de steming heeft geleidt
+                              - `` (`stemmingOverPersonenGegevens`): gegevensgroep met informatie over de persoon waarover gestemd is
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoonGegevens" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Gegevens met contextuele informatie over een persoon, zoals haar volledige naam en nevenwerkzaamheden.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemerGegevens" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Gegevens over tijdens van een deelnemer van aan de  vergadering.
+
+                            
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
             </xsd:sequence>
         </xsd:complexType>
         <!-- Specificeer dat alle IDs in de XML boom uniek moeten zijn -->
@@ -160,7 +227,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatie kenmerk.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatie kenmerk van de vergadering.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -528,7 +595,7 @@
                 </xsd:simpleType>
             </xsd:element>
             <xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="stemmingOverPersonen" type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="leidtTotBesluit" type="besluitGegevens" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
@@ -636,7 +703,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk</xsd:documentation>
+                    <xsd:documentation>Een uniek identificatiekenmerk van de persoon, niet zijnde het burgerserivcenummer.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="geslachtsaanduiding" minOccurs="0" maxOccurs="1">
