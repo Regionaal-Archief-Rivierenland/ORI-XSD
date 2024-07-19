@@ -637,6 +637,17 @@
             <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="aanvangAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="eindeAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Verwijzing naar een `natuurlijkPersoon` element met contextuele informatie over de deelnemer.
+
+                        Verwachte waarde:
+                          - `verwijzingID` (string): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
+                          - `verwijzingNaam` (string, optioneel): Naam van de persoon waarnaar verwezen wordt
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
             <xsd:element name="neemtDeelAanVergadering" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
@@ -645,17 +656,6 @@
                         Verwachte waarde:
                           - `verwijzingID` (string): Uniek identificatiekenmerk van de `vergadering` waarnaar verwezen wordt
                           - `verwijzingNaam` (string, optioneel): Naam van de `vergadering` waarnaar verwezen wordt
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
-                        Verwijzing naar een `natuurlijkPersoon` element met meer informatie over de deelnemer.
-
-                        Verwachte waarde:
-                          - `verwijzingID` (string): Uniek identificatiekenmerk van de `natuurlijkPersoon` waarnaar verwezen wordt
-                          - `verwijzingNaam` (string, optioneel): Naam van de persoon waarnaar verwezen wordt
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
