@@ -1233,7 +1233,7 @@
             <xsd:element name="fractieNeemtDeelAanStemming" type="stemresultaatPerFractieGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Gegevens over een stemming waaraan de fractie als geheel aan mee heeft gedaan.
+                        Gegevens over een stemming waar de fractie als geheel aan mee heeft gedaan.
 
                         Verwachte waarde:
                           - `stemresultaatPerFractieGegevens`: gegevensgroep met informatie over de keuze van een fractie over een stemming
@@ -1252,14 +1252,14 @@
             <xsd:element name="datumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Datum waarop iemand's fractie lidmaatschap begon.
+                        Datum waarop iemand's fractielidmaatschap begon.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="datumEindeFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Datum waarop iemand's fractie lidmaatschap eindigde.
+                        Datum waarop iemand's fractielidmaatschap eindigde.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
