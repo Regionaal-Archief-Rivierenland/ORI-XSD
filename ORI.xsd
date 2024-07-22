@@ -249,7 +249,7 @@
 
                         Verwachte waarde:
                           - `informatieobjectGegevens`: gegevensgroep met een verwijzing naar een in MDTO
-                            of TopX opgesteld informatieobject die de mediabron verder beschrijft
+                            of TopX opgesteld informatieobject die de mediabron beschrijft
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -260,7 +260,7 @@
 
                         Verwachte waarde:
                           - `informatieobjectGegevens`: gegevensgroep met een verwijzing naar een in MDTO
-                             of TopX opgesteld informatieobject die het ondertitelbestand verder beschrijft
+                             of TopX opgesteld informatieobject die het ondertitelbestand beschrijft
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -611,7 +611,7 @@
             <xsd:element name="heeftBehandelendAmbtenaar" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar de ambtenaar die het agendapunt behandeld.
+                        Verwijzing naar de behandeld ambtenaar van het agendapunt.
 
                         Verwachte waarde:
                           - `verwijzingGegevens`: gegevensgroep met daarin een uniek identificatiekenmerk en eventuele naam van de `natuurlijkPersoon` waarnaar verwezen wordt
@@ -630,7 +630,16 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftAlsSubagendapunt" type="agendapuntGegevens" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="heeftAlsSubagendapunt" type="agendapuntGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Een agendapunt dat als afzonderlijk onderdeel functioneert binnen een groter agendapunt.
+
+                        Verwachte waarde:
+                          - `agendapuntGegevens`: gegevens die het subagendapunt beschrijven
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="spreekfragmentGegevens">
@@ -674,7 +683,7 @@
             <xsd:element name="titelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Een titel voor het spreekfragment of benaming van de discussie waar het spreekfragment onder valt.
+                        Een titel voor het spreekfragment of benaming voor de discussie waar het spreekfragment onder valt.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
