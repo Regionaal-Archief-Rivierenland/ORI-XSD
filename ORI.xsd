@@ -598,7 +598,7 @@
             <xsd:element name="wordtBehandeldTijdens" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar de vergadering waarin het agendapunt behandeld wordt.
+                        Verwijzing naar de (deel)vergadering waarin het agendapunt behandeld wordt.
 
                         Verwachte waarde:
                           - `verwijzingGegevens`: gegevensgroep met daarin een uniek identificatiekenmerk en eventuele naam van de `vergadering` waarnaar verwezen wordt
