@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" xmlns:ori="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.6">
     <xsd:element name="ORI">
         <xsd:complexType>
@@ -10,7 +10,7 @@
                             
                             Verwachte waarde:
                               - `mediabronGegevens`: gegevensgroep met informatie over een mediabron,
-                                 zoals het medium waarin de vergadering in is vastgelegd.
+                                 zoals het medium waarin de vergadering is vastgelegd
 
                             Relaties:
                               - `hoortBijInformatieobject` (`informatieobjectGegevens`): verwijzing naar
@@ -46,7 +46,7 @@
                              Relaties:
                                - `wordtBehandeldTijdens` (`verwijzingGegevens`): verwijzing naar de (deel)vergadering waarin dit agendapunt behandeld werd
                                - `heeftBehandelendAmbtenaar` (`verwijzingGegevens`, optioneel): verwijzing naar een `natuurlijkPersoon` element die de behandelend ambtenaar van dit agendapunt representeert
-                               - `heeftAlsBijlage` (`verwijzingGegevens`, optioneel): verwijzing naar een informatieobject dat als bijlage bij het agendapunt vergadering heeft gefunctioneerd
+                               - `heeftAlsBijlage` (`verwijzingGegevens`, optioneel): verwijzing naar een informatieobject dat als bijlage bij het agendapunt heeft gefunctioneerd
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
@@ -56,11 +56,11 @@
                             Gegevens over een stemming. Een stemming heeft altijd betrekking op een bepaald agendapunt, maar het is daarnaast ook mogelijk om over een persoon te stemmen, zoals bij een benoeming van een raadslid.
 
                             Verwachte waarde:
-                              - `stemmingGegevens`: gegevensgroep met informatie over de stemming, zoals het besluit wat na de stemming volgde en het agendapunt waarover gestemd werd
+                              - `stemmingGegevens`: gegevensgroep met informatie over de stemming, zoals het besluit dat op de stemming volgde
 
                             Relaties:
-                              - `heeftBetrekkingOpAgendapunt` (`verwijzingGegevens`): verwijzing naar agendapunt waarover gestemd wordt
-                              - `leidtTotBesluit` (`besluitGegevens`, optioneel): gegevensgroep met informatie over het besluit waartoe de stemming heeft geleidt
+                              - `heeftBetrekkingOpAgendapunt` (`verwijzingGegevens`): verwijzing naar agendapunt waarover gestemd werd
+                              - `leidtTotBesluit` (`besluitGegevens`, optioneel): gegevensgroep met informatie over het besluit dat op de stemming volgde
                               - `stemmingOverPersonen` (`stemmingOverPersonenGegevens`, optioneel): gegevensgroep met informatie over de persoon waarover gestemd is
                         </xsd:documentation>
                     </xsd:annotation>
@@ -598,7 +598,7 @@
             <xsd:element name="wordtBehandeldTijdens" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar de (deel)vergadering waarin het agendapunt behandeld wordt.
+                        Verwijzing naar de vergadering waarin het agendapunt behandeld wordt.
 
                         Verwachte waarde:
                           - `verwijzingGegevens`: gegevensgroep met daarin een uniek identificatiekenmerk en eventuele naam van de `vergadering` waarnaar verwezen wordt
@@ -759,7 +759,7 @@
                         De wijze waarop gestemd is.
 
                         Verwachte waarde:
-                        - Keuze uit: `Hoofdelijk`, `Regulier`, `Schriftelijk`
+                          - Keuze uit: `Hoofdelijk`, `Regulier`, `Schriftelijk`
                     </xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
@@ -811,7 +811,7 @@
                         Het besluit waartoe de stemming geleidt heeft.
 
                         Verwachte waarde:
-                          - `besluitGegevens`: gegevensgroep met informatie over het besluit, zoals een indicatie of het om een verworpen besluit gaat
+                          - `besluitGegevens`: gegevensgroep met informatie over het besluit, zoals een indicatie of het om een verworpen besluit gaat Etiam vel tortor sodales tellus ultricies commodo.  Nullam eu ante vel est convallis dignissim.  Fusce commodo.  
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
