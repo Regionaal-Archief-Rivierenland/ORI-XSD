@@ -26,12 +26,12 @@
                             Gegevens over de vergadering. Een vergadering kan uit een of meer deelvergaderingen bestaan.
 
                             Verwachte waarde:
-                              - `vergaderingGegevens`: gegevensgroep met informatie over een vergadering, zoals haar aanvangstdatum en locatie
+                              - `vergaderingGegevens`: gegevensgroep met informatie over een vergadering, zoals haar aanvangsdatum en locatie
 
                             Relaties:
                               - `isVastgelegdMiddels` (`verwijzingGegevens`, optioneel): verwijzing naar de mediabron waarin de (deel)vergadering is vastgelegd
                               - `heeftAlsBijlage` (`informatieobjectGegevens`, optioneel): verwijzing naar een informatieobject dat als bijlage bij de vergadering heeft gefunctioneerd
-                              - `isGenotuleerdIn` (`informatieobjectGegevens`, optioneel): verwijzing naar het informatieobject waarin de notulen van de vergadering zijn vastgeleged
+                              - `isGenotuleerdIn` (`informatieobjectGegevens`, optioneel): verwijzing naar het informatieobject waarin de notulen van de vergadering zijn vastgelegd
                         </xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
@@ -41,7 +41,7 @@
                             Gegevens over een in de vergadering behandeld agendapunt. Een agendapunt kan uit een of meer deelagendapunten bestaan.
 
                             Verwachte waarde:
-                              - `agendapuntGegevens`: gegevensgroep met informatie over een agendapunt, zoals haar beslotenheid en aanvangst binnen de vergadering
+                              - `agendapuntGegevens`: gegevensgroep met informatie over een agendapunt, zoals haar beslotenheid en aanvang binnen de vergadering
 
                              Relaties:
                                - `wordtBehandeldTijdens` (`verwijzingGegevens`): verwijzing naar de (deel)vergadering waarin dit agendapunt behandeld werd
@@ -56,11 +56,11 @@
                             Gegevens over een stemming. Een stemming heeft altijd betrekking op een bepaald agendapunt, maar het is daarnaast ook mogelijk om over een persoon te stemmen, zoals bij een benoeming van een raadslid.
 
                             Verwachte waarde:
-                              - `stemmingGegevens`: gegevensgroep met informatie over de stemming, zoals het besluit wat na de stemming volgde en het agendapunt waarover gestemd werdt
+                              - `stemmingGegevens`: gegevensgroep met informatie over de stemming, zoals het besluit wat na de stemming volgde en het agendapunt waarover gestemd werd
 
                             Relaties:
-                              - `heeftBetrekkingOpAgendapunt` (`verwijzingGegevens`): verwijzing naar agendapunt waarover gestemt wordt
-                              - `leidtTotBesluit` (`besluitGegevens`, optioneel): gegevensgroep met informatie over het besluit waartoe de steming heeft geleidt
+                              - `heeftBetrekkingOpAgendapunt` (`verwijzingGegevens`): verwijzing naar agendapunt waarover gestemd wordt
+                              - `leidtTotBesluit` (`besluitGegevens`, optioneel): gegevensgroep met informatie over het besluit waartoe de stemming heeft geleidt
                               - `stemmingOverPersonen` (`stemmingOverPersonenGegevens`, optioneel): gegevensgroep met informatie over de persoon waarover gestemd is
                         </xsd:documentation>
                     </xsd:annotation>
@@ -84,7 +84,7 @@
                 <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemerGegevens" minOccurs="0" maxOccurs="unbounded">
                     <xsd:annotation>
                         <xsd:documentation>
-                            Gegevens over een persoon die daadwerlijk bij de vergadering aanwezig was.
+                            Gegevens over een persoon die daadwerkelijk bij de vergadering aanwezig was.
 
                             Verwachte waarde:
                               - `aanwezigeDeelnemerGegevens`: gegevensgroep met informatie over een deelnemer, zoals haar inspreek momenten en de rol waarin zij aanwezig was
@@ -327,7 +327,7 @@
             <xsd:element name="locatie" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Locatie (bijv. gebouw of stad) waar de vergadering gehouden is.
+                        Locatie (bijvoorbeeld gebouw of stad) waar de vergadering gehouden is.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -361,7 +361,7 @@
             <xsd:element name="vergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De datum waarop de vergadering daadwerkelijk gehouden werdt.
+                        De datum waarop de vergadering daadwerkelijk gehouden werd.
 
                         Verwachte waarde:
                           - `datum`: datum in `JJJJ-MM-DD` formaat
@@ -578,10 +578,10 @@
             <xsd:element name="indicatorBesloten" type="xsd:boolean" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Geeft aan of het agendapunt besloten werdt behandeld.
+                        Geeft aan of het agendapunt besloten werd behandeld.
 
                         Verwachte waarde:
-                          - `boolean`: `true` of `1` als het agendapunt besloten werdt behandeld; `false` of `0` als het agendapunt niet besloten werd behandeld
+                          - `boolean`: `true` of `1` als het agendapunt besloten werd behandeld; `false` of `0` als het agendapunt niet besloten werd behandeld
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -671,7 +671,7 @@
             <xsd:element name="titelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Een titel voor het spreekfragment of benaming van de discussie waar het spreekfragment ondervalt.
+                        Een titel voor het spreekfragment of benaming van de discussie waar het spreekfragment onder valt.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -818,7 +818,7 @@
             <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Verwijzing naar agendapunt waarover gestemt wordt.
+                        Verwijzing naar agendapunt waarover gestemd wordt.
 
                         Verwachte waarde:
                           - `verwijzingGegevens`: gegevensgroep met daarin een uniek identificatiekenmerk en eventuele naam van het `agendapunt` waarnaar verwezen wordt
@@ -1233,7 +1233,7 @@
             <xsd:element name="fractieNeemtDeelAanStemming" type="stemresultaatPerFractieGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Gegevens over een stemming waaran de fractie als geheel aan mee heeft gedaan.
+                        Gegevens over een stemming waaraan de fractie als geheel aan mee heeft gedaan.
 
                         Verwachte waarde:
                           - `stemresultaatPerFractieGegevens`: gegevensgroep met informatie over de keuze van een fractie over een stemming
@@ -1252,14 +1252,14 @@
             <xsd:element name="datumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Datum waarop iemand's fractielidmaatschap begon.
+                        Datum waarop iemand's fractie lidmaatschap begon.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="datumEindeFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        Datum waarop iemand's fractielidmaatschap eindigde.
+                        Datum waarop iemand's fractie lidmaatschap eindigde.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -1454,7 +1454,7 @@
 
                         Verwachte waarde:
                           - `verwijzingID` (string): Uniek identificatiekenmerk van de `stemming` waarnaar verwezen wordt
-                          - `verwijzingNaam` (string, optioneel): Naam van beslissing waarover gestemd werdt
+                          - `verwijzingNaam` (string, optioneel): Naam van beslissing waarover gestemd werd
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
@@ -1539,7 +1539,7 @@
                     <xsd:element name="isIngediendDoor" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
                         <xsd:annotation>
                             <xsd:documentation>
-                                Verwijzing naar het dagelijks bestuur dat het besluitsvormingsstuk heeft ingedient.
+                                Verwijzing naar het dagelijks bestuur dat het besluitsvormingsstuk heeft ingediend.
 
                                 Verwachte waarde:
                                   - `verwijzingID` (string): Uniek identificatiekenmerk van het `dagelijksBestuur` waarnaar verwezen wordt
