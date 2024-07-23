@@ -107,7 +107,7 @@
         </xsd:sequence>
     </xsd:complexType>
 
-    <!-- # ORI-gerelateerde datatypes -->
+    <!-- # Domein specifieke (ORI) datatypes -->
 
     <xsd:complexType name="mediabronGegevens">
         <xsd:sequence>
