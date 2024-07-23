@@ -15,7 +15,7 @@
                 </xsd:element>
                 <xsd:element name="agendapunt" type="agendapuntGegevens" minOccurs="1" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>Gegevens over een agendapunt wat tijdens de vergadering behandeld is. Een agendapunt kan uit een of meer deelagendapunten bestaan.</xsd:documentation>
+                        <xsd:documentation>Gegevens over een agendapunt wat tijdens de vergadering behandeld is. Een agendapunt kan uit een of meer subagendapunten bestaan.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="stemming" type="stemmingGegevens" minOccurs="0" maxOccurs="unbounded">
@@ -113,7 +113,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het ID van de mediabron.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van de mediabron.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="mimeType" minOccurs="0" maxOccurs="1">
@@ -274,7 +274,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk van het agendapunt.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van het agendapunt.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="agendapuntOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -378,7 +378,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van het spreekfragment.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="aanvangSpreekfragment" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
@@ -448,7 +448,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van de stemming.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="stemmingType" minOccurs="0" maxOccurs="1">
@@ -523,7 +523,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van het besluit.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="besluitToelichting" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -557,7 +557,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van het dagelijks bestuur.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="dagelijksBestuursnaam" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -588,7 +588,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk van het dagelijks bestuur lidmaatschap.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van het dagelijks bestuur lidmaatschap.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
@@ -612,7 +612,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk van de persoon, niet zijnde het burgerserivcenummer.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van de persoon, niet zijnde het burgerserivcenummer.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="geslachtsaanduiding" minOccurs="0" maxOccurs="1">
@@ -753,7 +753,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk van de fractie.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van de fractie.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="fractienaam" type="xsd:string" minOccurs="1" maxOccurs="1">
@@ -777,7 +777,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk van het fractie lidmaatschap.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van het fractie lidmaatschap.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="datumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
@@ -806,7 +806,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van het stemresultaat per fractie.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="fractieStemresultaat" minOccurs="0" maxOccurs="1">
@@ -832,7 +832,7 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van de deelnemer.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="rolnaam" minOccurs="0" maxOccurs="1">
@@ -856,7 +856,7 @@
             </xsd:element>
             <xsd:element name="organisatie" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>De naam van de organisatie die wordt vertegenwoordigd door de aanwezige deelnemer. </xsd:documentation>
+                    <xsd:documentation>De naam van de organisatie die wordt vertegenwoordigd door de deelnemer.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -900,12 +900,12 @@
         <xsd:sequence>
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Een uniek identificatiekenmerk.</xsd:documentation>
+                    <xsd:documentation>Uniek identificatiekenmerk van de stem.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="keuzeStemming" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>De uitgebrachte keuze op de stemming.</xsd:documentation>
+                    <xsd:documentation>De keuze op de stemming.</xsd:documentation>
                 </xsd:annotation>
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
@@ -1099,9 +1099,7 @@
             </xsd:element>
             <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>
-                        De naam van het waterschap.
-                    </xsd:documentation>
+                    <xsd:documentation>De naam van het waterschap.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
