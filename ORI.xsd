@@ -5,98 +5,32 @@
             <xsd:sequence>
                 <xsd:element name="mediabron" type="mediabronGegevens" minOccurs="1" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>
-                            Gegevens over de transcriptie, video-opname of audio-opname van de vergadering.
-                            
-                            Verwachte waarde:
-                              - `mediabronGegevens`: gegevensgroep met informatie over een mediabron,
-                                 zoals om wat voor soort opname het gaat
-
-                            Relaties:
-                              - `hoortBijInformatieobject` (`informatieobjectGegevens`): verwijzing naar
-                                 het informatieobject waarin de mediabron is vastgelegd
-                              - `heeftOndertitelbestand` (`informatieobjectGegevens`, optioneel): verwijzing naar
-                                 het informatieobject waarin het ondertitelbestand van de mediabron is vastgelegd
-                        </xsd:documentation>
+                        <xsd:documentation>Gegevens over de transcriptie, video-opname of audio-opname van de vergadering.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>
-                            Gegevens over de vergadering. Een vergadering kan uit een of meer deelvergaderingen bestaan.
-
-                            Verwachte waarde:
-                              - `vergaderingGegevens`: gegevensgroep met informatie over een vergadering, zoals haar aanvangsdatum en locatie
-
-                            Relaties:
-                              - `isVastgelegdMiddels` (`verwijzingGegevens`, optioneel): verwijzing naar de mediabron waarin de (deel)vergadering is vastgelegd
-                              - `heeftAlsBijlage` (`informatieobjectGegevens`, optioneel): verwijzing naar een informatieobject dat als bijlage bij de vergadering heeft gefunctioneerd
-                              - `isGenotuleerdIn` (`informatieobjectGegevens`, optioneel): verwijzing naar het informatieobject waarin de notulen van de vergadering zijn vastgelegd
-                        </xsd:documentation>
+                        <xsd:documentation>Gegevens over de vergadering. Een vergadering kan uit een of meer deelvergaderingen bestaan.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="agendapunt" type="agendapuntGegevens" minOccurs="1" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>
-                            Gegevens over een in de vergadering behandeld agendapunt. Een agendapunt kan uit een of meer deelagendapunten bestaan.
-
-                            Verwachte waarde:
-                              - `agendapuntGegevens`: gegevensgroep met informatie over een agendapunt, zoals haar beslotenheid en aanvang binnen de vergadering
-
-                             Relaties:
-                               - `wordtBehandeldTijdens` (`verwijzingGegevens`): verwijzing naar de (deel)vergadering waarin dit agendapunt behandeld werd
-                               - `heeftBehandelendAmbtenaar` (`verwijzingGegevens`, optioneel): verwijzing naar een `natuurlijkPersoon` element die de behandelend ambtenaar van dit agendapunt representeert
-                               - `heeftAlsBijlage` (`verwijzingGegevens`, optioneel): verwijzing naar een informatieobject dat als bijlage bij het agendapunt heeft gedient
-                        </xsd:documentation>
+                        <xsd:documentation>Gegevens over een agendapunt wat tijdens de vergadering behandeld is. Een agendapunt kan uit een of meer deelagendapunten bestaan.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="stemming" type="stemmingGegevens" minOccurs="0" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>
-                            Gegevens over een stemming. Een stemming heeft altijd betrekking op een bepaald agendapunt, maar het is daarnaast ook mogelijk om over personen te stemmen, zoals bij een benoeming van een raadslid.
-
-                            Een individu's stemkeuze op een bepaalde stemming hoort thuis onder `aanwezigeDeelnemer`.
-
-                            Verwachte waarde:
-                              - `stemmingGegevens`: gegevensgroep met informatie over de stemming, zoals het besluit dat op de stemming volgde
-
-                            Relaties:
-                              - `heeftBetrekkingOpAgendapunt` (`verwijzingGegevens`): verwijzing naar agendapunt waarover gestemd werd
-                              - `leidtTotBesluit` (`besluitGegevens`, optioneel): gegevensgroep met informatie over het besluit dat op de stemming volgde
-                              - `stemmingOverPersonen` (`stemmingOverPersonenGegevens`, optioneel): gegevensgroep met informatie over de persoon waarover gestemd is
-                        </xsd:documentation>
+                        <xsd:documentation>Gegevens over een stemming. Een stemming heeft altijd betrekking op een bepaald agendapunt, maar het is daarnaast ook mogelijk om over personen te stemmen, zoals bij een benoeming van een raadslid. Iemand's stemkeuze tijdens een bepaalde stemming hoort thuis onder `aanwezigeDeelnemer`.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoonGegevens" minOccurs="0" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>
-                            Gegevens met contextuele informatie over een persoon.
-
-                            Verwachte waarde:
-                              - `natuurlijkPersoonGegevens`: gegevensgroep met informatie over een persoon, zoals haar volledige naam en fractie lidmaatschap
-
-                            Relaties:
-                              - `naam` (`naamGegevens`): gegevensgroep met informatie over de naam van de persoon, zoals haar voor- en achternaam
-                              - `nevenfunctie` (`nevenfunctieGegevens`, optioneel): gegevensgroep met informatie over de nevenwerkzaamheden van de persoon
-                              - `isLidVanFractie` (`fractielidmaatschapGegevens`, optioneel): gegevensgroep met informatie over wanneer de persoon lid werd van welke fractie
-                              - `isLidVanDagelijksBestuur` (`dagelijksBestuurLidmaatschapGegevens`, optioneel): gegevensgroep met informatie over wanneer de persoon lid werd van welk dagelijks bestuur
-                        </xsd:documentation>
+                        <xsd:documentation>Gegevens met contextuele informatie over een persoon, zoals haar naam en fractie lidmaatschap.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemerGegevens" minOccurs="0" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>
-                            Gegevens over een persoon die daadwerkelijk bij de vergadering aanwezig was.
-
-                            Verwachte waarde:
-                              - `aanwezigeDeelnemerGegevens`: gegevensgroep met informatie over een deelnemer, zoals haar inspreek momenten en rol tijdens de vergadering
-
-                            Relaties:
-                              - `isNatuurlijkPersoon` (`verwijzingGegevens`): verwijzing naar een `natuurlijkPersoon` element met contextuele informatie over de deelnemer
-                              - `neemtDeelAanVergadering` (`verwijzingGegevens`, optioneel): verwijzing naar de (deel)vergadering waar de deelnemer aanwezig was
-                              - `neemtDeelAanStemming` (`stemGegevens`, optioneel): gegevensgroep met informatie over wat de deelnemer heeft gestemd tijdens een stemming
-                              - `spreektTijdensSpreekfragment` (`spreekfragmentGegevens`, optioneel): gegevensgroep met informatie over een spreekfragment waarin de deelnemer aan het woord was
-                        </xsd:documentation>
+                        <xsd:documentation>Gegevens over een persoon die daadwerkelijk bij de vergadering aanwezig was, zoals de momenten waarop zij insprak.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
             </xsd:sequence>
@@ -645,7 +579,7 @@
             </xsd:element>
             <xsd:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Gegegevens over de bestuurslaag die verantwoordelijk is voor de taken van dit dagelijks bestuur. Deze laag kan een gemeente, provincie of waterschap zijn.</xsd:documentation>
+                    <xsd:documentation>Gegevens over de bestuurslaag die verantwoordelijk is voor de taken van dit dagelijks bestuur. Deze laag kan een gemeente, provincie of waterschap zijn.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
@@ -1205,7 +1139,7 @@
             </xsd:element>
             <xsd:element name="waterschap" type="waterschapGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation> Gegevens die een waterschap uniek identificeren.</xsd:documentation>
+                    <xsd:documentation>Gegevens die een waterschap uniek identificeren.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="provincie" type="provincieGegevens" minOccurs="1" maxOccurs="1">
