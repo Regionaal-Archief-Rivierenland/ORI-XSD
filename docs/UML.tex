@@ -65,6 +65,8 @@
 \sffamily
 
 \usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
 \usetikzlibrary{shapes.multipart}
 \usetikzlibrary{positioning}
 
@@ -112,26 +114,34 @@
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
 
-  \node (stemming) [ORI object, below = 2cm of agendapunt, align=center]
+  \node (stemming) [ORI object, below = 4cm of agendapunt, align=center]
         {
           \objectheader{Objecttype}{Stemming}
 
           \attribute{\textbf{ID}}{string}{} \\
           \attribute{Stemmingstype}{\textcolor{darkgreen}{``Hoofdelijk''} | \textcolor{darkgreen}{``Regulier''} | \textcolor{darkgreen}{``Schriftelijk''}}{[0..1]}\\
           \attribute{Resultaat mondelinge stemming}{\textcolor{darkgreen}{``Voor''} | \textcolor{darkgreen}{``Tegen''} | \textcolor{darkgreen}{``Gelijk''}}{[0..1]} \\
+          \attribute{Toezegging}{string}{[0..1]} \\
           \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
           \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
         };
 
-  \node (besluit) [ORI object, above = 2cm of stemming, right = 2cm of agendapunt, align=center]
+  \node (besluit) [ORI object, above right = 0.5cm and 2cm of stemming, align=center]
         {
           \objectheader{Objecttype}{Besluit}
 
-          \attribute{ID}{string}{} \\
-          \attribute{Besluittoelichting}{string}{} \\
-          \attribute{Toezegging}{string}{} \\
-          \attribute{Besluit resultaat}{string}{} \\
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{Besluit toelichting}{string}{[0..1]} \\
+          \attribute{Toezegging}{string}{[0..1]} \\
+          \attribute{\textbf{Besluit resultaat}}{\textcolor{darkgreen}{``Unaniem aangenomen''} | \textcolor{darkgreen}{``Aangenomen''} | ... }{}
         };
+
+        %% arrows
+        \draw [-{Straight Barb[length=4mm,width=6mm]}, very thick] (stemming) -- node [anchor=center, fill=white] {heeft betrekking op\\\textcolor{gray}{\textbf{\guillemotleft{relatietype}\guillemotright}}} (agendapunt);
+        %% \draw [very thick] ($(stemming.north)+(2.5,0)$) -- node{cool} ++($stemming.north)+(2.5,0)$) --  (besluit);
+
+        
+        \draw[->, -{Straight Barb[length=4mm,width=6mm]}, very thick] ($(stemming.north)+(2.5,0)$) |-  (besluit.west) node [fill=white, pos=0.74, above] {leidt tot} node [fill=white, pos=0.74, below] {\textcolor{gray}{\textbf{\guillemotleft{relatietype}\guillemotright}}};
 
 \end{tikzpicture}
 
