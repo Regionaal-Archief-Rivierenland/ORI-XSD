@@ -3,7 +3,7 @@
 \usepackage{tikz}
 \usepackage{amsmath}
 \usepackage{mathtools}
-\usepackage{microtype}
+\usepackage[kerning=true, tracking=true]{microtype}
 \usepackage[dutch]{babel}
 
 \usepackage{inconsolata}
@@ -46,6 +46,7 @@
       fontlower={\ttfamily\mystrut}]
       {\textcolor{black}{\textbf{#2}}}
 }
+
 \newcommand{\datakeuze}[2][text]{%
     \tcbox[
       on line,
@@ -65,7 +66,7 @@
       {\textcolor{black}{\textbf{#2}}}
 }
 
-\usepackage{MyriadPro}
+\usepackage[]{MyriadPro}
 
 \begin{document}
 
@@ -73,15 +74,24 @@
 %% \renewcommand{\familydefault}{\sfdefault}
 \sffamily
 
-
 \usetikzlibrary{arrows}
 \usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning}
 
 %% TODO
 %% - check if different number style in Myriad pro looks nice
 %% - try semi boldfont for Attribute names
+%%   - too difficult with pdflatex
 %% - maybe bullets instead of plusses? Making a proper list also gives more flexibility
 %%    - all the more because the plusses serve little purposes
+
+
+%% Header of boxes
+\newcommand{\objectheader}[1]{{\large \textbf{#1}}
+  \nodepart{two}
+}
+%% Attribute typesetting
+\newcommand{\attribute}[3]{+ \; #1: \datatype{#2} #3}
 
 \begin{tikzpicture}[
     %% not sure why the "header" is still centered after align=left, but oh well
@@ -89,23 +99,34 @@
       draw=black, align=left, rounded corners=5pt, very thick, inner sep=10pt}]
   
   \node (agendapunt) [ORI object]
-        {{\large \textbf{Objecttype::Agendapunt}}
-          \nodepart[inner sep=-1pt]{two}
-          + \; ID: \datatype{string} \\
-          + \; Agendapunt omschrijving: \datatype{string} [0..1] \\
-          + \; Gepland agendapuntvolgnummer: \datatype{string} [0..1] \\
-          + \; Agendapuntvolgnummer: \datatype{string} [0..1] \\
-          + \; Geplande starttijd: \datatype{datum + tijd} [0..1] \\
-          + \; Geplande eindtijd: \datatype{datum + tijd} [0..1] \\
-          + \; Starttijd: \datatype{datum + tijd} [0..1] \\
-          + \; Eindtijd: \datatype{datum + tijd} [0..1] \\
-          + \; Agendapunt kenmerk: \datatype{string} [0..1] \\
-          + \; Agendapunt titel: \datatype{string} [0..1] \\
-          + \; Indicatie hamerstuk: \datatype{boolean} [0..1] \\
-          + \; Indicator behandeld: \datatype{boolean} [0..1] \\
-          + \; Indicator besloten: \datatype{boolean} \\
-          + \; Bestuurslaag: \datatype{bestuurslaagGegevens} [0..1] \\
-          + \; Stemming type: \datakeuze{Hoofdelijk | Regulier | Schriftelijk} [0..1]
+        {
+          \objectheader{Objecttype::Agendapunt}
+
+          \attribute{ID}{string} \\
+          \attribute{Agendapunt omschrijving}{string}{[0..1]} \\
+          \attribute{Gepland agendapuntvolgnummer}{string}{[0..1]} \\
+          \attribute{Agendapuntvolgnummer}{string}{[0..1]} \\
+          \attribute{Geplande starttijd}{datum + tijd}{[0..1]} \\
+          \attribute{Geplande eindtijd}{datum + tijd}{[0..1]} \\
+          \attribute{Starttijd}{datum + tijd}{[0..1]} \\
+          \attribute{Eindtijd}{datum + tijd}{[0..1]} \\
+          \attribute{Agendapunt kenmerk}{string}{[0..1]} \\
+          \attribute{Agendapunt titel}{string}{[0..1]} \\
+          \attribute{Indicatie hamerstuk}{boolean}{[0..1]} \\
+          \attribute{Indicator behandeld}{boolean}{[0..1]} \\
+          \attribute{Indicator besloten}{boolean}{} \\
+          \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
+        };
+
+  \node (stemming) [ORI object, below = 1cm of agendapunt]
+        {
+          \objectheader{Objecttype::stemming}
+
+          \attribute{ID}{string} \\
+          \attribute{StemmingsType}{Hoofdelijk | Regulier | Schriftelijk} \\
+          \attribute{Resultaat mondelinge stemming}{Voor | Tegen | Gelijk} \\
+          \attribute{Resultaat stemming over personen}{string} \\
+          \attribute{Stemming over personen}{stemmingOverPersonenGegevens} \\
         };
 \end{tikzpicture}
 
