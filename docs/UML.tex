@@ -1,16 +1,25 @@
 \documentclass[margin=10pt]{standalone}
 
 \usepackage{tikz}
-\usepackage{amsmath}
-\usepackage{mathtools}
+
 \usepackage[kerning=true, tracking=true]{microtype}
 \usepackage[dutch]{babel}
+
+%% font stuff
+\usepackage[]{MyriadPro}
+%% math font for myriadpro
+\usepackage{mdsymbol}
+%% \usepackage[onlymath]{MinionPro}
+\usepackage[T1]{fontenc}
+
+%% math symols
+\usepackage{amsmath}
+\usepackage{mathtools}
 
 \usepackage{inconsolata}
 %% computer modern monospace?
 %% \usepackage[tt={oldstyle=false,variable=false}]{cfr-lm}
 
-\usepackage[T1]{fontenc}
 
 \usepackage{listings}
 \usepackage{minted}
@@ -47,26 +56,7 @@
       {\textcolor{black}{\textbf{#2}}}
 }
 
-\newcommand{\datakeuze}[2][text]{%
-    \tcbox[
-      on line,
-      boxsep=0pt,
-      left=2.5pt,
-      right=2.5pt,
-      top=0pt,
-      bottom=0pt,
-      enlarge top initially by=-14pt,
-      enlarge bottom by=-14pt,
-      enlarge right by=-4pt,
-      enlarge left by=-2pt,
-      opacityframe=0,
-      colback=githubgrey,
-      fontupper={\ttfamily\mystrut},
-      fontlower={\ttfamily\mystrut}]
-      {\textcolor{black}{\textbf{#2}}}
-}
 
-\usepackage[]{MyriadPro}
 
 \begin{document}
 
@@ -80,6 +70,7 @@
 
 %% TODO
 %% - check if different number style in Myriad pro looks nice
+%%   - not really
 %% - try semi boldfont for Attribute names
 %%   - too difficult with pdflatex
 %% - maybe bullets instead of plusses? Making a proper list also gives more flexibility
@@ -87,22 +78,25 @@
 
 
 %% Header of boxes
-\newcommand{\objectheader}[1]{{\large \textbf{#1}}
-  \nodepart{two}
+\newcommand{\objectheader}[2]{
+  {\textbf{\textcolor{gray}{\guillemotleft#1\guillemotright}}} \\
+  {\large \textbf{#2}}
+  \nodepart[align=left]{two}
 }
+
 %% Attribute typesetting
-\newcommand{\attribute}[3]{+ \; #1: \datatype{#2} #3}
+\newcommand{\attribute}[3]{+ \; #1: \datatype{#2} \; \textcolor{gray}{#3}}
 
 \begin{tikzpicture}[
     %% not sure why the "header" is still centered after align=left, but oh well
     ORI object/.style={rectangle split, rectangle split parts=2,
-      draw=black, align=left, rounded corners=5pt, very thick, inner sep=10pt}]
+      draw=black, align=left, rounded corners=5pt, very thick, inner sep=10pt}, align=center]
   
-  \node (agendapunt) [ORI object]
+  \node (agendapunt) [ORI object, align=center]
         {
-          \objectheader{Objecttype::Agendapunt}
+          \objectheader{Objecttype}{Agendapunt}
 
-          \attribute{ID}{string} \\
+          \attribute{\textbf{ID}}{string}{} \\
           \attribute{Agendapunt omschrijving}{string}{[0..1]} \\
           \attribute{Gepland agendapuntvolgnummer}{string}{[0..1]} \\
           \attribute{Agendapuntvolgnummer}{string}{[0..1]} \\
@@ -114,20 +108,31 @@
           \attribute{Agendapunt titel}{string}{[0..1]} \\
           \attribute{Indicatie hamerstuk}{boolean}{[0..1]} \\
           \attribute{Indicator behandeld}{boolean}{[0..1]} \\
-          \attribute{Indicator besloten}{boolean}{} \\
+          \attribute{\textbf{Indicator besloten}}{boolean}{} \\
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
 
-  \node (stemming) [ORI object, below = 1cm of agendapunt]
+  \node (stemming) [ORI object, below = 2cm of agendapunt, align=center]
         {
-          \objectheader{Objecttype::stemming}
+          \objectheader{Objecttype}{Stemming}
 
-          \attribute{ID}{string} \\
-          \attribute{StemmingsType}{Hoofdelijk | Regulier | Schriftelijk} \\
-          \attribute{Resultaat mondelinge stemming}{Voor | Tegen | Gelijk} \\
-          \attribute{Resultaat stemming over personen}{string} \\
-          \attribute{Stemming over personen}{stemmingOverPersonenGegevens} \\
+          \attribute{\textbf{ID}}{string}{} \\
+          \attribute{Stemmingstype}{\textcolor{darkgreen}{``Hoofdelijk''} | \textcolor{darkgreen}{``Regulier''} | \textcolor{darkgreen}{``Schriftelijk''}}{[0..1]}\\
+          \attribute{Resultaat mondelinge stemming}{\textcolor{darkgreen}{``Voor''} | \textcolor{darkgreen}{``Tegen''} | \textcolor{darkgreen}{``Gelijk''}}{[0..1]} \\
+          \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
+          \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
         };
+
+  \node (besluit) [ORI object, above = 2cm of stemming, right = 2cm of agendapunt, align=center]
+        {
+          \objectheader{Objecttype}{Besluit}
+
+          \attribute{ID}{string}{} \\
+          \attribute{Besluittoelichting}{string}{} \\
+          \attribute{Toezegging}{string}{} \\
+          \attribute{Besluit resultaat}{string}{} \\
+        };
+
 \end{tikzpicture}
 
 \end{document}
