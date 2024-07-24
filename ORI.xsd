@@ -719,7 +719,7 @@
             </xsd:element>
             <xsd:element name="aantalUrenperMaand" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het aantal uren dat per maand besteed wordt aan de nevenfunctie.</xsd:documentation>
+                    <xsd:documentation>Aantal uren per maand dat besteed wordt aan de nevenfunctie.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="indicatorBezoldigd" type="xsd:boolean" minOccurs="1" maxOccurs="1">
@@ -768,7 +768,7 @@
             </xsd:element>
             <xsd:element name="fractieNeemtDeelAanStemming" type="stemresultaatPerFractieGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
-                    <xsd:documentation>Gegevens over een stemming waar de fractie aan mee heeft gedaan, zoals de stemkeuze die is gemaakt.</xsd:documentation>
+                    <xsd:documentation>Gegevens over een stemming waar de gehele fractie aan mee heeft gedaan, zoals de stemkeuze die is gemaakt.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
@@ -792,7 +792,7 @@
             </xsd:element>
             <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Geeft aan of iemand de voorzitter is van de fractie.</xsd:documentation>
+                    <xsd:documentation>Geeft aan of iemand fractievoorzitter is.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="fractie" type="fractieGegevens" minOccurs="1" maxOccurs="1">
