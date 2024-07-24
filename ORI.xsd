@@ -690,7 +690,7 @@
             </xsd:element>
             <xsd:element name="voorletters" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>De voorletters van de persoon, `J.P.` of `K.`.</xsd:documentation>
+                    <xsd:documentation>De voorletters van de persoon, zoals `J.P.` of `K.`.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="voornamen" type="xsd:string" minOccurs="0" maxOccurs="1">
@@ -700,7 +700,7 @@
             </xsd:element>
             <xsd:element name="volledigeNaam" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>De volledige naam van de persoon, `Piet van der Berg`.</xsd:documentation>
+                    <xsd:documentation>De volledige naam van de persoon, zoals `Piet van der Berg`.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
