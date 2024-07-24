@@ -1,0 +1,112 @@
+\documentclass[margin=10pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage[dutch]{babel}
+
+\usepackage{inconsolata}
+%% computer modern monospace?
+%% \usepackage[tt={oldstyle=false,variable=false}]{cfr-lm}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{listings}
+\usepackage{minted}
+\usemintedstyle{vs}
+
+%% Color definitions
+\usepackage[dvipsnames]{xcolor}
+\definecolor{githubgrey}{HTML}{EAEEF2}
+\definecolor{darkgreen}{HTML}{3D5E45}
+\definecolor{purple}{HTML}{5C5573}
+%% rounded boxes
+\usepackage[most]{tcolorbox}
+
+%% for templates
+\usepackage{xparse}
+\newcommand\mystrut{\rule[-2.5pt]{0pt}{12pt}}
+%% datatype typesetting
+\newcommand{\datatype}[2][text]{%
+    \tcbox[
+      on line,
+      boxsep=0pt,
+      left=2.5pt,
+      right=2.5pt,
+      top=0pt,
+      bottom=0pt,
+      enlarge top initially by=-14pt,
+      enlarge bottom by=-14pt,
+      enlarge right by=-4pt,
+      enlarge left by=-2pt,
+      opacityframe=0,
+      colback=githubgrey,
+      fontupper={\ttfamily\mystrut},
+      fontlower={\ttfamily\mystrut}]
+      {\textcolor{black}{\textbf{#2}}}
+}
+\newcommand{\datakeuze}[2][text]{%
+    \tcbox[
+      on line,
+      boxsep=0pt,
+      left=2.5pt,
+      right=2.5pt,
+      top=0pt,
+      bottom=0pt,
+      enlarge top initially by=-14pt,
+      enlarge bottom by=-14pt,
+      enlarge right by=-4pt,
+      enlarge left by=-2pt,
+      opacityframe=0,
+      colback=githubgrey,
+      fontupper={\ttfamily\mystrut},
+      fontlower={\ttfamily\mystrut}]
+      {\textcolor{black}{\textbf{#2}}}
+}
+
+\usepackage{MyriadPro}
+
+\begin{document}
+
+%% set default font to myriad pro
+%% \renewcommand{\familydefault}{\sfdefault}
+\sffamily
+
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes.multipart}
+
+%% TODO
+%% - check if different number style in Myriad pro looks nice
+%% - try semi boldfont for Attribute names
+%% - maybe bullets instead of plusses? Making a proper list also gives more flexibility
+%%    - all the more because the plusses serve little purposes
+
+\begin{tikzpicture}[
+    %% not sure why the "header" is still centered after align=left, but oh well
+    ORI object/.style={rectangle split, rectangle split parts=2,
+      draw=black, align=left, rounded corners=5pt, very thick, inner sep=10pt}]
+  
+  \node (agendapunt) [ORI object]
+        {{\large \textbf{Objecttype::Agendapunt}}
+          \nodepart[inner sep=-1pt]{two}
+          + \; ID: \datatype{string} \\
+          + \; Agendapunt omschrijving: \datatype{string} [0..1] \\
+          + \; Gepland agendapuntvolgnummer: \datatype{string} [0..1] \\
+          + \; Agendapuntvolgnummer: \datatype{string} [0..1] \\
+          + \; Geplande starttijd: \datatype{datum + tijd} [0..1] \\
+          + \; Geplande eindtijd: \datatype{datum + tijd} [0..1] \\
+          + \; Starttijd: \datatype{datum + tijd} [0..1] \\
+          + \; Eindtijd: \datatype{datum + tijd} [0..1] \\
+          + \; Agendapunt kenmerk: \datatype{string} [0..1] \\
+          + \; Agendapunt titel: \datatype{string} [0..1] \\
+          + \; Indicatie hamerstuk: \datatype{boolean} [0..1] \\
+          + \; Indicator behandeld: \datatype{boolean} [0..1] \\
+          + \; Indicator besloten: \datatype{boolean} \\
+          + \; Bestuurslaag: \datatype{bestuurslaagGegevens} [0..1] \\
+          + \; Stemming type: \datakeuze{Hoofdelijk | Regulier | Schriftelijk} [0..1]
+        };
+\end{tikzpicture}
+
+\end{document}
