@@ -5,32 +5,32 @@
             <xsd:sequence>
                 <xsd:element name="mediabron" type="mediabronGegevens" minOccurs="1" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>Gegevens over de transcriptie, video-opname of audio-opname van de vergadering.</xsd:documentation>
+                        <xsd:documentation>Gegevens over de transcriptie, video-opname of audio-opname van de vergadering, zoals het bestandstype en eventuele ondertitelbestanden.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>Gegevens over de vergadering. Een vergadering kan uit een of meer deelvergaderingen bestaan.</xsd:documentation>
+                        <xsd:documentation>Gegevens over de vergadering, zoals bijhorende stukken. Een vergadering kan uit een of meer deelvergaderingen bestaan.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="agendapunt" type="agendapuntGegevens" minOccurs="1" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>Gegevens over een agendapunt wat tijdens de vergadering behandeld is. Een agendapunt kan uit een of meer subagendapunten bestaan.</xsd:documentation>
+                        <xsd:documentation>Gegevens over een agendapunt wat tijdens de vergadering behandeld is, zoals bijhorende stukken. Een agendapunt kan uit een of meer subagendapunten bestaan.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="stemming" type="stemmingGegevens" minOccurs="0" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>Gegevens over een stemming. Een stemming heeft altijd betrekking op een bepaald agendapunt, maar het is daarnaast ook mogelijk om over personen te stemmen, zoals bij een benoeming van een raadslid. Iemand's stemkeuze tijdens een bepaalde stemming hoort thuis onder `aanwezigeDeelnemer`.</xsd:documentation>
+                        <xsd:documentation>Gegevens over een stemming. Een stemming heeft altijd betrekking op een bepaald agendapunt, maar het is daarnaast ook mogelijk om over personen te stemmen, zoals bij een benoeming van een raadslid. Iemands stemkeuze tijdens een bepaalde stemming hoort thuis onder `aanwezigeDeelnemer`.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoonGegevens" minOccurs="0" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>Gegevens met contextuele informatie over een persoon, zoals haar naam en fractie lidmaatschap.</xsd:documentation>
+                        <xsd:documentation>Gegevens met contextuele informatie over een persoon, zoals diens naam en fractie lidmaatschap.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemerGegevens" minOccurs="0" maxOccurs="unbounded">
                     <xsd:annotation>
-                        <xsd:documentation>Gegevens over een persoon die daadwerkelijk bij de vergadering aanwezig was, zoals de momenten waarop zij insprak.</xsd:documentation>
+                        <xsd:documentation>Gegevens over een persoon die daadwerkelijk bij de vergadering aanwezig was, zoals de momenten waarop hij insprak.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:element>
             </xsd:sequence>
@@ -210,7 +210,7 @@
             </xsd:element>
             <xsd:element name="geplandeVergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>De geplande aanvangsdatum van de vergadering.</xsd:documentation>
+                    <xsd:documentation>Geplande aanvangsdatum van de vergadering.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="vergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1">
@@ -220,22 +220,22 @@
             </xsd:element>
             <xsd:element name="geplandeAanvangVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het geplande datum en tijdstip waarop de vergadering zou beginnen.</xsd:documentation>
+                    <xsd:documentation>Het geplande moment (datum en tijdstip) waarop de vergadering zou beginnen.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="geplandeEindeVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het geplande datum en tijdstip waarop de vergadering zou eindigen.</xsd:documentation>
+                    <xsd:documentation>Het geplande moment (datum en tijdstip) waarop de vergadering beëindigt zou worden.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="aanvangVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het daadwerkelijke datum en tijdstip waarop de vergadering begon.</xsd:documentation>
+                    <xsd:documentation>Daadwerkelijk datum en tijdstip waarop de vergadering begon.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="eindeVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het daadwerkelijke datum en tijdstip waarop de vergadering eindigde.</xsd:documentation>
+                    <xsd:documentation>Daadwerkelijke datum en tijdstip waarop de vergadering eindigde.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="publicatiedatum" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
@@ -260,7 +260,7 @@
             </xsd:element>
             <xsd:element name="heeftAlsBijlage" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
-                    <xsd:documentation>Gegevens over een informatieobject dat als bijlage bij de vergadering heeft gedient.</xsd:documentation>
+                    <xsd:documentation>Gegevens over een informatieobject dat als bijlage bij de vergadering heeft gediend.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="heeftAlsDeelvergadering" type="vergaderingGegevens" minOccurs="0" maxOccurs="unbounded">
@@ -304,12 +304,12 @@
             </xsd:element>
             <xsd:element name="geplandeStarttijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het geplande datum en tijdstip waarop het agendapunt in behandeling zou worden genomen.</xsd:documentation>
+                    <xsd:documentation>Het geplande moment (datum en tijdstip) waarop het agendapunt in behandeling zou worden genomen.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="geplandeEindtijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het geplande datum en tijdstip waarop het agendapunt zou worden afgesloten.</xsd:documentation>
+                    <xsd:documentation>Het geplande moment (datum en tijdstip) waarop het agendapunt zou worden afgesloten.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="starttijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
@@ -364,7 +364,7 @@
             </xsd:element>
             <xsd:element name="heeftAlsBijlage" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
-                    <xsd:documentation>Gegevens over het informatieobject dat als een bijlage bij het agendapunt heeft gedient.</xsd:documentation>
+                    <xsd:documentation>Gegevens over het informatieobject dat als een bijlage bij het agendapunt heeft gediend.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="heeftAlsSubagendapunt" type="agendapuntGegevens" minOccurs="0" maxOccurs="unbounded">
@@ -408,28 +408,28 @@
             </xsd:element>
             <xsd:element name="positieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <!-- TODO: vragen naar een voorbeeld waarde? -->
+                    <!-- TODO: vragen naar een voorbeeld waarde? Leon: Misschien paginanummer? -->
                     <xsd:documentation>De positie van het spreekfragment binnen de notulen.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Getal dat aangeeft na hoeveel seconde in de audio-opname het spreekfragment begint.</xsd:documentation>
+                    <xsd:documentation>Getal dat aangeeft na hoeveel seconden in de audio-opname het spreekfragment begint.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="audioTijdsaanduidingEinde" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Getal dat aangeeft na hoeveel seconde in de audio-opname het spreekfragment eindigt.</xsd:documentation>
+                    <xsd:documentation>Getal dat aangeeft na hoeveel seconden in de audio-opname het spreekfragment eindigt.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Getal dat aangeeft na hoeveel seconde in de video-opname het spreekfragment begint.</xsd:documentation>
+                    <xsd:documentation>Getal dat aangeeft na hoeveel seconden in de video-opname het spreekfragment begint.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="videoTijdsaanduidingEinde" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Getal dat aangeeft na hoeveel seconde in de video-opname het spreekfragment eindigt.</xsd:documentation>
+                    <xsd:documentation>Getal dat aangeeft na hoeveel seconden in de video-opname het spreekfragment eindigt.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="isVastgelegdIn" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
@@ -485,12 +485,12 @@
             <xsd:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <!-- let op dat deze documentatie misschien moet worden aangepast na https://github.com/VNG-Realisatie/ODS-Open-Raadsinformatie/issues/111 -->
-                    <xsd:documentation>Gegevens die het het resultaat van een stemming over personen beschrijven.</xsd:documentation>
+                    <xsd:documentation>Gegevens die het het resultaat van een stemming over personen beschrijven, zoals het aantal stemmen wat een persoon haalde.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="leidtTotBesluit" type="besluitGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Het besluit waartoe de stemming heeft geleidt.</xsd:documentation>
+                    <xsd:documentation>Gegevens over het besluit waartoe de stemming heeft geleid, zoals of het unaniem aangenomen of verworpen is.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
@@ -593,17 +593,17 @@
             </xsd:element>
             <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemand's lidmaatschap van het dagelijkse bestuur begon.</xsd:documentation>
+                    <xsd:documentation>Datum waarop iemands lidmaatschap van het dagelijkse bestuur begon.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemand's lidmaatschap van het dagelijkse bestuur eindigde.</xsd:documentation>
+                    <xsd:documentation>Datum waarop iemands lidmaatschap van het dagelijkse bestuur eindigde.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="dagelijksBestuur" type="dagelijksBestuurGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Gegevens over het dagelijks bestuur waar het lidmaatschap betrekking op heeft.</xsd:documentation>
+                    <xsd:documentation>Gegevens over het dagelijks bestuur waar het lidmaatschap betrekking op heeft, zoals de naam van het bestuur.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
@@ -656,12 +656,12 @@
             </xsd:element>
             <xsd:element name="naam" type="naamGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Gegevens over de naam van de persoon, zoals haar voor- en achternaam.</xsd:documentation>
+                    <xsd:documentation>Gegevens over de naam van de persoon, zoals diens voor- en achternaam.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="nevenfunctie" type="nevenfunctieGegevens" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Gegevens over eventuele nevenfuncties van de persoon, zoals of haar werkzaamheden betaald zijn.</xsd:documentation>
+                    <xsd:documentation>Gegevens over eventuele nevenfuncties van de persoon, zoals of het om een betaalde functie gaat.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="isLidVanFractie" type="fractielidmaatschapGegevens" minOccurs="0" maxOccurs="1">
@@ -739,12 +739,12 @@
             </xsd:element>
             <xsd:element name="datumAanvangNevenfunctie" type="xsd:date" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemand met haar nevenfunctie begon.</xsd:documentation>
+                    <xsd:documentation>Datum waarop iemand met de nevenfunctie begon.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="datumEindeNevenfunctie" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemand's nevenfunctie wordt/is beëindigd.</xsd:documentation>
+                    <xsd:documentation>Datum waarop iemands nevenfunctie wordt/is beëindigd.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
@@ -782,12 +782,12 @@
             </xsd:element>
             <xsd:element name="datumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemand's fractie lidmaatschap begon.</xsd:documentation>
+                    <xsd:documentation>Datum waarop iemands fractie lidmaatschap begon.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="datumEindeFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemand's fractie lidmaatschap eindigde.</xsd:documentation>
+                    <xsd:documentation>Datum waarop iemands fractie lidmaatschap eindigde.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="1" maxOccurs="1">
