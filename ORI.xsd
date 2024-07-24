@@ -482,7 +482,7 @@
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="1">
+            <xsd:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
                     <!-- let op dat deze documentatie misschien moet worden aangepast na https://github.com/VNG-Realisatie/ODS-Open-Raadsinformatie/issues/111 -->
                     <xsd:documentation>Gegevens die het het resultaat van een stemming over personen beschrijven, zoals het aantal stemmen wat een persoon haalde.</xsd:documentation>
