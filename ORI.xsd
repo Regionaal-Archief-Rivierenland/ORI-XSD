@@ -107,7 +107,7 @@
         </xsd:sequence>
     </xsd:complexType>
 
-    <!-- # Domein specifieke (ORI) datatypes -->
+    <!-- # Domein specifieke datatypes -->
 
     <xsd:complexType name="mediabronGegevens">
         <xsd:sequence>
@@ -477,14 +477,14 @@
             </xsd:element>
             <xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
+                    <!-- TODO: Deze documentatie moet mogelijk geupdate worden na https://github.com/VNG-Realisatie/ODS-Open-Raadsinformatie/issues/111 -->
                     <xsd:documentation>
-                        TODO: zie https://github.com/VNG-Realisatie/ODS-Open-Raadsinformatie/issues/111
+                        Het resultaat van de stemming over een of meerdere personen.
                     </xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xsd:annotation>
-                    <!-- let op dat deze documentatie misschien moet worden aangepast na https://github.com/VNG-Realisatie/ODS-Open-Raadsinformatie/issues/111 -->
                     <xsd:documentation>Gegevens die het het resultaat van een stemming over personen beschrijven, zoals het aantal stemmen wat een persoon haalde.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
