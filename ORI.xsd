@@ -476,7 +476,7 @@
                     <xsd:documentation>Gegevens over het besluit waartoe de stemming heeft geleid, zoals of het unaniem aangenomen of verworpen is.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
+            <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>Verwijzing naar het agendapunt waarover gestemd werd.</xsd:documentation>
                 </xsd:annotation>
