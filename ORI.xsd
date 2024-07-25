@@ -392,7 +392,7 @@
             <xsd:element name="positieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <!-- TODO: vragen naar een voorbeeld waarde? Leon: Misschien paginanummer? -->
-                    <xsd:documentation>De positie van het spreekfragment binnen de notulen.</xsd:documentation>
+                    <xsd:documentation>De positie van het spreekfragment in de notulen, bijvoorbeeld `pagina 8`.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
