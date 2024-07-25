@@ -925,8 +925,9 @@
             <xsd:element name="gemeentecode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De code van de gemeente uit de TOOI begrippenlijst 'Register gemeenten compleet'. Dit is een viercijferige code,
-                        eventueel voorafgegaan door het voorvoegsel 'gm'. Bijvoorbeeld `gm0518` voor de gemeente Den Haag. Voor de volledige lijst, 
+                        De code van de gemeente uit de TOOI begrippenlijst 'Register gemeenten compleet'.
+                        Dit is een viercijferige code, eventueel voorafgegaan door het voorvoegsel 'gm',
+                        zoals `gm0518` voor de gemeente Den Haag. Voor de volledige lijst, 
                         zie https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_gemeenten_compleet%2F4
                     </xsd:documentation>
                 </xsd:annotation>
@@ -948,8 +949,9 @@
             <xsd:element name="waterschapcode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De code van het waterschap uit de TOOI begrippenlijst 'Register waterschappen compleet'. Dit is een viercijferige code,
-                        eventueel voorafgegaan door het voorvoegsel 'ws'. Bijvoorbeeld `ws0652` voor waterschap Brabantse Delta. Voor de volledige lijst, 
+                        De code van het waterschap uit de TOOI begrippenlijst 'Register waterschappen compleet'.
+                        Dit is een viercijferige code, eventueel voorafgegaan door het voorvoegsel 'ws', 
+                        zoals `ws0652` voor waterschap Brabantse Delta. Voor de volledige lijst, 
                         zie https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_waterschappen_compleet%2F1
                     </xsd:documentation>
                 </xsd:annotation>
@@ -971,8 +973,9 @@
             <xsd:element name="provinciecode" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>
-                        De code van de provincie uit de TOOI begrippenlijst 'Register provincies compleet'. Dit is een tweecijferige code,
-                        eventueel voorafgegaan door het voorvoegsel 'pv'. Bijvoorbeeld `pv20` voor de provincie Groningen. Voor de volledige lijst,
+                        De code van de provincie uit de TOOI begrippenlijst 'Register provincies compleet'.
+                        Dit is een tweecijferige code, eventueel voorafgegaan door het voorvoegsel 'pv',
+                        zoals `pv20` voor de provincie Groningen. Voor de volledige lijst,
                         zie https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_provincies_compleet%2F1
                     </xsd:documentation>
                 </xsd:annotation>
