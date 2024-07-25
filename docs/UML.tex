@@ -42,6 +42,8 @@
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{shapes.multipart}
 \usetikzlibrary{positioning}
+%% needed for making svgs with white backgrounds
+\usetikzlibrary{backgrounds}
 
 %% TODO
 %% - moeten verplichte relaties ook dik gedrukt?
@@ -92,6 +94,7 @@
 \newcommand{\keuze}[1]{\textcolor{darkgreen}{``#1''}}
 
 \begin{tikzpicture}[
+    background rectangle/.style={fill=white}, show background rectangle,
     %% not sure why the "header" is still centered after align=left, but oh well
     ORI object/.style={rectangle split, rectangle split parts=2,
       draw=black, rounded corners=5pt, very thick, inner sep=10pt},
