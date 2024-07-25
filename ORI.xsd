@@ -1128,7 +1128,9 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="bestuurslaagGegevens">
-        <!-- TODO: uitleggen dat men hier moet kiezen/hoe men moet kiezen? -->
+        <xsd:annotation>
+            <xsd:documentation>Geeft de relevante bestuurslaag aan, middels een keuze uit drie gegevensgroepen.</xsd:documentation>
+        </xsd:annotation>
         <xsd:choice>
             <xsd:element name="gemeente" type="gemeenteGegevens" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
