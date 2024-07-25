@@ -35,6 +35,29 @@
 
 %% for templates
 \usepackage{xparse}
+
+\begin{document}
+
+%% set default font to myriad pro
+%% \renewcommand{\familydefault}{\sfdefault}
+\sffamily
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning}
+
+%% TODO
+%% - I think the arrow between vergadering and mediabron should be verplicht at least once
+%% - make bestuurslaag a "GegevensGroupType" that recieves multiple arrows
+%% - check if different number style in Myriad pro looks nice
+%%   - not really
+%% - try semi boldfont for Attribute names
+%%   - too difficult with pdflatex
+%% - maybe bullets instead of plusses? Making a proper list also gives more flexibility
+%%    - all the more because the plusses serve little purposes
+
 \newcommand\mystrut{\rule[-2.5pt]{0pt}{12pt}}
 %% datatype typesetting
 \newcommand{\datatype}[2][text]{%
@@ -56,32 +79,13 @@
       {\textcolor{black}{\textbf{#2}}}
 }
 
-
-
-\begin{document}
-
-%% set default font to myriad pro
-%% \renewcommand{\familydefault}{\sfdefault}
-\sffamily
-
-\usetikzlibrary{arrows}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{shapes.multipart}
-\usetikzlibrary{positioning}
-
-%% TODO
-%% - check if different number style in Myriad pro looks nice
-%%   - not really
-%% - try semi boldfont for Attribute names
-%%   - too difficult with pdflatex
-%% - maybe bullets instead of plusses? Making a proper list also gives more flexibility
-%%    - all the more because the plusses serve little purposes
-
+\newcommand{\umltype}[1]{
+  {\textbf{\textcolor{gray}{\guillemotleft#1\guillemotright}}}
+}
 
 %% Header of boxes
 \newcommand{\objectheader}[2]{
-  {\textbf{\textcolor{gray}{\guillemotleft#1\guillemotright}}} \\
+  \umltype{#1} \\
   {\large \textbf{#2}}
   \nodepart[align=left]{two}
 }
@@ -89,10 +93,14 @@
 %% Attribute typesetting
 \newcommand{\attribute}[3]{+ \; #1: \datatype{#2} \; \textcolor{gray}{#3}}
 
+\newcommand{\keuze}[1]{\textcolor{darkgreen}{``#1''}}
+
 \begin{tikzpicture}[
     %% not sure why the "header" is still centered after align=left, but oh well
     ORI object/.style={rectangle split, rectangle split parts=2,
-      draw=black, align=left, rounded corners=5pt, very thick, inner sep=10pt}, align=center]
+      draw=black, rounded corners=5pt, very thick, inner sep=10pt},
+    relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick},
+    align=center]
   
   \node (agendapunt) [ORI object, align=center]
         {
@@ -114,13 +122,36 @@
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
 
+   \node (vergadering) [ORI object, align=center, left=6cm of agendapunt]
+        {
+          \objectheader{Objecttype}{Vergadering}
+
+          \attribute{\textbf{ID}}{string}{} \\
+          \attribute{Naam}{string}{[0..1]} \\
+          \attribute{Vergadertoelichting}{string}{[0..1]} \\
+          \attribute{Georganiseerd door gremium}{gremiumGegevens}{[0..1]} \\
+          \attribute{\textbf{Vergaderingstype}}{\keuze{Raadsvergadering} | \keuze{Commissievergadering} | ...}{} \\
+          \attribute{Locatie}{string}{[0..1]} \\
+          \attribute{Status}{\keuze{Gepland} | \keuze{Gehouden} | \keuze{Geannuleerd}}{[0..1]} \\
+          \attribute{Geplande vergaderdatum}{datum}{[0..1]} \\
+          \attribute{Vergaderdatum}{datum}{[0..1]} \\
+          \attribute{Geplande aanvang vergadering}{datum + tijd}{[0..1]} \\
+          \attribute{Gepland einde vergadering}{datum + tijd}{[0..1]} \\
+          \attribute{Aanvang vergadering}{datum + tijd}{[0..1]} \\
+          \attribute{Einde vergadering}{datum + tijd}{[0..1]} \\
+          \attribute{Publicatiedatum}{datum + tijd}{[0..1]} \\
+          \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
+        };
+        %% One could argue that this should just be another attribute
+        \draw[->, relatiepijl] ($(vergadering.west)+(0,2.5)$) |- ($(vergadering.west)+(-2.5,2.5)$) |- ($(vergadering.west)+(-2.5,-2.5)$) -- ($(vergadering.west)+(0,-2.5)$);
+        
   \node (stemming) [ORI object, below = 4cm of agendapunt, align=center]
         {
           \objectheader{Objecttype}{Stemming}
 
           \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Stemmingstype}{\textcolor{darkgreen}{``Hoofdelijk''} | \textcolor{darkgreen}{``Regulier''} | \textcolor{darkgreen}{``Schriftelijk''}}{[0..1]}\\
-          \attribute{Resultaat mondelinge stemming}{\textcolor{darkgreen}{``Voor''} | \textcolor{darkgreen}{``Tegen''} | \textcolor{darkgreen}{``Gelijk''}}{[0..1]} \\
+          \attribute{Stemmingstype}{\keuze{Hoofdelijk} | \keuze{Regulier} | \keuze{Schriftelijk}}{[0..1]}\\
+          \attribute{Resultaat mondelinge stemming}{\keuze{Voor} | \keuze{Tegen} | \keuze{Gelijk}}{[0..1]} \\
           \attribute{Toezegging}{string}{[0..1]} \\
           \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
           \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
@@ -133,15 +164,16 @@
           \attribute{ID}{string}{[0..1]} \\
           \attribute{Besluit toelichting}{string}{[0..1]} \\
           \attribute{Toezegging}{string}{[0..1]} \\
-          \attribute{\textbf{Besluit resultaat}}{\textcolor{darkgreen}{``Unaniem aangenomen''} | \textcolor{darkgreen}{``Aangenomen''} | ... }{}
+          \attribute{\textbf{Besluit resultaat}}{\keuze{Unaniem aangenomen} | \keuze{Aangenomen} | ... }{}
         };
 
         %% arrows
-        \draw [-{Straight Barb[length=4mm,width=6mm]}, very thick] (stemming) -- node [anchor=center, fill=white] {heeft betrekking op\\\textcolor{gray}{\textbf{\guillemotleft{relatietype}\guillemotright}}} (agendapunt);
+        \draw [relatiepijl] (stemming) -- node [anchor=center, fill=white] {heeft betrekking op\\\umltype{relatiesoort}} (agendapunt);
         %% \draw [very thick] ($(stemming.north)+(2.5,0)$) -- node{cool} ++($stemming.north)+(2.5,0)$) --  (besluit);
 
         
-        \draw[->, -{Straight Barb[length=4mm,width=6mm]}, very thick] ($(stemming.north)+(2.5,0)$) |-  (besluit.west) node [fill=white, pos=0.74, above] {leidt tot} node [fill=white, pos=0.74, below] {\textcolor{gray}{\textbf{\guillemotleft{relatietype}\guillemotright}}};
+        \draw[->, relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west) node [fill=white, pos=0.74, above] {leidt tot} node [fill=white, pos=0.74, below] {\umltype{relatiesoort}};
+        \draw[relatiepijl] (agendapunt) -- (vergadering) node [fill=white, pos=0.5, above] {wordt behandeld tijdens} node [fill=white, pos=0.5, below] {\umltype{relatiesoort}};
 
 \end{tikzpicture}
 
