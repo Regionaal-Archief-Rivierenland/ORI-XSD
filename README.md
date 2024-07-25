@@ -16,6 +16,10 @@ De ORI XSD is momenteel in bèta, en [kan hier gedownload worden](https://github
 
 De documentatie van de XSD is een work-in-progress. De betekenis van de verschillende (sub)elementen kan op dit moment gedeeltelijk achterhaald worden via [de ORI documentatie pagina van de VNG](https://vng-realisatie.github.io/ODS-Open-Raadsinformatie/catalog).
 
+### Visuele representatie
+
+![ORI diagram](docs/UML.svg)
+
 ## Werkgroep deelnemers
 
 * Erfgoed Leiden en Omstreken
