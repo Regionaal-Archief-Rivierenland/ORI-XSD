@@ -1,4 +1,4 @@
-\documentclass[margin=10pt]{standalone}
+\documentclass[margin={-40pt 15pt 15pt 15pt}]{standalone}
 
 \usepackage{tikz}
 
@@ -6,7 +6,7 @@
 \usepackage[dutch]{babel}
 
 %% font stuff
-\usepackage[]{MyriadPro}
+\usepackage[lf]{MyriadPro}
 %% math font for myriadpro
 \usepackage{mdsymbol}
 %% \usepackage[onlymath]{MinionPro}
@@ -20,10 +20,6 @@
 %% computer modern monospace?
 %% \usepackage[tt={oldstyle=false,variable=false}]{cfr-lm}
 
-
-\usepackage{listings}
-\usepackage{minted}
-\usemintedstyle{vs}
 
 %% Color definitions
 \usepackage[dvipsnames]{xcolor}
@@ -49,6 +45,7 @@
 \usetikzlibrary{positioning}
 
 %% TODO
+%% - moeten verplichte relaties ook dik gedrukt?
 %% - I think the arrow between vergadering and mediabron should be verplicht at least once
 %% - make bestuurslaag a "GegevensGroupType" that recieves multiple arrows
 %% - check if different number style in Myriad pro looks nice
@@ -91,7 +88,7 @@
 }
 
 %% Attribute typesetting
-\newcommand{\attribute}[3]{+ \; #1: \datatype{#2} \; \textcolor{gray}{#3}}
+\newcommand{\attribute}[3]{+ \; #1:\, \datatype{#2} \; {\figureversion{text}\textcolor{gray}{#3}}}
 
 \newcommand{\keuze}[1]{\textcolor{darkgreen}{``#1''}}
 
@@ -100,6 +97,8 @@
     ORI object/.style={rectangle split, rectangle split parts=2,
       draw=black, rounded corners=5pt, very thick, inner sep=10pt},
     relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick},
+    gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed},
+    kardinaliteit/.style={text=darkgray}, 
     align=center]
   
   \node (agendapunt) [ORI object, align=center]
@@ -122,6 +121,7 @@
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
 
+
    \node (vergadering) [ORI object, align=center, left=6cm of agendapunt]
         {
           \objectheader{Objecttype}{Vergadering}
@@ -142,8 +142,36 @@
           \attribute{Publicatiedatum}{datum + tijd}{[0..1]} \\
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
+
+   \node (deelnemer) [ORI object, align=center, below=3.5cm of vergadering]
+        {
+          \objectheader{Objecttype}{Aanwezige deelnemer}
+
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{\textbf{Rolnaam}}{\keuze{Voorzitter} | \keuze{Inspreker} | ...}{} \\
+          \attribute{Organisatie}{string}{[0..1]} \\
+          \attribute{Deelnemerspositie}{string}{[0..1]} \\
+          \attribute{Aanvang aanwezigheid}{datum + tijd}{[0..1]} \\
+          \attribute{Einde aanwezigheid}{datum + tijd}{[0..1]}
+        };
+
         %% One could argue that this should just be another attribute
-        \draw[->, relatiepijl] ($(vergadering.west)+(0,2.5)$) |- ($(vergadering.west)+(-2.5,2.5)$) |- ($(vergadering.west)+(-2.5,-2.5)$) -- ($(vergadering.west)+(0,-2.5)$);
+        \draw[relatiepijl] ($(vergadering.west)+(0,1.8)$)
+        node [kardinaliteit, above, xshift = -0.4cm] {0..1} |-
+        ($(vergadering.west)+(-3.0,1.8)$) |- ($(vergadering.west)+(-3.0,-1.8)$)
+        node [fill=white, pos=0.25] {heeft als deelvergadering\\\umltype{relatiesoort}} --
+        ($(vergadering.west)+(0,-1.8)$)
+        node [kardinaliteit, above, xshift = -0.8cm] {0..*} ;
+        
+        \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
+        {
+          \objectheader{Objecttype}{Mediabron}
+
+          \attribute{\textbf{ID}}{string}{} \\
+          \attribute{Mimetype}{string}{[0..1]} \\
+          \attribute{\textbf{Mediabron type}}{\keuze{Video} | \keuze{Audio} | \keuze{Transcriptie}}{} \\
+          \attribute{URL}{URI}{[0..1]}
+        };
         
   \node (stemming) [ORI object, below = 4cm of agendapunt, align=center]
         {
@@ -157,7 +185,7 @@
           \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
         };
 
-  \node (besluit) [ORI object, above right = 0.5cm and 2cm of stemming, align=center]
+  \node (besluit) [ORI object, above right = 0.5cm and 1.8cm of stemming, align=center]
         {
           \objectheader{Objecttype}{Besluit}
 
@@ -167,13 +195,80 @@
           \attribute{\textbf{Besluit resultaat}}{\keuze{Unaniem aangenomen} | \keuze{Aangenomen} | ... }{}
         };
 
-        %% arrows
-        \draw [relatiepijl] (stemming) -- node [anchor=center, fill=white] {heeft betrekking op\\\umltype{relatiesoort}} (agendapunt);
-        %% \draw [very thick] ($(stemming.north)+(2.5,0)$) -- node{cool} ++($stemming.north)+(2.5,0)$) --  (besluit);
+  \node (stemmingOverPersonenGegevens) [ORI object, right = 1.2cm of besluit, align=center, draw=gray]
+        {
+          \objectheader{Gegevensgroeptype}{Stemming over personen}
 
+          \attribute{\textbf{Naam kandidaat}}{string}{} \\
+          \attribute{\textbf{Aantal uitgebrachte stemmen}}{integer}{}
+        };
+
+        \node (informatieobject) [ORI object, align=center, above left = 7cm and -15.0cm of besluit]
+        {
+          \objectheader{Relatieklasse}{Informatieobject}
+          \attribute{Informatieobject type}{\keuze{Motie} | \keuze{Antwoord} | ...}{[0..1]}
+        };
+
+  \node (mdto) [rectangle, draw, ultra thick, above right = 6cm and -0.5cm of stemmingOverPersonenGegevens, inner sep=50pt, double, double distance = 1cm, fill=githubgrey, align=center]
+        {
+          {\huge MDTO}
+        };
+
+
+        %% arrows
+        %% FIXME: cardinalities won't be alligned, because pos= is relative to arrow length
+        %% stemming -> agendapunt
+        \draw [relatiepijl] (stemming) --
+        node [anchor=center, fill=white] {heeft betrekking op\\\umltype{relatiesoort}}
+        node [kardinaliteit, pos=0.08, right] {1..*}
+        node [kardinaliteit, pos=0.81, xshift=0.03cm, right] {1} (agendapunt);
+        %% stemming -> besluit
+        \draw[relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west)
+        node [fill=white, pos=0.74, above] {leidt tot}
+        node [fill=white, pos=0.74, below] {\umltype{relatiesoort}}
+        node [kardinaliteit, pos=0.065, right] {0..*}
+        node [kardinaliteit, above left, pos=0.95, yshift=-0.0cm] {0..1};
+        %% stemming -> stemming over personen
+        \draw[gegevenspijl] (stemming) -| (stemmingOverPersonenGegevens);
+        %% stemming -> MDTO
+        \draw[relatiepijl] ($(stemming.east)+(0,-1.3)$) -|
+        node [pos=0.2, above] {heeft betrekking op}
+        node [pos=0.2, below] {\umltype{relatiesoort}}
+        coordinate[pos=0.85] (linestart3) % coordinate along the line
+        ($(mdto.south)+(0,-0.5cm)$);
+
+        \draw[dashed, very thick] (linestart3) -| (informatieobject);
         
-        \draw[->, relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west) node [fill=white, pos=0.74, above] {leidt tot} node [fill=white, pos=0.74, below] {\umltype{relatiesoort}};
-        \draw[relatiepijl] (agendapunt) -- (vergadering) node [fill=white, pos=0.5, above] {wordt behandeld tijdens} node [fill=white, pos=0.5, below] {\umltype{relatiesoort}};
+        %% agendapunt -> vergadering
+        \draw[relatiepijl] (agendapunt) -- (vergadering)
+        node [fill=white, pos=0.5, above] {wordt behandeld tijdens}
+        node [fill=white, pos=0.5, below] {\umltype{relatiesoort}}
+        node [kardinaliteit, pos=0.05, above] {0..*}
+        node [kardinaliteit, pos=0.9, above] {1};
+        %% agendapunt -> MDTO
+        \draw[relatiepijl] ($(agendapunt.east)-(0,2.0)$) -|
+        node [pos=0.08, above] {heeft als bijlage}
+        node [pos=0.08, below] {\umltype{relatiesoort}}
+        coordinate[pos=0.14] (linestart2) % coordinate along the line
+        ($(mdto.south)+(-1.5cm,-0.5cm)$);
+        
+        \draw[dashed, very thick] (linestart2) |- (informatieobject);
+
+        %% mediabron -> MDTO
+        \draw[relatiepijl] (mediabron)  -|
+        node [pos=0.18, above] {hoort bij}
+        node [pos=0.18, below] {\umltype{relatiesoort}}
+        coordinate[pos=0.22] (linestart) % coordinate along the line
+        ($(mdto.north)+(0cm,0.5cm)$);
+
+        \draw[dashed, very thick] (linestart) |- (informatieobject.north west);
+        
+        %% vergadering -> mediabron
+        \draw[relatiepijl] (vergadering)  -- 
+        node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{relatiesoort}} (mediabron);
+        %% deelnemer -> vergadering
+        \draw[relatiepijl] (deelnemer)  -- 
+        node [anchor=center, fill=white] {neemt deel aan\\\umltype{relatiesoort}} (vergadering);
 
 \end{tikzpicture}
 
