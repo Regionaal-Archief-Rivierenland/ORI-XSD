@@ -149,7 +149,7 @@
         {
           \objectheader{Objecttype}{Aanwezige deelnemer}
 
-          \attribute{ID}{string}{[0..1]} \\
+          \attribute{ID}{string}{} \\
           \attribute{\textbf{Rolnaam}}{\keuze{Voorzitter} | \keuze{Inspreker} | ...}{} \\
           \attribute{Organisatie}{string}{[0..1]} \\
           \attribute{Deelnemerspositie}{string}{[0..1]} \\
@@ -164,8 +164,19 @@
         node [fill=white, pos=0.25] {heeft als deelvergadering\\\umltype{relatiesoort}} --
         ($(vergadering.west)+(0,-1.8)$)
         node [kardinaliteit, above, xshift = -0.8cm] {0..*} ;
+
+   \node (natuurlijkpersoon) [ORI object, align=center, left=4.0cm of deelnemer]
+        {
+          \objectheader{Objecttype}{Natuurlijk persoon}
+
+          \attribute{\textbf{ID}}{string}{} \\
+          \attribute{Geslachtsaanduiding}{\keuze{Man} | \keuze{Vrouw} | \keuze{Anders} | \keuze{Onbekend}}{[0..1]} \\
+          \attribute{Functie}{\keuze{Burgermeester} | \keuze{Wethouder} | ...}{[0..1]} \\
+          \attribute{\textbf{Naam}}{naamGegevens}{} \\
+          \attribute{Nevenfunctie}{nevenfunctieGegevens}{[0..*]}
+        };
         
-        \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
+   \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
         {
           \objectheader{Objecttype}{Mediabron}
 
@@ -271,6 +282,11 @@
         %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  -- 
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{relatiesoort}} (vergadering);
+        %% deelnemer -> persoon
+        \draw[relatiepijl] (deelnemer)  -- 
+        node [fill=white, above] {is}
+        node [fill=white, below] {\umltype{relatiesoort}}
+        (natuurlijkpersoon);
 
 \end{tikzpicture}
 
