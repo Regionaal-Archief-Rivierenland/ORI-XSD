@@ -175,6 +175,16 @@
           \attribute{\textbf{Naam}}{naamGegevens}{} \\
           \attribute{Nevenfunctie}{nevenfunctieGegevens}{[0..*]}
         };
+   \node (naam) [ORI object, below = 2.2cm of natuurlijkpersoon, align=center, draw=gray]
+        {
+          \objectheader{Gegevensgroeptype}{Naam}
+
+          \attribute{Achternaam}{string}{} \\
+          \attribute{Tussenvoegsel}{string}{[0..1]} \\
+          \attribute{Voorletters}{string}{[0..1]} \\
+          \attribute{Voornamen}{string}{[0..1]} \\
+          \attribute{Volledige naam}{string}{[0..1]}
+        };
         
    \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
         {
@@ -287,6 +297,9 @@
         node [fill=white, above] {is}
         node [fill=white, below] {\umltype{relatiesoort}}
         (natuurlijkpersoon);
+
+        %% persoon -> naam gegevens
+        \draw[gegevenspijl] (natuurlijkpersoon.south) -- (naam);
 
 \end{tikzpicture}
 
