@@ -386,7 +386,7 @@
             </xsd:element>
             <xsd:element name="titelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
-                    <xsd:documentation>De titel van het spreekfragment, of een benaming voor de discussie waarbinnen het spreekfragment plaatsvindt.</xsd:documentation>
+                    <xsd:documentation>De titel van het spreekfragment, of een benaming voor de discussie waarbinnen het fragment plaatsvindt.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
             <xsd:element name="positieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1">
