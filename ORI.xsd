@@ -88,6 +88,7 @@
                 </xsd:simpleType>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
 
     <!-- # Domein specifieke datatypes -->
@@ -137,6 +138,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="vergaderingGegevens">
         <xsd:sequence>
@@ -252,6 +254,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="agendapuntGegevens">
         <xsd:sequence>
@@ -356,6 +359,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="spreekfragmentGegevens">
         <xsd:sequence>
@@ -426,6 +430,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="stemmingGegevens">
         <xsd:sequence>
@@ -487,6 +492,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="stemmingOverPersonenGegevens">
         <xsd:sequence>
@@ -535,6 +541,7 @@
                 </xsd:simpleType>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="dagelijksBestuurGegevens">
         <xsd:sequence>
@@ -566,6 +573,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="dagelijksBestuurLidmaatschapGegevens">
         <xsd:sequence>
@@ -658,6 +666,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="naamGegevens">
         <xsd:sequence>
@@ -755,6 +764,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="fractielidmaatschapGegevens">
         <xsd:sequence>
@@ -878,6 +888,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="stemGegevens">
         <xsd:sequence>
@@ -905,6 +916,7 @@
                 </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
+        <xsd:anyAttribute processContents="lax"/>
     </xsd:complexType>
     <xsd:complexType name="gremiumGegevens">
         <xsd:sequence>
