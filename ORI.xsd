@@ -8,7 +8,7 @@
                         <xs:documentation>Gegevens over de transcriptie, video-opname of audio-opname van de vergadering, zoals het bestandstype en eventuele ondertitelbestanden.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="1">
                     <xs:annotation>
                         <xs:documentation>Gegevens over de vergadering, zoals bijhorende stukken. Een vergadering kan uit een of meer deelvergaderingen bestaan.</xs:documentation>
                     </xs:annotation>
