@@ -64,11 +64,6 @@
 
     <xsd:complexType name="informatieobjectGegevens">
         <xsd:sequence>
-            <xsd:element name="verwijzingInformatieobject" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar een elders gedefinieerd informatieobject.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
             <xsd:element name="informatieobjectType" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>Het soort informatieobject waarnaar verwezen wordt.</xsd:documentation>
@@ -86,6 +81,11 @@
                         <xsd:enumeration value="Ingekomen stuk"/>
                     </xsd:restriction>
                 </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="verwijzingInformatieobject" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Verwijzing naar een elders gedefinieerd informatieobject.</xsd:documentation>
+                </xsd:annotation>
             </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
