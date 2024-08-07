@@ -818,7 +818,7 @@
                     <xsd:documentation>Uniek identificatiekenmerk van de deelnemer.</xsd:documentation>
                 </xsd:annotation>
             </xsd:element>
-            <xsd:element name="rolnaam" minOccurs="0" maxOccurs="1">
+            <xsd:element name="rolnaam" minOccurs="1" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>De rol waarin iemand bij de vergadering aanwezig was.</xsd:documentation>
                 </xsd:annotation>
