@@ -311,11 +311,11 @@
         node [fill=white, below] {\umltype{relatiesoort}}
         (natuurlijkpersoon);
         %% deelnemer -> stemming
-        \draw[relatiepijl] (aanwezigedeelnemer) -- (stemming);
+        \draw[relatiepijl] (deelnemer) -- (stemming);
 
         %% persoon -> naam gegevens
         \draw[gegevenspijl] (natuurlijkpersoon.south) -- (naam);
-        \draw[-latex] ([xshift=-1cm]v3.south) -- ([xshift=-1cm]v3.south |- v1.north);
+        %% \draw[-latex] ([xshift=-1cm]v3.south) -- ([xshift=-1cm]v3.south |- v1.north);
         \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.north) -- ([xshift=-3cm]natuurlijkpersoon.north |- nevenfunctie.south);
 
 \end{tikzpicture}
