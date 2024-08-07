@@ -179,11 +179,24 @@
         {
           \objectheader{Gegevensgroeptype}{Naam}
 
-          \attribute{Achternaam}{string}{} \\
+          \attribute{\textbf{Achternaam}}{string}{} \\
           \attribute{Tussenvoegsel}{string}{[0..1]} \\
           \attribute{Voorletters}{string}{[0..1]} \\
           \attribute{Voornamen}{string}{[0..1]} \\
           \attribute{Volledige naam}{string}{[0..1]}
+        };
+   \node (nevenfunctie) [ORI object, above left = 2.2cm and -9cm of natuurlijkpersoon, align=center, draw=gray]
+        {
+          \objectheader{Gegevensgroeptype}{Nevenfunctie}
+
+          \attribute{\textbf{Omschrijving nevenfunctie}}{string}{} \\
+          \attribute{Naam organisatie nevenfunctie}{string}{[0..1]} \\
+          \attribute{Aantal uren per maand}{integer}{[0..1]} \\
+          \attribute{\textbf{Indicator bezoldigd}}{boolean}{} \\
+          \attribute{Indicator nevenfunctief vanwege lidmaatschap}{boolean}{[0..1]} \\
+          \attribute{Datum melding}{datum}{[0..1]} \\
+          \attribute{\textbf{Datum aanvang nevenfunctie}}{datum}{} \\
+          \attribute{Datum einde nevenfunctie}{datum}{[0..1]}
         };
         
    \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
@@ -297,9 +310,13 @@
         node [fill=white, above] {is}
         node [fill=white, below] {\umltype{relatiesoort}}
         (natuurlijkpersoon);
+        %% deelnemer -> stemming
+        \draw[relatiepijl] (aanwezigedeelnemer) -- (stemming);
 
         %% persoon -> naam gegevens
         \draw[gegevenspijl] (natuurlijkpersoon.south) -- (naam);
+        \draw[-latex] ([xshift=-1cm]v3.south) -- ([xshift=-1cm]v3.south |- v1.north);
+        \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.north) -- ([xshift=-3cm]natuurlijkpersoon.north |- nevenfunctie.south);
 
 \end{tikzpicture}
 
