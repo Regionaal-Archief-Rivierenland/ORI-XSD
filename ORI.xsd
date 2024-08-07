@@ -1,1017 +1,1017 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" xmlns:ori="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.7">
-    <xsd:element name="ORI">
-        <xsd:complexType>
-            <xsd:sequence>
-                <xsd:element name="mediabron" type="mediabronGegevens" minOccurs="1" maxOccurs="unbounded">
-                    <xsd:annotation>
-                        <xsd:documentation>Gegevens over de transcriptie, video-opname of audio-opname van de vergadering, zoals het bestandstype en eventuele ondertitelbestanden.</xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="1">
-                    <xsd:annotation>
-                        <xsd:documentation>Gegevens over de vergadering, zoals bijhorende stukken. Een vergadering kan uit een of meer deelvergaderingen bestaan.</xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="agendapunt" type="agendapuntGegevens" minOccurs="1" maxOccurs="unbounded">
-                    <xsd:annotation>
-                        <xsd:documentation>Gegevens over een agendapunt wat tijdens de vergadering behandeld is, zoals bijhorende stukken. Een agendapunt kan uit een of meer subagendapunten bestaan.</xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="stemming" type="stemmingGegevens" minOccurs="0" maxOccurs="unbounded">
-                    <xsd:annotation>
-                        <xsd:documentation>Gegevens over een stemming. Een stemming heeft altijd betrekking op een bepaald agendapunt, maar het is daarnaast ook mogelijk om over personen te stemmen, zoals bij een benoeming van een raadslid. Iemands stemkeuze tijdens een bepaalde stemming hoort thuis onder `aanwezigeDeelnemer`.</xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="natuurlijkPersoon" type="natuurlijkPersoonGegevens" minOccurs="0" maxOccurs="unbounded">
-                    <xsd:annotation>
-                        <xsd:documentation>Gegevens met contextuele informatie over een persoon, zoals diens naam en fractie lidmaatschap.</xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-                <xsd:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemerGegevens" minOccurs="0" maxOccurs="unbounded">
-                    <xsd:annotation>
-                        <xsd:documentation>Gegevens over een persoon die daadwerkelijk bij de vergadering aanwezig was, zoals de momenten waarop hij insprak.</xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
-            </xsd:sequence>
-        </xsd:complexType>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" xmlns:ori="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.7">
+    <xs:element name="ORI">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mediabron" type="mediabronGegevens" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Gegevens over de transcriptie, video-opname of audio-opname van de vergadering, zoals het bestandstype en eventuele ondertitelbestanden.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="vergadering" type="vergaderingGegevens" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Gegevens over de vergadering, zoals bijhorende stukken. Een vergadering kan uit een of meer deelvergaderingen bestaan.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="agendapunt" type="agendapuntGegevens" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Gegevens over een agendapunt wat tijdens de vergadering behandeld is, zoals bijhorende stukken. Een agendapunt kan uit een of meer subagendapunten bestaan.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="stemming" type="stemmingGegevens" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Gegevens over een stemming. Een stemming heeft altijd betrekking op een bepaald agendapunt, maar het is daarnaast ook mogelijk om over personen te stemmen, zoals bij een benoeming van een raadslid. Iemands stemkeuze tijdens een bepaalde stemming hoort thuis onder `aanwezigeDeelnemer`.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="natuurlijkPersoon" type="natuurlijkPersoonGegevens" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Gegevens met contextuele informatie over een persoon, zoals diens naam en fractie lidmaatschap.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemerGegevens" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Gegevens over een persoon die daadwerkelijk bij de vergadering aanwezig was, zoals de momenten waarop hij insprak.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
         <!-- Specificeer dat alle IDs in de XML boom uniek moeten zijn -->
-        <xsd:unique name="uniqueID">
-            <xsd:selector xpath=".//ori:ID"/>
-            <xsd:field xpath="."/>
-        </xsd:unique>
-    </xsd:element>
+        <xs:unique name="uniqueID">
+            <xs:selector xpath=".//ori:ID"/>
+            <xs:field xpath="."/>
+        </xs:unique>
+    </xs:element>
 
     <!-- # Algemene datatypes -->
 
-    <xsd:complexType name="verwijzingGegevens">
-        <xsd:annotation>
-            <xsd:documentation>Gegevens om vanuit een object naar een ander te verwijzen.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element name="verwijzingID" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het ID van het object waarnaar verwezen wordt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="verwijzingNaam" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Een voor menselijke lezers bedoelde naam van het object waarnaar verwezen wordt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
+    <xs:complexType name="verwijzingGegevens">
+        <xs:annotation>
+            <xs:documentation>Gegevens om vanuit een object naar een ander te verwijzen.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="verwijzingID" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het ID van het object waarnaar verwezen wordt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="verwijzingNaam" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Een voor menselijke lezers bedoelde naam van het object waarnaar verwezen wordt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 
-    <xsd:complexType name="informatieobjectGegevens">
-        <xsd:sequence>
-            <xsd:element name="informatieobjectType" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het soort informatieobject waarnaar verwezen wordt.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Voorstel"/>
-                        <xsd:enumeration value="Motie"/>
-                        <xsd:enumeration value="Amendement"/>
-                        <xsd:enumeration value="Besluitsvormingsstuk"/>
-                        <xsd:enumeration value="Toezegging"/>
-                        <xsd:enumeration value="Mededeling"/>
-                        <xsd:enumeration value="Vraag"/>
-                        <xsd:enumeration value="Antwoord"/>
-                        <xsd:enumeration value="Ingekomen stuk"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="verwijzingInformatieobject" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar een elders gedefinieerd informatieobject.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
+    <xs:complexType name="informatieobjectGegevens">
+        <xs:sequence>
+            <xs:element name="informatieobjectType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het soort informatieobject waarnaar verwezen wordt.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Voorstel"/>
+                        <xs:enumeration value="Motie"/>
+                        <xs:enumeration value="Amendement"/>
+                        <xs:enumeration value="Besluitsvormingsstuk"/>
+                        <xs:enumeration value="Toezegging"/>
+                        <xs:enumeration value="Mededeling"/>
+                        <xs:enumeration value="Vraag"/>
+                        <xs:enumeration value="Antwoord"/>
+                        <xs:enumeration value="Ingekomen stuk"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="verwijzingInformatieobject" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar een elders gedefinieerd informatieobject.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 
     <!-- # Domein specifieke datatypes -->
 
-    <xsd:complexType name="mediabronGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van de mediabron.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="mimeType" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het MIME type van het mediabron bestand, bijvoorbeeld `video/mp4`.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="\w+/[-+.\w]+"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="mediabronType" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het soort mediabron.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Video"/>
-                        <xsd:enumeration value="Audio"/>
-                        <xsd:enumeration value="Transcriptie"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="URL" type="xsd:anyURI" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het webadres waar de mediabron geraadpleegd kan worden.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="hoortBijInformatieobject" type="informatieobjectGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over het informatieobject waarin de mediabron is vastgelegd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="heeftOndertitelbestand" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over het informatieobject waarin het ondertitelbestand van de mediabron is vastgelegd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="vergaderingGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatie kenmerk van de vergadering.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="naam" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De naam van de vergadering.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="vergaderToelichting" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Toelichting of nadere omschrijving van de vergadering.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="georganiseerdDoorGremium" type="gremiumGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over het gremium dat de vergadering georganiseerd heeft, zoals de naam van het gremium.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="vergaderingsType" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het soort vergadering.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Raadsvergadering"/>
-                        <xsd:enumeration value="Commissievergadering"/>
-                        <xsd:enumeration value="Statenvergadering"/>
-                        <xsd:enumeration value="Algemene bestuursvergadering"/>
-                        <xsd:enumeration value="Presidium"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="locatie" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Locatie (bijvoorbeeld gebouw of stad) waar de vergadering gehouden is.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="status" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De status van de vergadering.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Gepland"/>
-                        <xsd:enumeration value="Gehouden"/>
-                        <xsd:enumeration value="Geannuleerd"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="geplandeVergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Geplande aanvangsdatum van de vergadering.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="vergaderdatum" type="xsd:date" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De datum waarop de vergadering daadwerkelijk gehouden werd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="geplandeAanvangVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het geplande moment (datum en tijdstip) waarop de vergadering zou beginnen.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="geplandeEindeVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het geplande moment (datum en tijdstip) waarop de vergadering beëindigt zou worden.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="aanvangVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Daadwerkelijk datum en tijdstip waarop de vergadering begon.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="eindeVergadering" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Daadwerkelijke datum en tijdstip waarop de vergadering eindigde.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="publicatiedatum" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum en tijdstip waarop de vergadering voor het laatst gepubliceerd of gewijzigd is.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over de bestuurslaag die de vergadering heeft gehouden. Deze laag kan een gemeente, provincie of waterschap zijn.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isVastgelegdMiddels" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar de mediabron waarin de (deel)vergadering is vastgelegd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isGenotuleerdIn" type="informatieobjectGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over het informatieobject waarin de notulen van de vergadering zijn opgenomen.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="heeftAlsBijlage" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over een informatieobject dat als bijlage bij de vergadering heeft gediend.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="heeftAlsDeelvergadering" type="vergaderingGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over een vergadering die als afzonderlijk onderdeel functioneert binnen een grotere vergadering.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="agendapuntGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van het agendapunt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="agendapuntOmschrijving" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Toelichting of nadere omschrijving van het agendapunt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="geplandAgendapuntVolgnummer" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het geplande agendapunt volgnummer. Begint met een of meer cijfers, en mag eventueel gevolgd worden door een reeks letters.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="\d+\w*"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="agendapuntVolgnummer" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het agendapunt volgnummer. Begint met een of meer cijfers, en mag eventueel gevolgd worden door een reeks letters.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="\d+\w*"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="geplandeStarttijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het geplande moment (datum en tijdstip) waarop het agendapunt in behandeling zou worden genomen.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="geplandeEindtijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het geplande moment (datum en tijdstip) waarop het agendapunt zou worden afgesloten.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="starttijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum en tijdstip waarop het agendapunt daadwerkelijk in behandeling werd genomen.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="eindtijd" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum en tijdstip waarop het agendapunt agendapunt daadwerkelijk werd afgesloten.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="agendapuntKenmerk" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De weergave van het agendapuntvolgnummer op de agenda.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="agendapuntTitel" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Titel of onderwerp van het agendapunt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="indicatieHamerstuk" type="xsd:boolean" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Geeft aan of het agendapunt een hamerstuk was.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="indicatorBehandeld" type="xsd:boolean" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Geeft aan of het agendapunt is behandeld tijdens de vergadering.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="indicatorBesloten" type="xsd:boolean" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Geeft aan of het agendapunt besloten werd behandeld.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over de bestuurslaag die het agendapunt heeft behandeld. Deze laag kan een gemeente, provincie of waterschap zijn.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="wordtBehandeldTijdens" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar de vergadering waarin het agendapunt behandeld werd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="heeftBehandelendAmbtenaar" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar een natuurlijk persoon die de behandeld ambtenaar van het agendapunt was.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="heeftAlsBijlage" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over het informatieobject dat als een bijlage bij het agendapunt heeft gediend.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="heeftAlsSubagendapunt" type="agendapuntGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over een agendapunt dat als afzonderlijk onderdeel functioneert binnen een groter agendapunt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="spreekfragmentGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van het spreekfragment.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="aanvangSpreekfragment" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum en tijdstip waarop het spreekfragment begon.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="eindeSpreekfragment" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum en tijdstip waarop het spreekfragment eindigde.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="taal" type="xsd:language" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De taal van het spreekfragment.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="tekstSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De uitgeschreven tekst van het spreekfragment.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="titelSpreekfragment" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De titel van het spreekfragment, of een benaming voor de discussie die tijdens dit fragment speelt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="positieNotulen" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
+    <xs:complexType name="mediabronGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van de mediabron.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="mimeType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het MIME type van het mediabron bestand, bijvoorbeeld `video/mp4`.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\w+/[-+.\w]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="mediabronType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het soort mediabron.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Video"/>
+                        <xs:enumeration value="Audio"/>
+                        <xs:enumeration value="Transcriptie"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="URL" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het webadres waar de mediabron geraadpleegd kan worden.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="hoortBijInformatieobject" type="informatieobjectGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over het informatieobject waarin de mediabron is vastgelegd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="heeftOndertitelbestand" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over het informatieobject waarin het ondertitelbestand van de mediabron is vastgelegd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="vergaderingGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatie kenmerk van de vergadering.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="naam" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De naam van de vergadering.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vergaderToelichting" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Toelichting of nadere omschrijving van de vergadering.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="georganiseerdDoorGremium" type="gremiumGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over het gremium dat de vergadering georganiseerd heeft, zoals de naam van het gremium.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vergaderingsType" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het soort vergadering.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Raadsvergadering"/>
+                        <xs:enumeration value="Commissievergadering"/>
+                        <xs:enumeration value="Statenvergadering"/>
+                        <xs:enumeration value="Algemene bestuursvergadering"/>
+                        <xs:enumeration value="Presidium"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="locatie" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Locatie (bijvoorbeeld gebouw of stad) waar de vergadering gehouden is.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De status van de vergadering.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Gepland"/>
+                        <xs:enumeration value="Gehouden"/>
+                        <xs:enumeration value="Geannuleerd"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="geplandeVergaderdatum" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Geplande aanvangsdatum van de vergadering.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vergaderdatum" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De datum waarop de vergadering daadwerkelijk gehouden werd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="geplandeAanvangVergadering" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het geplande moment (datum en tijdstip) waarop de vergadering zou beginnen.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="geplandeEindeVergadering" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het geplande moment (datum en tijdstip) waarop de vergadering beëindigt zou worden.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aanvangVergadering" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Daadwerkelijk datum en tijdstip waarop de vergadering begon.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="eindeVergadering" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Daadwerkelijke datum en tijdstip waarop de vergadering eindigde.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicatiedatum" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum en tijdstip waarop de vergadering voor het laatst gepubliceerd of gewijzigd is.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over de bestuurslaag die de vergadering heeft gehouden. Deze laag kan een gemeente, provincie of waterschap zijn.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="isVastgelegdMiddels" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar de mediabron waarin de (deel)vergadering is vastgelegd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="isGenotuleerdIn" type="informatieobjectGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over het informatieobject waarin de notulen van de vergadering zijn opgenomen.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="heeftAlsBijlage" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over een informatieobject dat als bijlage bij de vergadering heeft gediend.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="heeftAlsDeelvergadering" type="vergaderingGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over een vergadering die als afzonderlijk onderdeel functioneert binnen een grotere vergadering.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="agendapuntGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van het agendapunt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="agendapuntOmschrijving" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Toelichting of nadere omschrijving van het agendapunt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="geplandAgendapuntVolgnummer" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het geplande agendapunt volgnummer. Begint met een of meer cijfers, en mag eventueel gevolgd worden door een reeks letters.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\d+\w*"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="agendapuntVolgnummer" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het agendapunt volgnummer. Begint met een of meer cijfers, en mag eventueel gevolgd worden door een reeks letters.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\d+\w*"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="geplandeStarttijd" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het geplande moment (datum en tijdstip) waarop het agendapunt in behandeling zou worden genomen.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="geplandeEindtijd" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het geplande moment (datum en tijdstip) waarop het agendapunt zou worden afgesloten.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="starttijd" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum en tijdstip waarop het agendapunt daadwerkelijk in behandeling werd genomen.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="eindtijd" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum en tijdstip waarop het agendapunt agendapunt daadwerkelijk werd afgesloten.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="agendapuntKenmerk" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De weergave van het agendapuntvolgnummer op de agenda.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="agendapuntTitel" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Titel of onderwerp van het agendapunt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="indicatieHamerstuk" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Geeft aan of het agendapunt een hamerstuk was.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="indicatorBehandeld" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Geeft aan of het agendapunt is behandeld tijdens de vergadering.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="indicatorBesloten" type="xs:boolean" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Geeft aan of het agendapunt besloten werd behandeld.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over de bestuurslaag die het agendapunt heeft behandeld. Deze laag kan een gemeente, provincie of waterschap zijn.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="wordtBehandeldTijdens" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar de vergadering waarin het agendapunt behandeld werd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="heeftBehandelendAmbtenaar" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar een natuurlijk persoon die de behandeld ambtenaar van het agendapunt was.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="heeftAlsBijlage" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over het informatieobject dat als een bijlage bij het agendapunt heeft gediend.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="heeftAlsSubagendapunt" type="agendapuntGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over een agendapunt dat als afzonderlijk onderdeel functioneert binnen een groter agendapunt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="spreekfragmentGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van het spreekfragment.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aanvangSpreekfragment" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum en tijdstip waarop het spreekfragment begon.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="eindeSpreekfragment" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum en tijdstip waarop het spreekfragment eindigde.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="taal" type="xs:language" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De taal van het spreekfragment.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="tekstSpreekfragment" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De uitgeschreven tekst van het spreekfragment.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="titelSpreekfragment" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De titel van het spreekfragment, of een benaming voor de discussie waarbinnen het fragment plaatsvindt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="positieNotulen" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
                     <!-- TODO: vragen naar een voorbeeld waarde? Leon: Misschien paginanummer? -->
-                    <xsd:documentation>De positie van het spreekfragment in de notulen, bijvoorbeeld `pagina 8`.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="audioTijdsaanduidingAanvang" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Getal dat aangeeft na hoeveel seconden in de audio-opname het spreekfragment begint.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="audioTijdsaanduidingEinde" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Getal dat aangeeft na hoeveel seconden in de audio-opname het spreekfragment eindigt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="videoTijdsaanduidingAanvang" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Getal dat aangeeft na hoeveel seconden in de video-opname het spreekfragment begint.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="videoTijdsaanduidingEinde" type="xsd:nonNegativeInteger" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Getal dat aangeeft na hoeveel seconden in de video-opname het spreekfragment eindigt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isVastgelegdIn" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar de mediabron waarin het spreekfragment is vastgelegd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="spreektTijdensAgendapunt" type="verwijzingGegevens" minOccurs="1" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar het agendapunt waar tijdens gesproken wordt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="stemmingGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van de stemming.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="stemmingType" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De wijze waarop gestemd is.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Hoofdelijk"/>
-                        <xsd:enumeration value="Regulier"/>
-                        <xsd:enumeration value="Schriftelijk"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="resultaatMondelingeStemming" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het resultaat van de mondelinge stemming.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Voor"/>
-                        <xsd:enumeration value="Tegen"/>
-                        <xsd:enumeration value="Gelijk"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="resultaatStemmingOverPersonen" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
+                    <xs:documentation>De positie van het spreekfragment in de notulen, bijvoorbeeld `pagina 8`.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="audioTijdsaanduidingAanvang" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Getal dat aangeeft na hoeveel seconden in de audio-opname het spreekfragment begint.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="audioTijdsaanduidingEinde" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Getal dat aangeeft na hoeveel seconden in de audio-opname het spreekfragment eindigt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="videoTijdsaanduidingAanvang" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Getal dat aangeeft na hoeveel seconden in de video-opname het spreekfragment begint.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="videoTijdsaanduidingEinde" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Getal dat aangeeft na hoeveel seconden in de video-opname het spreekfragment eindigt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="isVastgelegdIn" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar de mediabron waarin het spreekfragment is vastgelegd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="spreektTijdensAgendapunt" type="verwijzingGegevens" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar het agendapunt waar tijdens gesproken wordt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="stemmingGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van de stemming.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stemmingType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De wijze waarop gestemd is.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Hoofdelijk"/>
+                        <xs:enumeration value="Regulier"/>
+                        <xs:enumeration value="Schriftelijk"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="resultaatMondelingeStemming" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het resultaat van de mondelinge stemming.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Voor"/>
+                        <xs:enumeration value="Tegen"/>
+                        <xs:enumeration value="Gelijk"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="resultaatStemmingOverPersonen" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
                     <!-- TODO: Deze documentatie moet mogelijk geupdate worden na https://github.com/VNG-Realisatie/ODS-Open-Raadsinformatie/issues/111 -->
-                    <xsd:documentation>
+                    <xs:documentation>
                         Het resultaat van de stemming over een of meerdere personen.
-                    </xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens die het het resultaat van een stemming over personen beschrijven, zoals het aantal stemmen wat een persoon haalde.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="leidtTotBesluit" type="besluitGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over het besluit waartoe de stemming heeft geleid, zoals of het unaniem aangenomen of verworpen is.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar het agendapunt waarover gestemd werd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="heeftBetrekkingOpBesluitvormingsstuk" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over het besluitvormingsstuk waarover gestemd werd. Dit besluitvormingsstuk kan bijvoorbeeld een motie, voorstel, of (sub)amendement zijn.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="stemmingOverPersonenGegevens">
-        <xsd:sequence>
-            <xsd:element name="naamKandidaat" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Naam van de kandidaat waarover gestemd werd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="aantalUitgebrachteStemmen" type="xsd:nonNegativeInteger" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Aantal stemmen dat de kandidaat gehaald heeft.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="besluitGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van het besluit.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="besluitToelichting" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Een toelichting op het besluit.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="toezegging" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Een toezegging die bij het besluit gedaan is.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="besluitResultaat" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het resultaat van het besluit.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Unaniem aangenomen"/>
-                        <xsd:enumeration value="Aangenomen"/>
-                        <xsd:enumeration value="Geamendeerd aangenomen"/>
-                        <xsd:enumeration value="Onder voorbehoud aangenomen"/>
-                        <xsd:enumeration value="Verworpen"/>
-                        <xsd:enumeration value="Aangehouden"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="dagelijksBestuurGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van het dagelijks bestuur.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="dagelijksBestuursnaam" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Naam van het dagelijks bestuur.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="dagelijksBestuursType" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Het soort dagelijks bestuur.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="College"/>
-                        <xsd:enumeration value="Gedeputeerde Staten"/>
-                        <xsd:enumeration value="Dagelijks bestuur"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over de bestuurslaag die verantwoordelijk is voor de taken van dit dagelijks bestuur. Deze laag kan een gemeente, provincie of waterschap zijn.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="dagelijksBestuurLidmaatschapGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van het dagelijks bestuur lidmaatschap.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemands lidmaatschap van het dagelijkse bestuur begon.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemands lidmaatschap van het dagelijkse bestuur eindigde.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="dagelijksBestuur" type="dagelijksBestuurGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over het dagelijks bestuur waar het lidmaatschap betrekking op heeft, zoals de naam van het bestuur.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="natuurlijkPersoonGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van de persoon, niet zijnde het burgerserivcenummer.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="geslachtsaanduiding" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Geslachtaanduiding van de persoon.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Man"/>
-                        <xsd:enumeration value="Vrouw"/>
-                        <xsd:enumeration value="Anders"/>
-                        <xsd:enumeration value="Onbekend"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="functie" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De functie van de persoon.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Burgemeester"/>
-                        <xsd:enumeration value="Wethouder"/>
-                        <xsd:enumeration value="Raadslid"/>
-                        <xsd:enumeration value="Burgerlid"/>
-                        <xsd:enumeration value="Griffier"/>
-                        <xsd:enumeration value="Gemeentesecretaris"/>
-                        <xsd:enumeration value="Commissaris van de Koning"/>
-                        <xsd:enumeration value="Gedeputeerde"/>
-                        <xsd:enumeration value="Statenlid"/>
-                        <xsd:enumeration value="Provinciesecretaris"/>
-                        <xsd:enumeration value="Dijkgraaf"/>
-                        <xsd:enumeration value="Dagelijks bestuurslid"/>
-                        <xsd:enumeration value="Algemeen bestuurslid"/>
-                        <xsd:enumeration value="Secretarisdirecteur"/>
-                        <xsd:enumeration value="Ambtenaar/medewerker"/>
-                        <xsd:enumeration value="Adviseur of deskundige"/>
-                        <xsd:enumeration value="Overig"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="naam" type="naamGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over de naam van de persoon, zoals diens voor- en achternaam.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="nevenfunctie" type="nevenfunctieGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over eventuele nevenfuncties van de persoon, zoals of het om een betaalde functie gaat.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isLidVanFractie" type="fractielidmaatschapGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over wanneer iemand lid is geworden van welke fractie.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isLidVanDagelijksBestuur" type="dagelijksBestuurLidmaatschapGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over wanneer iemand lid is geworden van welk dagelijks bestuur.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="naamGegevens">
-        <xsd:sequence>
-            <xsd:element name="achternaam" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De achternaam van de persoon, zoals `Mierlo`.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="tussenvoegsel" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Tussenvoegsel in naam van de persoon, zoals `van der`.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="voorletters" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De voorletters van de persoon, zoals `J.P.` of `K.`.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="voornamen" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De voornaam of voornamen van de persoon, zoals `Anna Maria Sophia` of `Jan`.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="volledigeNaam" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De volledige naam van de persoon, zoals `Piet van der Berg`.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="nevenfunctieGegevens">
-        <xsd:sequence>
-            <xsd:element name="omschrijvingNevenfunctie" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Omschrijving van iemand's nevenfunctie.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="naamOrganisatieNevenfunctie" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De naam van de organisatie waarbinnen de nevenfunctie wordt uitgevoerd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="aantalUrenperMaand" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Aantal uren per maand dat besteed wordt aan de nevenfunctie.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="indicatorBezoldigd" type="xsd:boolean" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Geeft aan of de nevenfunctie wordt uitgevoerd tegen betaling.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="indicatorNevenfunctieVanwegeLidmaatschap" type="xsd:boolean" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Geeft aan of de nevenfunctie wordt vervuld vanwege een lidmaatschap van de Raad of de Staten.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="datumMelding" type="xsd:date" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum waarop de nevenfunctie gemeld is bij de griffie.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="datumAanvangNevenfunctie" type="xsd:date" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemand met de nevenfunctie begon.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="datumEindeNevenfunctie" type="xsd:date" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemands nevenfunctie wordt/is beëindigd.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="fractieGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van de fractie.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="fractienaam" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De naam van de fractie, zoals `D66` of `VVD`.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De bestuurslaag waarop de fractie functioneert. Deze laag kan een gemeente, provincie of waterschap zijn.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="fractieNeemtDeelAanStemming" type="stemresultaatPerFractieGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over een stemming waar de gehele fractie aan mee heeft gedaan, zoals de stemkeuze die is gemaakt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="fractielidmaatschapGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van het fractie lidmaatschap.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="datumBeginFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemands fractie lidmaatschap begon.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="datumEindeFractielidmaatschap" type="xsd:date" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum waarop iemands fractie lidmaatschap eindigde.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="indicatieVoorzitter" type="xsd:boolean" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Geeft aan of iemand fractievoorzitter is.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="fractie" type="fractieGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over de fractie waar het lidmaatschap betrekking op heeft, zoals de fractienaam.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="stemresultaatPerFractieGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van het stemresultaat per fractie.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="fractieStemresultaat" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Keuze van de gehele fractie over een stemming.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Aangenomen"/>
-                        <xsd:enumeration value="Verworpen"/>
-                        <xsd:enumeration value="Verdeeld"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="gegevenOpStemming" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar de stemming waar de fractie over gestemd heeft.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="aanwezigeDeelnemerGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van de deelnemer.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="rolnaam" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De rol waarin iemand bij de vergadering aanwezig was.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Voorzitter"/>
-                        <xsd:enumeration value="Vice-voorzitter"/>
-                        <xsd:enumeration value="Raadslid"/>
-                        <xsd:enumeration value="Statenlid"/>
-                        <xsd:enumeration value="Dagelijks bestuurslid"/>
-                        <xsd:enumeration value="Algemeen bestuurslid"/>
-                        <xsd:enumeration value="Inspreker"/>
-                        <xsd:enumeration value="Portefeuillehouder"/>
-                        <xsd:enumeration value="Griffier"/>
-                        <xsd:enumeration value="Overig"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="organisatie" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De naam van de organisatie die wordt vertegenwoordigd door de deelnemer.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="deelnemerspositie" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Beschrijving van de plek waar de deelnemer in de zaal zat.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="aanvangAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum en tijdstip vanaf wanneer de deelnemer bij de vergadering aanwezig was.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="eindeAanwezigheid" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Datum en tijdstip waarna de deelnemer de vergadering verliet.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar de natuurlijk persoon die als de deelnemer optreedt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="neemtDeelAanVergadering" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar de (deel)vergadering waar de deelnemer aanwezig was.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="neemtDeelAanStemming" type="stemGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over een stem die de deelnemer heeft uitbracht, zoals of de stem voor of tegen was, en op welke stemming deze gegeven is.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="spreektTijdensSpreekfragment" type="spreekfragmentGegevens" minOccurs="0" maxOccurs="unbounded">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens over een spreekfragment waarin de deelnemer sprak, zoals wanneer dit fragment in de vergadering aanvangt.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="stemGegevens">
-        <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Uniek identificatiekenmerk van de stem.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="keuzeStemming" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De keuze op de stemming.</xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="Voor"/>
-                        <xsd:enumeration value="Tegen"/>
-                        <xsd:enumeration value="Afwezig"/>
-                        <xsd:enumeration value="Onthouden"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="gegevenOpStemming" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Verwijzing naar de stemming waar de stem betrekking op heeft.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="gremiumGegevens">
-        <xsd:sequence>
-            <xsd:element name="gremiumIdentificatie" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Identificatie kenmerk van het gremium.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="gremiumNaam" type="xsd:string" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Naam van het gremium.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="gemeenteGegevens">
-        <xsd:sequence>
-            <xsd:element name="gemeentecode" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens die het het resultaat van een stemming over personen beschrijven, zoals het aantal stemmen wat een persoon haalde.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="leidtTotBesluit" type="besluitGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over het besluit waartoe de stemming heeft geleid, zoals of het unaniem aangenomen of verworpen is.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="heeftBetrekkingOpAgendapunt" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar het agendapunt waarover gestemd werd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="heeftBetrekkingOpBesluitvormingsstuk" type="informatieobjectGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over het besluitvormingsstuk waarover gestemd werd. Dit besluitvormingsstuk kan bijvoorbeeld een motie, voorstel, of (sub)amendement zijn.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="stemmingOverPersonenGegevens">
+        <xs:sequence>
+            <xs:element name="naamKandidaat" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Naam van de kandidaat waarover gestemd werd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aantalUitgebrachteStemmen" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Aantal stemmen dat de kandidaat gehaald heeft.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="besluitGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van het besluit.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="besluitToelichting" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Een toelichting op het besluit.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="toezegging" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Een toezegging die bij het besluit gedaan is.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="besluitResultaat" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het resultaat van het besluit.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Unaniem aangenomen"/>
+                        <xs:enumeration value="Aangenomen"/>
+                        <xs:enumeration value="Geamendeerd aangenomen"/>
+                        <xs:enumeration value="Onder voorbehoud aangenomen"/>
+                        <xs:enumeration value="Verworpen"/>
+                        <xs:enumeration value="Aangehouden"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="dagelijksBestuurGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van het dagelijks bestuur.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dagelijksBestuursnaam" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Naam van het dagelijks bestuur.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dagelijksBestuursType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Het soort dagelijks bestuur.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="College"/>
+                        <xs:enumeration value="Gedeputeerde Staten"/>
+                        <xs:enumeration value="Dagelijks bestuur"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over de bestuurslaag die verantwoordelijk is voor de taken van dit dagelijks bestuur. Deze laag kan een gemeente, provincie of waterschap zijn.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="dagelijksBestuurLidmaatschapGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van het dagelijks bestuur lidmaatschap.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="datumBeginDagelijkseBestuurLidmaatschap" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum waarop iemands lidmaatschap van het dagelijkse bestuur begon.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="datumEindeDagelijkseBestuurLidmaatschap" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum waarop iemands lidmaatschap van het dagelijkse bestuur eindigde.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dagelijksBestuur" type="dagelijksBestuurGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over het dagelijks bestuur waar het lidmaatschap betrekking op heeft, zoals de naam van het bestuur.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="natuurlijkPersoonGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van de persoon, niet zijnde het burgerserivcenummer.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="geslachtsaanduiding" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Geslachtaanduiding van de persoon.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Man"/>
+                        <xs:enumeration value="Vrouw"/>
+                        <xs:enumeration value="Anders"/>
+                        <xs:enumeration value="Onbekend"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="functie" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De functie van de persoon.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Burgemeester"/>
+                        <xs:enumeration value="Wethouder"/>
+                        <xs:enumeration value="Raadslid"/>
+                        <xs:enumeration value="Burgerlid"/>
+                        <xs:enumeration value="Griffier"/>
+                        <xs:enumeration value="Gemeentesecretaris"/>
+                        <xs:enumeration value="Commissaris van de Koning"/>
+                        <xs:enumeration value="Gedeputeerde"/>
+                        <xs:enumeration value="Statenlid"/>
+                        <xs:enumeration value="Provinciesecretaris"/>
+                        <xs:enumeration value="Dijkgraaf"/>
+                        <xs:enumeration value="Dagelijks bestuurslid"/>
+                        <xs:enumeration value="Algemeen bestuurslid"/>
+                        <xs:enumeration value="Secretarisdirecteur"/>
+                        <xs:enumeration value="Ambtenaar/medewerker"/>
+                        <xs:enumeration value="Adviseur of deskundige"/>
+                        <xs:enumeration value="Overig"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="naam" type="naamGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over de naam van de persoon, zoals diens voor- en achternaam.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="nevenfunctie" type="nevenfunctieGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over eventuele nevenfuncties van de persoon, zoals of het om een betaalde functie gaat.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="isLidVanFractie" type="fractielidmaatschapGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over wanneer iemand lid is geworden van welke fractie.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="isLidVanDagelijksBestuur" type="dagelijksBestuurLidmaatschapGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over wanneer iemand lid is geworden van welk dagelijks bestuur.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="naamGegevens">
+        <xs:sequence>
+            <xs:element name="achternaam" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De achternaam van de persoon, zoals `Mierlo`.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="tussenvoegsel" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Tussenvoegsel in naam van de persoon, zoals `van der`.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="voorletters" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De voorletters van de persoon, zoals `J.P.` of `K.`.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="voornamen" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De voornaam of voornamen van de persoon, zoals `Anna Maria Sophia` of `Jan`.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="volledigeNaam" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De volledige naam van de persoon, zoals `Piet van der Berg`.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="nevenfunctieGegevens">
+        <xs:sequence>
+            <xs:element name="omschrijvingNevenfunctie" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Omschrijving van iemand's nevenfunctie.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="naamOrganisatieNevenfunctie" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De naam van de organisatie waarbinnen de nevenfunctie wordt uitgevoerd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aantalUrenperMaand" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Aantal uren per maand dat besteed wordt aan de nevenfunctie.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="indicatorBezoldigd" type="xs:boolean" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Geeft aan of de nevenfunctie wordt uitgevoerd tegen betaling.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="indicatorNevenfunctieVanwegeLidmaatschap" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Geeft aan of de nevenfunctie wordt vervuld vanwege een lidmaatschap van de Raad of de Staten.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="datumMelding" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum waarop de nevenfunctie gemeld is bij de griffie.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="datumAanvangNevenfunctie" type="xs:date" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum waarop iemand met de nevenfunctie begon.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="datumEindeNevenfunctie" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum waarop iemands nevenfunctie wordt/is beëindigd.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="fractieGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van de fractie.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="fractienaam" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De naam van de fractie, zoals `D66` of `VVD`.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="bestuurslaag" type="bestuurslaagGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De bestuurslaag waarop de fractie functioneert. Deze laag kan een gemeente, provincie of waterschap zijn.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="fractieNeemtDeelAanStemming" type="stemresultaatPerFractieGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over een stemming waar de gehele fractie aan mee heeft gedaan, zoals de stemkeuze die is gemaakt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="fractielidmaatschapGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van het fractie lidmaatschap.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="datumBeginFractielidmaatschap" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum waarop iemands fractie lidmaatschap begon.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="datumEindeFractielidmaatschap" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum waarop iemands fractie lidmaatschap eindigde.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="indicatieVoorzitter" type="xs:boolean" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Geeft aan of iemand fractievoorzitter is.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="fractie" type="fractieGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over de fractie waar het lidmaatschap betrekking op heeft, zoals de fractienaam.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="stemresultaatPerFractieGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van het stemresultaat per fractie.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="fractieStemresultaat" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Keuze van de gehele fractie over een stemming.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Aangenomen"/>
+                        <xs:enumeration value="Verworpen"/>
+                        <xs:enumeration value="Verdeeld"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="gegevenOpStemming" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar de stemming waar de fractie over gestemd heeft.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="aanwezigeDeelnemerGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van de deelnemer.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rolnaam" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De rol waarin iemand bij de vergadering aanwezig was.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Voorzitter"/>
+                        <xs:enumeration value="Vice-voorzitter"/>
+                        <xs:enumeration value="Raadslid"/>
+                        <xs:enumeration value="Statenlid"/>
+                        <xs:enumeration value="Dagelijks bestuurslid"/>
+                        <xs:enumeration value="Algemeen bestuurslid"/>
+                        <xs:enumeration value="Inspreker"/>
+                        <xs:enumeration value="Portefeuillehouder"/>
+                        <xs:enumeration value="Griffier"/>
+                        <xs:enumeration value="Overig"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="organisatie" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De naam van de organisatie die wordt vertegenwoordigd door de deelnemer.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="deelnemerspositie" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Beschrijving van de plek waar de deelnemer in de zaal zat.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aanvangAanwezigheid" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum en tijdstip vanaf wanneer de deelnemer bij de vergadering aanwezig was.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="eindeAanwezigheid" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Datum en tijdstip waarna de deelnemer de vergadering verliet.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="isNatuurlijkPersoon" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar de natuurlijk persoon die als de deelnemer optreedt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="neemtDeelAanVergadering" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar de (deel)vergadering waar de deelnemer aanwezig was.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="neemtDeelAanStemming" type="stemGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over een stem die de deelnemer heeft uitbracht, zoals of de stem voor of tegen was, en op welke stemming deze gegeven is.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="spreektTijdensSpreekfragment" type="spreekfragmentGegevens" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Gegevens over een spreekfragment waarin de deelnemer sprak, zoals wanneer dit fragment in de vergadering aanvangt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="stemGegevens">
+        <xs:sequence>
+            <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Uniek identificatiekenmerk van de stem.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="keuzeStemming" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De keuze op de stemming.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Voor"/>
+                        <xs:enumeration value="Tegen"/>
+                        <xs:enumeration value="Afwezig"/>
+                        <xs:enumeration value="Onthouden"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="gegevenOpStemming" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Verwijzing naar de stemming waar de stem betrekking op heeft.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="gremiumGegevens">
+        <xs:sequence>
+            <xs:element name="gremiumIdentificatie" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Identificatie kenmerk van het gremium.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="gremiumNaam" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Naam van het gremium.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="gemeenteGegevens">
+        <xs:sequence>
+            <xs:element name="gemeentecode" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
                         De code van de gemeente uit de TOOI begrippenlijst 'Register gemeenten compleet'.
                         Dit is een viercijferige code, eventueel voorafgegaan door het voorvoegsel 'gm',
                         zoals `gm0518` voor de gemeente Den Haag. Voor de volledige lijst, 
                         zie https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_gemeenten_compleet%2F4
-                    </xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="(GM|gm)?\d{4}"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="gemeentenaam" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De naam van de gemeente.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="waterschapGegevens">
-        <xsd:sequence>
-            <xsd:element name="waterschapcode" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(GM|gm)?\d{4}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="gemeentenaam" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De naam van de gemeente.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="waterschapGegevens">
+        <xs:sequence>
+            <xs:element name="waterschapcode" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
                         De code van het waterschap uit de TOOI begrippenlijst 'Register waterschappen compleet'.
                         Dit is een viercijferige code, eventueel voorafgegaan door het voorvoegsel 'ws', 
                         zoals `ws0652` voor waterschap Brabantse Delta. Voor de volledige lijst, 
                         zie https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_waterschappen_compleet%2F1
-                    </xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="(ws|WS)?\d{4}"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="waterschapnaam" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De naam van het waterschap.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="provincieGegevens">
-        <xsd:sequence>
-            <xsd:element name="provinciecode" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(ws|WS)?\d{4}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="waterschapnaam" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De naam van het waterschap.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="provincieGegevens">
+        <xs:sequence>
+            <xs:element name="provinciecode" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
                         De code van de provincie uit de TOOI begrippenlijst 'Register provincies compleet'.
                         Dit is een tweecijferige code, eventueel voorafgegaan door het voorvoegsel 'pv',
                         zoals `pv20` voor de provincie Groningen. Voor de volledige lijst,
                         zie https://standaarden.overheid.nl/tooi/waardelijsten/expression?lijst_uri=https%3A%2F%2Fidentifier.overheid.nl%2Ftooi%2Fset%2Frwc_provincies_compleet%2F1
-                    </xsd:documentation>
-                </xsd:annotation>
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:pattern value="(pv|PV)?\d{2}"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
-            <xsd:element name="provincienaam" type="xsd:string" minOccurs="0" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>De naam van de provincie.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="bestuurslaagGegevens">
-        <xsd:annotation>
-            <xsd:documentation>Geeft de relevante bestuurslaag aan, middels een keuze uit drie gegevensgroepen.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:choice>
-            <xsd:element name="gemeente" type="gemeenteGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens die een gemeente uniek identificeren.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="waterschap" type="waterschapGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens die een waterschap uniek identificeren.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-            <xsd:element name="provincie" type="provincieGegevens" minOccurs="1" maxOccurs="1">
-                <xsd:annotation>
-                    <xsd:documentation>Gegevens die een provincie uniek identificeren.</xsd:documentation>
-                </xsd:annotation>
-            </xsd:element>
-        </xsd:choice>
-    </xsd:complexType>
-</xsd:schema>
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(pv|PV)?\d{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="provincienaam" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>De naam van de provincie.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="bestuurslaagGegevens">
+        <xs:annotation>
+            <xs:documentation>Geeft de relevante bestuurslaag aan, middels een keuze uit drie gegevensgroepen.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="gemeente" type="gemeenteGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens die een gemeente uniek identificeren.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="waterschap" type="waterschapGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens die een waterschap uniek identificeren.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="provincie" type="provincieGegevens" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Gegevens die een provincie uniek identificeren.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+</xs:schema>
