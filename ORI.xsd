@@ -466,7 +466,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="stemmingOverPersonen " type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="stemmingOverPersonen" type="stemmingOverPersonenGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>Gegevens die het het resultaat van een stemming over personen beschrijven, zoals het aantal stemmen wat een persoon haalde.</xs:documentation>
                 </xs:annotation>
