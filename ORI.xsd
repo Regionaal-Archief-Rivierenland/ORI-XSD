@@ -231,7 +231,7 @@
                     <xs:documentation>Gegevens over de bestuurslaag die de vergadering heeft gehouden. Deze laag kan een gemeente, provincie of waterschap zijn.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="isVastgelegdMiddels" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
+            <xs:element name="isVastgelegdMiddels" type="verwijzingGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>Verwijzing naar de mediabron waarin de (deel)vergadering is vastgelegd.</xs:documentation>
                 </xs:annotation>
