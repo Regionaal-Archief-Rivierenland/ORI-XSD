@@ -869,7 +869,7 @@
             </xs:element>
             <xs:element name="neemtDeelAanStemming" type="stemGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                    <xs:documentation>Gegevens over een stem die de deelnemer heeft uitbracht, zoals of de stem voor of tegen was, en op welke stemming deze gegeven is.</xs:documentation>
+                    <xs:documentation>Gegevens over een stem die de deelnemer heeft uitbracht, zoals de stemkeuze en de stemming waarop deze keuze betrekking heeft.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="spreektTijdensSpreekfragment" type="spreekfragmentGegevens" minOccurs="0" maxOccurs="unbounded">
