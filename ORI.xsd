@@ -874,7 +874,7 @@
             </xs:element>
             <xs:element name="spreektTijdensSpreekfragment" type="spreekfragmentGegevens" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                    <xs:documentation>Gegevens over een spreekfragment waarin de deelnemer sprak, zoals wanneer dit fragment in de vergadering aanvangt.</xs:documentation>
+                    <xs:documentation>Gegevens over een spreekfragment waarin de deelnemer sprak, zoals het moment waarop dit fragment begon en eindigde.</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
