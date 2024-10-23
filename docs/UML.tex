@@ -125,7 +125,7 @@
         };
 
 
-   \node (vergadering) [ORI object, align=center, left=11cm of agendapunt]
+   \node (vergadering) [ORI object, align=center, left=14cm of agendapunt]
         {
           \objectheader{Objecttype}{Vergadering}
 
@@ -146,7 +146,7 @@
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
 
-   \node (deelnemer) [ORI object, align=center, below=3.5cm of vergadering]
+   \node (deelnemer) [ORI object, align=center, below=3.9cm of vergadering]
         {
           \objectheader{Objecttype}{Aanwezige deelnemer}
 
@@ -162,10 +162,30 @@
         \draw[relatiepijl] ($(vergadering.west)+(0,1.8)$)
         node [kardinaliteit, above, xshift = -0.4cm] {0..1} |-
         ($(vergadering.west)+(-3.0,1.8)$) |- ($(vergadering.west)+(-3.0,-1.8)$)
-        node [fill=white, pos=0.25] {heeft als deelvergadering\\\umltype{relatiesoort}} --
+        node [fill=white, pos=0.25] {heeft als deelvergadering\\\umltype{Relatiesoort}} --
         ($(vergadering.west)+(0,-1.8)$)
         node [kardinaliteit, above, xshift = -0.8cm] {0..*} ;
 
+    \node (stemming) [ORI object, below = 3.9cm of agendapunt, align=center]
+        {
+          \objectheader{Objecttype}{Stemming}
+
+          \attribute{\textbf{ID}}{string}{} \\
+          \attribute{Stemmingstype}{\keuze{Hoofdelijk} | \keuze{Regulier} | \keuze{Schriftelijk}}{[0..1]}\\
+          \attribute{Resultaat mondelinge stemming}{\keuze{Voor} | \keuze{Tegen} | \keuze{Gelijk}}{[0..1]} \\
+          \attribute{Toezegging}{string}{[0..1]} \\
+          \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
+          \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
+        };
+        
+   \node (stem) [ORI object, align=center, at = ($(deelnemer.east)!0.5!(stemming.west)$), yshift=4cm]
+        {
+          \objectheader{Relatieklasse}{Stem}
+
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{\textbf{Keuze stemming}}{\keuze{Voor} | \keuze{Tegen} | ...}{}
+        };
+        
    \node (natuurlijkpersoon) [ORI object, align=center, left=5.0cm of deelnemer]
         {
           \objectheader{Objecttype}{Natuurlijk persoon}
@@ -210,17 +230,6 @@
           \attribute{URL}{URI}{[0..1]}
         };
         
-  \node (stemming) [ORI object, below = 4cm of agendapunt, align=center]
-        {
-          \objectheader{Objecttype}{Stemming}
-
-          \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Stemmingstype}{\keuze{Hoofdelijk} | \keuze{Regulier} | \keuze{Schriftelijk}}{[0..1]}\\
-          \attribute{Resultaat mondelinge stemming}{\keuze{Voor} | \keuze{Tegen} | \keuze{Gelijk}}{[0..1]} \\
-          \attribute{Toezegging}{string}{[0..1]} \\
-          \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
-          \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
-        };
 
   \node (besluit) [ORI object, above right = 0.5cm and 1.8cm of stemming, align=center]
         {
@@ -256,13 +265,13 @@
         %% FIXME: cardinalities won't be alligned, because pos= is relative to arrow length
         %% stemming -> agendapunt
         \draw [relatiepijl] (stemming) --
-        node [anchor=center, fill=white] {heeft betrekking op\\\umltype{relatiesoort}}
+        node [anchor=center, fill=white] {heeft betrekking op\\\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.08, right] {1..*}
         node [kardinaliteit, pos=0.81, xshift=0.03cm, right] {1} (agendapunt);
         %% stemming -> besluit
         \draw[relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west)
         node [fill=white, pos=0.74, above] {leidt tot}
-        node [fill=white, pos=0.74, below] {\umltype{relatiesoort}}
+        node [fill=white, pos=0.74, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.065, right] {0..*}
         node [kardinaliteit, above left, pos=0.95, yshift=-0.0cm] {0..1};
         %% stemming -> stemming over personen
@@ -270,7 +279,7 @@
         %% stemming -> MDTO
         \draw[relatiepijl] ($(stemming.east)+(0,-1.3)$) -|
         node [pos=0.2, above] {heeft betrekking op}
-        node [pos=0.2, below] {\umltype{relatiesoort}}
+        node [pos=0.2, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.85] (linestart3) % coordinate along the line
         ($(mdto.south)+(0,-0.5cm)$);
 
@@ -279,40 +288,57 @@
         %% agendapunt -> vergadering
         \draw[relatiepijl] (agendapunt) -- (vergadering)
         node [fill=white, pos=0.5, above] {wordt behandeld tijdens}
-        node [fill=white, pos=0.5, below] {\umltype{relatiesoort}}
+        node [fill=white, pos=0.5, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.05, above] {0..*}
         node [kardinaliteit, pos=0.9, above] {1};
+        
         %% agendapunt -> MDTO
         \draw[relatiepijl] ($(agendapunt.east)-(0,2.0)$) -|
         node [pos=0.08, above] {heeft als bijlage}
-        node [pos=0.08, below] {\umltype{relatiesoort}}
+        node [pos=0.08, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.14] (linestart2) % coordinate along the line
         ($(mdto.south)+(-1.5cm,-0.5cm)$);
-        
+        %% dashed line
         \draw[dashed, very thick] (linestart2) |- (informatieobject);
 
-        %% mediabron -> MDTO
-        \draw[relatiepijl] (mediabron)  -|
-        node [pos=0.18, above] {hoort bij}
-        node [pos=0.18, below] {\umltype{relatiesoort}}
+        %% mediabron -> is vastgelegd in
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0)$)  -|
+        node [pos=0.18, above] {is vastgelegd in}
+        node [pos=0.18, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.22] (linestart) % coordinate along the line
         ($(mdto.north)+(0cm,0.5cm)$);
+        %% dashed line
+        \draw[dashed, very thick] (linestart) |- ($(informatieobject.north west)+(0,-0.6)$);
 
-        \draw[dashed, very thick] (linestart) |- (informatieobject.north west);
+        %% mediabron -> heeft ondertitel bestand
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,1.3)$)  -|
+        node [pos=0.18, above] {heeft ondertitelbestand}
+        node [pos=0.18, below] {\umltype{Relatiesoort}}
+        coordinate[pos=0.26] (linestart4) % coordinate along the line
+        ($(mdto.north)+(1.2cm,0.5cm)$);
+        %% dashed line
+        \draw[dashed, very thick] (linestart4) |- (informatieobject.north west);
+
         
         %% vergadering -> mediabron
         \draw[relatiepijl] (vergadering)  -- 
-        node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{relatiesoort}} (mediabron);
+        node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{Relatiesoort}} (mediabron);
         %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  -- 
-        node [anchor=center, fill=white] {neemt deel aan\\\umltype{relatiesoort}} (vergadering);
+        node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
         %% deelnemer -> persoon
-        \draw[relatiepijl] (deelnemer)  -- 
+        \draw[relatiepijl] (deelnemer) --
         node [fill=white, above] {is}
-        node [fill=white, below] {\umltype{relatiesoort}}
+        node [fill=white, below] {\umltype{Relatiesoort}}
         (natuurlijkpersoon);
         %% deelnemer -> stemming
-        \draw[relatiepijl] (deelnemer) -- (stemming);
+        \draw[dashed, very thick] ($(deelnemer.east)!0.5!(stemming.west) + (0, .10)$) -- (stem);
+        \draw[relatiepijl] ($(deelnemer.east |- stemming.west)$) --
+        node [above, fill=white] {neemt deel aan} %% no coordinates set (problematic!)
+        node [below] {\umltype{Relatiesoort}} %% no coordinates set (problematic!)
+        (stemming.west);
+        %% dashedline
+
 
         %% persoon -> naam gegevens
         \draw[gegevenspijl] (natuurlijkpersoon.south) -- (naam);
