@@ -126,7 +126,7 @@
                     <xs:documentation>Het webadres waar de mediabron geraadpleegd kan worden.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="hoortBijInformatieobject" type="informatieobjectGegevens" minOccurs="1" maxOccurs="1">
+            <xs:element name="isVastgelegdIn" type="informatieobjectGegevens" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Gegevens over het informatieobject waarin de mediabron is vastgelegd.</xs:documentation>
                 </xs:annotation>
