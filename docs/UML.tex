@@ -249,7 +249,7 @@
           \attribute{\textbf{Aantal uitgebrachte stemmen}}{integer}{}
         };
 
-        \node (informatieobject) [ORI object, align=center, above left = 7cm and -15.0cm of besluit]
+        \node (informatieobject) [ORI object, align=center, above left = 6.6cm and -15.0cm of besluit]
         {
           \objectheader{Relatieklasse}{Informatieobject}
           \attribute{Informatieobject type}{\keuze{Motie} | \keuze{Antwoord} | ...}{[0..1]}
@@ -293,11 +293,11 @@
         node [kardinaliteit, pos=0.9, above] {1};
         
         %% agendapunt -> MDTO
-        \draw[relatiepijl] ($(agendapunt.east)-(0,2.0)$) -|
+        \draw[relatiepijl] ($(agendapunt.east)+(0,2.0)$) --
         node [pos=0.08, above] {heeft als bijlage}
         node [pos=0.08, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.14] (linestart2) % coordinate along the line
-        ($(mdto.south)+(-1.5cm,-0.5cm)$);
+        (mdto);
         %% dashed line
         \draw[dashed, very thick] (linestart2) |- (informatieobject);
 
@@ -323,6 +323,13 @@
         %% vergadering -> mediabron
         \draw[relatiepijl] (vergadering)  -- 
         node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{Relatiesoort}} (mediabron);
+        %% vergadering -> MDTO
+        \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
+        ($(vergadering.east)+(11.0,6)$) --
+        node [anchor=center, fill=white, above, pos=0.12] {heeft als bijlage}
+        node [anchor=center, fill=white, below, pos=0.12] {\umltype{Relatiesoort}}
+        ($(mdto.north)-(3.3cm, 0cm)$);
+        
         %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  -- 
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
