@@ -194,6 +194,22 @@
           \attribute{ID}{string}{[0..1]} \\
           \attribute{\textbf{Keuze stemming}}{\keuze{Voor} | \keuze{Tegen} | ...}{}
         };
+   \node (spreekfragment) [ORI object, above = 17.5cm of stem]
+        {
+          \objectheader{Relatieklasse}{Spreekfragment}
+
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{Aanvang spreekfragment}{datum + tijd}{[0..1]} \\
+          \attribute{Einde spreekfragment}{datum + tijd}{[0..1]} \\
+          \attribute{Taal}{taal}{[0..1]} \\
+          \attribute{Tekst spreekfragment}{string}{[0..1]} \\
+          \attribute{Titel spreekfragment}{string}{[0..1]} \\
+          \attribute{Positie notulen}{string}{[0..1]} \\
+          \attribute{Audio tijdsaanduiding aanvang}{integer}{[0..1]} \\
+          \attribute{Audio tijdsaanduiding einde}{integer}{[0..1]} \\
+          \attribute{Video tijdsaanduiding aanvang}{integer}{[0..1]} \\
+          \attribute{Video tijdsaanduiding einde}{integer}{[0..1]}
+        };
         
    \node (natuurlijkpersoon) [ORI object, align=center, left=5.0cm of deelnemer]
         {
