@@ -177,6 +177,15 @@
           \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
           \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
         };
+
+    \node (fractie) [ORI object, below = 2.9cm of stemming, align=center]
+        {
+          \objectheader{Objecttype}{Fractie}
+
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{\textbf{Fractienaam}}{string}{}\\
+          \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
+        };
         
    \node (stem) [ORI object, align=center, at = ($(deelnemer.east)!0.5!(stemming.west)$), yshift=4cm]
         {
@@ -319,6 +328,9 @@
         %% dashed line
         \draw[dashed, very thick] (linestart4) |- (informatieobject.north west);
 
+        %% fractie -> stemming
+        \draw[relatiepijl] (fractie) --
+        node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (stemming);
         
         %% vergadering -> mediabron
         \draw[relatiepijl] (vergadering)  -- 
