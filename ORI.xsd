@@ -734,6 +734,7 @@
     </xsd:complexType>
     <xsd:complexType name="fractieGegevens">
         <xsd:sequence>
+            <!-- maak dit verplicht (zodat je over meerdere leveringenn een fractie databaseje kan bouwen) -->
             <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="1">
                 <xsd:annotation>
                     <xsd:documentation>Uniek identificatiekenmerk van de fractie.</xsd:documentation>

@@ -244,6 +244,15 @@
           \attribute{\textbf{Datum aanvang nevenfunctie}}{datum}{} \\
           \attribute{Datum einde nevenfunctie}{datum}{[0..1]}
         };
+   \node (fractielidmaatschap) [ORI object, below = 2.2cm of deelnemer, align=center, draw=gray]
+        {
+          \objectheader{Gegevensgroeptype}{Fractie lidmaatschap}
+
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{Datum begin fractielidmaatschap}{datum}{[0..1]} \\
+          \attribute{Datum einde fractielidmaatschap}{datum}{[0..1]} \\
+          \attribute{\textbf{Indicate voorzitter}}{boolean}{}
+        };
         
    \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
         {
@@ -318,7 +327,7 @@
         node [kardinaliteit, pos=0.9, above] {1};
         
         %% agendapunt -> MDTO
-        \draw[relatiepijl] ($(agendapunt.east)+(0,2.0)$) --
+        \draw[relatiepijl] ($(agendapunt.east)+(0,0.0)$) --
         node [pos=0.08, above] {heeft als bijlage}
         node [pos=0.08, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.14] (linestart2) % coordinate along the line
