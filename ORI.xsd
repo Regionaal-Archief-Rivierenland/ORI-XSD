@@ -25,7 +25,7 @@
                 </xs:element>
                 <xs:element name="natuurlijkPersoon" type="natuurlijkPersoonGegevens" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
-                        <xs:documentation>Gegevens met contextuele informatie over een persoon, zoals diens naam en fractie lidmaatschap.</xs:documentation>
+                        <xs:documentation>Gegevens met contextuele informatie over een persoon, zoals diens naam en fractielidmaatschap.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <xs:element name="aanwezigeDeelnemer" type="aanwezigeDeelnemerGegevens" minOccurs="0" maxOccurs="unbounded">
@@ -760,17 +760,17 @@
         <xs:sequence>
             <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Uniek identificatiekenmerk van het fractie lidmaatschap.</xs:documentation>
+                    <xs:documentation>Uniek identificatiekenmerk van het fractielidmaatschap.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="datumBeginFractielidmaatschap" type="xs:date" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Datum waarop iemands fractie lidmaatschap begon.</xs:documentation>
+                    <xs:documentation>Datum waarop iemands fractielidmaatschap begon.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="datumEindeFractielidmaatschap" type="xs:date" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Datum waarop iemands fractie lidmaatschap eindigde.</xs:documentation>
+                    <xs:documentation>Datum waarop iemands fractielidmaatschap eindigde.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="indicatieVoorzitter" type="xs:boolean" minOccurs="1" maxOccurs="1">
