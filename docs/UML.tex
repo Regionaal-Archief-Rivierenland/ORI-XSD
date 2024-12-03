@@ -21,8 +21,9 @@
 
 
 %% Color definitions
-\usepackage[dvipsnames]{xcolor}
-\definecolor{githubgrey}{HTML}{EAEEF2}
+\usepackage[dvipsnames]{xcolor} \definecolor{githubgrey}{HTML}{EAEEF2}
+\definecolor{githubred}{HTML}{F2EAEE}
+\definecolor{githubblue}{HTML}{DAE1E8}
 \definecolor{darkgreen}{HTML}{3D5E45}
 \definecolor{purple}{HTML}{5C5573}
 %% rounded boxes
@@ -46,7 +47,8 @@
 \usetikzlibrary{backgrounds}
 
 %% TODO
-%% - moeten verplichte relaties ook dik gedrukt?
+%% - : na verplicht attribuut moet eigenlijk ook bold als de attribuutnaam dat is
+%% - moeten verplichte relaties ook dik gedrukt/anders getypeset
 %% - I think the arrow between vergadering and mediabron should be verplicht at least once
 %% - make bestuurslaag a "GegevensGroupType" that recieves multiple arrows
 %% - check if different number style in Myriad pro looks nice
@@ -56,6 +58,7 @@
 %% - maybe bullets instead of plusses? Making a proper list also gives more flexibility
 %%    - all the more because the plusses serve little purposes
 
+\newcommand{\naamxshift}{-3cm}
 \newcommand\mystrut{\rule[-2.5pt]{0pt}{12pt}}
 %% datatype typesetting
 \newcommand{\datatype}[2][text]{%
@@ -97,8 +100,9 @@
 \begin{tikzpicture}[
     background rectangle/.style={fill=white}, show background rectangle,
     %% not sure why the "header" is still centered after align=left, but oh well
-    ORI object/.style={rectangle split, rectangle split parts=2,
-      draw=black, rounded corners=5pt, very thick, inner sep=10pt},
+    %% changerectangle split part fill for colors
+    ORI object/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, draw=black, rounded corners=5pt, very thick, inner sep=10pt},
+    ORI relatieklasse/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, rounded corners=5pt, very thick, inner sep=10pt, draw=gray},
     relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick},
     gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed},
     kardinaliteit/.style={text=darkgray}, 
@@ -150,8 +154,13 @@
         {
           \objectheader{Objecttype}{Aanwezige deelnemer}
 
-          \attribute{ID}{string}{} \\
-          \attribute{\textbf{Rolnaam}}{\keuze{Voorzitter} | \keuze{Inspreker} | ...}{} \\
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{\textbf{Rolnaam}}{
+            \begin{minipage}[t]{0.55\linewidth}
+              \raggedright
+              \keuze{Voorzitter} | \keuze{Vice-voorzitter} | \keuze{Raadslid} | \keuze{Statenlid} | \keuze{Dagelijks bestuurslid} | \keuze{Algemeen bestuurslid} | \keuze{Inspreker} | \keuze{Portefeuillehouder} | \keuze{Griffier} | \keuze{Overig} \vspace{0.3em}
+            \end{minipage}
+          }{} \\[13\lineheight]
           \attribute{Organisatie}{string}{[0..1]} \\
           \attribute{Deelnemerspositie}{string}{[0..1]} \\
           \attribute{Aanvang aanwezigheid}{datum + tijd}{[0..1]} \\
@@ -187,14 +196,28 @@
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
         
-   \node (stem) [ORI object, align=center, at = ($(deelnemer.east)!0.5!(stemming.west)$), yshift=4cm]
+   \node (stem) [ORI relatieklasse, align=center, at = ($(deelnemer.east)!0.5!(stemming.west)$), yshift=3.4cm]
         {
           \objectheader{Relatieklasse}{Stem}
 
           \attribute{ID}{string}{[0..1]} \\
-          \attribute{\textbf{Keuze stemming}}{\keuze{Voor} | \keuze{Tegen} | ...}{}
+          \attribute{\textbf{Keuze stemming}}{
+            \begin{minipage}[t]{0.44\linewidth}
+              \raggedright
+              \keuze{Voor} | \keuze{Tegen} | \keuze{Afwezig} | \keuze{Onthouden}
+              \vspace{0.3em}
+            \end{minipage}
+          }{}
+          \vspace*{0.42cm}
         };
-   \node (spreekfragment) [ORI object, above = 17.5cm of stem]
+   \node (stemresultaatperfractie) [ORI relatieklasse, align=center, below = 4.2cm of stem]
+        {
+          \objectheader{Relatieklasse}{Stemresultaat per fractie}
+
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{Stemresultaat}{\keuze{Aangenomen} | \keuze{Verworpen} | \keuze{Verdeeld}}{[0..1]}
+        };
+   \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem]
         {
           \objectheader{Relatieklasse}{Spreekfragment}
 
@@ -221,7 +244,7 @@
           \attribute{\textbf{Naam}}{naamGegevens}{} \\
           \attribute{Nevenfunctie}{nevenfunctieGegevens}{[0..*]}
         };
-   \node (naam) [ORI object, below = 2.2cm of natuurlijkpersoon, align=center, draw=gray]
+   \node (naam) [ORI object, below = 2.2cm of natuurlijkpersoon, align=center, draw=gray, xshift=\naamxshift]
         {
           \objectheader{Gegevensgroeptype}{Naam}
 
@@ -246,7 +269,7 @@
         };
    \node (fractielidmaatschap) [ORI object, below = 2.2cm of deelnemer, align=center, draw=gray]
         {
-          \objectheader{Gegevensgroeptype}{Fractielidmaatschap}
+          \objectheader{Relatieklasse}{Fractielidmaatschap}
 
           \attribute{ID}{string}{[0..1]} \\
           \attribute{Datum begin fractielidmaatschap}{datum}{[0..1]} \\
@@ -355,7 +378,15 @@
 
         %% fractie -> stemming
         \draw[relatiepijl] (fractie) --
-        node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (stemming);
+        coordinate[pos=0.5] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
+        (stemming);
+        %% needed for allignment reasons
+        \coordinate (linestartfractiestemresultaat) at (tempcoordinate |- stemresultaatperfractie.east);
+        %% dashed line to stemresultaat per fractie
+        \draw[dashed, very thick] (linestartfractiestemresultaat) --
+        node [pos=0, anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}}
+        (stemresultaatperfractie.east);
+        
         
         %% vergadering -> mediabron
         \draw[relatiepijl] (vergadering)  -- 
@@ -372,23 +403,24 @@
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
         %% deelnemer -> persoon
         \draw[relatiepijl] (deelnemer) --
-        node [fill=white, above] {is}
-        node [fill=white, below] {\umltype{Relatiesoort}}
+        node [above] {is}
+        node [below] {\umltype{Relatiesoort}}
         (natuurlijkpersoon);
         %% deelnemer -> stemming
-        \draw[dashed, very thick] ($(deelnemer.east)!0.5!(stemming.west) + (0, .10)$) -- (stem);
+        \draw[dashed, very thick] ($(deelnemer.east)!0.5!(stemming.west) + (0, .50)$) -- (stem);
         \draw[relatiepijl] ($(deelnemer.east |- stemming.west)$) --
         node [above, fill=white] {neemt deel aan} %% no coordinates set (problematic!)
         node [below] {\umltype{Relatiesoort}} %% no coordinates set (problematic!)
         (stemming.west);
 
-
-        \draw[gegevenspijl] (natuurlijkpersoon.south) -- (naam);
-        \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.north) -- ([xshift=-3cm]natuurlijkpersoon.north |- nevenfunctie.south);
+        %% persoon -> naam
+        \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.south) -- ([xshift=-3cm] naam);
+        %% persoon -> nevenfunctie
+        \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.north) -- ([xshift=-3cm] natuurlijkpersoon.north |- nevenfunctie.south);
         %% persoon -> fractie (by way of fractielidmaatschap)
-        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(3.9,0)$)  |-
+        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(4.9,0)$)  |-
         coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
-        ($(fractielidmaatschap.south)-(0.0cm,1.9cm)$) -| (fractie.south);
+        ($(fractielidmaatschap.south)-(0.0cm,1.85cm)$) -| (fractie.south);
         %% dashed line
         \draw[dashed, very thick] (linestartfractielidmaatschap) --
         node [above, fill=white, pos=0.0] {is lid van}
