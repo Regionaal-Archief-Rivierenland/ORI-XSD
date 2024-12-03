@@ -366,8 +366,8 @@
         node [anchor=center, fill=white, above, pos=0.12] {heeft als bijlage}
         node [anchor=center, fill=white, below, pos=0.12] {\umltype{Relatiesoort}}
         ($(mdto.north)-(3.3cm, 0cm)$);
-        
-        %% deelnemer -> vergadering
+         
+       %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  -- 
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
         %% deelnemer -> persoon
@@ -381,12 +381,19 @@
         node [above, fill=white] {neemt deel aan} %% no coordinates set (problematic!)
         node [below] {\umltype{Relatiesoort}} %% no coordinates set (problematic!)
         (stemming.west);
-        %% dashedline
 
 
-        %% persoon -> naam gegevens
         \draw[gegevenspijl] (natuurlijkpersoon.south) -- (naam);
         \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.north) -- ([xshift=-3cm]natuurlijkpersoon.north |- nevenfunctie.south);
+        %% persoon -> fractie (by way of fractielidmaatschap)
+        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(3.9,0)$)  |-
+        coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
+        ($(fractielidmaatschap.south)-(0.0cm,1.9cm)$) -| (fractie.south);
+        %% dashed line
+        \draw[dashed, very thick] (linestartfractielidmaatschap) --
+        node [above, fill=white, pos=0.0] {is lid van}
+        node [below, pos=0.0] {\umltype{Relatiesoort}}
+        (fractielidmaatschap.south);
 
 \end{tikzpicture}
 
