@@ -543,7 +543,7 @@
                     <xs:documentation>Uniek identificatiekenmerk van het dagelijks bestuur.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="dagelijksBestuursnaam" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:element name="dagelijksBestuursNaam" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Naam van het dagelijks bestuur.</xs:documentation>
                 </xs:annotation>
