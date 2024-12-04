@@ -328,11 +328,6 @@
           \attribute{\textbf{Aantal uitgebrachte stemmen}}{integer}{}
         };
 
-        \node (informatieobject) [ORI object, align=center, above left = 6.6cm and -15.0cm of besluit]
-        {
-          \objectheader{Relatieklasse}{Informatieobject}
-          \attribute{Informatieobject type}{\keuze{Motie} | \keuze{Antwoord} | ...}{[0..1]}
-        };
 
   \node (mdto) [rectangle, draw, ultra thick, above right = 6cm and -0.5cm of stemmingOverPersonenGegevens, inner sep=50pt, double, double distance = 1cm, fill=githubgrey, align=center]
         {
@@ -362,7 +357,6 @@
         coordinate[pos=0.85] (linestart3) % coordinate along the line
         ($(mdto.south)+(0,-0.5cm)$);
 
-        \draw[dashed, very thick] (linestart3) -| (informatieobject);
         
         %% agendapunt -> vergadering
         \draw[relatiepijl] (agendapunt) -- (vergadering)
@@ -381,7 +375,7 @@
         ($(agendapunt.east)+(0,0)$) -- ++(0,0)  % Start from agendapunt.east
         %% FIXME: ugly hack
         -| ($(mdto.south) - (2cm, 0.5cm)$) % Vertical and horizontal alignment
-        node [pos=0.08, above] {heeft als bijlage}
+        node [pos=0.08, above, fill=none] {heeft als bijlage}
         node [pos=0.08, below] {\umltype{Relatiesoort}};
 
         
@@ -389,10 +383,10 @@
         \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$)  -|
         node [pos=0.18, above] {is vastgelegd in}
         node [pos=0.18, below] {\umltype{Relatiesoort}}
+        %% FIXME: syntax
         coordinate[pos=0.22] (linestart) % coordinate along the line
         ($(mdto.north)+(0cm,0.5cm)$);
-        %% dashed line
-        \draw[dashed, very thick] (linestart) |- ($(informatieobject.north west)+(0,-0.6)$);
+
 
         %% mediabron -> heeft ondertitel bestand
         \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0,1.3)$)  -|
@@ -401,7 +395,6 @@
         coordinate[pos=0.26] (linestart4) % coordinate along the line
         ($(mdto.north)+(-1.2cm,0.5cm)$);
         %% dashed line
-        \draw[dashed, very thick] (linestart4) |- (informatieobject.north west);
 
         %% fractie -> stemming
         \draw[relatiepijl] (fractie) --
@@ -421,8 +414,8 @@
         %% vergadering -> MDTO
         \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
         ($(vergadering.east)+(11.0,6)$) --
-        node [anchor=center, fill=white, above, pos=0.12] {heeft als bijlage}
-        node [anchor=center, fill=white, below, pos=0.12] {\umltype{Relatiesoort}}
+        node [anchor=center, above, pos=0.12] {heeft als bijlage}
+        node [anchor=center, below, pos=0.12] {\umltype{Relatiesoort}}
         ($(mdto.north)-(3.3cm, 0cm)$);
          
        %% deelnemer -> vergadering
