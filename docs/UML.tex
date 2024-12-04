@@ -47,6 +47,7 @@
 \usetikzlibrary{backgrounds}
 
 %% TODO
+%% - be consistent in ur use of baselineskips (and amounts)
 %% - : na verplicht attribuut moet eigenlijk ook bold als de attribuutnaam dat is
 %% - moeten verplichte relaties ook dik gedrukt/anders getypeset
 %% - I think the arrow between vergadering and mediabron should be verplicht at least once
@@ -160,7 +161,7 @@
               \raggedright
               \keuze{Voorzitter} | \keuze{Vice-voorzitter} | \keuze{Raadslid} | \keuze{Statenlid} | \keuze{Dagelijks bestuurslid} | \keuze{Algemeen bestuurslid} | \keuze{Inspreker} | \keuze{Portefeuillehouder} | \keuze{Griffier} | \keuze{Overig} \vspace{0.3em}
             \end{minipage}
-          }{} \\[13\lineheight]
+          }{} \\[1.2\baselineskip]
           \attribute{Organisatie}{string}{[0..1]} \\
           \attribute{Deelnemerspositie}{string}{[0..1]} \\
           \attribute{Aanvang aanwezigheid}{datum + tijd}{[0..1]} \\
@@ -215,7 +216,23 @@
           \objectheader{Relatieklasse}{Stemresultaat per fractie}
 
           \attribute{ID}{string}{[0..1]} \\
-          \attribute{Stemresultaat}{\keuze{Aangenomen} | \keuze{Verworpen} | \keuze{Verdeeld}}{[0..1]}
+          \attribute{Fractie stemresultaat}{\keuze{Aangenomen} | \keuze{Verworpen} | \keuze{Verdeeld}}{[0..1]}
+        };
+   \node (dagelijksbestuurlidmaatschaap) [ORI relatieklasse, align=center, below = 7.5cm of stemresultaatperfractie]
+        {
+          \objectheader{Relatieklasse}{Dagelijks bestuur lidmaatschap}
+
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{Datum begin dagelijks bestuur lidmaatschap}{datum}{[0..1]} \\ 
+          \attribute{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
+        };
+   \node (dagelijksbestuur) [ORI object, align=center, below = 7.5cm of fractie]
+        {
+          \objectheader{Objecttype}{Dagelijks bestuur}
+
+          \attribute{ID}{string}{} \\
+          \attribute{Dagelijks bestuurnaam}{datum}{[0..1]} \\ 
+          \attribute{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
         };
    \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem]
         {
@@ -239,8 +256,13 @@
           \objectheader{Objecttype}{Natuurlijk persoon}
 
           \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Geslachtsaanduiding}{\keuze{Man} | \keuze{Vrouw} | \keuze{Anders} | \keuze{Onbekend}}{[0..1]} \\
-          \attribute{Functie}{\keuze{Burgermeester} | \keuze{Wethouder} | ...}{[0..1]} \\
+          \attribute{Geslachtsaanduiding}{\keuze{Man} | \keuze{Vrouw} | \keuze{Anders} | \keuze{Onbekend}}{[0..1]} \\[0.4\baselineskip]
+          \attribute{Functie}{
+            \begin{minipage}[t]{0.72\linewidth}
+              \raggedright
+              \keuze{Burgemeester} | \keuze{Wethouder} | \keuze{Raadslid} | \keuze{Burgerlid} | \keuze{Griffier} | \keuze{Gemeentesecretaris} | \keuze{Commissaris van de Koning} | \keuze{Gedeputeerde} | \keuze{Statenlid} | \keuze{Provinciesecretaris} | \keuze{Dijkgraaf} | \keuze{Dagelijks bestuurslid} | \keuze{Algemeen bestuurslid} | \keuze{Secretarisdirecteur} | \keuze{Ambtenaar/medewerker} | \keuze{Adviseur of deskundige} | \keuze{Overig} \vspace*{0.3em}
+            \end{minipage}
+          }{[0..1]} \\[1.2\baselineskip]
           \attribute{\textbf{Naam}}{naamGegevens}{} \\
           \attribute{Nevenfunctie}{nevenfunctieGegevens}{[0..*]}
         };
@@ -253,7 +275,7 @@
           \attribute{Voorletters}{string}{[0..1]} \\
           \attribute{Voornamen}{string}{[0..1]} \\
           \attribute{Volledige naam}{string}{[0..1]}
-        };
+        }; 
    \node (nevenfunctie) [ORI object, above left = 2.2cm and -9cm of natuurlijkpersoon, align=center, draw=gray]
         {
           \objectheader{Gegevensgroeptype}{Nevenfunctie}
@@ -267,7 +289,7 @@
           \attribute{\textbf{Datum aanvang nevenfunctie}}{datum}{} \\
           \attribute{Datum einde nevenfunctie}{datum}{[0..1]}
         };
-   \node (fractielidmaatschap) [ORI object, below = 2.2cm of deelnemer, align=center, draw=gray]
+   \node (fractielidmaatschap) [ORI relatieklasse, below = 2.2cm of deelnemer, align=center]
         {
           \objectheader{Relatieklasse}{Fractielidmaatschap}
 
@@ -426,6 +448,15 @@
         node [above, fill=white, pos=0.0] {is lid van}
         node [below, pos=0.0] {\umltype{Relatiesoort}}
         (fractielidmaatschap.south);
+        %% persoon -> dagelijks bestuur (by way of dagelijksbestuurlidmaatschap)
+        %% \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(4.9,0)$)  |-
+        %% coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
+        %% ($(fractielidmaatschap.south)-(0.0cm,1.85cm)$) -| (fractie.south);
+        %% %% dashed line
+        %% \draw[dashed, very thick] (linestartfractielidmaatschap) --
+        %% node [above, fill=white, pos=0.0] {is lid van}
+        %% node [below, pos=0.0] {\umltype{Relatiesoort}}
+        %% (fractielidmaatschap.south);
 
 \end{tikzpicture}
 
