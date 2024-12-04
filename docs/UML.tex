@@ -230,9 +230,10 @@
         {
           \objectheader{Objecttype}{Dagelijks bestuur}
 
-          \attribute{ID}{string}{} \\
-          \attribute{Dagelijks bestuurnaam}{datum}{[0..1]} \\ 
-          \attribute{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
+          \attribute{\textbf{ID}}{string}{} \\
+          \attribute{Dagelijks bestuur naam}{string}{[0..1]} \\ 
+          \attribute{Dagelijks bestuur type}{\keuze{College} | \keuze{Gedeputeerde Staten}}{[0..1]} \\
+          \attribute{\textbf{Bestuurslaag}}{bestuurslaagGegevens}{} \\
         };
    \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem]
         {
