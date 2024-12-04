@@ -218,21 +218,13 @@
           \attribute{ID}{string}{[0..1]} \\
           \attribute{Fractie stemresultaat}{\keuze{Aangenomen} | \keuze{Verworpen} | \keuze{Verdeeld}}{[0..1]}
         };
-   \node (dagelijksbestuurlidmaatschaap) [ORI relatieklasse, align=center, below = 7.5cm of stemresultaatperfractie]
-        {
-          \objectheader{Relatieklasse}{Dagelijks bestuur lidmaatschap}
-
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{Datum begin dagelijks bestuur lidmaatschap}{datum}{[0..1]} \\ 
-          \attribute{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
-        };
    \node (dagelijksbestuur) [ORI object, align=center, below = 7.5cm of fractie]
         {
           \objectheader{Objecttype}{Dagelijks bestuur}
 
           \attribute{\textbf{ID}}{string}{} \\
           \attribute{\textbf{Dagelijks bestuur naam}}{string}{} \\ 
-          \attribute{\textbf{Dagelijks bestuur type}}{\keuze{College} | \keuze{Gedeputeerde Staten}}{} \\
+          \attribute{\textbf{Dagelijks bestuur type}}{\keuze{College} | \keuze{Gedeputeerde Staten} | \keuze{Dagelijks bestuur}}{} \\
           \attribute{\textbf{Bestuurslaag}}{bestuurslaagGegevens}{}
         };
    \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem]
@@ -299,7 +291,14 @@
           \attribute{Datum einde fractielidmaatschap}{datum}{[0..1]} \\
           \attribute{\textbf{Indicate voorzitter}}{boolean}{}
         };
-        
+   \node (dagelijksbestuurlidmaatschap) [ORI relatieklasse, align=center, below = 3.1cm of fractielidmaatschap]
+        {
+          \objectheader{Relatieklasse}{Dagelijks bestuur lidmaatschap}
+
+          \attribute{ID}{string}{[0..1]} \\
+          \attribute{Datum begin dagelijks bestuur lidmaatschap}{datum}{[0..1]} \\ 
+          \attribute{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
+        };
    \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
         {
           \objectheader{Objecttype}{Mediabron}
@@ -367,22 +366,27 @@
         
         %% agendapunt -> vergadering
         \draw[relatiepijl] (agendapunt) -- (vergadering)
-        node [fill=white, pos=0.5, above] {wordt behandeld tijdens}
-        node [fill=white, pos=0.5, below] {\umltype{Relatiesoort}}
+        node [pos=0.5, above] {wordt behandeld tijdens}
+        node [pos=0.5, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.05, above] {0..*}
         node [kardinaliteit, pos=0.9, above] {1};
         
         %% agendapunt -> MDTO
-        \draw[relatiepijl] ($(agendapunt.east)+(0,0.0)$) --
-        node [pos=0.08, above] {heeft als bijlage}
-        node [pos=0.08, below] {\umltype{Relatiesoort}}
-        coordinate[pos=0.14] (linestart2) % coordinate along the line
-        (mdto);
-        %% dashed line
-        \draw[dashed, very thick] (linestart2) |- (informatieobject);
+        %% \draw[relatiepijl] ($(agendapunt.east)+(0,0.0)$) --
+        %% node [pos=0.08, above] {heeft als bijlage}
+        %% node [pos=0.08, below] {\umltype{Relatiesoort}}
+        %% (mdto.west);
 
+        \draw[relatiepijl] 
+        ($(agendapunt.east)+(0,0)$) -- ++(0,0)  % Start from agendapunt.east
+        %% FIXME: ugly hack
+        -| ($(mdto.south) - (2cm, 0.5cm)$) % Vertical and horizontal alignment
+        node [pos=0.08, above] {heeft als bijlage}
+        node [pos=0.08, below] {\umltype{Relatiesoort}};
+
+        
         %% mediabron -> is vastgelegd in
-        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0)$)  -|
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$)  -|
         node [pos=0.18, above] {is vastgelegd in}
         node [pos=0.18, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.22] (linestart) % coordinate along the line
@@ -391,11 +395,11 @@
         \draw[dashed, very thick] (linestart) |- ($(informatieobject.north west)+(0,-0.6)$);
 
         %% mediabron -> heeft ondertitel bestand
-        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,1.3)$)  -|
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0,1.3)$)  -|
         node [pos=0.18, above] {heeft ondertitelbestand}
         node [pos=0.18, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.26] (linestart4) % coordinate along the line
-        ($(mdto.north)+(1.2cm,0.5cm)$);
+        ($(mdto.north)+(-1.2cm,0.5cm)$);
         %% dashed line
         \draw[dashed, very thick] (linestart4) |- (informatieobject.north west);
 
@@ -435,6 +439,25 @@
         node [above, fill=white] {neemt deel aan} %% no coordinates set (problematic!)
         node [below] {\umltype{Relatiesoort}} %% no coordinates set (problematic!)
         (stemming.west);
+        %% deelnemer -> agendapunt (by way of spreekfragment)
+        \draw[relatiepijl] ($(deelnemer.north) + (3cm, 0)$) -- ($(deelnemer.north) + (3cm, 3.0cm)$) --
+        coordinate[pos=0.9] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
+        ($(deelnemer.north) + (12cm, 3.0cm)$) |- ($(agendapunt.west) -  (0, 3.0cm)$);
+
+        % Define linestartspreekfragment, horizontally shifted by 1cm from spreekfragment.south 
+        % but vertically aligned with tempcoordinate (line X)
+        \coordinate (linestartspreekfragment) at ($(tempcoordinate) + (-1.5cm, 0)$);
+
+        % Define endpoint of the dashed line, horizontally shifted by 1cm from spreekfragment.south
+        \coordinate (lineendsouth) at ($(spreekfragment.south) + (-1.5cm, 0)$);
+
+        
+        % Draw the dashed line
+        \draw[dashed, very thick] 
+        (linestartspreekfragment) -- 
+        node [pos=0.0, anchor=center, fill=white] {spreekt tijdens\\\umltype{Relatiesoort}}
+        (lineendsouth);
+
 
         %% persoon -> naam
         \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.south) -- ([xshift=-3cm] naam);
@@ -450,15 +473,20 @@
         node [below, pos=0.0] {\umltype{Relatiesoort}}
         (fractielidmaatschap.south);
         %% persoon -> dagelijks bestuur (by way of dagelijksbestuurlidmaatschap)
-        %% \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(4.9,0)$)  |-
-        %% coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
-        %% ($(fractielidmaatschap.south)-(0.0cm,1.85cm)$) -| (fractie.south);
-        %% %% dashed line
-        %% \draw[dashed, very thick] (linestartfractielidmaatschap) --
-        %% node [above, fill=white, pos=0.0] {is lid van}
-        %% node [below, pos=0.0] {\umltype{Relatiesoort}}
-        %% (fractielidmaatschap.south);
+        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(2.45,0)$)  |-
+        ($(dagelijksbestuur.west) - (0, 1.0cm)$);
+        %% dashed line
+        \draw[dashed, very thick] (dagelijksbestuurlidmaatschap.south) --
+        node [above, fill=white, pos=1.05] {is lid van}
+        node [below, pos=1.05] {\umltype{Relatiesoort}}
+        ($(dagelijksbestuurlidmaatschap.south) - (0, 1.8cm)$);
 
+        %% spreekfragment -> mediabron
+        \draw[relatiepijl] (spreekfragment.west) -|
+        node [above, fill=white, pos=0.27] {is vastgelegd in}
+        node [below, pos=0.27] {\umltype{Relatiesoort}}
+        (mediabron.north);
+        
 \end{tikzpicture}
 
 \end{document}
