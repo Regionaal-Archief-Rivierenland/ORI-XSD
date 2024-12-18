@@ -329,7 +329,14 @@
         };
 
 
-  \node (mdto) [rectangle, draw, ultra thick, above right = 6cm and -0.5cm of stemmingOverPersonenGegevens, inner sep=50pt, double, double distance = 1cm, fill=githubgrey, align=center]
+   \node (informatieobject) [ORI object, above right = 6cm and -0.5cm of stemmingOverPersonenGegevens, align=center]
+        {
+          \objectheader{Objecttype}{Informatieobject}
+
+          \attribute{Informatieobject type}{\keuze{Voorstel} | \keuze{motie} | ...}{[0..1]}
+        };
+
+  \node (mdto) [rectangle, draw, ultra thick, right = 3cm of informatieobject, inner sep=50pt, double, double distance = 1cm, fill=githubgrey, align=center]
         {
           {\huge MDTO}
         };
@@ -350,12 +357,12 @@
         node [kardinaliteit, above left, pos=0.95, yshift=-0.0cm] {0..1};
         %% stemming -> stemming over personen
         \draw[gegevenspijl] (stemming) -| (stemmingOverPersonenGegevens);
-        %% stemming -> MDTO
+        %% stemming -> informatieobject
         \draw[relatiepijl] ($(stemming.east)+(0,-1.3)$) -|
         node [pos=0.2, above] {heeft betrekking op}
         node [pos=0.2, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.85] (linestart3) % coordinate along the line
-        ($(mdto.south)+(0,-0.5cm)$);
+        ($(informatieobject.south)+(0,-0.5cm)$);
 
         
         %% agendapunt -> vergadering
@@ -364,28 +371,20 @@
         node [pos=0.5, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.05, above] {0..*}
         node [kardinaliteit, pos=0.9, above] {1};
-        
-        %% agendapunt -> MDTO
-        %% \draw[relatiepijl] ($(agendapunt.east)+(0,0.0)$) --
-        %% node [pos=0.08, above] {heeft als bijlage}
-        %% node [pos=0.08, below] {\umltype{Relatiesoort}}
-        %% (mdto.west);
 
-        \draw[relatiepijl] 
-        ($(agendapunt.east)+(0,0)$) -- ++(0,0)  % Start from agendapunt.east
-        %% FIXME: ugly hack
-        -| ($(mdto.south) - (2cm, 0.5cm)$) % Vertical and horizontal alignment
-        node [pos=0.08, above, fill=none] {heeft als bijlage}
-        node [pos=0.08, below] {\umltype{Relatiesoort}};
 
-        
+\draw[relatiepijl] 
+    (agendapunt.east) -- ++(2cm,0) -- (informatieobject.west)
+    node [pos=0.08, above, fill=none] {heeft als bijlage}
+    node [pos=0.08, below] {\umltype{Relatiesoort}};
+
         %% mediabron -> is vastgelegd in
         \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$)  -|
         node [pos=0.18, above] {is vastgelegd in}
         node [pos=0.18, below] {\umltype{Relatiesoort}}
         %% FIXME: syntax
         coordinate[pos=0.22] (linestart) % coordinate along the line
-        ($(mdto.north)+(0cm,0.5cm)$);
+        ($(informatieobject.north)+(0cm,0.5cm)$);
 
 
         %% mediabron -> heeft ondertitel bestand
@@ -393,7 +392,7 @@
         node [pos=0.18, above] {heeft ondertitelbestand}
         node [pos=0.18, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.26] (linestart4) % coordinate along the line
-        ($(mdto.north)+(-1.2cm,0.5cm)$);
+        ($(informatieobject.north)+(-1.2cm,0.5cm)$);
         %% dashed line
 
         %% fractie -> stemming
@@ -411,12 +410,12 @@
         %% vergadering -> mediabron
         \draw[relatiepijl] (vergadering)  -- 
         node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{Relatiesoort}} (mediabron);
-        %% vergadering -> MDTO
+        %% vergadering -> informatieobject
         \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
         ($(vergadering.east)+(11.0,6)$) --
         node [anchor=center, above, pos=0.12] {heeft als bijlage}
         node [anchor=center, below, pos=0.12] {\umltype{Relatiesoort}}
-        ($(mdto.north)-(3.3cm, 0cm)$);
+        ($(informatieobject.north)-(3.3cm, 0cm)$);
          
        %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  -- 
