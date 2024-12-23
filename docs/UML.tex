@@ -355,41 +355,43 @@
         node [pos=0.74, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.065, right] {0..*}
         node [kardinaliteit, above left, pos=0.95, yshift=-0.0cm] {0..1};
+        %% FIXME: place below besluit. That makes your arrows cleaner.
+        %% Also, now it looks like these two things have something to do with each other, which they don't 
         %% stemming -> stemming over personen
         \draw[gegevenspijl] (stemming) -| (stemmingOverPersonenGegevens);
-        %% stemming -> informatieobject
+        %% stemming -> MDTO
         \draw[relatiepijl] ($(stemming.east)+(0,-1.3)$) -|
         node [pos=0.2, above] {heeft betrekking op}
         node [pos=0.2, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.85] (linestart3) % coordinate along the line
-        (informatieobject.south);
+        (mdto.south);
         
         %% agendapunt -> vergadering
         \draw[relatiepijl] (agendapunt) -- (vergadering)
-        node [pos=0.9, above] {wordt behandeld tijdens}
+        node [pos=0.5, above] {wordt behandeld tijdens}
         node [pos=0.5, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.05, above] {0..*}
         node [kardinaliteit, pos=0.9, above] {1};
 
-        %% agendapunt -> informatieobject
+        %% agendapunt -> mdto
         \draw[relatiepijl] 
-        (agendapunt.east) -- ++(2cm,0) -| ($(informatieobject.south) - (2cm, 0cm)$)
-        node [pos=0.18, above] {heeft als bijlage}
-        node [pos=0.18, below] {\umltype{Relatiesoort}};
+        ($(agendapunt.east) - (0, 2cm)$) -- ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
+        node [pos=0.1, above] {heeft als bijlage}
+        node [pos=0.1, below] {\umltype{Relatiesoort}};
 
-        %% mediabron -> informatieobject (is vastgelegd in)
+        %% mediabron -> mdto (is vastgelegd in)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$)  -|
         node [pos=0.335, above] {is vastgelegd in}
         node [pos=0.335, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.22] (linestart) % coordinate along the line
-        ($(informatieobject.north)+(3cm,0)$);
+        ($(mdto.north)+(3cm,0)$);
 
-        %% mediabron -> informatieobject (ondertitel bestand)
+        %% mediabron -> mdto (ondertitel bestand)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0,1.3)$)  -|
         node [pos=0.33, above] {heeft ondertitelbestand}
         node [pos=0.33, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.26] (linestart4) % coordinate along the line
-        ($(informatieobject.north)+(1cm, 0)$);
+        ($(mdto.north)+(1cm, 0)$);
         %% dashed line
 
         %% fractie -> stemming
