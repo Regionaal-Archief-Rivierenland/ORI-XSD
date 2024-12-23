@@ -225,7 +225,7 @@
 
           \attribute{\textbf{ID}}{string}{} \\
           \attribute{\textbf{Dagelijks bestuur naam}}{string}{} \\ 
-          \attribute{\textbf{Dagelijks bestuur type}}{\keuze{College} | \keuze{Gedeputeerde Staten} | \keuze{Dagelijks bestuur}}{} \\
+          \attribute{\textbf{Dagelijks bestuur type}}{\keuze{enumeratie dagelijks bestuur type}}{} \\
           \attribute{\textbf{Bestuurslaag}}{bestuurslaagGegevens}{}
         };
    \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem]
@@ -318,10 +318,10 @@
           \attribute{ID}{string}{[0..1]} \\
           \attribute{Besluit toelichting}{string}{[0..1]} \\
           \attribute{Toezegging}{string}{[0..1]} \\
-          \attribute{\textbf{Besluit resultaat}}{\keuze{Unaniem aangenomen} | \keuze{Aangenomen} | ... }{}
+          \attribute{\textbf{Besluit resultaat}}{\keuze{enumeratie Besluit resultaat}}{}
         };
 
-  \node (stemmingOverPersonenGegevens) [ORI object, right = 1.2cm of besluit, align=center, draw=gray]
+  \node (stemmingOverPersonenGegevens) [ORI object, below right = 5.3cm and -10cm of besluit, align=center, draw=gray]
         {
           \objectheader{Gegevensgroeptype}{Stemming over personen}
 
@@ -359,16 +359,17 @@
         node [pos=0.74, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.065, right] {0..*}
         node [kardinaliteit, above left, pos=0.95, yshift=-0.0cm] {0..1};
-        %% FIXME: place below besluit. That makes your arrows cleaner.
-        %% Also, now it looks like these two things have something to do with each other, which they don't 
         %% stemming -> stemming over personen
-        \draw[gegevenspijl] (stemming) -| (stemmingOverPersonenGegevens);
+        \draw[gegevenspijl] ($(stemming.south) + (2.5, -0.0cm)$) |- (stemmingOverPersonenGegevens.west);
         %% stemming -> MDTO
-        \draw[relatiepijl] ($(stemming.east)+(0,-1.3)$) -|
-        node [pos=0.2, above] {heeft betrekking op}
-        node [pos=0.2, below] {\umltype{Relatiesoort}}
-        coordinate[pos=0.85] (linestart3) % coordinate along the line
+        \draw[relatiepijl] ($(stemming.east) + (0, 0.0cm)$) -|
+        node [pos=0.330, above] {heeft betrekking op}
+        node [pos=0.330, below] {\umltype{Relatiesoort}}
+        coordinate[pos=0.330] (tempcoordinate) % coordinate along the line
         (mdto.south);
+        %% draw dashed line to informatieobject
+        \coordinate (lineendnorth) at (tempcoordinate|-informatieobject.south);
+        \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.5cm)$) -- (lineendnorth);
         
         %% agendapunt -> vergadering
         \draw[relatiepijl] (agendapunt) -- (vergadering)
@@ -380,24 +381,24 @@
         %% agendapunt -> mdto
         \draw[relatiepijl] 
         ($(agendapunt.east) - (0, 2.5cm)$) -- ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
-        coordinate[pos=0.26] (tempcoordinate)
-        node [pos=0.26, above] {heeft als bijlage}
-        node [pos=0.26, below] {\umltype{Relatiesoort}};
-        % Draw the dashed arrow
+        coordinate[pos=0.24] (tempcoordinate)
+        node [pos=0.24, above] {heeft als bijlage}
+        node [pos=0.24, below] {\umltype{Relatiesoort}};
+        % Draw the dashed line
         \coordinate (lineendnorth) at (tempcoordinate|-informatieobject.south);
         \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.52cm)$) -- (lineendnorth);
 
         %% mediabron -> mdto (is vastgelegd in)
-        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$)  -|
-        node [pos=0.335, above] {is vastgelegd in}
-        node [pos=0.335, below] {\umltype{Relatiesoort}}
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$) -|
+        node [pos=0.18, above] {is vastgelegd in}
+        node [pos=0.18, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.22] (linestart) % coordinate along the line
         ($(mdto.north)+(2.8cm,0)$);
 
         %% mediabron -> mdto (ondertitel bestand)
-        \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0,1.3)$)  -|
-        node [pos=0.33, above] {heeft ondertitelbestand}
-        node [pos=0.33, below] {\umltype{Relatiesoort}}
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0,1.3)$) -|
+        node [pos=0.23, above] {heeft ondertitelbestand}
+        node [pos=0.23, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.26] (linestart4) % coordinate along the line
         ($(mdto.north)+(1cm, 0)$);
 
@@ -420,12 +421,12 @@
         %% vergadering -> mdto (bijlage)
         \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
         ($(vergadering.east)+(11, 5.5)$) -| 
-        node [anchor=center, above, pos=0.325] {heeft als bijlage}
-        node [anchor=center, below, pos=0.325] {\umltype{Relatiesoort}}
-        coordinate[pos=0.325] (tempcoordinate) %% define tmp halfway coord
+        node [anchor=center, above, pos=0.3] {heeft als bijlage}
+        node [anchor=center, below, pos=0.3] {\umltype{Relatiesoort}}
+        coordinate[pos=0.3] (tempcoordinate) %% define tmp halfway coord
         ($(mdto.north)+(-2.8cm,0)$);
 
-        % Draw the dashed arrow
+        % Draw the dashed line
         \coordinate (lineendsouth) at (tempcoordinate|-informatieobject.north);
         \draw[dashed, very thick] ($(tempcoordinate) + (0, -0.5cm)$) -- (lineendsouth);
         
