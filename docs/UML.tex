@@ -329,15 +329,15 @@
           \attribute{\textbf{Aantal uitgebrachte stemmen}}{integer}{}
         };
 
-   \node (informatieobject) [ORI object, above right = -4.6cm and 5cm of agendapunt, align=center]
+   \node (vergaderstuk) [ORI object, above right = -4.6cm and 5.2cm of agendapunt, align=center]
         {
-          \objectheader{Relatieklasse}{Informatieobject}
+          \objectheader{Relatieklasse}{Vergaderstuk}
 
-          \attribute{Informatieobject type}{\keuze{enumeratie Informatieobject type}}{[0..1]}
+          \attribute{Vergaderstuk type}{\keuze{enumeratie Vergaderstuk type}}{[0..1]}
         };
 
   %% inner MDTO rectangle
-  \node (mdto-inner) [rectangle, draw, ultra thick, right = 3cm of informatieobject, inner sep=40pt, fill=githubgrey, align=center]
+  \node (mdto-inner) [rectangle, draw, ultra thick, right = 3.2cm of vergaderstuk, inner sep=40pt, fill=githubgrey, align=center]
         {
           {\huge MDTO}
         };
@@ -367,8 +367,8 @@
         node [pos=0.330, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.330] (tempcoordinate) % coordinate along the line
         (mdto.south);
-        %% draw dashed line to informatieobject
-        \coordinate (lineendnorth) at (tempcoordinate|-informatieobject.south);
+        %% draw dashed line to vergaderstuk
+        \coordinate (lineendnorth) at (tempcoordinate|-vergaderstuk.south);
         \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.5cm)$) -- (lineendnorth);
         
         %% agendapunt -> vergadering
@@ -385,7 +385,7 @@
         node [pos=0.24, above] {heeft als bijlage}
         node [pos=0.24, below] {\umltype{Relatiesoort}};
         % Draw the dashed line
-        \coordinate (lineendnorth) at (tempcoordinate|-informatieobject.south);
+        \coordinate (lineendnorth) at (tempcoordinate|-vergaderstuk.south);
         \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.52cm)$) -- (lineendnorth);
 
         %% mediabron -> mdto (is vastgelegd in)
@@ -427,7 +427,7 @@
         ($(mdto.north)+(-2.8cm,0)$);
 
         % Draw the dashed line
-        \coordinate (lineendsouth) at (tempcoordinate|-informatieobject.north);
+        \coordinate (lineendsouth) at (tempcoordinate|-vergaderstuk.north);
         \draw[dashed, very thick] ($(tempcoordinate) + (0, -0.5cm)$) -- (lineendsouth);
         
         %% vergadering -> mdto (notulen)
