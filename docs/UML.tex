@@ -329,22 +329,21 @@
           \attribute{\textbf{Aantal uitgebrachte stemmen}}{integer}{}
         };
 
+   \node (informatieobject) [ORI object, above right = -4.6cm and 5cm of agendapunt, align=center]
+        {
+          \objectheader{Relatieklasse}{Informatieobject}
+
+          \attribute{Informatieobject type}{\keuze{enumeratie Informatieobject type}}{[0..1]}
+        };
+
   %% inner MDTO rectangle
-  \node (mdto-inner) [rectangle, draw, ultra thick, above right = 4cm and -0.8cm of stemmingOverPersonenGegevens, inner sep=40pt, fill=githubgrey, align=center]
+  \node (mdto-inner) [rectangle, draw, ultra thick, right = 3cm of informatieobject, inner sep=40pt, fill=githubgrey, align=center]
         {
           {\huge MDTO}
         };
 
   % Outer MDTO rectangle (this is what arrows should connect to)
   \node (mdto) [fit=(mdto-inner), draw, ultra thick, inner sep=1.1cm] {};
-    
-        
-  \node (informatieobject) [ORI object, left = 3cm of mdto, align=center]
-        {
-          \objectheader{Relatieklasse}{Informatieobject}
-
-          \attribute{Informatieobject type}{\keuze{Voorstel} | \keuze{Motie} | ...}{[0..1]}
-        };
 
 
         %% arrows
