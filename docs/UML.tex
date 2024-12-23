@@ -341,7 +341,7 @@
         
   \node (informatieobject) [ORI object, left = 3cm of mdto, align=center]
         {
-          \objectheader{Gegevensgroeptype}{Informatieobject}
+          \objectheader{Relatieklasse}{Informatieobject}
 
           \attribute{Informatieobject type}{\keuze{Voorstel} | \keuze{Motie} | ...}{[0..1]}
         };
@@ -381,8 +381,12 @@
         %% agendapunt -> mdto
         \draw[relatiepijl] 
         ($(agendapunt.east) - (0, 2.5cm)$) -- ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
-        node [pos=0.1, above] {heeft als bijlage}
-        node [pos=0.1, below] {\umltype{Relatiesoort}};
+        coordinate[pos=0.26] (tempcoordinate)
+        node [pos=0.26, above] {heeft als bijlage}
+        node [pos=0.26, below] {\umltype{Relatiesoort}};
+        % Draw the dashed arrow
+        \coordinate (lineendnorth) at (tempcoordinate|-informatieobject.south);
+        \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.52cm)$) -- (lineendnorth);
 
         %% mediabron -> mdto (is vastgelegd in)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$)  -|
@@ -397,7 +401,6 @@
         node [pos=0.33, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.26] (linestart4) % coordinate along the line
         ($(mdto.north)+(1cm, 0)$);
-        %% dashed line
 
         %% fractie -> stemming
         \draw[relatiepijl] (fractie) --
@@ -418,17 +421,22 @@
         %% vergadering -> mdto (bijlage)
         \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
         ($(vergadering.east)+(11, 5.5)$) -| 
-        node [anchor=center, above, pos=0.25] {heeft als bijlage}
-        node [anchor=center, below, pos=0.25] {\umltype{Relatiesoort}}
+        node [anchor=center, above, pos=0.325] {heeft als bijlage}
+        node [anchor=center, below, pos=0.325] {\umltype{Relatiesoort}}
+        coordinate[pos=0.325] (tempcoordinate) %% define tmp halfway coord
         ($(mdto.north)+(-2.8cm,0)$);
+
+        % Draw the dashed arrow
+        \coordinate (lineendsouth) at (tempcoordinate|-informatieobject.north);
+        \draw[dashed, very thick] ($(tempcoordinate) + (0, -0.5cm)$) -- (lineendsouth);
         
         %% vergadering -> mdto (notulen)
         \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
         ($(vergadering.north)+(4, 2)$) -| 
-        node [anchor=center, above, pos=0.325] {is genotuleerd in}
-        node [anchor=center, below, pos=0.325] {\umltype{Relatiesoort}}
+        node [anchor=center, above, pos=0.3] {is genotuleerd in}
+        node [anchor=center, below, pos=0.3] {\umltype{Relatiesoort}}
         ($(mdto.north)+(-1cm,0)$);
-         
+        
        %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  -- 
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
@@ -448,6 +456,8 @@
         coordinate[pos=0.9] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
         ($(deelnemer.north) + (12cm, 3.0cm)$) |- ($(agendapunt.west) -  (0, 3.0cm)$);
 
+        
+        %% fixme: this should be perpandiculair
         % Define linestartspreekfragment, horizontally shifted by 1cm from spreekfragment.south 
         % but vertically aligned with tempcoordinate (line X)
         \coordinate (linestartspreekfragment) at ($(tempcoordinate) + (-1.5cm, 0)$);
