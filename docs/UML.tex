@@ -351,8 +351,8 @@
         node [kardinaliteit, pos=0.81, xshift=0.03cm, right] {1} (agendapunt);
         %% stemming -> besluit
         \draw[relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west)
-        node [fill=white, pos=0.74, above] {leidt tot}
-        node [fill=white, pos=0.74, below] {\umltype{Relatiesoort}}
+        node [pos=0.74, above] {leidt tot}
+        node [pos=0.74, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.065, right] {0..*}
         node [kardinaliteit, above left, pos=0.95, yshift=-0.0cm] {0..1};
         %% stemming -> stemming over personen
@@ -362,37 +362,34 @@
         node [pos=0.2, above] {heeft betrekking op}
         node [pos=0.2, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.85] (linestart3) % coordinate along the line
-        ($(informatieobject.south)+(0,-0.5cm)$);
-
+        (informatieobject.south);
         
         %% agendapunt -> vergadering
         \draw[relatiepijl] (agendapunt) -- (vergadering)
-        node [pos=0.5, above] {wordt behandeld tijdens}
+        node [pos=0.9, above] {wordt behandeld tijdens}
         node [pos=0.5, below] {\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.05, above] {0..*}
         node [kardinaliteit, pos=0.9, above] {1};
 
+        %% agendapunt -> informatieobject
+        \draw[relatiepijl] 
+        (agendapunt.east) -- ++(2cm,0) -| ($(informatieobject.south) - (2cm, 0cm)$)
+        node [pos=0.08, above] {heeft als bijlage}
+        node [pos=0.08, below] {\umltype{Relatiesoort}};
 
-\draw[relatiepijl] 
-    (agendapunt.east) -- ++(2cm,0) -- (informatieobject.west)
-    node [pos=0.08, above, fill=none] {heeft als bijlage}
-    node [pos=0.08, below] {\umltype{Relatiesoort}};
-
-        %% mediabron -> is vastgelegd in
+        %% mediabron -> informatieobject (is vastgelegd in)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$)  -|
-        node [pos=0.18, above] {is vastgelegd in}
-        node [pos=0.18, below] {\umltype{Relatiesoort}}
-        %% FIXME: syntax
+        node [pos=0.335, above] {is vastgelegd in}
+        node [pos=0.335, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.22] (linestart) % coordinate along the line
-        ($(informatieobject.north)+(0cm,0.5cm)$);
+        ($(informatieobject.north)+(3cm,0)$);
 
-
-        %% mediabron -> heeft ondertitel bestand
+        %% mediabron -> informatieobject (ondertitel bestand)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0,1.3)$)  -|
-        node [pos=0.18, above] {heeft ondertitelbestand}
-        node [pos=0.18, below] {\umltype{Relatiesoort}}
+        node [pos=0.33, above] {heeft ondertitelbestand}
+        node [pos=0.33, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.26] (linestart4) % coordinate along the line
-        ($(informatieobject.north)+(-1.2cm,0.5cm)$);
+        ($(informatieobject.north)+(1cm, 0)$);
         %% dashed line
 
         %% fractie -> stemming
@@ -410,12 +407,20 @@
         %% vergadering -> mediabron
         \draw[relatiepijl] (vergadering)  -- 
         node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{Relatiesoort}} (mediabron);
-        %% vergadering -> informatieobject
+
+        %% vergadering -> informatieobject (bijlage)
         \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
-        ($(vergadering.east)+(11.0,6)$) --
-        node [anchor=center, above, pos=0.12] {heeft als bijlage}
-        node [anchor=center, below, pos=0.12] {\umltype{Relatiesoort}}
-        ($(informatieobject.north)-(3.3cm, 0cm)$);
+        ($(vergadering.east)+(11, 5.5)$) -| 
+        node [anchor=center, above, pos=0.25] {heeft als bijlage}
+        node [anchor=center, below, pos=0.25] {\umltype{Relatiesoort}}
+        ($(informatieobject.north)+(-3cm,0)$);
+        
+        %% vergadering -> informatieobject (notulen)
+        \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
+        ($(vergadering.north)+(4, 2)$) -| 
+        node [anchor=center, above, pos=0.325] {is genotuleerd in}
+        node [anchor=center, below, pos=0.325] {\umltype{Relatiesoort}}
+        ($(informatieobject.north)+(-1cm,0)$);
          
        %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  -- 
@@ -426,7 +431,7 @@
         node [below] {\umltype{Relatiesoort}}
         (natuurlijkpersoon);
         %% deelnemer -> stemming
-        \draw[dashed, very thick] ($(deelnemer.east)!0.5!(stemming.west) + (0, .50)$) -- (stem);
+        \draw[dashed, very thick] ($(deelnemer.east)!0.5!(stemming.west) + (0, .54)$) -- (stem);
         \draw[relatiepijl] ($(deelnemer.east |- stemming.west)$) --
         node [above, fill=white] {neemt deel aan} %% no coordinates set (problematic!)
         node [below] {\umltype{Relatiesoort}} %% no coordinates set (problematic!)
