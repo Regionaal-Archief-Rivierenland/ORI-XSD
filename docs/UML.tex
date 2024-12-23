@@ -336,7 +336,7 @@
         };
 
   % Outer MDTO rectangle (this is what arrows should connect to)
-  \node (mdto) [fit=(mdto-inner), draw, ultra thick, inner sep=1.0cm] {};
+  \node (mdto) [fit=(mdto-inner), draw, ultra thick, inner sep=1.1cm] {};
     
         
   \node (informatieobject) [ORI object, left = 3cm of mdto, align=center]
@@ -380,7 +380,7 @@
 
         %% agendapunt -> mdto
         \draw[relatiepijl] 
-        ($(agendapunt.east) - (0, 2cm)$) -- ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
+        ($(agendapunt.east) - (0, 2.5cm)$) -- ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
         node [pos=0.1, above] {heeft als bijlage}
         node [pos=0.1, below] {\umltype{Relatiesoort}};
 
@@ -389,7 +389,7 @@
         node [pos=0.335, above] {is vastgelegd in}
         node [pos=0.335, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.22] (linestart) % coordinate along the line
-        ($(mdto.north)+(3cm,0)$);
+        ($(mdto.north)+(2.8cm,0)$);
 
         %% mediabron -> mdto (ondertitel bestand)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0,1.3)$)  -|
@@ -420,7 +420,7 @@
         ($(vergadering.east)+(11, 5.5)$) -| 
         node [anchor=center, above, pos=0.25] {heeft als bijlage}
         node [anchor=center, below, pos=0.25] {\umltype{Relatiesoort}}
-        ($(mdto.north)+(-3cm,0)$);
+        ($(mdto.north)+(-2.8cm,0)$);
         
         %% vergadering -> mdto (notulen)
         \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
