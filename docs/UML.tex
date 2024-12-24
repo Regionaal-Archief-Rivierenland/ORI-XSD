@@ -10,6 +10,7 @@
 %% math font for myriadpro
 \usepackage{mdsymbol}
 \usepackage[T1]{fontenc}
+\usepackage{varwidth}
 
 %% math symols
 \usepackage{amsmath}
@@ -21,11 +22,18 @@
 
 
 %% Color definitions
-\usepackage[dvipsnames]{xcolor} \definecolor{githubgrey}{HTML}{EAEEF2}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{githubgrey}{HTML}{EAEEF2}
 \definecolor{githubred}{HTML}{F2EAEE}
+\definecolor{mainblack}{HTML}{333333}
+\definecolor{blueishblack}{HTML}{3A3A3A}
+\definecolor{lightgray}{HTML}{D9DDE1}
 \definecolor{githubblue}{HTML}{DAE1E8}
 \definecolor{darkgreen}{HTML}{3D5E45}
 \definecolor{purple}{HTML}{5C5573}
+\definecolor{enumeratiecolor}{HTML}{3C5770}
+
+
 %% rounded boxes
 \usepackage[most]{tcolorbox}
 
@@ -79,34 +87,36 @@
       colback=githubgrey,
       fontupper={\ttfamily\mystrut},
       fontlower={\ttfamily\mystrut}]
-      {\textcolor{black}{\textbf{#2}}}
+      {\textcolor{blueishblack}{\textbf{#2}}}
 }
 
 \newcommand{\umltype}[1]{
   {\textbf{\textcolor{gray}{\guillemotleft#1\guillemotright}}}
 }
 
+\newcommand{\enumeratietype}[1]{enumeratie \textcolor{darkgreen}{#1}}
+
 %% Header of boxes
 \newcommand{\objectheader}[2]{
   \umltype{#1} \\
-  {\large \textbf{#2}}
+  {\large \textcolor{mainblack}{\textbf{#2}}}
   \nodepart[align=left]{two}
 }
 
+%% TODO: try if a regular box looks better (maybe make the whole box a certain color? or just the bottom half)
 %% Attribute typesetting
-\newcommand{\attribute}[3]{+ \; #1:\, \datatype{#2} \; {\figureversion{text}\textcolor{gray}{#3}}}
-
-\newcommand{\keuze}[1]{\textcolor{darkgreen}{``#1''}}
+\newcommand{\attribute}[3]{\textcolor{mainblack}{+ \; #1:}\, \datatype{#2} \; {\figureversion{text}\textcolor{gray}{#3}}}
 
 
 \begin{tikzpicture}[
+    %% needed to fix svg
     background rectangle/.style={fill=white}, show background rectangle,
     %% not sure why the "header" is still centered after align=left, but oh well
     %% changerectangle split part fill for colors
-    ORI object/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, draw=black, rounded corners=5pt, very thick, inner sep=10pt},
+    ORI object/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, draw=mainblack, rounded corners=5pt, very thick, inner sep=10pt},
     ORI relatieklasse/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, rounded corners=5pt, very thick, inner sep=10pt, draw=gray},
-    relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick},
-    gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed},
+    relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, draw=mainblack},
+    gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed, draw=mainblack},
     kardinaliteit/.style={text=darkgray}, 
     align=center]
   
@@ -139,9 +149,9 @@
           \attribute{Naam}{string}{[0..1]} \\
           \attribute{Vergadertoelichting}{string}{[0..1]} \\
           \attribute{Georganiseerd door gremium}{gremiumGegevens}{[0..1]} \\
-          \attribute{\textbf{Vergaderingstype}}{\keuze{Raadsvergadering} | \keuze{Commissievergadering} | ...}{} \\
+          \attribute{\textbf{Vergaderingstype}}{\enumeratietype{vergaderingstype}}{} \\
           \attribute{Locatie}{string}{[0..1]} \\
-          \attribute{Status}{\keuze{Gepland} | \keuze{Gehouden} | \keuze{Geannuleerd}}{[0..1]} \\
+          \attribute{Status}{\enumeratietype{status}}{[0..1]} \\
           \attribute{Geplande vergaderdatum}{datum}{[0..1]} \\
           \attribute{Vergaderdatum}{datum}{[0..1]} \\
           \attribute{Geplande aanvang vergadering}{datum + tijd}{[0..1]} \\
@@ -157,12 +167,7 @@
           \objectheader{Objecttype}{Aanwezige deelnemer}
 
           \attribute{ID}{string}{[0..1]} \\
-          \attribute{\textbf{Rolnaam}}{
-            \begin{minipage}[t]{0.55\linewidth}
-              \raggedright
-              \keuze{Voorzitter} | \keuze{Vice-voorzitter} | \keuze{Raadslid} | \keuze{Statenlid} | \keuze{Dagelijks bestuurslid} | \keuze{Algemeen bestuurslid} | \keuze{Inspreker} | \keuze{Portefeuillehouder} | \keuze{Griffier} | \keuze{Overig} \vspace{0.3em}
-            \end{minipage}
-          }{} \\[1.2\baselineskip]
+          \attribute{\textbf{Rolnaam}}{\enumeratietype{rolnaam}}{} \\
           \attribute{Organisatie}{string}{[0..1]} \\
           \attribute{Deelnemerspositie}{string}{[0..1]} \\
           \attribute{Aanvang aanwezigheid}{datum + tijd}{[0..1]} \\
@@ -182,8 +187,8 @@
           \objectheader{Objecttype}{Stemming}
 
           \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Stemmingstype}{\keuze{Hoofdelijk} | \keuze{Regulier} | \keuze{Schriftelijk}}{[0..1]}\\
-          \attribute{Resultaat mondelinge stemming}{\keuze{Voor} | \keuze{Tegen} | \keuze{Gelijk}}{[0..1]} \\
+          \attribute{Stemmingstype}{\enumeratietype{stemmingstype}}{[0..1]}\\
+          \attribute{Resultaat mondelinge stemming}{\enumeratietype{resultaatMondelingeStemming}}{[0..1]} \\
           \attribute{Toezegging}{string}{[0..1]} \\
           \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
           \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
@@ -203,21 +208,14 @@
           \objectheader{Relatieklasse}{Stem}
 
           \attribute{ID}{string}{[0..1]} \\
-          \attribute{\textbf{Keuze stemming}}{
-            \begin{minipage}[t]{0.44\linewidth}
-              \raggedright
-              \keuze{Voor} | \keuze{Tegen} | \keuze{Afwezig} | \keuze{Onthouden}
-              \vspace{0.3em}
-            \end{minipage}
-          }{}
-          \vspace*{0.42cm}
+          \attribute{\textbf{Keuze stemming}}{\enumeratietype{keuzeStemming}}{}
         };
    \node (stemresultaatperfractie) [ORI relatieklasse, align=center, below = 4.2cm of stem]
         {
           \objectheader{Relatieklasse}{Stemresultaat per fractie}
 
           \attribute{ID}{string}{[0..1]} \\
-          \attribute{Fractie stemresultaat}{\keuze{Aangenomen} | \keuze{Verworpen} | \keuze{Verdeeld}}{[0..1]}
+          \attribute{Fractie stemresultaat}{\enumeratietype{fractieStemresultaat}}{[0..1]}
         };
    \node (dagelijksbestuur) [ORI object, align=center, below = 7.5cm of fractie]
         {
@@ -225,7 +223,7 @@
 
           \attribute{\textbf{ID}}{string}{} \\
           \attribute{\textbf{Dagelijks bestuur naam}}{string}{} \\ 
-          \attribute{\textbf{Dagelijks bestuur type}}{\keuze{enumeratie dagelijks bestuur type}}{} \\
+          \attribute{\textbf{Dagelijks bestuur type}}{\enumeratietype{dagelijksBestuurType}}{} \\
           \attribute{\textbf{Bestuurslaag}}{bestuurslaagGegevens}{}
         };
    \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem]
@@ -250,13 +248,8 @@
           \objectheader{Objecttype}{Natuurlijk persoon}
 
           \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Geslachtsaanduiding}{\keuze{Man} | \keuze{Vrouw} | \keuze{Anders} | \keuze{Onbekend}}{[0..1]} \\[0.4\baselineskip]
-          \attribute{Functie}{
-            \begin{minipage}[t]{0.72\linewidth}
-              \raggedright
-              \keuze{Burgemeester} | \keuze{Wethouder} | \keuze{Raadslid} | \keuze{Burgerlid} | \keuze{Griffier} | \keuze{Gemeentesecretaris} | \keuze{Commissaris van de Koning} | \keuze{Gedeputeerde} | \keuze{Statenlid} | \keuze{Provinciesecretaris} | \keuze{Dijkgraaf} | \keuze{Dagelijks bestuurslid} | \keuze{Algemeen bestuurslid} | \keuze{Secretarisdirecteur} | \keuze{Ambtenaar/medewerker} | \keuze{Adviseur of deskundige} | \keuze{Overig} \vspace*{0.3em}
-            \end{minipage}
-          }{[0..1]} \\[1.2\baselineskip]
+          \attribute{Geslachtsaanduiding}{\enumeratietype{geslachtsaanduiding}}{[0..1]} \\
+          \attribute{Functie}{\enumeratietype{functie}}{[0..1]} \\
           \attribute{\textbf{Naam}}{naamGegevens}{} \\
           \attribute{Nevenfunctie}{nevenfunctieGegevens}{[0..*]}
         };
@@ -292,7 +285,7 @@
           \attribute{Datum einde fractielidmaatschap}{datum}{[0..1]} \\
           \attribute{\textbf{Indicate voorzitter}}{boolean}{}
         };
-   \node (dagelijksbestuurlidmaatschap) [ORI relatieklasse, align=center, below = 3.1cm of fractielidmaatschap]
+   \node (dagelijksbestuurlidmaatschap) [ORI relatieklasse, align=center, below = 4.85cm of fractielidmaatschap]
         {
           \objectheader{Relatieklasse}{Dagelijks bestuur lidmaatschap}
 
@@ -306,7 +299,7 @@
 
           \attribute{\textbf{ID}}{string}{} \\
           \attribute{Mimetype}{string}{[0..1]} \\
-          \attribute{\textbf{Mediabron type}}{\keuze{Video} | \keuze{Audio} | \keuze{Transcriptie}}{} \\
+          \attribute{\textbf{Mediabron type}}{\enumeratietype{mediabronType}}{} \\
           \attribute{URL}{URI}{[0..1]}
         };
         
@@ -318,7 +311,7 @@
           \attribute{ID}{string}{[0..1]} \\
           \attribute{Besluit toelichting}{string}{[0..1]} \\
           \attribute{Toezegging}{string}{[0..1]} \\
-          \attribute{\textbf{Besluit resultaat}}{\keuze{enumeratie Besluit resultaat}}{}
+          \attribute{\textbf{Besluit resultaat}}{\enumeratietype{besluitResultaat}}{}
         };
 
   \node (stemmingOverPersonenGegevens) [ORI object, below right = 5.3cm and -10cm of besluit, align=center, draw=gray]
@@ -329,11 +322,11 @@
           \attribute{\textbf{Aantal uitgebrachte stemmen}}{integer}{}
         };
 
-   \node (vergaderstuk) [ORI object, above right = -4.6cm and 5.2cm of agendapunt, align=center]
+   \node (vergaderstuk) [ORI relatieklasse, above right = -4.6cm and 5.2cm of agendapunt, align=center]
         {
           \objectheader{Relatieklasse}{Vergaderstuk}
 
-          \attribute{Vergaderstuk type}{\keuze{enumeratie Vergaderstuk type}}{[0..1]}
+          \attribute{Vergaderstuk type}{\enumeratietype{vergaderstukType}}{[0..1]}
         };
 
   %% inner MDTO rectangle
@@ -500,7 +493,50 @@
         node [above, fill=white, pos=0.27] {is vastgelegd in}
         node [below, pos=0.27] {\umltype{Relatiesoort}}
         (mediabron.north);
+
+        %% enumeraties
+        %% enumeration type setting
+        %% maybe make list headers a slightly bigger font
+        \newcommand{\enumeration}[2]{
+          \umltype{enumeratie} \; \textcolor{mainblack}{\textbf{#1}}\\[0.4ex]
+          \hspace{0.8em} #2\\[-0.9ex]
+        }
+        \newcommand{\keuze}[1]{\textcolor{mainblack}{#1}}
+        \newcommand{\sep}{ \,$\textcolor{mainblack}{\bullet}$\, }
+        \newcommand{\seprule}{\noindent\hspace{0cm}\textcolor{lightgray}{\rule{\dimexpr\linewidth-0.1cm\relax}{0.9pt}}\\\\[-1.6ex]}
+
+        \node[draw=gray, rounded corners=5pt, very thick, inner sep=16pt,
+          label={[anchor=south west]north west:{\large \textbf{Enumeraties}}},
+          below right=-2cm and 3.1cm of fractie, align=left]
+        (enumeraties) {
+          \enumeration{dagelijksBestuurType}{\keuze{College}\sep\keuze{Gedeputeerde staten}\sep\keuze{Dagelijks bestuur}} \\[-1.6ex]
+          \seprule
+          \enumeration{stemmingstype}{\keuze{Hoofdelijk}\sep\keuze{Regulier}\sep\keuze{Mondeling}} \\[-1.6ex]
+          \seprule
+          \enumeration{functie}{
+            \begin{minipage}[t]{0.93\linewidth}
+              %% \raggedright
+              \keuze{Burgemeester}\sep\keuze{Wethouder}\sep\keuze{Raadslid}\sep\keuze{Burgerlid}\sep\keuze{Griffier}
+              \sep\keuze{Gedeputeerde}\sep\keuze{Commissaris van de Koning}\sep\keuze{Statenlid}
+              \sep\keuze{Provinciesecretaris}\sep\keuze{Dijkgraaf}\sep\keuze{Dagelijks bestuurslid}\sep\keuze{Algemeen bestuurslid}\sep\keuze{Secretarisdirecteur}\sep\keuze{Ambtenaar/medewerker}\sep\keuze{Adviseur of deskundige}\sep\keuze{Gemeentesecretaris}\sep\keuze{Overig}
+            \end{minipage}
+          } \\[1.5ex]
+          \seprule
+          \enumeration{fractieStemresultaat}{\keuze{Aangenomen}\sep\keuze{Verworpen}\sep\keuze{Verdeeld}} \\[-1.6ex]
+          \seprule
+          \enumeration{vergaderingstype}{\keuze{Raadsvergadering}\sep\keuze{Commissievergadering}\sep...} \\[-1.6ex]
+          \seprule
+          \enumeration{rolnaam}{
+            \begin{minipage}[t]{0.93\linewidth}
+              %% \raggedright
+              \keuze{Voorzitter}\sep\keuze{Vice-voorzitter}\sep\keuze{Raadslid}\sep\keuze{Statenlid}\sep\keuze{Dagelijks bestuurslid}\sep\keuze{Algemeen bestuurslid}\sep\keuze{Inspreker}\sep\keuze{Portefeuillehouder}\sep\keuze{Griffier}\sep\keuze{Overig}
+            \end{minipage}
+          } \\[1.5ex]
+          \seprule
+          \enumeration{geslachtsaanduiding}{\keuze{Man}\sep\keuze{Vrouw}\sep\keuze{Anders}\sep\keuze{Onbekend}}
+        };
         
+
 \end{tikzpicture}
 
 \end{document}
