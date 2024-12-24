@@ -114,7 +114,7 @@
     %% not sure why the "header" is still centered after align=left, but oh well
     %% changerectangle split part fill for colors
     ORI object/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, draw=mainblack, rounded corners=5pt, very thick, inner sep=10pt},
-    ORI relatieklasse/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, rounded corners=5pt, very thick, inner sep=10pt, draw=gray},
+    ORI relatieklasse/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, rounded corners=5pt, very thick, inner sep=10pt, draw=gray!75},
     relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, draw=mainblack},
     gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed, draw=mainblack},
     kardinaliteit/.style={text=darkgray}, 
@@ -505,7 +505,7 @@
         \newcommand{\sep}{ \,$\textcolor{mainblack}{\bullet}$\, }
         \newcommand{\seprule}{\noindent\hspace{0cm}\textcolor{lightgray}{\rule{\dimexpr\linewidth-0.1cm\relax}{0.9pt}}\\\\[-1.6ex]}
 
-        \node[draw=gray, rounded corners=5pt, very thick, inner sep=16pt,
+        \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
           label={[anchor=south west]north west:{\large \textbf{Enumeraties}}},
           below right=-2cm and 3.1cm of fractie, align=left]
         (enumeraties) {
@@ -520,11 +520,16 @@
               \sep\keuze{Gedeputeerde}\sep\keuze{Commissaris van de Koning}\sep\keuze{Statenlid}
               \sep\keuze{Provinciesecretaris}\sep\keuze{Dijkgraaf}\sep\keuze{Dagelijks bestuurslid}\sep\keuze{Algemeen bestuurslid}\sep\keuze{Secretarisdirecteur}\sep\keuze{Ambtenaar/medewerker}\sep\keuze{Adviseur of deskundige}\sep\keuze{Gemeentesecretaris}\sep\keuze{Overig}
             \end{minipage}
-          } \\[1.5ex]
+          } \\[1.3ex]
           \seprule
           \enumeration{fractieStemresultaat}{\keuze{Aangenomen}\sep\keuze{Verworpen}\sep\keuze{Verdeeld}} \\[-1.6ex]
           \seprule
-          \enumeration{vergaderingstype}{\keuze{Raadsvergadering}\sep\keuze{Commissievergadering}\sep...} \\[-1.6ex]
+          \enumeration{vergaderingstype}{
+            \begin{minipage}[t]{0.93\linewidth}
+              \keuze{Raadsvergadering}\sep\keuze{Commissievergadering}\sep\keuze{Statenvergadering}
+              \sep\keuze{Algemene bestuursvergadering}\sep\keuze{Presidium}
+              \end{minipage}
+          } \\[0.1ex] %% todo: make sure this entry is nicely alligned
           \seprule
           \enumeration{rolnaam}{
             \begin{minipage}[t]{0.93\linewidth}
