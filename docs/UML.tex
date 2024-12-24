@@ -114,7 +114,7 @@
     %% not sure why the "header" is still centered after align=left, but oh well
     %% changerectangle split part fill for colors
     ORI object/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, draw=mainblack, rounded corners=5pt, very thick, inner sep=10pt},
-    ORI relatieklasse/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, rounded corners=5pt, very thick, inner sep=10pt, draw=gray!75},
+    ORI relatieklasse/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, rounded corners=5pt, very thick, inner sep=10pt, draw=gray!90},
     relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, draw=mainblack},
     gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed, draw=mainblack},
     kardinaliteit/.style={text=darkgray}, 
@@ -203,7 +203,7 @@
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
         
-   \node (stem) [ORI relatieklasse, align=center, at = ($(deelnemer.east)!0.5!(stemming.west)$), yshift=3.4cm]
+   \node (stem) [ORI relatieklasse, align=center, at = ($(deelnemer.east)!0.5!(stemming.west)$), yshift=2.8cm]
         {
           \objectheader{Relatieklasse}{Stem}
 
@@ -439,11 +439,16 @@
         node [below] {\umltype{Relatiesoort}}
         (natuurlijkpersoon);
         %% deelnemer -> stemming
-        \draw[dashed, very thick] ($(deelnemer.east)!0.5!(stemming.west) + (0, .54)$) -- (stem);
-        \draw[relatiepijl] ($(deelnemer.east |- stemming.west)$) --
-        node [above, fill=white] {neemt deel aan} %% no coordinates set (problematic!)
-        node [below] {\umltype{Relatiesoort}} %% no coordinates set (problematic!)
-        (stemming.west);
+        \draw[dashed, very thick] ($(deelnemer.east)!0.5!(stemming.west) + (0, -.19)$) -- (stem);
+        \coordinate (deelnemershifted) at ($(deelnemer.east) - (0,0.5cm)$);
+        \coordinate (stemmingshifted) at ($(stemming.west) - (0,0.5cm)$);
+
+        % Use the `|-` operator to align vertically while shifting horizontally
+        \draw[relatiepijl] 
+        ($(deelnemershifted |- stemmingshifted)$) -- 
+        node [above, fill=white] {neemt deel aan} 
+        node [below] {\umltype{Relatiesoort}} 
+        (stemmingshifted.west);
         %% deelnemer -> agendapunt (by way of spreekfragment)
         \draw[relatiepijl] ($(deelnemer.north) + (3cm, 0)$) -- ($(deelnemer.north) + (3cm, 3.0cm)$) --
         coordinate[pos=0.9] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
