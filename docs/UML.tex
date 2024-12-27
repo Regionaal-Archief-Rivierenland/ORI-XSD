@@ -481,7 +481,7 @@
         %% persoon -> fractie (by way of fractielidmaatschap)
         \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(4.9,0)$)  |-
         coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
-        ($(fractielidmaatschap.south)-(0.0cm,2.0cm)$) -| (fractie.south);
+        ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$) -| (fractie.south);
         %% dashed line
         \draw[dashed, very thick] (linestartfractielidmaatschap) --
         node [above, fill=white, pos=0.0] {is lid van}
@@ -529,7 +529,7 @@
 
         \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
           label={[anchor=south west]north west:{\large \textbf{Enumeraties}}},
-          below right=-2cm and 3.1cm of fractie, align=left]
+          below right=-4.5cm and 3.1cm of fractie, align=left]
         (enumeraties) {
           \begin{tabular}{@{}p{1.0\linewidth} @{\hspace{0.5cm}} | @{\hspace{0.5cm}} p{1.0\linewidth}@{}}
             \makecell[tl]{%
