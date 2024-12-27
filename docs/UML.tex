@@ -16,13 +16,25 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 
+%% Tables
+\usepackage{makecell}
+\usepackage{colortbl} % To enable \arrayrulecolor
+
 \usepackage{inconsolata}
 %% computer modern monospace?
 %% \usepackage[tt={oldstyle=false,variable=false}]{cfr-lm}
 
+%% linestretching
+\usepackage{setspace}
+
+%% rounded boxes
+\usepackage[most]{tcolorbox}
+
+%% for templates
+\usepackage{xparse}
 
 %% Color definitions
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames, table]{xcolor}
 \definecolor{githubgrey}{HTML}{EAEEF2}
 \definecolor{githubred}{HTML}{F2EAEE}
 \definecolor{mainblack}{HTML}{333333}
@@ -32,13 +44,6 @@
 \definecolor{darkgreen}{HTML}{3D5E45}
 \definecolor{purple}{HTML}{5C5573}
 \definecolor{enumeratiecolor}{HTML}{3C5770}
-
-
-%% rounded boxes
-\usepackage[most]{tcolorbox}
-
-%% for templates
-\usepackage{xparse}
 
 \begin{document}
 
@@ -51,6 +56,7 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{shapes.multipart}
+\usetikzlibrary{shapes.misc}
 \usetikzlibrary{positioning}
 %% needed for making svgs with white backgrounds
 \usetikzlibrary{backgrounds}
@@ -500,50 +506,79 @@
         (mediabron.north);
 
         %% enumeraties
-        %% enumeration type setting
-        %% maybe make list headers a slightly bigger font
+
         \newcommand{\enumeration}[2]{
-          \umltype{enumeratie} \; \textcolor{mainblack}{\textbf{#1}}\\[0.4ex]
-          \hspace{0.8em} #2\\[-0.9ex]
+          \umltype{enumeratie} \; \textcolor{mainblack}{\textbf{#1}}\\[0.9ex]
+          
+            \hspace{0.45em}
+            \parbox[t]{0.93\linewidth}{
+              \raggedright
+              \setstretch{2.35} % Increase line spacing
+              #2\\[0.7ex]
+              \setstretch{1.0} % Restore line spacing
+          }
         }
-        \newcommand{\keuze}[1]{\textcolor{mainblack}{#1}}
-        \newcommand{\sep}{ \,$\textcolor{mainblack}{\bullet}$\, }
-        \newcommand{\seprule}{\noindent\hspace{0cm}\textcolor{lightgray}{\rule{\dimexpr\linewidth-0.1cm\relax}{0.9pt}}\\\\[-1.6ex]}
+
+        %% text bubbles
+        \tcbset{on line, 
+          boxsep=2.2pt, left=4pt,right=4pt,top=4pt,bottom=4pt,
+          colframe=lightgray,colback=white, arc=7pt,}
+        \newcommand{\keuze}[1]{\textcolor{mainblack}{\tcbox{#1}}}
+
+        \newcommand{\sep}{ \, }
+        \newcommand{\seprule}{\noindent\hspace{0cm}\textcolor{lightgray}{\rule{\dimexpr\linewidth-0.1cm\relax}{0.9pt}}\\[0.7ex]}
+
+        \arrayrulecolor{lightgray}
 
         \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
           label={[anchor=south west]north west:{\large \textbf{Enumeraties}}},
           below right=-2cm and 3.1cm of fractie, align=left]
         (enumeraties) {
-          \enumeration{dagelijksBestuurType}{\keuze{College}\sep\keuze{Gedeputeerde staten}\sep\keuze{Dagelijks bestuur}} \\[-1.6ex]
-          \seprule
-          \enumeration{stemmingstype}{\keuze{Hoofdelijk}\sep\keuze{Regulier}\sep\keuze{Mondeling}} \\[-1.6ex]
-          \seprule
-          \enumeration{functie}{
-            \begin{minipage}[t]{0.93\linewidth}
-              %% \raggedright
-              \keuze{Burgemeester}\sep\keuze{Wethouder}\sep\keuze{Raadslid}\sep\keuze{Burgerlid}\sep\keuze{Griffier}
-              \sep\keuze{Gedeputeerde}\sep\keuze{Commissaris van de Koning}\sep\keuze{Statenlid}
-              \sep\keuze{Provinciesecretaris}\sep\keuze{Dijkgraaf}\sep\keuze{Dagelijks bestuurslid}\sep\keuze{Algemeen bestuurslid}\sep\keuze{Secretarisdirecteur}\sep\keuze{Ambtenaar/medewerker}\sep\keuze{Adviseur of deskundige}\sep\keuze{Gemeentesecretaris}\sep\keuze{Overig}
-            \end{minipage}
-          } \\[1.3ex]
-          \seprule
-          \enumeration{fractieStemresultaat}{\keuze{Aangenomen}\sep\keuze{Verworpen}\sep\keuze{Verdeeld}} \\[-1.6ex]
-          \seprule
-          \enumeration{vergaderingstype}{
-            \begin{minipage}[t]{0.93\linewidth}
+          \begin{tabular}{@{}p{1.0\linewidth} @{\hspace{0.5cm}} | @{\hspace{0.5cm}} p{1.0\linewidth}@{}}
+            \makecell[tl]{%
+              \enumeration{dagelijksBestuurType}{\keuze{College}\sep\keuze{Gedeputeerde staten}\sep\keuze{Dagelijks bestuur}}\\
+              \seprule
+              \enumeration{geslachtsaanduiding}{\keuze{Man}\sep\keuze{Vrouw}\sep\keuze{Anders}\sep\keuze{Onbekend}} \\
+              \seprule
+              \enumeration{fractieStemresultaat}{\keuze{Aangenomen}\sep\keuze{Verworpen}\sep\keuze{Verdeeld}} \\
+              \seprule
+              \enumeration{functie}{
+                \keuze{Burgemeester}\sep\keuze{Wethouder}\sep\keuze{Raadslid}\sep\keuze{Burgerlid}\sep\keuze{Griffier}
+                \sep\keuze{Gedeputeerde}\sep\keuze{Commissaris van de Koning}\sep\keuze{Statenlid}
+                \sep\keuze{Provinciesecretaris}\sep\keuze{Secretarisdirecteur}\sep\keuze{Dagelijks bestuurslid}\sep
+                \keuze{Algemeen bestuurslid}\sep\keuze{Dijkgraaf}\sep\keuze{Ambtenaar/medewerker}\sep
+                \keuze{Adviseur of deskundige}\sep\keuze{Gemeentesecretaris}\sep\keuze{Overig}
+              } \\
+              \seprule
+              \enumeration{vergaderstukType}{
+                \keuze{Voorstel}\sep\keuze{Mededeling}\sep\keuze{Amendement}\sep\keuze{Besluitsvormingsstuk}
+                \sep\keuze{Toezegging}\sep\keuze{Motie}\sep\keuze{Vraag}\sep\keuze{Antwoord}\sep\keuze{Ingekomen stuk}
+              }
+            } &
+          \makecell[tl]{%
+            \enumeration{stemmingstype}{\keuze{Hoofdelijk}\sep\keuze{Regulier}\sep\keuze{Mondeling}}\\
+            \seprule
+            \enumeration{vergaderingstype}{
               \keuze{Raadsvergadering}\sep\keuze{Commissievergadering}\sep\keuze{Statenvergadering}
               \sep\keuze{Algemene bestuursvergadering}\sep\keuze{Presidium}
-              \end{minipage}
-          } \\[0.1ex] %% todo: make sure this entry is nicely alligned
-          \seprule
-          \enumeration{rolnaam}{
-            \begin{minipage}[t]{0.93\linewidth}
-              %% \raggedright
-              \keuze{Voorzitter}\sep\keuze{Vice-voorzitter}\sep\keuze{Raadslid}\sep\keuze{Statenlid}\sep\keuze{Dagelijks bestuurslid}\sep\keuze{Algemeen bestuurslid}\sep\keuze{Inspreker}\sep\keuze{Portefeuillehouder}\sep\keuze{Griffier}\sep\keuze{Overig}
-            \end{minipage}
-          } \\[1.5ex]
-          \seprule
-          \enumeration{geslachtsaanduiding}{\keuze{Man}\sep\keuze{Vrouw}\sep\keuze{Anders}\sep\keuze{Onbekend}}
+            } \\
+            \seprule
+            \enumeration{rolnaam}{
+              \raggedright
+              \keuze{Voorzitter}\sep\keuze{Vice-voorzitter}\sep\keuze{Raadslid}\sep\keuze{Statenlid}\sep
+              \keuze{Dagelijks bestuurslid}\sep\keuze{Algemeen bestuurslid}\sep\keuze{Inspreker}\sep
+              \keuze{Portefeuillehouder}\sep\keuze{Griffier}\sep\keuze{Overig}
+            } \\
+            \seprule
+            \enumeration{mediabronType}{
+              \keuze{Video}\sep\keuze{Audio}\sep\keuze{Transcriptie}
+            }\\
+            \seprule
+            \enumeration{status}{
+              \keuze{Gepland}\sep\keuze{Gehouden}\sep\keuze{Geannuleerd}
+            }\\
+          }
+          \end{tabular}
         };
         
 
