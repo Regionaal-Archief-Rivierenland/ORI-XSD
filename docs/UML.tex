@@ -193,7 +193,7 @@
           \objectheader{Objecttype}{Stemming}
 
           \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Stemmingstype}{\enumeratietype{stemmingstype}}{[0..1]}\\
+          \attribute{Stemmingtype}{\enumeratietype{stemmingtype}}{[0..1]}\\
           \attribute{Resultaat mondelinge stemming}{\enumeratietype{resultaatMondelingeStemming}}{[0..1]} \\
           \attribute{Toezegging}{string}{[0..1]} \\
           \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
@@ -536,11 +536,18 @@
         (enumeraties) {
           \begin{tabular}{@{}p{1.0\linewidth} @{\hspace{0.5cm}} | @{\hspace{0.5cm}} p{1.0\linewidth}@{}}
             \makecell[tl]{%
-              \enumeration{dagelijksBestuurType}{\keuze{College}\sep\keuze{Gedeputeerde staten}\sep\keuze{Dagelijks bestuur}}\\
+              \enumeration{besluitResultaat}{
+                \keuze{Unaniem aangenomen}\sep\keuze{Aangenomen}\sep\keuze{Verworpen}
+                \sep\keuze{Geamendeerd aangenomen}\sep\keuze{Onder voorbehoud aangenomen}
+              } \\
               \seprule
-              \enumeration{geslachtsaanduiding}{\keuze{Man}\sep\keuze{Vrouw}\sep\keuze{Anders}\sep\keuze{Onbekend}} \\
+              \enumeration{dagelijksBestuurType}{
+                \keuze{College}\sep\keuze{Gedeputeerde staten}\sep\keuze{Dagelijks bestuur}
+              } \\
               \seprule
-              \enumeration{fractieStemresultaat}{\keuze{Aangenomen}\sep\keuze{Verworpen}\sep\keuze{Verdeeld}} \\
+              \enumeration{fractieStemresultaat}{
+                \keuze{Aangenomen}\sep\keuze{Verworpen}\sep\keuze{Verdeeld}
+              } \\
               \seprule
               \enumeration{functie}{
                 \keuze{Burgemeester}\sep\keuze{Wethouder}\sep\keuze{Raadslid}\sep\keuze{Burgerlid}\sep\keuze{Griffier}
@@ -550,17 +557,21 @@
                 \keuze{Adviseur of deskundige}\sep\keuze{Gemeentesecretaris}\sep\keuze{Overig}
               } \\
               \seprule
-              \enumeration{vergaderstukType}{
-                \keuze{Voorstel}\sep\keuze{Mededeling}\sep\keuze{Amendement}\sep\keuze{Besluitsvormingsstuk}
-                \sep\keuze{Toezegging}\sep\keuze{Motie}\sep\keuze{Vraag}\sep\keuze{Antwoord}\sep\keuze{Ingekomen stuk}
+              \enumeration{geslachtsaanduiding}{
+                \keuze{Man}\sep\keuze{Vrouw}\sep\keuze{Anders}\sep\keuze{Onbekend}
+              } \\
+              \seprule
+              \enumeration{keuzeStemming}{
+                \keuze{Voor}\sep\keuze{Tegen}\sep\keuze{Afwezig}\sep\keuze{Onthouden}
               }
             } &
-          \makecell[tl]{%
-            \enumeration{stemmingstype}{\keuze{Hoofdelijk}\sep\keuze{Regulier}\sep\keuze{Mondeling}}\\
+            \makecell[tl]{%
+            \enumeration{mediabronType}{
+              \keuze{Video}\sep\keuze{Audio}\sep\keuze{Transcriptie}
+            } \\
             \seprule
-            \enumeration{vergaderingstype}{
-              \keuze{Raadsvergadering}\sep\keuze{Commissievergadering}\sep\keuze{Statenvergadering}
-              \sep\keuze{Algemene bestuursvergadering}\sep\keuze{Presidium}
+            \enumeration{resultaatMondelingeStemming}{
+              \keuze{Voor}\sep\keuze{Tegen}\sep\keuze{Gelijk}
             } \\
             \seprule
             \enumeration{rolnaam}{
@@ -570,13 +581,23 @@
               \keuze{Portefeuillehouder}\sep\keuze{Griffier}\sep\keuze{Overig}
             } \\
             \seprule
-            \enumeration{mediabronType}{
-              \keuze{Video}\sep\keuze{Audio}\sep\keuze{Transcriptie}
-            }\\
-            \seprule
             \enumeration{status}{
               \keuze{Gepland}\sep\keuze{Gehouden}\sep\keuze{Geannuleerd}
-            }\\
+            } \\
+            \seprule
+            \enumeration{stemmingtype}{
+              \keuze{Hoofdelijk}\sep\keuze{Regulier}\sep\keuze{Mondeling}
+            } \\
+            \seprule
+            \enumeration{vergaderingstype}{
+              \keuze{Raadsvergadering}\sep\keuze{Commissievergadering}\sep\keuze{Statenvergadering}
+              \sep\keuze{Algemene bestuursvergadering}\sep\keuze{Presidium}
+            } \\
+            \seprule
+            \enumeration{vergaderstukType}{
+              \keuze{Voorstel}\sep\keuze{Mededeling}\sep\keuze{Amendement}\sep\keuze{Besluitsvormingsstuk}
+              \sep\keuze{Toezegging}\sep\keuze{Motie}\sep\keuze{Vraag}\sep\keuze{Antwoord}\sep\keuze{Ingekomen stuk}
+            }
           }
           \end{tabular}
         };
