@@ -200,7 +200,7 @@
           \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
         };
 
-    \node (fractie) [ORI object, below = 5.5cm of stemming, align=center]
+    \node (fractie) [ORI object, below = 8.5cm of stemming, align=center]
         {
           \objectheader{Objecttype}{Fractie}
 
@@ -216,14 +216,14 @@
           \attribute{ID}{string}{[0..1]} \\
           \attribute{\textbf{Keuze stemming}}{\enumeratietype{keuzeStemming}}{}
         };
-   \node (stemresultaatperfractie) [ORI relatieklasse, align=center, below right = 5cm and -4.5cm of stem]
+   \node (stemresultaatperfractie) [ORI relatieklasse, align=center, below right = 6.5cm and -4.5cm of stem]
         {
           \objectheader{Relatieklasse}{Stemresultaat per fractie}
 
           \attribute{ID}{string}{[0..1]} \\
           \attribute{Fractie stemresultaat}{\enumeratietype{fractieStemresultaat}}{[0..1]}
         };
-   \node (dagelijksbestuur) [ORI object, align=center, below = 6.9cm of fractie]
+   \node (dagelijksbestuur) [ORI object, align=center, below = 5.2cm of fractie]
         {
           \objectheader{Objecttype}{Dagelijks bestuur}
 
@@ -291,12 +291,12 @@
           \attribute{Datum einde fractielidmaatschap}{datum}{[0..1]} \\
           \attribute{\textbf{Indicate voorzitter}}{boolean}{}
         };
-   \node (dagelijksbestuurlidmaatschap) [ORI relatieklasse, align=center, below = 4.85cm of fractielidmaatschap]
+   \node (dagelijksbestuurlidmaatschap) [ORI relatieklasse, align=center, below = 5.85cm of fractielidmaatschap]
         {
           \objectheader{Relatieklasse}{Dagelijks bestuur lidmaatschap}
 
           \attribute{ID}{string}{[0..1]} \\
-          \attribute{Datum begin dagelijks bestuur lidmaatschap}{datum}{[0..1]} \\ 
+          \attribute{Datum begin dagelijks bestuur lidmaatschap}{datum}{[0..1]} \\
           \attribute{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
         };
    \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
@@ -369,71 +369,8 @@
         %% draw dashed line to vergaderstuk
         \coordinate (lineendnorth) at (tempcoordinate|-vergaderstuk.south);
         \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.5cm)$) -- (lineendnorth);
-        
-        %% agendapunt -> vergadering
-        \draw[relatiepijl] (agendapunt) -- (vergadering)
-        node [pos=0.5, above] {wordt behandeld tijdens}
-        node [pos=0.5, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.05, above] {0..*}
-        node [kardinaliteit, pos=0.9, above] {1};
 
-        %% agendapunt -> mdto
-        \draw[relatiepijl] 
-        ($(agendapunt.east) - (0, 2.5cm)$) -- ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
-        coordinate[pos=0.24] (tempcoordinate)
-        node [pos=0.24, above] {heeft als bijlage}
-        node [pos=0.24, below] {\umltype{Relatiesoort}};
-        % Draw the dashed line
-        \coordinate (lineendnorth) at (tempcoordinate|-vergaderstuk.south);
-        \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.52cm)$) -- (lineendnorth);
-
-        %% mediabron -> mdto (is vastgelegd in)
-        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(0,0.3)$) -|
-        node [pos=0.21, above] {is vastgelegd in}
-        node [pos=0.21, below] {\umltype{Relatiesoort}}
-        ($(mdto.north)+(2.8cm,0)$);
-
-        %% mediabron -> mdto (ondertitel bestand)
-        \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0,1.3)$) -|
-        node [pos=0.26, above] {heeft ondertitelbestand}
-        node [pos=0.26, below] {\umltype{Relatiesoort}}
-        ($(mdto.north)+(1cm, 0)$);
-
-        %% fractie -> stemming
-        \draw[relatiepijl] (fractie) --
-        coordinate[pos=0.5] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
-        (stemming);
-        \coordinate (linestartfractiestemresultaat) at (tempcoordinate |- stemresultaatperfractie.east);
-        %% dashed line to stemresultaat per fractie
-        \draw[dashed, very thick] ($(linestartfractiestemresultaat)-(0,0.3cm)$) --
-        node [pos=0, anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}}
-        ($(stemresultaatperfractie.east)-(0,0.3cm)$);
-        
-        
-        %% vergadering -> mediabron
-        \draw[relatiepijl] (vergadering)  -- 
-        node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{Relatiesoort}} (mediabron);
-
-        %% vergadering -> mdto (bijlage)
-        \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
-        ($(vergadering.east)+(11, 5.5)$) -| 
-        node [anchor=center, above, pos=0.33] {heeft als bijlage}
-        node [anchor=center, below, pos=0.33] {\umltype{Relatiesoort}}
-        coordinate[pos=0.33] (tempcoordinate) %% define tmp halfway coord
-        ($(mdto.north)+(-2.8cm,0)$);
-
-        % Draw the dashed line
-        \coordinate (lineendsouth) at (tempcoordinate|-vergaderstuk.north);
-        \draw[dashed, very thick] ($(tempcoordinate) + (0, -0.5cm)$) -- (lineendsouth);
-        
-        %% vergadering -> mdto (notulen)
-        \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
-        ($(vergadering.north)+(4, 2)$) -| 
-        node [anchor=center, above, pos=0.32] {is genotuleerd in}
-        node [anchor=center, below, pos=0.32] {\umltype{Relatiesoort}}
-        ($(mdto.north)+(-1cm,0)$);
-        
-       %% deelnemer -> vergadering
+        %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  -- 
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
         %% deelnemer -> persoon
@@ -473,27 +410,110 @@
         node [pos=0.0, anchor=center, fill=white] {spreekt tijdens\\\umltype{Relatiesoort}}
         (lineendsouth);
 
+        
+        %% agendapunt -> vergadering
+        \draw[relatiepijl] (agendapunt) -- (vergadering)
+        node [pos=0.5, above] {wordt behandeld tijdens}
+        node [pos=0.5, below] {\umltype{Relatiesoort}}
+        node [kardinaliteit, pos=0.05, above] {0..*}
+        node [kardinaliteit, pos=0.9, above] {1};
+        %% agendapunt -> mdto
+        \draw[relatiepijl] 
+        ($(agendapunt.east) - (0, 2.5cm)$) -- ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
+        coordinate[pos=0.24] (tempcoordinate)
+        node [pos=0.24, above] {heeft als bijlage}
+        node [pos=0.24, below] {\umltype{Relatiesoort}};
+        % Draw the dashed line
+        \coordinate (lineendnorth) at (tempcoordinate|-vergaderstuk.south);
+        \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.52cm)$) -- (lineendnorth);
+        %% agendapunt -> natuurlijkpersoon
+        %% halfwaypoint stem and stemming
+        \coordinate (midpoint) at ($(stem.east)!.5!(stemming.west) + (-0.5cm,0)$);
+        % Project the midpoint to the Y-coordinate of stem.north
+        \coordinate (midpointadjusted) at (midpoint|-stem.north);
+        \draw[very thick, draw=mainblack] ($(agendapunt.south) - (3.0cm,0)$) |-
+        (midpointadjusted) --
+        ($(midpointadjusted) - (0cm, 4.5cm)$)
+        % save bump location
+        coordinate[pos=1.13] (bumpstart); % Save the starting point for the bump
+         % Create the bump
+        \draw[very thick, draw=mainblack] (bumpstart)
+        arc[start angle=270, end angle=90, radius=0.3cm];
+        \draw[relatiepijl, yshift=-1.2cm] ($(bumpstart) + (0,0.02cm)$) -- ($(bumpstart) - (0,3.3cm)$) -|
+        node [pos=0.17, above] {heeft behandelend ambtenaar}
+        node [pos=0.17, below] {\umltype{Relatiesoort}}
+        ($(natuurlijkpersoon.south) + (3.9cm, 0)$);
+        
+        %% mediabron -> mdto (is vastgelegd in)
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(-0.25cm,0.3)$) -|
+        node [pos=0.21, above] {is vastgelegd in}
+        node [pos=0.21, below] {\umltype{Relatiesoort}}
+        ($(mdto.north)+(2.8cm,0)$);
+
+        %% mediabron -> mdto (ondertitel bestand)
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0.25cm,1.3)$) -|
+        node [pos=0.26, above] {heeft ondertitelbestand}
+        node [pos=0.26, below] {\umltype{Relatiesoort}}
+        ($(mdto.north)+(1cm, 0)$);
+
+        %% fractie -> stemming
+        \draw[relatiepijl] (fractie) --
+        coordinate[pos=0.5] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
+        (stemming);
+        \coordinate (linestartfractiestemresultaat) at (tempcoordinate |- stemresultaatperfractie.east);
+        %% dashed line to stemresultaat per fractie
+        \draw[dashed, very thick] ($(linestartfractiestemresultaat)-(0,0.3cm)$) --
+        node [pos=0, anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}}
+        ($(stemresultaatperfractie.east)-(0,0.3cm)$);
+        
+        
+        %% vergadering -> mediabron
+        \draw[relatiepijl] (vergadering)  -- 
+        node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{Relatiesoort}} (mediabron);
+
+        %% vergadering -> mdto (bijlage)
+        \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
+        ($(vergadering.east)+(11, 5.5)$) -| 
+        node [anchor=center, above, pos=0.33] {heeft als bijlage}
+        node [anchor=center, below, pos=0.33] {\umltype{Relatiesoort}}
+        coordinate[pos=0.33] (tempcoordinate) %% define tmp halfway coord
+        ($(mdto.north)+(-2.8cm,0)$);
+
+        % Draw the dashed line
+        \coordinate (lineendsouth) at (tempcoordinate|-vergaderstuk.north);
+        \draw[dashed, very thick] ($(tempcoordinate) + (0, -0.5cm)$) -- (lineendsouth);
+        
+        %% vergadering -> mdto (notulen)
+        \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
+       ($(vergadering.north)+(4, 2)$) -| 
+        node [anchor=center, above, pos=0.32] {is genotuleerd in}
+        node [anchor=center, below, pos=0.32] {\umltype{Relatiesoort}}
+        ($(mdto.north)+(-1cm,0)$);
+        
 
         %% persoon -> naam
         \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.south) -- ([xshift=-3cm] naam);
         %% persoon -> nevenfunctie
         \draw[gegevenspijl] ([xshift=-3cm] natuurlijkpersoon.north) -- ([xshift=-3cm] natuurlijkpersoon.north |- nevenfunctie.south);
         %% persoon -> fractie (by way of fractielidmaatschap)
-        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(4.9,0)$)  |-
+        % calculate endpoint
+        \coordinate (Y) at ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$);
+        \coordinate (endpoint) at (fractie.west|-Y);
+        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(2.6,0)$)  |-
         coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
-        ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$) -| (fractie.south);
+        ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$) -- (endpoint.west);
         %% dashed line
         \draw[dashed, very thick] (linestartfractielidmaatschap) --
         node [above, fill=white, pos=0.0] {is lid van}
         node [below, pos=0.0] {\umltype{Relatiesoort}}
         (fractielidmaatschap.south);
         %% persoon -> dagelijks bestuur (by way of dagelijksbestuurlidmaatschap)
-        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(2.45,0)$)  |-
-        ($(dagelijksbestuur.west) - (0, 1.0cm)$);
+        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(1.2,0)$)  |-
+        ($(dagelijksbestuur.west) - (0, 0.5cm)$);
         %% dashed line
         \draw[dashed, very thick] (dagelijksbestuurlidmaatschap.south) --
-        node [above, fill=white, pos=1.15] {is lid van}
-        node [below, pos=1.15] {\umltype{Relatiesoort}}
+        node [above, fill=white, pos=1.05] {is lid van}
+        node [below, pos=1.05] {\umltype{Relatiesoort}}
         ($(dagelijksbestuurlidmaatschap.south) - (0, 1.8cm)$);
 
         %% spreekfragment -> mediabron
@@ -529,7 +549,7 @@
 
         \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
           label={[anchor=south west]north west:{\large \textbf{Enumeraties}}},
-          below right=-4.5cm and 3.1cm of fractie, align=left]
+          below right=-7.8cm and 3.1cm of fractie, align=left]
         (enumeraties) {
           \begin{tabular}{@{}p{1.0\linewidth} @{\hspace{0.5cm}} | @{\hspace{0.5cm}} p{1.0\linewidth}@{}}
             \makecell[tl]{%
