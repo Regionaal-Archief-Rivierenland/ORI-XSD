@@ -40,6 +40,7 @@
 \definecolor{mainblack}{HTML}{333333}
 \definecolor{blueishblack}{HTML}{3A3A3A}
 \definecolor{lightgray}{HTML}{D9DDE1}
+\definecolor{moderngray}{HTML}{D8D8DB}
 \definecolor{githubblue}{HTML}{DAE1E8}
 \definecolor{darkgreen}{HTML}{3D5E45}
 \definecolor{purple}{HTML}{5C5573}
@@ -74,7 +75,10 @@
 %% - maybe bullets instead of plusses? Making a proper list also gives more flexibility
 %%    - all the more because the plusses serve little purposes
 
-\newcommand{\naamxshift}{-3cm}
+\newcommand{\kyshiftbeg}{0.25cm}
+\newcommand{\kyshiftend}{0.70cm}
+\newcommand{\kxshiftbeg}{0.35cm}
+\newcommand{\kxshiftend}{0.80cm}
 \newcommand\mystrut{\rule[-2.5pt]{0pt}{12pt}}
 %% datatype typesetting
 \newcommand{\datatype}[2][text]{%
@@ -168,7 +172,7 @@
           \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
 
-   \node (deelnemer) [ORI object, align=center, below=3.9cm of vergadering]
+   \node (deelnemer) [ORI object, align=center, below=3.3cm of vergadering]
         {
           \objectheader{Objecttype}{Aanwezige deelnemer}
 
@@ -251,7 +255,7 @@
           \attribute{\textbf{Naam}}{naamGegevens}{} \\
           \attribute{Nevenfunctie}{nevenfunctieGegevens}{[0..*]}
         };
-   \node (naam) [ORI object, below = 2.2cm of natuurlijkpersoon, align=center, draw=gray, xshift=\naamxshift]
+   \node (naam) [ORI object, below = 2.2cm of natuurlijkpersoon, align=center, draw=gray, xshift=-3cm]
         {
           \objectheader{Gegevensgroeptype}{Naam}
 
@@ -269,7 +273,7 @@
           \attribute{Naam organisatie nevenfunctie}{string}{[0..1]} \\
           \attribute{Aantal uren per maand}{integer}{[0..1]} \\
           \attribute{\textbf{Indicator bezoldigd}}{boolean}{} \\
-          \attribute{Indicator nevenfunctief vanwege lidmaatschap}{boolean}{[0..1]} \\
+          \attribute{Indicator nevenfunctie vanwege lidmaatschap}{boolean}{[0..1]} \\
           \attribute{Datum melding}{datum}{[0..1]} \\
           \attribute{\textbf{Datum aanvang nevenfunctie}}{datum}{} \\
           \attribute{Datum einde nevenfunctie}{datum}{[0..1]}
@@ -283,7 +287,7 @@
           \attribute{Datum einde fractielidmaatschap}{datum}{[0..1]} \\
           \attribute{\textbf{Indicate voorzitter}}{boolean}{}
         };
-   \node (dagelijksbestuurlidmaatschap) [ORI relatieklasse, align=center, below = 5.85cm of fractielidmaatschap]
+   \node (dagelijksbestuurlidmaatschap) [ORI relatieklasse, align=center, below = 6.45cm of fractielidmaatschap]
         {
           \objectheader{Relatieklasse}{Dagelijks bestuur lidmaatschap}
 
@@ -291,7 +295,7 @@
           \attribute{Datum begin dagelijks bestuur lidmaatschap}{datum}{[0..1]} \\
           \attribute{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
         };
-   \node (mediabron) [ORI object, align=center, above=2.5cm of vergadering]
+   \node (mediabron) [ORI object, align=center, above=3.2cm of vergadering]
         {
           \objectheader{Objecttype}{Mediabron}
 
@@ -343,18 +347,20 @@
         %% stemming -> agendapunt
         \draw [relatiepijl] (stemming) --
         node [anchor=center, fill=white] {heeft betrekking op\\\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.08, right] {1..*}
-        node [kardinaliteit, pos=0.81, xshift=0.03cm, right] {1} (agendapunt);
+        node [kardinaliteit, pos=0.00, yshift=\kyshiftbeg, right]  {1..*}
+        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {1} (agendapunt);
         %% stemming -> besluit
         \draw[relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west)
         node [pos=0.74, above] {leidt tot}
         node [pos=0.74, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.065, right] {0..*}
-        node [kardinaliteit, above left, pos=0.95, yshift=-0.0cm] {0..1};
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
+        node [kardinaliteit, above, pos=1.0, xshift=-\kxshiftend] {0..1};
         %% stemming -> stemming over personen
         \draw[gegevenspijl] ($(stemming.south) + (2.5, -0.0cm)$) |- (stemmingOverPersonenGegevens.west);
         %% stemming -> MDTO
         \draw[relatiepijl] ($(stemming.east) + (0, 0.0cm)$) -|
+        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg]  {0..*}
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend]  {0..*}
         node [pos=0.330, above] {heeft betrekking op}
         node [pos=0.330, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.330] (tempcoordinate) % coordinate along the line
@@ -364,10 +370,14 @@
         \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.5cm)$) -- (lineendnorth);
 
         %% deelnemer -> vergadering
-        \draw[relatiepijl] (deelnemer)  -- 
+        \draw[relatiepijl] (deelnemer)  --
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
+        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {1}
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
         %% deelnemer -> persoon
         \draw[relatiepijl] (deelnemer) --
+        node [kardinaliteit, pos=0.0, xshift=-\kxshiftbeg, above] {0..*}
+        node [kardinaliteit, pos=1.0, xshift=0.6cm, above] {1}
         node [above] {is natuurlijk persoon}
         node [below] {\umltype{Relatiesoort}}
         (natuurlijkpersoon);
@@ -377,17 +387,24 @@
         \coordinate (stemmingshifted) at ($(stemming.west) - (0,0.5cm)$);
         % Use the `|-` operator to align vertically while shifting horizontally
         \draw[relatiepijl] 
-        ($(deelnemershifted |- stemmingshifted)$) -- 
+        ($(deelnemershifted |- stemmingshifted)$) --
+        node [kardinaliteit, pos=0.0, xshift=\kxshiftbeg, above] {0..*}
+        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {0..*}
         node [above, fill=white] {neemt deel aan} 
         node [below] {\umltype{Relatiesoort}} 
         (stemmingshifted.west);
         %% deelnemer -> agendapunt (by way of spreekfragment)
-        \draw[relatiepijl] ($(deelnemer.north) + (3cm, 0)$) -- ($(deelnemer.north) + (3cm, 3.0cm)$) --
+        \draw[relatiepijl] ($(deelnemer.north) + (3cm, 0)$) --
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
+        ($(deelnemer.north) + (3cm, 2.6cm)$) --
+        node [above, pos=0.75] {spreekt tijdens}
+        node [below, pos=0.75] {\umltype{Relatiesoort}}
         coordinate[pos=0.75] (tempcoordinate) %% define relatie line starting position
-        ($(deelnemer.north) + (12cm, 3.0cm)$) |- ($(agendapunt.west) -  (0, 3.0cm)$);        
+        ($(deelnemer.north) + (12cm, 2.6cm)$) |-
+        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {0..*}
+        ($(agendapunt.west) -  (0, 3.0cm)$);        
         % Draw the dashed line
-        \draw[dashed, very thick] (tempcoordinate) -- 
-        node [pos=0.0, anchor=center, fill=white] {spreekt tijdens\\\umltype{Relatiesoort}}
+        \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.65cm)$) -- 
         (tempcoordinate |- spreekfragment.south);
 
         
@@ -395,19 +412,22 @@
         \draw[relatiepijl] (agendapunt) -- (vergadering)
         node [pos=0.5, above] {wordt behandeld tijdens}
         node [pos=0.5, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.05, above] {0..*}
-        node [kardinaliteit, pos=0.9, above] {1};
+        node [kardinaliteit, pos=0.00, xshift=-\kxshiftbeg,  above] {0..*}
+        node [kardinaliteit, pos=0.965, above] {1};
         %% agendapunt -> agendapunt
         \draw[relatiepijl] ($(agendapunt.east)+(0, 2.8)$)
-        node [kardinaliteit, above, xshift = 0.4cm] {0..1} |-
+        node [kardinaliteit, above, xshift = \kxshiftbeg] {0..1} |-
         ($(agendapunt.east)+(3.0, 2.8)$) |- ($(agendapunt.east)+(3.0, -0.8)$)
         node [fill=white, pos=0.25] {heeft als subagendapunt\\\umltype{Relatiesoort}} --
         ($(agendapunt.east)+(0, -0.8)$)
         node [kardinaliteit, above, xshift = 0.8cm] {0..*};
         %% agendapunt -> mdto
         \draw[relatiepijl] 
-        ($(agendapunt.east) - (0, 2.5cm)$) -- ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
+        ($(agendapunt.east) - (0, 2.5cm)$) --
+        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg] {0..*}
+        ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
         coordinate[pos=0.27] (tempcoordinate)
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend] {0..*}
         node [pos=0.27, above] {heeft als bijlage}
         node [pos=0.27, below] {\umltype{Relatiesoort}};
         % Draw the dashed line
@@ -419,26 +439,33 @@
         % Project the midpoint to the Y-coordinate of stem.north
         \coordinate (midpointadjusted) at (midpoint|-stem.north);
         \draw[very thick, draw=mainblack] ($(agendapunt.south) - (3.0cm,0)$) |-
+        node [kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {0..*}
         (midpointadjusted) --
-        ($(midpointadjusted) - (0cm, 4.5cm)$)
+        ($(midpointadjusted) - (0cm, 4.77cm)$)
         % save bump location
-        coordinate[pos=1.13] (bumpstart); % Save the starting point for the bump
+        coordinate[pos=1.122] (bumpstart); % Save the starting point for the bump
          % Create the bump
         \draw[very thick, draw=mainblack] (bumpstart)
         arc[start angle=270, end angle=90, radius=0.3cm];
-        \draw[relatiepijl, yshift=-1.2cm] ($(bumpstart) + (0,0.02cm)$) -- ($(bumpstart) - (0,3.3cm)$) -|
+        \draw[relatiepijl, yshift=-1.2cm] ($(bumpstart) + (0,0.02cm)$) --
+        ($(bumpstart) - (0,3.3cm)$) -|
         node [pos=0.17, above] {heeft behandelend ambtenaar}
         node [pos=0.17, below] {\umltype{Relatiesoort}}
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftbeg, xshift=\kxshiftbeg] {0..1}
         ($(natuurlijkpersoon.south) + (3.9cm, 0)$);
         
         %% mediabron -> mdto (is vastgelegd in)
-        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(-0.0,0.3)$) -|
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)+(-0.0,0.2)$) -|
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {1}
         node [pos=0.21, above] {is vastgelegd in}
         node [pos=0.21, below] {\umltype{Relatiesoort}}
         ($(mdto.north)+(2.8cm,0)$);
 
         %% mediabron -> mdto (ondertitel bestand)
-        \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0.0,1.3)$) -|
+        \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0.0,1.2)$) -|
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..*}
         node [pos=0.26, above] {heeft ondertitelbestand}
         node [pos=0.26, below] {\umltype{Relatiesoort}}
         ($(mdto.north)+(1cm, 0)$);
@@ -446,6 +473,8 @@
         %% fractie -> stemming
         \draw[relatiepijl] (fractie) --
         coordinate[pos=0.5] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
+        node [kardinaliteit, pos=0.00, yshift=0.25cm, right] {0..*}
+        node [kardinaliteit, pos=1.0, yshift=-0.75cm, right] {0..*}
         (stemming);
         \coordinate (linestartfractiestemresultaat) at (tempcoordinate |- stemresultaatperfractie.east);
         %% dashed line to stemresultaat per fractie
@@ -455,8 +484,10 @@
         
         
         %% vergadering -> mediabron
-        \draw[relatiepijl] (vergadering)  -- 
-        node [anchor=center, fill=white] {is vastgelegd middels\\\umltype{Relatiesoort}} (mediabron);
+        \draw[relatiepijl] (vergadering)  --
+        node[kardinaliteit, pos=0, right, yshift=\kyshiftbeg] {0..1}
+        node[kardinaliteit, pos=1, right, yshift=-\kyshiftend] {0..*}
+        node [anchor=center, fill=white, pos=0.45] {is vastgelegd middels\\\umltype{Relatiesoort}} (mediabron);
 
         %% One could argue that this should just be another attribute
         %% vergadering -> vergadering
@@ -469,7 +500,9 @@
 
         %% vergadering -> mdto (bijlage)
         \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
         ($(vergadering.east)+(11, 5.5)$) -| 
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..*}
         node [anchor=center, above, pos=0.33] {heeft als bijlage}
         node [anchor=center, below, pos=0.33] {\umltype{Relatiesoort}}
         coordinate[pos=0.33] (tempcoordinate) %% define tmp halfway coord
@@ -481,7 +514,9 @@
         
         %% vergadering -> mdto (notulen)
         \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
-       ($(vergadering.north)+(4, 2)$) -| 
+        node [kardinaliteit, right, pos=0, yshift=\kyshiftbeg] {0..1}
+        ($(vergadering.north)+(4, 2.5)$) -| 
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..1}
         node [anchor=center, above, pos=0.32] {is genotuleerd in}
         node [anchor=center, below, pos=0.32] {\umltype{Relatiesoort}}
         ($(mdto.north)+(-1cm,0)$);
@@ -495,16 +530,21 @@
         % calculate endpoint
         \coordinate (Y) at ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$);
         \coordinate (endpoint) at (fractie.west|-Y);
-        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(2.6,0)$)  |-
+        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(2.4,0)$)  |-
+        node[kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {0..*}
         coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
-        ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$) -- (endpoint.west);
+        ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$) --
+        node[kardinaliteit, pos=1, above, xshift=-\kxshiftend] {0..*}
+        (endpoint.west);
         %% dashed line
         \draw[dashed, very thick] (linestartfractielidmaatschap) --
         node [above, fill=white, pos=0.0] {is lid van}
         node [below, pos=0.0] {\umltype{Relatiesoort}}
         (fractielidmaatschap.south);
         %% persoon -> dagelijks bestuur (by way of dagelijksbestuurlidmaatschap)
-        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(1.2,0)$) |-
+        \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(1.0,0)$) |-
+        node[kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {0..*}
+        node[kardinaliteit, pos=1, above, xshift=-\kxshiftend] {0..*}
         ($(dagelijksbestuur.west) - (0, 0.5cm)$);
         %% dashed line
         \draw[dashed, very thick] (dagelijksbestuurlidmaatschap.south) --
@@ -514,7 +554,9 @@
 
         %% spreekfragment -> mediabron
         \draw[relatiepijl] (spreekfragment.west) -|
-        node [above, fill=white, pos=0.27] {is vastgelegd in}
+        node [kardinaliteit, pos=0, above, xshift=-\kxshiftbeg] {1..*}
+        node [kardinaliteit, pos=1, right, yshift=\kyshiftend] {0..1}
+        node [above, pos=0.27] {is vastgelegd in}
         node [below, pos=0.27] {\umltype{Relatiesoort}}
         (mediabron.north);
 
@@ -535,13 +577,14 @@
         %% text bubbles
         \tcbset{on line, 
           boxsep=2.2pt, left=4pt,right=4pt,top=4pt,bottom=4pt,
-          colframe=lightgray,colback=white, arc=7pt,}
+          colframe=moderngray,colback=white, arc=7pt,}
         \newcommand{\keuze}[1]{\textcolor{mainblack}{\tcbox{#1}}}
 
         \newcommand{\sep}{ \, }
-        \newcommand{\seprule}{\noindent\hspace{0cm}\textcolor{lightgray}{\rule{\dimexpr\linewidth-0.1cm\relax}{0.9pt}}\\[0.7ex]}
+        \newcommand{\seprule}{\noindent\hspace{0cm}\textcolor{moderngray}{\rule{\dimexpr\linewidth-0.1cm\relax}{1.0pt}}\\[0.7ex]}
 
-        \arrayrulecolor{lightgray}
+        \arrayrulecolor{moderngray}
+        \setlength{\arrayrulewidth}{0.7pt} %% a slightly less thick line looks bettter here imo
 
         \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
           label={[anchor=south west]north west:{\large \textbf{Enumeraties}}},
