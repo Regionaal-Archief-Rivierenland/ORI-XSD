@@ -2,15 +2,18 @@
 
 \usepackage{tikz}
 
-%% \usepackage[kerning=true, tracking=true]{microtype} %% tracking is pdftex only
-\usepackage[activate={true,nocompatibility}]{microtype} 
+\usepackage[kerning=true, tracking=true, activate={true,nocompatibility}]{microtype} %% tracking is pdftex only
+%% \usepackage[activate={true,nocompatibility}]{microtype} 
 \usepackage[dutch]{babel}
 
 %% font stuff
 %% \usepackage[lf]{MyriadPro}
 %% math font for myriadpro
-%% \usepackage{mdsymbol}
-\usepackage[default, opentype]{sourcesanspro}
+\usepackage{mdsymbol}
+%% \usepackage[default, opentype]{sourcesanspro}
+%% \usepackage{plex-serif}
+\usepackage[sfdefault, textmd]{plex-sans}
+%% \usepackage{plex-mono}
 \usepackage{inconsolata}
 %% \usepackage{fontspec}  %% fira code looks pretty okay!
 %% \setmonofont[
@@ -83,7 +86,7 @@
 \newcommand{\kyshiftbeg}{0.25cm}
 \newcommand{\kyshiftend}{0.70cm}
 \newcommand{\kxshiftbeg}{0.35cm}
-\newcommand{\kxshiftend}{0.80cm}
+\newcommand{\kxshiftend}{0.83cm}
 \newcommand\mystrut{\rule[-2.5pt]{0pt}{12pt}}
 %% datatype typesetting
 \newcommand{\datatype}[2][text]{%
@@ -102,7 +105,7 @@
       colback=githubgrey,
       fontupper={\ttfamily\mystrut},
       fontlower={\ttfamily\mystrut}]
-      {\textcolor{blueishblack}{\textbf{#2}}}
+      {\textcolor{blueishblack}{{\bfseries#2}}}
 }
 
 \newcommand{\umltype}[1]{
@@ -122,8 +125,7 @@
 %% Attribute typesetting
 \newcommand{\attrib}[3]{\textcolor{mainblack}{+ \; #1:}\, \datatype{#2} \; {
     %% \figureversion{text} %% doesn't work with every font?
-    
-    \textcolor{gray}{\oldstylenums{\scshape#3}}}}
+    \textcolor{gray}{{\scshape#3}}}}
 
 
 \begin{tikzpicture}[
@@ -170,11 +172,11 @@
         {
           \objectheader{Objecttype}{Vergadering}
 
-          \attrib{\textbf{ID}}{string}{} \\
+          \attrib{\fontseries{sb}\selectfont ID}{string}{} \\
           \attrib{Naam}{string}{[0..1]} \\
           \attrib{Vergadertoelichting}{string}{[0..1]} \\
           \attrib{Georganiseerd door gremium}{gremiumGegevens}{[0..1]} \\
-          \attrib{\textbf{Vergaderingstype}}{\enumeratietype{vergaderingstype}}{} \\
+          \attrib{\fontseries{sb}\selectfont Vergaderingstype}{\enumeratietype{vergaderingstype}}{} \\
           \attrib{Locatie}{string}{[0..1]} \\
           \attrib{Status}{\enumeratietype{status}}{[0..1]} \\
           \attrib{Geplande vergaderdatum}{datum}{[0..1]} \\
@@ -362,21 +364,21 @@
         %% stemming -> agendapunt
         \draw [relatiepijl] (stemming) --
         node [anchor=center, fill=white] {heeft betrekking op\\\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.00, yshift=\kyshiftbeg, right]  {\oldstylenums{1..*}}
-        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {\oldstylenums{1}}
+        node [kardinaliteit, pos=0.00, yshift=\kyshiftbeg, right]  {1..*}
+        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {1}
         (agendapunt);
         %% stemming -> besluit
         \draw[relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west)
         node [pos=0.74, above] {leidt tot}
         node [pos=0.74, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {\oldstylenums{0..*}}
-        node [kardinaliteit, above, pos=1.0, xshift=-\kxshiftend] {\oldstylenums{0..1}};
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
+        node [kardinaliteit, above, pos=1.0, xshift=-\kxshiftend] {0..1};
         %% stemming -> stemming over personen
         \draw[gegevenspijl] ($(stemming.south) + (2.5, -0.0cm)$) |- (stemmingOverPersonenGegevens.west);
         %% stemming -> MDTO
         \draw[relatiepijl] ($(stemming.east) + (0, 0.0cm)$) -|
-        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg]  {\oldstylenums{0..*}}
-        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend]  {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg]  {0..*}
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend]  {0..*}
         node [pos=0.330, above] {heeft betrekking op}
         node [pos=0.330, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.330] (tempcoordinate) % coordinate along the line
@@ -387,14 +389,14 @@
 
         %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  --
-        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {\oldstylenums{0..*}}
-        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {\oldstylenums{1}}
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
+        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {1}
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
         %% deelnemer -> persoon
         \draw[relatiepijl] (deelnemer) --
-        node [kardinaliteit, pos=0.0, xshift=-\kxshiftbeg, above] {\oldstylenums{0..*}}
-        node [kardinaliteit, pos=1.0, xshift=0.6cm, above] {\oldstylenums{1}}
-        node [above] {is natuurlijk persoon}
+        node [kardinaliteit, pos=0.0, xshift=-\kxshiftbeg, above] {0..*}
+        node [kardinaliteit, pos=1.0, xshift=0.6cm, above] {1}
+        node [above] {is natuurlijk \\ persoon}
         node [below] {\umltype{Relatiesoort}}
         (natuurlijkpersoon);
         %% deelnemer -> stemming
@@ -404,20 +406,20 @@
         % Use the `|-` operator to align vertically while shifting horizontally
         \draw[relatiepijl] 
         ($(deelnemershifted |- stemmingshifted)$) --
-        node [kardinaliteit, pos=0.0, xshift=\kxshiftbeg, above] {\oldstylenums{0..*}}
-        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=0.0, xshift=\kxshiftbeg, above] {0..*}
+        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {0..*}
         node [above, fill=white] {neemt deel aan} 
         node [below] {\umltype{Relatiesoort}} 
         (stemmingshifted.west);
         %% deelnemer -> agendapunt (by way of spreekfragment)
         \draw[relatiepijl] ($(deelnemer.north) + (3cm, 0)$) --
-        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
         ($(deelnemer.north) + (3cm, 2.6cm)$) --
         node [above, pos=0.75] {spreekt tijdens}
         node [below, pos=0.75] {\umltype{Relatiesoort}}
         coordinate[pos=0.75] (tempcoordinate) %% define relatie line starting position
         ($(deelnemer.north) + (12cm, 2.6cm)$) |-
-        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {0..*}
         ($(agendapunt.west) -  (0, 3.0cm)$);        
         % Draw the dashed line
         \draw[dashedpijl] ($(tempcoordinate) + (0, 0.65cm)$) -- 
@@ -428,22 +430,22 @@
         \draw[relatiepijl] (agendapunt) -- (vergadering)
         node [pos=0.5, above] {wordt behandeld tijdens}
         node [pos=0.5, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.00, xshift=-\kxshiftbeg,  above] {\oldstylenums{0..*}}
-        node [kardinaliteit, pos=0.965, above] {\oldstylenums{1}};
+        node [kardinaliteit, pos=0.00, xshift=-\kxshiftbeg,  above] {0..*}
+        node [kardinaliteit, pos=0.965, above, xshift=0.1cm] {1};
         %% agendapunt -> agendapunt
         \draw[relatiepijl] ($(agendapunt.east)+(0, 2.8)$) |-
-        node [kardinaliteit, above, xshift = \kxshiftbeg] {\oldstylenums{0..1}} 
+        node [kardinaliteit, above, xshift = \kxshiftbeg] {0..1} 
         ($(agendapunt.east)+(3.0, 2.8)$) |- ($(agendapunt.east)+(3.0, -0.8)$)
         node [fill=white, pos=0.25] {heeft als subagendapunt\\\umltype{Relatiesoort}} --
         ($(agendapunt.east)+(0, -0.8)$)
-        node [kardinaliteit, above, xshift = 0.8cm] {\oldstylenums{0..*}};
+        node [kardinaliteit, above, xshift = 0.8cm] {0..*};
         %% agendapunt -> mdto
         \draw[relatiepijl] 
         ($(agendapunt.east) - (0, 2.5cm)$) --
-        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg] {0..*}
         ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
         coordinate[pos=0.27] (tempcoordinate)
-        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend] {0..*}
         node [pos=0.27, above] {heeft als bijlage}
         node [pos=0.27, below] {\umltype{Relatiesoort}};
         % Draw the dashed line
@@ -455,7 +457,7 @@
         % Project the midpoint to the Y-coordinate of stem.north
         \coordinate (midpointadjusted) at (midpoint|-stem.north);
         \draw[very thick, draw=mainblack] ($(agendapunt.south) - (3.0cm,0)$) |-
-        node [kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {0..*}
         (midpointadjusted) --
         ($(midpointadjusted) - (0cm, 4.77cm)$)
         % save bump location
@@ -467,21 +469,21 @@
         ($(bumpstart) - (0,3.3cm)$) -|
         node [pos=0.17, above] {heeft behandelend ambtenaar}
         node [pos=0.17, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=1, right, yshift=-\kyshiftbeg, xshift=\kxshiftbeg] {\oldstylenums{0..1}}
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftbeg, xshift=\kxshiftbeg] {0..1}
         ($(natuurlijkpersoon.south) + (3.9cm, 0)$);
         
         %% mediabron -> mdto (is vastgelegd in)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)+(-0.0,0.2)$) -|
-        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {\oldstylenums{0..*}}
-        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {\oldstylenums{1}}
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {1}
         node [pos=0.21, above] {is vastgelegd in}
         node [pos=0.21, below] {\umltype{Relatiesoort}}
         ($(mdto.north)+(2.8cm,0)$);
 
         %% mediabron -> mdto (ondertitel bestand)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0.0,1.2)$) -|
-        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {\oldstylenums{0..*}}
-        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {\oldstylenums{0..*}}
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..*}
         node [pos=0.26, above] {heeft ondertitelbestand}
         node [pos=0.26, below] {\umltype{Relatiesoort}}
         ($(mdto.north)+(1cm, 0)$);
@@ -489,8 +491,8 @@
         %% fractie -> stemming
         \draw[relatiepijl] (fractie) --
         coordinate[pos=0.5] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
-        node [kardinaliteit, pos=0.00, yshift=0.25cm, right] {\oldstylenums{0..*}}
-        node [kardinaliteit, pos=1.0, yshift=-0.75cm, right] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=0.00, yshift=0.25cm, right] {0..*}
+        node [kardinaliteit, pos=1.0, yshift=-0.75cm, right] {0..*}
         (stemming);
         \coordinate (linestartfractiestemresultaat) at (tempcoordinate |- stemresultaatperfractie.east);
         %% dashed line to stemresultaat per fractie
@@ -508,17 +510,17 @@
         %% One could argue that this should just be another attribute
         %% vergadering -> vergadering
         \draw[relatiepijl] ($(vergadering.west)+(0,2.8)$) |-
-        node [kardinaliteit, above, xshift = -0.4cm] {\oldstylenums{0..1}}
+        node [kardinaliteit, above, xshift = -0.4cm] {0..1}
         ($(vergadering.west)+(-3.0,2.8)$) |- ($(vergadering.west)+(-3.0,-0.8)$)
         node [fill=white, pos=0.25] {heeft als deelvergadering\\\umltype{Relatiesoort}} --
         ($(vergadering.west)+(0,-0.8)$)
-        node [kardinaliteit, above, xshift = -0.8cm] {\oldstylenums{0..*}} ;
+        node [kardinaliteit, above, xshift = -0.8cm] {0..*} ;
 
         %% vergadering -> mdto (bijlage)
         \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
-        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {\oldstylenums{0..*}}
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
         ($(vergadering.east)+(11, 5.5)$) -| 
-        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {\oldstylenums{0..*}}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..*}
         node [anchor=center, above, pos=0.33] {heeft als bijlage}
         node [anchor=center, below, pos=0.33] {\umltype{Relatiesoort}}
         coordinate[pos=0.33] (tempcoordinate) %% define tmp halfway coord
@@ -530,9 +532,9 @@
         
         %% vergadering -> mdto (notulen)
         \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
-        node [kardinaliteit, right, pos=0, yshift=\kyshiftbeg] {\oldstylenums{0..1}}
+        node [kardinaliteit, right, pos=0, yshift=\kyshiftbeg] {0..1}
         ($(vergadering.north)+(4, 2.5)$) -| 
-        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {\oldstylenums{0..1}}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..1}
         node [anchor=center, above, pos=0.32] {is genotuleerd in}
         node [anchor=center, below, pos=0.32] {\umltype{Relatiesoort}}
         ($(mdto.north)+(-1cm,0)$);
@@ -547,10 +549,10 @@
         \coordinate (Y) at ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$);
         \coordinate (endpoint) at (fractie.west|-Y);
         \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(2.4,0)$)  |-
-        node[kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {\oldstylenums{0..*}}
+        node[kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {0..*}
         coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
         ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$) --
-        node[kardinaliteit, pos=1, above, xshift=-\kxshiftend] {\oldstylenums{0..*}}
+        node[kardinaliteit, pos=1, above, xshift=-\kxshiftend] {0..*}
         (endpoint.west);
         %% dashed line
         \draw[dashedpijl, yshift=-3cm] (linestartfractielidmaatschap) --
@@ -570,8 +572,8 @@
 
         %% spreekfragment -> mediabron
         \draw[relatiepijl] (spreekfragment.west) -|
-        node [kardinaliteit, pos=0, above, xshift=-\kxshiftbeg] {\oldstylenums{1..*}}
-        node [kardinaliteit, pos=1, right, yshift=\kyshiftend] {\oldstylenums{0..1}}
+        node [kardinaliteit, pos=0, above, xshift=-\kxshiftbeg] {1..*}
+        node [kardinaliteit, pos=1, right, yshift=\kyshiftend] {0..1}
         node [above, pos=0.27] {is vastgelegd in}
         node [below, pos=0.27] {\umltype{Relatiesoort}}
         (mediabron.north);
@@ -579,7 +581,7 @@
         %% enumeraties
 
         \newcommand{\enumeration}[2]{
-          \umltype{Enumeratie} \; \textcolor{mainblack}{{\sourcesansprolight\bfseries#1}}\\[0.9ex]
+          \umltype{Enumeratie} \; \textcolor{mainblack}{{\bfseries#1}}\\[0.9ex]
           
             \hspace{0.45em}
             \parbox[t]{0.93\linewidth}{
@@ -603,7 +605,7 @@
         \setlength{\arrayrulewidth}{0.7pt} %% a slightly less thick line looks bettter here imo
 
         \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
-          label={[anchor=south west]north west:{\large \textcolor{mainblack}{\sourcesansproextreme\bfseries Enumeraties}}},
+          label={[anchor=south west]north west:{\large \textcolor{mainblack}{\bfseries Enumeraties}}},
           below right=-7.8cm and 3.1cm of fractie, align=left]
         (enumeraties) {
           \begin{tabular}{@{}p{1.0\linewidth} @{\hspace{0.5cm}} | @{\hspace{0.5cm}} p{1.0\linewidth}@{}}
