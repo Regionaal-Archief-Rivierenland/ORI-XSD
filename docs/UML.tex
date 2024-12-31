@@ -10,7 +10,6 @@
 %% math font for myriadpro
 \usepackage{mdsymbol}
 \usepackage[T1]{fontenc}
-\usepackage{varwidth}
 
 %% math symols
 \usepackage{amsmath}
@@ -30,8 +29,6 @@
 %% rounded boxes
 \usepackage[most]{tcolorbox}
 
-%% for templates
-\usepackage{xparse}
 
 %% Color definitions
 \usepackage[dvipsnames, table]{xcolor}
@@ -53,6 +50,7 @@
 \sffamily
 
 \usetikzlibrary{arrows}
+\usetikzlibrary{shadows.blur}
 \usetikzlibrary{fit}
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows.meta}
@@ -123,8 +121,14 @@
     background rectangle/.style={fill=white}, show background rectangle,
     %% not sure why the "header" is still centered after align=left, but oh well
     %% changerectangle split part fill for colors
-    ORI object/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, draw=mainblack, rounded corners=5pt, very thick, inner sep=10pt},
-    ORI relatieklasse/.style={rectangle split, rectangle split parts=2, rectangle split part fill={white,white}, rounded corners=5pt, very thick, inner sep=10pt, draw=gray!90},
+    ORI object/.style={rectangle split, rectangle split parts=2,
+      rectangle split part fill={white,white}, draw=mainblack, rounded corners=5pt, fill=white,
+      very thick, inner sep=10pt,
+    },
+    ORI relatieklasse/.style={rectangle split, rectangle split parts=2,
+      rectangle split part fill={white,white}, rounded corners=5pt,
+      very thick, inner sep=10pt, draw=gray!90, fill=white,
+      },
     relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, draw=mainblack},
     gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed, draw=mainblack},
     kardinaliteit/.style={text=darkgray}, 
@@ -348,7 +352,8 @@
         \draw [relatiepijl] (stemming) --
         node [anchor=center, fill=white] {heeft betrekking op\\\umltype{Relatiesoort}}
         node [kardinaliteit, pos=0.00, yshift=\kyshiftbeg, right]  {1..*}
-        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {1} (agendapunt);
+        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {1}
+        (agendapunt);
         %% stemming -> besluit
         \draw[relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west)
         node [pos=0.74, above] {leidt tot}
@@ -415,8 +420,8 @@
         node [kardinaliteit, pos=0.00, xshift=-\kxshiftbeg,  above] {0..*}
         node [kardinaliteit, pos=0.965, above] {1};
         %% agendapunt -> agendapunt
-        \draw[relatiepijl] ($(agendapunt.east)+(0, 2.8)$)
-        node [kardinaliteit, above, xshift = \kxshiftbeg] {0..1} |-
+        \draw[relatiepijl] ($(agendapunt.east)+(0, 2.8)$) |-
+        node [kardinaliteit, above, xshift = \kxshiftbeg] {0..1} 
         ($(agendapunt.east)+(3.0, 2.8)$) |- ($(agendapunt.east)+(3.0, -0.8)$)
         node [fill=white, pos=0.25] {heeft als subagendapunt\\\umltype{Relatiesoort}} --
         ($(agendapunt.east)+(0, -0.8)$)
@@ -491,8 +496,8 @@
 
         %% One could argue that this should just be another attribute
         %% vergadering -> vergadering
-        \draw[relatiepijl] ($(vergadering.west)+(0,2.8)$)
-        node [kardinaliteit, above, xshift = -0.4cm] {0..1} |-
+        \draw[relatiepijl] ($(vergadering.west)+(0,2.8)$) |-
+        node [kardinaliteit, above, xshift = -0.4cm] {0..1}
         ($(vergadering.west)+(-3.0,2.8)$) |- ($(vergadering.west)+(-3.0,-0.8)$)
         node [fill=white, pos=0.25] {heeft als deelvergadering\\\umltype{Relatiesoort}} --
         ($(vergadering.west)+(0,-0.8)$)
