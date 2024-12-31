@@ -2,13 +2,21 @@
 
 \usepackage{tikz}
 
-\usepackage[kerning=true, tracking=true]{microtype}
+%% \usepackage[kerning=true, tracking=true]{microtype} %% tracking is pdftex only
+\usepackage[activate={true,nocompatibility}]{microtype} 
 \usepackage[dutch]{babel}
 
 %% font stuff
-\usepackage[lf]{MyriadPro}
+%% \usepackage[lf]{MyriadPro}
 %% math font for myriadpro
-\usepackage{mdsymbol}
+%% \usepackage{mdsymbol}
+\usepackage[default, opentype]{sourcesanspro}
+\usepackage{inconsolata}
+%% \usepackage{fontspec}  %% fira code looks pretty okay!
+%% \setmonofont[
+%%   Contextuals={Alternate},
+%%   Scale=MatchLowercase
+%% ]{Fira Code}
 \usepackage[T1]{fontenc}
 
 %% math symols
@@ -19,7 +27,6 @@
 \usepackage{makecell}
 \usepackage{colortbl} % To enable \arrayrulecolor
 
-\usepackage{inconsolata}
 %% computer modern monospace?
 %% \usepackage[tt={oldstyle=false,variable=false}]{cfr-lm}
 
@@ -113,7 +120,10 @@
 
 %% TODO: try if a regular box looks better (maybe make the whole box a certain color? or just the bottom half)
 %% Attribute typesetting
-\newcommand{\attribute}[3]{\textcolor{mainblack}{+ \; #1:}\, \datatype{#2} \; {\figureversion{text}\textcolor{gray}{#3}}}
+\newcommand{\attrib}[3]{\textcolor{mainblack}{+ \; #1:}\, \datatype{#2} \; {
+    %% \figureversion{text} %% doesn't work with every font?
+    
+    \textcolor{gray}{\oldstylenums{\scshape#3}}}}
 
 
 \begin{tikzpicture}[
@@ -127,11 +137,11 @@
     },
     ORI relatieklasse/.style={rectangle split, rectangle split parts=2,
       rectangle split part fill={white,white}, rounded corners=5pt,
-      very thick, inner sep=10pt, draw=gray!87, fill=white,
+      very thick, inner sep=10pt, draw=gray!86, fill=white,
       },
     relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, draw=mainblack, text=mainblack},
     gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed, draw=mainblack},
-    dashedpijl/.style={very thick, dashed, text=mainblack, draw=gray!87},
+    dashedpijl/.style={very thick, dashed, text=mainblack, draw=gray!86},
     kardinaliteit/.style={text=mainblack}, 
     align=center]
   
@@ -139,20 +149,20 @@
         {
           \objectheader{Objecttype}{Agendapunt}
 
-          \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Agendapunt omschrijving}{string}{[0..1]} \\
-          \attribute{Gepland agendapuntvolgnummer}{string}{[0..1]} \\
-          \attribute{Agendapuntvolgnummer}{string}{[0..1]} \\
-          \attribute{Geplande starttijd}{datum + tijd}{[0..1]} \\
-          \attribute{Geplande eindtijd}{datum + tijd}{[0..1]} \\
-          \attribute{Starttijd}{datum + tijd}{[0..1]} \\
-          \attribute{Eindtijd}{datum + tijd}{[0..1]} \\
-          \attribute{Agendapunt kenmerk}{string}{[0..1]} \\
-          \attribute{Agendapunt titel}{string}{[0..1]} \\
-          \attribute{Indicatie hamerstuk}{boolean}{[0..1]} \\
-          \attribute{Indicator behandeld}{boolean}{[0..1]} \\
-          \attribute{\textbf{Indicator besloten}}{boolean}{} \\
-          \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
+          \attrib{\textbf{ID}}{string}{} \\
+          \attrib{Agendapunt omschrijving}{string}{[0..1]} \\
+          \attrib{Gepland agendapuntvolgnummer}{string}{[0..1]} \\
+          \attrib{Agendapuntvolgnummer}{string}{[0..1]} \\
+          \attrib{Geplande starttijd}{datum + tijd}{[0..1]} \\
+          \attrib{Geplande eindtijd}{datum + tijd}{[0..1]} \\
+          \attrib{Starttijd}{datum + tijd}{[0..1]} \\
+          \attrib{Eindtijd}{datum + tijd}{[0..1]} \\
+          \attrib{Agendapunt kenmerk}{string}{[0..1]} \\
+          \attrib{Agendapunt titel}{string}{[0..1]} \\
+          \attrib{Indicatie hamerstuk}{boolean}{[0..1]} \\
+          \attrib{Indicator behandeld}{boolean}{[0..1]} \\
+          \attrib{\textbf{Indicator besloten}}{boolean}{} \\
+          \attrib{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
 
 
@@ -160,154 +170,154 @@
         {
           \objectheader{Objecttype}{Vergadering}
 
-          \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Naam}{string}{[0..1]} \\
-          \attribute{Vergadertoelichting}{string}{[0..1]} \\
-          \attribute{Georganiseerd door gremium}{gremiumGegevens}{[0..1]} \\
-          \attribute{\textbf{Vergaderingstype}}{\enumeratietype{vergaderingstype}}{} \\
-          \attribute{Locatie}{string}{[0..1]} \\
-          \attribute{Status}{\enumeratietype{status}}{[0..1]} \\
-          \attribute{Geplande vergaderdatum}{datum}{[0..1]} \\
-          \attribute{Vergaderdatum}{datum}{[0..1]} \\
-          \attribute{Geplande aanvang vergadering}{datum + tijd}{[0..1]} \\
-          \attribute{Gepland einde vergadering}{datum + tijd}{[0..1]} \\
-          \attribute{Aanvang vergadering}{datum + tijd}{[0..1]} \\
-          \attribute{Einde vergadering}{datum + tijd}{[0..1]} \\
-          \attribute{Publicatiedatum}{datum + tijd}{[0..1]} \\
-          \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
+          \attrib{\textbf{ID}}{string}{} \\
+          \attrib{Naam}{string}{[0..1]} \\
+          \attrib{Vergadertoelichting}{string}{[0..1]} \\
+          \attrib{Georganiseerd door gremium}{gremiumGegevens}{[0..1]} \\
+          \attrib{\textbf{Vergaderingstype}}{\enumeratietype{vergaderingstype}}{} \\
+          \attrib{Locatie}{string}{[0..1]} \\
+          \attrib{Status}{\enumeratietype{status}}{[0..1]} \\
+          \attrib{Geplande vergaderdatum}{datum}{[0..1]} \\
+          \attrib{Vergaderdatum}{datum}{[0..1]} \\
+          \attrib{Geplande aanvang vergadering}{datum + tijd}{[0..1]} \\
+          \attrib{Gepland einde vergadering}{datum + tijd}{[0..1]} \\
+          \attrib{Aanvang vergadering}{datum + tijd}{[0..1]} \\
+          \attrib{Einde vergadering}{datum + tijd}{[0..1]} \\
+          \attrib{Publicatiedatum}{datum + tijd}{[0..1]} \\
+          \attrib{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
 
    \node (deelnemer) [ORI object, align=center, below=3.3cm of vergadering]
         {
           \objectheader{Objecttype}{Aanwezige deelnemer}
 
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{\textbf{Rolnaam}}{\enumeratietype{rolnaam}}{} \\
-          \attribute{Organisatie}{string}{[0..1]} \\
-          \attribute{Deelnemerspositie}{string}{[0..1]} \\
-          \attribute{Aanvang aanwezigheid}{datum + tijd}{[0..1]} \\
-          \attribute{Einde aanwezigheid}{datum + tijd}{[0..1]}
+          \attrib{ID}{string}{[0..1]} \\
+          \attrib{\textbf{Rolnaam}}{\enumeratietype{rolnaam}}{} \\
+          \attrib{Organisatie}{string}{[0..1]} \\
+          \attrib{Deelnemerspositie}{string}{[0..1]} \\
+          \attrib{Aanvang aanwezigheid}{datum + tijd}{[0..1]} \\
+          \attrib{Einde aanwezigheid}{datum + tijd}{[0..1]}
         };
 
     \node (stemming) [ORI object, below = 3.9cm of agendapunt, align=center]
         {
           \objectheader{Objecttype}{Stemming}
 
-          \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Stemmingtype}{\enumeratietype{stemmingtype}}{[0..1]}\\
-          \attribute{Resultaat mondelinge stemming}{\enumeratietype{resultaatMondelingeStemming}}{[0..1]} \\
-          \attribute{Toezegging}{string}{[0..1]} \\
-          \attribute{Resultaat stemming over personen}{string}{[0..1]} \\
-          \attribute{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
+          \attrib{\textbf{ID}}{string}{} \\
+          \attrib{Stemmingtype}{\enumeratietype{stemmingtype}}{[0..1]}\\
+          \attrib{Resultaat mondelinge stemming}{\enumeratietype{resultaatMondelingeStemming}}{[0..1]} \\
+          \attrib{Toezegging}{string}{[0..1]} \\
+          \attrib{Resultaat stemming over personen}{string}{[0..1]} \\
+          \attrib{Stemming over personen}{stemmingOverPersonenGegevens}{[0..*]}
         };
 
     \node (fractie) [ORI object, below = 8.5cm of stemming, align=center]
         {
           \objectheader{Objecttype}{Fractie}
 
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{\textbf{Fractienaam}}{string}{}\\
-          \attribute{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
+          \attrib{ID}{string}{[0..1]} \\
+          \attrib{\textbf{Fractienaam}}{string}{}\\
+          \attrib{Bestuurslaag}{bestuurslaagGegevens}{[0..1]}
         };
         
    \node (stem) [ORI relatieklasse, align=center, at = ($(deelnemer.east)!0.5!(stemming.west)$), yshift=2.8cm]
         {
           \objectheader{Relatieklasse}{Stem}
 
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{\textbf{Keuze stemming}}{\enumeratietype{keuzeStemming}}{}
+          \attrib{ID}{string}{[0..1]} \\
+          \attrib{\textbf{Keuze stemming}}{\enumeratietype{keuzeStemming}}{}
         };
    \node (stemresultaatperfractie) [ORI relatieklasse, align=center, below right = 6.5cm and -4.5cm of stem]
         {
           \objectheader{Relatieklasse}{Stemresultaat per fractie}
 
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{Fractie stemresultaat}{\enumeratietype{fractieStemresultaat}}{[0..1]}
+          \attrib{ID}{string}{[0..1]} \\
+          \attrib{Fractie stemresultaat}{\enumeratietype{fractieStemresultaat}}{[0..1]}
         };
    \node (dagelijksbestuur) [ORI object, align=center, below = 5.2cm of fractie]
         {
           \objectheader{Objecttype}{Dagelijks bestuur}
 
-          \attribute{\textbf{ID}}{string}{} \\
-          \attribute{\textbf{Dagelijks bestuur naam}}{string}{} \\ 
-          \attribute{\textbf{Dagelijks bestuur type}}{\enumeratietype{dagelijksBestuurType}}{} \\
-          \attribute{\textbf{Bestuurslaag}}{bestuurslaagGegevens}{}
+          \attrib{\textbf{ID}}{string}{} \\
+          \attrib{\textbf{Dagelijks bestuur naam}}{string}{} \\ 
+          \attrib{\textbf{Dagelijks bestuur type}}{\enumeratietype{dagelijksBestuurType}}{} \\
+          \attrib{\textbf{Bestuurslaag}}{bestuurslaagGegevens}{}
         };
    \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem]
         {
           \objectheader{Relatieklasse}{Spreekfragment}
 
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{Aanvang spreekfragment}{datum + tijd}{[0..1]} \\
-          \attribute{Einde spreekfragment}{datum + tijd}{[0..1]} \\
-          \attribute{Taal}{taal}{[0..1]} \\
-          \attribute{Tekst spreekfragment}{string}{[0..1]} \\
-          \attribute{Titel spreekfragment}{string}{[0..1]} \\
-          \attribute{Positie notulen}{string}{[0..1]} \\
-          \attribute{Audio tijdsaanduiding aanvang}{integer}{[0..1]} \\
-          \attribute{Audio tijdsaanduiding einde}{integer}{[0..1]} \\
-          \attribute{Video tijdsaanduiding aanvang}{integer}{[0..1]} \\
-          \attribute{Video tijdsaanduiding einde}{integer}{[0..1]}
+          \attrib{ID}{string}{[0..1]} \\
+          \attrib{Aanvang spreekfragment}{datum + tijd}{[0..1]} \\
+          \attrib{Einde spreekfragment}{datum + tijd}{[0..1]} \\
+          \attrib{Taal}{taal}{[0..1]} \\
+          \attrib{Tekst spreekfragment}{string}{[0..1]} \\
+          \attrib{Titel spreekfragment}{string}{[0..1]} \\
+          \attrib{Positie notulen}{string}{[0..1]} \\
+          \attrib{Audio tijdsaanduiding aanvang}{integer}{[0..1]} \\
+          \attrib{Audio tijdsaanduiding einde}{integer}{[0..1]} \\
+          \attrib{Video tijdsaanduiding aanvang}{integer}{[0..1]} \\
+          \attrib{Video tijdsaanduiding einde}{integer}{[0..1]}
         };
         
    \node (natuurlijkpersoon) [ORI object, align=center, left=5.0cm of deelnemer]
         {
           \objectheader{Objecttype}{Natuurlijk persoon}
 
-          \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Geslachtsaanduiding}{\enumeratietype{geslachtsaanduiding}}{[0..1]} \\
-          \attribute{Functie}{\enumeratietype{functie}}{[0..1]} \\
-          \attribute{\textbf{Naam}}{naamGegevens}{} \\
-          \attribute{Nevenfunctie}{nevenfunctieGegevens}{[0..*]}
+          \attrib{\textbf{ID}}{string}{} \\
+          \attrib{Geslachtsaanduiding}{\enumeratietype{geslachtsaanduiding}}{[0..1]} \\
+          \attrib{Functie}{\enumeratietype{functie}}{[0..1]} \\
+          \attrib{\textbf{Naam}}{naamGegevens}{} \\
+          \attrib{Nevenfunctie}{nevenfunctieGegevens}{[0..*]}
         };
-   \node (naam) [ORI object, below = 2.2cm of natuurlijkpersoon, align=center, draw=gray, xshift=-3cm]
+   \node (naam) [ORI object, below = 2.2cm of natuurlijkpersoon, align=center, draw=gray!86, xshift=-3cm]
         {
           \objectheader{Gegevensgroeptype}{Naam}
 
-          \attribute{\textbf{Achternaam}}{string}{} \\
-          \attribute{Tussenvoegsel}{string}{[0..1]} \\
-          \attribute{Voorletters}{string}{[0..1]} \\
-          \attribute{Voornamen}{string}{[0..1]} \\
-          \attribute{Volledige naam}{string}{[0..1]}
+          \attrib{\textbf{Achternaam}}{string}{} \\
+          \attrib{Tussenvoegsel}{string}{[0..1]} \\
+          \attrib{Voorletters}{string}{[0..1]} \\
+          \attrib{Voornamen}{string}{[0..1]} \\
+          \attrib{Volledige naam}{string}{[0..1]}
         }; 
-   \node (nevenfunctie) [ORI object, above left = 2.2cm and -9cm of natuurlijkpersoon, align=center, draw=gray]
+   \node (nevenfunctie) [ORI object, above left = 2.2cm and -9cm of natuurlijkpersoon, align=center, draw=gray!86]
         {
           \objectheader{Gegevensgroeptype}{Nevenfunctie}
 
-          \attribute{\textbf{Omschrijving nevenfunctie}}{string}{} \\
-          \attribute{Naam organisatie nevenfunctie}{string}{[0..1]} \\
-          \attribute{Aantal uren per maand}{integer}{[0..1]} \\
-          \attribute{\textbf{Indicator bezoldigd}}{boolean}{} \\
-          \attribute{Indicator nevenfunctie vanwege lidmaatschap}{boolean}{[0..1]} \\
-          \attribute{Datum melding}{datum}{[0..1]} \\
-          \attribute{\textbf{Datum aanvang nevenfunctie}}{datum}{} \\
-          \attribute{Datum einde nevenfunctie}{datum}{[0..1]}
+          \attrib{\textbf{Omschrijving nevenfunctie}}{string}{} \\
+          \attrib{Naam organisatie nevenfunctie}{string}{[0..1]} \\
+          \attrib{Aantal uren per maand}{integer}{[0..1]} \\
+          \attrib{\textbf{Indicator bezoldigd}}{boolean}{} \\
+          \attrib{Indicator nevenfunctie vanwege lidmaatschap}{boolean}{[0..1]} \\
+          \attrib{Datum melding}{datum}{[0..1]} \\
+          \attrib{\textbf{Datum aanvang nevenfunctie}}{datum}{} \\
+          \attrib{Datum einde nevenfunctie}{datum}{[0..1]}
         };
    \node (fractielidmaatschap) [ORI relatieklasse, below = 4.0cm of deelnemer, align=center]
         {
           \objectheader{Relatieklasse}{Fractielidmaatschap}
 
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{Datum begin fractielidmaatschap}{datum}{[0..1]} \\
-          \attribute{Datum einde fractielidmaatschap}{datum}{[0..1]} \\
-          \attribute{\textbf{Indicate voorzitter}}{boolean}{}
+          \attrib{ID}{string}{[0..1]} \\
+          \attrib{Datum begin fractielidmaatschap}{datum}{[0..1]} \\
+          \attrib{Datum einde fractielidmaatschap}{datum}{[0..1]} \\
+          \attrib{\textbf{Indicate voorzitter}}{boolean}{}
         };
    \node (dagelijksbestuurlidmaatschap) [ORI relatieklasse, align=center, below = 6.45cm of fractielidmaatschap]
         {
           \objectheader{Relatieklasse}{Dagelijks bestuur lidmaatschap}
 
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{Datum begin dagelijks bestuur lidmaatschap}{datum}{[0..1]} \\
-          \attribute{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
+          \attrib{ID}{string}{[0..1]} \\
+          \attrib{Datum begin dagelijks bestuur lidmaatschap}{datum}{[0..1]} \\
+          \attrib{Datum eind dagelijks bestuur lidmaatschap}{datum}{[0..1]}
         };
    \node (mediabron) [ORI object, align=center, above=3.2cm of vergadering]
         {
           \objectheader{Objecttype}{Mediabron}
 
-          \attribute{\textbf{ID}}{string}{} \\
-          \attribute{Mimetype}{string}{[0..1]} \\
-          \attribute{\textbf{Mediabron type}}{\enumeratietype{mediabronType}}{} \\
-          \attribute{URL}{URI}{[0..1]}
+          \attrib{\textbf{ID}}{string}{} \\
+          \attrib{Mimetype}{string}{[0..1]} \\
+          \attrib{\textbf{Mediabron type}}{\enumeratietype{mediabronType}}{} \\
+          \attrib{URL}{URI}{[0..1]}
         };
         
 
@@ -315,25 +325,25 @@
         {
           \objectheader{Objecttype}{Besluit}
 
-          \attribute{ID}{string}{[0..1]} \\
-          \attribute{Besluit toelichting}{string}{[0..1]} \\
-          \attribute{Toezegging}{string}{[0..1]} \\
-          \attribute{\textbf{Besluit resultaat}}{\enumeratietype{besluitResultaat}}{}
+          \attrib{ID}{string}{[0..1]} \\
+          \attrib{Besluit toelichting}{string}{[0..1]} \\
+          \attrib{Toezegging}{string}{[0..1]} \\
+          \attrib{\textbf{Besluit resultaat}}{\enumeratietype{besluitResultaat}}{}
         };
 
-  \node (stemmingOverPersonenGegevens) [ORI object, below right = 5.3cm and -10cm of besluit, align=center, draw=gray]
+  \node (stemmingOverPersonenGegevens) [ORI object, below right = 5.3cm and -10cm of besluit, align=center, draw=gray!86]
         {
           \objectheader{Gegevensgroeptype}{Stemming over personen}
 
-          \attribute{\textbf{Naam kandidaat}}{string}{} \\
-          \attribute{\textbf{Aantal uitgebrachte stemmen}}{integer}{}
+          \attrib{\textbf{Naam kandidaat}}{string}{} \\
+          \attrib{\textbf{Aantal uitgebrachte stemmen}}{integer}{}
         };
 
    \node (vergaderstuk) [ORI relatieklasse, above right = -4.6cm and 7.2cm of agendapunt, align=center]
         {
           \objectheader{Relatieklasse}{Vergaderstuk}
 
-          \attribute{Vergaderstuk type}{\enumeratietype{vergaderstukType}}{[0..1]}
+          \attrib{Vergaderstuk type}{\enumeratietype{vergaderstukType}}{[0..1]}
         };
 
   %% inner MDTO rectangle
@@ -352,21 +362,21 @@
         %% stemming -> agendapunt
         \draw [relatiepijl] (stemming) --
         node [anchor=center, fill=white] {heeft betrekking op\\\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.00, yshift=\kyshiftbeg, right]  {1..*}
-        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {1}
+        node [kardinaliteit, pos=0.00, yshift=\kyshiftbeg, right]  {\oldstylenums{1..*}}
+        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {\oldstylenums{1}}
         (agendapunt);
         %% stemming -> besluit
         \draw[relatiepijl] ($(stemming.north)+(2.5,0)$) |- (besluit.west)
         node [pos=0.74, above] {leidt tot}
         node [pos=0.74, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
-        node [kardinaliteit, above, pos=1.0, xshift=-\kxshiftend] {0..1};
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {\oldstylenums{0..*}}
+        node [kardinaliteit, above, pos=1.0, xshift=-\kxshiftend] {\oldstylenums{0..1}};
         %% stemming -> stemming over personen
         \draw[gegevenspijl] ($(stemming.south) + (2.5, -0.0cm)$) |- (stemmingOverPersonenGegevens.west);
         %% stemming -> MDTO
         \draw[relatiepijl] ($(stemming.east) + (0, 0.0cm)$) -|
-        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg]  {0..*}
-        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend]  {0..*}
+        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg]  {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend]  {\oldstylenums{0..*}}
         node [pos=0.330, above] {heeft betrekking op}
         node [pos=0.330, below] {\umltype{Relatiesoort}}
         coordinate[pos=0.330] (tempcoordinate) % coordinate along the line
@@ -377,13 +387,13 @@
 
         %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  --
-        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
-        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {1}
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=1.0, yshift=-\kyshiftend, right] {\oldstylenums{1}}
         node [anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}} (vergadering);
         %% deelnemer -> persoon
         \draw[relatiepijl] (deelnemer) --
-        node [kardinaliteit, pos=0.0, xshift=-\kxshiftbeg, above] {0..*}
-        node [kardinaliteit, pos=1.0, xshift=0.6cm, above] {1}
+        node [kardinaliteit, pos=0.0, xshift=-\kxshiftbeg, above] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=1.0, xshift=0.6cm, above] {\oldstylenums{1}}
         node [above] {is natuurlijk persoon}
         node [below] {\umltype{Relatiesoort}}
         (natuurlijkpersoon);
@@ -394,20 +404,20 @@
         % Use the `|-` operator to align vertically while shifting horizontally
         \draw[relatiepijl] 
         ($(deelnemershifted |- stemmingshifted)$) --
-        node [kardinaliteit, pos=0.0, xshift=\kxshiftbeg, above] {0..*}
-        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {0..*}
+        node [kardinaliteit, pos=0.0, xshift=\kxshiftbeg, above] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {\oldstylenums{0..*}}
         node [above, fill=white] {neemt deel aan} 
         node [below] {\umltype{Relatiesoort}} 
         (stemmingshifted.west);
         %% deelnemer -> agendapunt (by way of spreekfragment)
         \draw[relatiepijl] ($(deelnemer.north) + (3cm, 0)$) --
-        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {0..*}
+        node [kardinaliteit, pos=0.0, yshift=\kyshiftbeg, right] {\oldstylenums{0..*}}
         ($(deelnemer.north) + (3cm, 2.6cm)$) --
         node [above, pos=0.75] {spreekt tijdens}
         node [below, pos=0.75] {\umltype{Relatiesoort}}
         coordinate[pos=0.75] (tempcoordinate) %% define relatie line starting position
         ($(deelnemer.north) + (12cm, 2.6cm)$) |-
-        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {0..*}
+        node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {\oldstylenums{0..*}}
         ($(agendapunt.west) -  (0, 3.0cm)$);        
         % Draw the dashed line
         \draw[dashedpijl] ($(tempcoordinate) + (0, 0.65cm)$) -- 
@@ -418,22 +428,22 @@
         \draw[relatiepijl] (agendapunt) -- (vergadering)
         node [pos=0.5, above] {wordt behandeld tijdens}
         node [pos=0.5, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=0.00, xshift=-\kxshiftbeg,  above] {0..*}
-        node [kardinaliteit, pos=0.965, above] {1};
+        node [kardinaliteit, pos=0.00, xshift=-\kxshiftbeg,  above] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=0.965, above] {\oldstylenums{1}};
         %% agendapunt -> agendapunt
         \draw[relatiepijl] ($(agendapunt.east)+(0, 2.8)$) |-
-        node [kardinaliteit, above, xshift = \kxshiftbeg] {0..1} 
+        node [kardinaliteit, above, xshift = \kxshiftbeg] {\oldstylenums{0..1}} 
         ($(agendapunt.east)+(3.0, 2.8)$) |- ($(agendapunt.east)+(3.0, -0.8)$)
         node [fill=white, pos=0.25] {heeft als subagendapunt\\\umltype{Relatiesoort}} --
         ($(agendapunt.east)+(0, -0.8)$)
-        node [kardinaliteit, above, xshift = 0.8cm] {0..*};
+        node [kardinaliteit, above, xshift = 0.8cm] {\oldstylenums{0..*}};
         %% agendapunt -> mdto
         \draw[relatiepijl] 
         ($(agendapunt.east) - (0, 2.5cm)$) --
-        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg] {0..*}
+        node [kardinaliteit, pos=0, above, xshift=\kxshiftbeg] {\oldstylenums{0..*}}
         ++(2cm,0) -| ($(mdto.south) - (2cm, 0cm)$)
         coordinate[pos=0.27] (tempcoordinate)
-        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend] {0..*}
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftend] {\oldstylenums{0..*}}
         node [pos=0.27, above] {heeft als bijlage}
         node [pos=0.27, below] {\umltype{Relatiesoort}};
         % Draw the dashed line
@@ -445,7 +455,7 @@
         % Project the midpoint to the Y-coordinate of stem.north
         \coordinate (midpointadjusted) at (midpoint|-stem.north);
         \draw[very thick, draw=mainblack] ($(agendapunt.south) - (3.0cm,0)$) |-
-        node [kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {0..*}
+        node [kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {\oldstylenums{0..*}}
         (midpointadjusted) --
         ($(midpointadjusted) - (0cm, 4.77cm)$)
         % save bump location
@@ -457,21 +467,21 @@
         ($(bumpstart) - (0,3.3cm)$) -|
         node [pos=0.17, above] {heeft behandelend ambtenaar}
         node [pos=0.17, below] {\umltype{Relatiesoort}}
-        node [kardinaliteit, pos=1, right, yshift=-\kyshiftbeg, xshift=\kxshiftbeg] {0..1}
+        node [kardinaliteit, pos=1, right, yshift=-\kyshiftbeg, xshift=\kxshiftbeg] {\oldstylenums{0..1}}
         ($(natuurlijkpersoon.south) + (3.9cm, 0)$);
         
         %% mediabron -> mdto (is vastgelegd in)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)+(-0.0,0.2)$) -|
-        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
-        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {1}
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {\oldstylenums{0..*}}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {\oldstylenums{1}}
         node [pos=0.21, above] {is vastgelegd in}
         node [pos=0.21, below] {\umltype{Relatiesoort}}
         ($(mdto.north)+(2.8cm,0)$);
 
         %% mediabron -> mdto (ondertitel bestand)
         \draw[relatiepijl] (mediabron) ($(mediabron.east)-(0.0,1.2)$) -|
-        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
-        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..*}
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {\oldstylenums{0..*}}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {\oldstylenums{0..*}}
         node [pos=0.26, above] {heeft ondertitelbestand}
         node [pos=0.26, below] {\umltype{Relatiesoort}}
         ($(mdto.north)+(1cm, 0)$);
@@ -479,8 +489,8 @@
         %% fractie -> stemming
         \draw[relatiepijl] (fractie) --
         coordinate[pos=0.5] (tempcoordinate) %% define tmp halfway coord (for allignment reasons)
-        node [kardinaliteit, pos=0.00, yshift=0.25cm, right] {0..*}
-        node [kardinaliteit, pos=1.0, yshift=-0.75cm, right] {0..*}
+        node [kardinaliteit, pos=0.00, yshift=0.25cm, right] {\oldstylenums{0..*}}
+        node [kardinaliteit, pos=1.0, yshift=-0.75cm, right] {\oldstylenums{0..*}}
         (stemming);
         \coordinate (linestartfractiestemresultaat) at (tempcoordinate |- stemresultaatperfractie.east);
         %% dashed line to stemresultaat per fractie
@@ -498,17 +508,17 @@
         %% One could argue that this should just be another attribute
         %% vergadering -> vergadering
         \draw[relatiepijl] ($(vergadering.west)+(0,2.8)$) |-
-        node [kardinaliteit, above, xshift = -0.4cm] {0..1}
+        node [kardinaliteit, above, xshift = -0.4cm] {\oldstylenums{0..1}}
         ($(vergadering.west)+(-3.0,2.8)$) |- ($(vergadering.west)+(-3.0,-0.8)$)
         node [fill=white, pos=0.25] {heeft als deelvergadering\\\umltype{Relatiesoort}} --
         ($(vergadering.west)+(0,-0.8)$)
-        node [kardinaliteit, above, xshift = -0.8cm] {0..*} ;
+        node [kardinaliteit, above, xshift = -0.8cm] {\oldstylenums{0..*}} ;
 
         %% vergadering -> mdto (bijlage)
         \draw[relatiepijl] ($(vergadering.east)+(0, 3)$) -|
-        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {0..*}
+        node [kardinaliteit, above, pos=0, xshift=\kxshiftbeg] {\oldstylenums{0..*}}
         ($(vergadering.east)+(11, 5.5)$) -| 
-        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..*}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {\oldstylenums{0..*}}
         node [anchor=center, above, pos=0.33] {heeft als bijlage}
         node [anchor=center, below, pos=0.33] {\umltype{Relatiesoort}}
         coordinate[pos=0.33] (tempcoordinate) %% define tmp halfway coord
@@ -520,9 +530,9 @@
         
         %% vergadering -> mdto (notulen)
         \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
-        node [kardinaliteit, right, pos=0, yshift=\kyshiftbeg] {0..1}
+        node [kardinaliteit, right, pos=0, yshift=\kyshiftbeg] {\oldstylenums{0..1}}
         ($(vergadering.north)+(4, 2.5)$) -| 
-        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {0..1}
+        node [kardinaliteit, right, pos=1, yshift=\kyshiftend] {\oldstylenums{0..1}}
         node [anchor=center, above, pos=0.32] {is genotuleerd in}
         node [anchor=center, below, pos=0.32] {\umltype{Relatiesoort}}
         ($(mdto.north)+(-1cm,0)$);
@@ -537,10 +547,10 @@
         \coordinate (Y) at ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$);
         \coordinate (endpoint) at (fractie.west|-Y);
         \draw[relatiepijl] (natuurlijkpersoon) ($(natuurlijkpersoon.south)+(2.4,0)$)  |-
-        node[kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {0..*}
+        node[kardinaliteit, pos=0, right, yshift=-\kyshiftbeg] {\oldstylenums{0..*}}
         coordinate[pos=1.0] (linestartfractielidmaatschap) % coordinate along the line
         ($(fractielidmaatschap.south)-(0.0cm,2.5cm)$) --
-        node[kardinaliteit, pos=1, above, xshift=-\kxshiftend] {0..*}
+        node[kardinaliteit, pos=1, above, xshift=-\kxshiftend] {\oldstylenums{0..*}}
         (endpoint.west);
         %% dashed line
         \draw[dashedpijl, yshift=-3cm] (linestartfractielidmaatschap) --
@@ -560,8 +570,8 @@
 
         %% spreekfragment -> mediabron
         \draw[relatiepijl] (spreekfragment.west) -|
-        node [kardinaliteit, pos=0, above, xshift=-\kxshiftbeg] {1..*}
-        node [kardinaliteit, pos=1, right, yshift=\kyshiftend] {0..1}
+        node [kardinaliteit, pos=0, above, xshift=-\kxshiftbeg] {\oldstylenums{1..*}}
+        node [kardinaliteit, pos=1, right, yshift=\kyshiftend] {\oldstylenums{0..1}}
         node [above, pos=0.27] {is vastgelegd in}
         node [below, pos=0.27] {\umltype{Relatiesoort}}
         (mediabron.north);
@@ -569,7 +579,7 @@
         %% enumeraties
 
         \newcommand{\enumeration}[2]{
-          \umltype{Enumeratie} \; \textcolor{mainblack}{\textbf{#1}}\\[0.9ex]
+          \umltype{Enumeratie} \; \textcolor{mainblack}{{\sourcesansprolight\bfseries#1}}\\[0.9ex]
           
             \hspace{0.45em}
             \parbox[t]{0.93\linewidth}{
@@ -593,7 +603,7 @@
         \setlength{\arrayrulewidth}{0.7pt} %% a slightly less thick line looks bettter here imo
 
         \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
-          label={[anchor=south west]north west:{\large \textcolor{mainblack}{\textbf{Enumeraties}}}},
+          label={[anchor=south west]north west:{\large \textcolor{mainblack}{\sourcesansproextreme\bfseries Enumeraties}}},
           below right=-7.8cm and 3.1cm of fractie, align=left]
         (enumeraties) {
           \begin{tabular}{@{}p{1.0\linewidth} @{\hspace{0.5cm}} | @{\hspace{0.5cm}} p{1.0\linewidth}@{}}
