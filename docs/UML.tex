@@ -127,11 +127,12 @@
     },
     ORI relatieklasse/.style={rectangle split, rectangle split parts=2,
       rectangle split part fill={white,white}, rounded corners=5pt,
-      very thick, inner sep=10pt, draw=gray!90, fill=white,
+      very thick, inner sep=10pt, draw=gray!87, fill=white,
       },
-    relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, draw=mainblack},
+    relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, draw=mainblack, text=mainblack},
     gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed, draw=mainblack},
-    kardinaliteit/.style={text=darkgray}, 
+    dashedpijl/.style={very thick, dashed, text=mainblack, draw=gray!87},
+    kardinaliteit/.style={text=mainblack}, 
     align=center]
   
   \node (agendapunt) [ORI object, align=center]
@@ -336,13 +337,13 @@
         };
 
   %% inner MDTO rectangle
-  \node (mdto-inner) [rectangle, draw, ultra thick, right = 3.2cm of vergaderstuk, inner sep=40pt, fill=githubgrey, align=center]
+  \node (mdto-inner) [rectangle, draw=mainblack, text=mainblack, ultra thick, right = 3.2cm of vergaderstuk, inner sep=40pt, fill=githubgrey, align=center]
         {
           {\huge MDTO}
         };
 
   % Outer MDTO rectangle (this is what arrows should connect to)
-  \node (mdto) [fit=(mdto-inner), draw, ultra thick, inner sep=1.1cm] {};
+  \node (mdto) [fit=(mdto-inner), draw=mainblack, ultra thick, inner sep=1.1cm] {};
 
 
   %% arrows
@@ -372,7 +373,7 @@
         (mdto.south);
         %% draw dashed line to vergaderstuk
         \coordinate (lineendnorth) at (tempcoordinate|-vergaderstuk.south);
-        \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.5cm)$) -- (lineendnorth);
+        \draw[dashedpijl] ($(tempcoordinate) + (0, 0.5cm)$) -- (lineendnorth);
 
         %% deelnemer -> vergadering
         \draw[relatiepijl] (deelnemer)  --
@@ -387,7 +388,7 @@
         node [below] {\umltype{Relatiesoort}}
         (natuurlijkpersoon);
         %% deelnemer -> stemming
-        \draw[dashed, very thick] ($(deelnemer.east)!0.5!(stemming.west) + (0, -.19)$) -- (stem);
+        \draw[dashedpijl] ($(deelnemer.east)!0.5!(stemming.west) + (0, -.19)$) -- (stem);
         \coordinate (deelnemershifted) at ($(deelnemer.east) - (0,0.5cm)$);
         \coordinate (stemmingshifted) at ($(stemming.west) - (0,0.5cm)$);
         % Use the `|-` operator to align vertically while shifting horizontally
@@ -409,7 +410,7 @@
         node [kardinaliteit, pos=1.0, xshift=-\kxshiftend, above] {0..*}
         ($(agendapunt.west) -  (0, 3.0cm)$);        
         % Draw the dashed line
-        \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.65cm)$) -- 
+        \draw[dashedpijl] ($(tempcoordinate) + (0, 0.65cm)$) -- 
         (tempcoordinate |- spreekfragment.south);
 
         
@@ -437,7 +438,7 @@
         node [pos=0.27, below] {\umltype{Relatiesoort}};
         % Draw the dashed line
         \coordinate (lineendnorth) at (tempcoordinate|-vergaderstuk.south);
-        \draw[dashed, very thick] ($(tempcoordinate) + (0, 0.52cm)$) -- (lineendnorth);
+        \draw[dashedpijl] ($(tempcoordinate) + (0, 0.52cm)$) -- (lineendnorth);
         %% agendapunt -> natuurlijkpersoon
         %% halfwaypoint stem and stemming
         \coordinate (midpoint) at ($(stem.east)!.5!(stemming.west) + (-0.5cm,0)$);
@@ -483,7 +484,7 @@
         (stemming);
         \coordinate (linestartfractiestemresultaat) at (tempcoordinate |- stemresultaatperfractie.east);
         %% dashed line to stemresultaat per fractie
-        \draw[dashed, very thick] ($(linestartfractiestemresultaat)-(0,0.3cm)$) --
+        \draw[dashedpijl] ($(linestartfractiestemresultaat)-(0,0.3cm)$) --
         node [pos=0, anchor=center, fill=white] {neemt deel aan\\\umltype{Relatiesoort}}
         ($(stemresultaatperfractie.east)-(0,0.3cm)$);
         
@@ -515,7 +516,7 @@
 
         % Draw the dashed line
         \coordinate (lineendsouth) at (tempcoordinate|-vergaderstuk.north);
-        \draw[dashed, very thick] ($(tempcoordinate) + (0, -0.5cm)$) -- (lineendsouth);
+        \draw[dashedpijl] ($(tempcoordinate) + (0, -0.5cm)$) -- (lineendsouth);
         
         %% vergadering -> mdto (notulen)
         \draw[relatiepijl] ($(vergadering.north)+(4, 0)$) --
@@ -542,7 +543,7 @@
         node[kardinaliteit, pos=1, above, xshift=-\kxshiftend] {0..*}
         (endpoint.west);
         %% dashed line
-        \draw[dashed, very thick] (linestartfractielidmaatschap) --
+        \draw[dashedpijl, yshift=-3cm] (linestartfractielidmaatschap) --
         node [above, fill=white, pos=0.0] {is lid van}
         node [below, pos=0.0] {\umltype{Relatiesoort}}
         (fractielidmaatschap.south);
@@ -552,7 +553,7 @@
         node[kardinaliteit, pos=1, above, xshift=-\kxshiftend] {0..*}
         ($(dagelijksbestuur.west) - (0, 0.5cm)$);
         %% dashed line
-        \draw[dashed, very thick] (dagelijksbestuurlidmaatschap.south) --
+        \draw[dashedpijl] (dagelijksbestuurlidmaatschap.south) --
         node [above, fill=white, pos=1.05] {is lid van}
         node [below, pos=1.05] {\umltype{Relatiesoort}}
         ($(dagelijksbestuurlidmaatschap.south) - (0, 1.8cm)$);
@@ -583,7 +584,7 @@
         \tcbset{on line, 
           boxsep=2.2pt, left=4pt,right=4pt,top=4pt,bottom=4pt,
           colframe=moderngray,colback=white, arc=7pt,}
-        \newcommand{\keuze}[1]{\textcolor{mainblack}{\tcbox{#1}}}
+        \newcommand{\keuze}[1]{\tcbox{\textcolor{mainblack}{#1}}}
 
         \newcommand{\sep}{ \, }
         \newcommand{\seprule}{\noindent\hspace{0cm}\textcolor{moderngray}{\rule{\dimexpr\linewidth-0.1cm\relax}{1.0pt}}\\[0.7ex]}
@@ -592,7 +593,7 @@
         \setlength{\arrayrulewidth}{0.7pt} %% a slightly less thick line looks bettter here imo
 
         \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
-          label={[anchor=south west]north west:{\large \textbf{Enumeraties}}},
+          label={[anchor=south west]north west:{\large \textcolor{mainblack}{\textbf{Enumeraties}}}},
           below right=-7.8cm and 3.1cm of fractie, align=left]
         (enumeraties) {
           \begin{tabular}{@{}p{1.0\linewidth} @{\hspace{0.5cm}} | @{\hspace{0.5cm}} p{1.0\linewidth}@{}}
