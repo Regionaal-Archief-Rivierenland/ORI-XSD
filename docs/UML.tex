@@ -2,15 +2,14 @@
 
 \usepackage{tikz}
 
-%% \usepackage[kerning=true, tracking=true]{microtype} %% tracking is pdftex only
-\usepackage[activate={true,nocompatibility}]{microtype} 
+\usepackage[kerning=true, tracking=true, activate={true,nocompatibility}]{microtype} %% tracking is pdftex only
 \usepackage[dutch]{babel}
 
 %% font stuff
 %% \usepackage[lf]{MyriadPro}
 %% math font for myriadpro
 %% \usepackage{mdsymbol}
-\usepackage[default, opentype]{sourcesanspro}
+\usepackage[default, type1]{sourcesanspro}
 \usepackage{inconsolata}
 %% \usepackage{fontspec}  %% fira code looks pretty okay!
 %% \setmonofont[
@@ -114,7 +113,7 @@
 %% Header of boxes
 \newcommand{\objectheader}[2]{
   \umltype{#1} \\
-  {\large \textcolor{mainblack}{\textbf{#2}}}
+  {\large \textcolor{mainblack}{{\fontseries{b}\selectfont #2}}}
   \nodepart[align=left]{two}
 }
 
@@ -243,7 +242,7 @@
           \attrib{\textbf{Dagelijks bestuur type}}{\enumeratietype{dagelijksBestuurType}}{} \\
           \attrib{\textbf{Bestuurslaag}}{bestuurslaagGegevens}{}
         };
-   \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem]
+   \node (spreekfragment) [ORI relatieklasse, above = 17.5cm of stem, xshift=-1.6cm]
         {
           \objectheader{Relatieklasse}{Spreekfragment}
 
@@ -579,7 +578,7 @@
         %% enumeraties
 
         \newcommand{\enumeration}[2]{
-          \umltype{Enumeratie} \; \textcolor{mainblack}{{\sourcesansprolight\bfseries#1}}\\[0.9ex]
+          \umltype{Enumeratie} \; \textcolor{mainblack}{{\fontseries{sb}\selectfont #1}}\\[0.9ex]
           
             \hspace{0.45em}
             \parbox[t]{0.93\linewidth}{
@@ -603,7 +602,7 @@
         \setlength{\arrayrulewidth}{0.7pt} %% a slightly less thick line looks bettter here imo
 
         \node[draw=mainblack, rounded corners=5pt, very thick, inner sep=16pt,
-          label={[anchor=south west]north west:{\large \textcolor{mainblack}{\sourcesansproextreme\bfseries Enumeraties}}},
+          label={[anchor=south west]north west:{\large \textcolor{mainblack}{\fontseries{b}\selectfont Enumeraties}}},
           below right=-7.8cm and 3.1cm of fractie, align=left]
         (enumeraties) {
           \begin{tabular}{@{}p{1.0\linewidth} @{\hspace{0.5cm}} | @{\hspace{0.5cm}} p{1.0\linewidth}@{}}
