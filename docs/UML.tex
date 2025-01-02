@@ -8,7 +8,7 @@
 %% font stuff
 %% \usepackage[lf]{MyriadPro}
 %% math font for myriadpro
-%% \usepackage{mdsymbol}
+\usepackage{mdsymbol}
 \usepackage[default, type1]{sourcesanspro}
 \usepackage{inconsolata}
 %% \usepackage{fontspec}  %% fira code looks pretty okay!
@@ -68,14 +68,8 @@
 
 %% TODO
 %% - be consistent in ur use of baselineskips (and amounts)
-%% - : na verplicht attribuut moet eigenlijk ook bold als de attribuutnaam dat is
 %% - moeten verplichte relaties ook dik gedrukt/anders getypeset
 %% - I think the arrow between vergadering and mediabron should be verplicht at least once
-%% - make bestuurslaag a "GegevensGroupType" that recieves multiple arrows
-%% - check if different number style in Myriad pro looks nice
-%%   - not really
-%% - try semi boldfont for Attribute names
-%%   - too difficult with pdflatex
 %% - maybe bullets instead of plusses? Making a proper list also gives more flexibility
 %%    - all the more because the plusses serve little purposes
 
@@ -138,8 +132,10 @@
       rectangle split part fill={white,white}, rounded corners=5pt,
       very thick, inner sep=10pt, draw=gray!86, fill=white,
       },
+    ORI referentie/.style={draw=mainblack, rounded corners=5pt, align=center, very thick, inner sep=10pt, draw=gray!86},
     relatiepijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, draw=mainblack, text=mainblack},
     gegevenspijl/.style={-{Straight Barb[length=4mm,width=6mm]}, very thick, dashed, draw=mainblack},
+    generalisatiepijl/.style={-{Latex[round,open,length=4mm,width=6mm]}, very thick, draw=mainblack},
     dashedpijl/.style={very thick, dashed, text=mainblack, draw=gray!86},
     kardinaliteit/.style={text=mainblack}, 
     align=center]
@@ -354,8 +350,41 @@
   % Outer MDTO rectangle (this is what arrows should connect to)
   \node (mdto) [fit=(mdto-inner), draw=mainblack, ultra thick, inner sep=1.1cm] {};
 
+  \node (bestuurslaag) [ORI referentie, above=20cm of natuurlijkpersoon] {
+    \umltype{Gegevensgroeptype}\\
+    \large \textcolor{mainblack}{{\fontseries{b}\selectfont Bestuurslaag}}
+    
+  };
+
+  \node (waterschap) [ORI object, below=3cm of bestuurslaag, xshift=-7cm, draw=gray!86] {
+    \objectheader{Gegevensgroeptype}{Waterschap}
+    \attrib{\textbf{Waterschapcode}}{string}{} \\
+    \attrib{Waterschapnaam}{string}{[0..1]}
+  };
+
+  \node (gemeente) [ORI object, below=3cm of bestuurslaag, xshift=0, draw=gray!86] {
+    \objectheader{Gegevensgroeptype}{Gemeente}
+    \attrib{\textbf{Gemeentecode}}{string}{} \\
+    \attrib{Gemeentenaam}{string}{[0..1]}
+  };
+
+  \node (provincie) [ORI object, below=3cm of bestuurslaag, xshift=7cm, draw=gray!86] {
+    \objectheader{Gegevensgroeptype}{Provincie}
+    \attrib{\textbf{Provinciecode}}{string}{} \\
+    \attrib{Provincienaam}{string}{[0..1]}
+  };
 
   %% arrows
+
+  \draw[generalisatiepijl] (waterschap) |-
+  node [pos=0.2, fill=white] {\umltype{Generalisatie}}
+  (bestuurslaag);
+  \draw[generalisatiepijl] (provincie) |-
+  node [pos=0.2, fill=white] {\umltype{Generalisatie}}
+  (bestuurslaag);
+  \draw[generalisatiepijl] (gemeente) --
+  node [pos=0.5, fill=white] {\umltype{Generalisatie}}
+  (bestuurslaag);
   
         %% FIXME: cardinalities won't be alligned, because pos= is relative to arrow length
         %% stemming -> agendapunt
