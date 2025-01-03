@@ -90,6 +90,13 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:simpleType name="integerOfTijdstempel">
+        <xs:annotation>
+            <xs:documentation>Datatype dat zowel tijdstempels (hh:mm:ss) als positieve integers accepteert.</xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="xs:nonNegativeInteger xs:time"/>
+    </xs:simpleType>
+
     <!-- # Domein specifieke datatypes -->
 
     <xs:complexType name="mediabronGegevens">
@@ -395,24 +402,24 @@
                     <xs:documentation>De positie van het spreekfragment in de notulen, bijvoorbeeld `pagina 8`.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="audioTijdsaanduidingAanvang" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xs:element name="audioTijdsaanduidingAanvang" type="integerOfTijdstempel" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Getal dat aangeeft na hoeveel seconden in de audio-opname het spreekfragment begint.</xs:documentation>
+                    <xs:documentation>Tijdsaanduiding die aangeeft na hoeveel tijd in de audio-opname het spreekfragment begint. Dit kan óf een tijdstempel zijn (hh:mm:ss), óf een positief getal dat aangeeft na hoeveel seconden het fragment begint.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="audioTijdsaanduidingEinde" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xs:element name="audioTijdsaanduidingEinde" type="integerOfTijdstempel" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Getal dat aangeeft na hoeveel seconden in de audio-opname het spreekfragment eindigt.</xs:documentation>
+                    <xs:documentation>Tijdsaanduiding die aangeeft na hoeveel tijd in de audio-opname het spreekfragment eindigt. Dit kan óf een tijdstempel zijn (hh:mm:ss), óf een positief getal dat aangeeft na hoeveel seconden het fragment eindigt.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="videoTijdsaanduidingAanvang" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xs:element name="videoTijdsaanduidingAanvang" type="integerOfTijdstempel" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Getal dat aangeeft na hoeveel seconden in de video-opname het spreekfragment begint.</xs:documentation>
+                    <xs:documentation>Tijdsaanduiding die aangeeft na hoeveel tijd in de video-opname het spreekfragment begint. Dit kan óf een tijdstempel zijn (hh:mm:ss), óf een positief getal dat aangeeft na hoeveel seconden het fragment begint.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="videoTijdsaanduidingEinde" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xs:element name="videoTijdsaanduidingEinde" type="integerOfTijdstempel" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Getal dat aangeeft na hoeveel seconden in de video-opname het spreekfragment eindigt.</xs:documentation>
+                    <xs:documentation>Tijdsaanduiding die aangeeft na hoeveel tijd in de video-opname het spreekfragment eindigt. Dit kan óf een tijdstempel zijn (hh:mm:ss), óf een positief getal dat aangeeft na hoeveel seconden het fragment eindigt.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="isVastgelegdIn" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
