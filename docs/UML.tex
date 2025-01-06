@@ -40,12 +40,14 @@
 \usepackage[dvipsnames, table]{xcolor}
 \definecolor{githubgrey}{HTML}{EAEEF2}
 \definecolor{githubred}{HTML}{F2EAEE}
+\definecolor{githubdarkblue}{HTML}{053a69}
+\definecolor{orange}{HTML}{FFA348}
 \definecolor{mainblack}{HTML}{333333}
 \definecolor{blueishblack}{HTML}{3A3A3A}
 \definecolor{lightgray}{HTML}{D9DDE1}
 \definecolor{moderngray}{HTML}{D8D8DB}
 \definecolor{githubblue}{HTML}{DAE1E8}
-\definecolor{darkgreen}{HTML}{3D5E45}
+\definecolor{darkgreen}{HTML}{43674c}
 \definecolor{purple}{HTML}{5C5573}
 \definecolor{enumeratiecolor}{HTML}{3C5770}
 
@@ -249,10 +251,10 @@
           \attrib{Tekst spreekfragment}{string}{[0..1]} \\
           \attrib{Titel spreekfragment}{string}{[0..1]} \\
           \attrib{Positie notulen}{string}{[0..1]} \\
-          \attrib{Audio tijdsaanduiding aanvang}{integer}{[0..1]} \\
-          \attrib{Audio tijdsaanduiding einde}{integer}{[0..1]} \\
-          \attrib{Video tijdsaanduiding aanvang}{integer}{[0..1]} \\
-          \attrib{Video tijdsaanduiding einde}{integer}{[0..1]}
+          \attrib{Audio tijdsaanduiding aanvang}{integer \textcolor{githubdarkblue}{of} tijd}{[0..1]} \\
+          \attrib{Audio tijdsaanduiding einde}{integer \textcolor{githubdarkblue}{of} tijd}{[0..1]} \\
+          \attrib{Video tijdsaanduiding aanvang}{integer \textcolor{githubdarkblue}{of} tijd}{[0..1]} \\
+          \attrib{Video tijdsaanduiding einde}{integer \textcolor{githubdarkblue}{of} tijd}{[0..1]}
         };
         
    \node (natuurlijkpersoon) [ORI object, align=center, left=5.0cm of deelnemer]
