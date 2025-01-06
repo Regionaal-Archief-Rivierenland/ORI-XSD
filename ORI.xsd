@@ -862,7 +862,7 @@
                     <xs:documentation>Verwijzing naar de natuurlijk persoon die als de deelnemer optreedt.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="neemtDeelAanVergadering" type="verwijzingGegevens" minOccurs="0" maxOccurs="1">
+            <xs:element name="neemtDeelAanVergadering" type="verwijzingGegevens" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Verwijzing naar de (deel)vergadering waar de deelnemer aanwezig was.</xs:documentation>
                 </xs:annotation>
