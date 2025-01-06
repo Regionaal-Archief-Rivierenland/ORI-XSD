@@ -352,29 +352,29 @@
   % Outer MDTO rectangle (this is what arrows should connect to)
   \node (mdto) [fit=(mdto-inner), draw=mainblack, ultra thick, inner sep=1.1cm] {};
 
-  \node (bestuurslaag) [ORI referentie, above=20cm of natuurlijkpersoon] {
-    \umltype{Gegevensgroeptype}\\
-    \large \textcolor{mainblack}{{\fontseries{b}\selectfont Bestuurslaag}}
+  %% \node (bestuurslaag) [ORI referentie, above=20cm of natuurlijkpersoon] {
+  %%   \umltype{Gegevensgroeptype}\\
+  %%   \large \textcolor{mainblack}{{\fontseries{b}\selectfont Bestuurslaag}}
     
-  };
+  %% };
 
-  \node (waterschap) [ORI object, below=3cm of bestuurslaag, xshift=-7cm, draw=gray!86] {
-    \objectheader{Gegevensgroeptype}{Waterschap}
-    \attrib{\textbf{Waterschapcode}}{string}{} \\
-    \attrib{Waterschapnaam}{string}{[0..1]}
-  };
+  %% \node (waterschap) [ORI object, below=3cm of bestuurslaag, xshift=-7cm, draw=gray!86] {
+  %%   \objectheader{Gegevensgroeptype}{Waterschap}
+  %%   \attrib{\textbf{Waterschapcode}}{string}{} \\
+  %%   \attrib{Waterschapnaam}{string}{[0..1]}
+  %% };
 
-  \node (gemeente) [ORI object, below=3cm of bestuurslaag, xshift=0, draw=gray!86] {
-    \objectheader{Gegevensgroeptype}{Gemeente}
-    \attrib{\textbf{Gemeentecode}}{string}{} \\
-    \attrib{Gemeentenaam}{string}{[0..1]}
-  };
+  %% \node (gemeente) [ORI object, below=3cm of bestuurslaag, xshift=0, draw=gray!86] {
+  %%   \objectheader{Gegevensgroeptype}{Gemeente}
+  %%   \attrib{\textbf{Gemeentecode}}{string}{} \\
+  %%   \attrib{Gemeentenaam}{string}{[0..1]}
+  %% };
 
-  \node (provincie) [ORI object, below=3cm of bestuurslaag, xshift=7cm, draw=gray!86] {
-    \objectheader{Gegevensgroeptype}{Provincie}
-    \attrib{\textbf{Provinciecode}}{string}{} \\
-    \attrib{Provincienaam}{string}{[0..1]}
-  };
+  %% \node (provincie) [ORI object, below=3cm of bestuurslaag, xshift=7cm, draw=gray!86] {
+  %%   \objectheader{Gegevensgroeptype}{Provincie}
+  %%   \attrib{\textbf{Provinciecode}}{string}{} \\
+  %%   \attrib{Provincienaam}{string}{[0..1]}
+  %% };
 
   %% arrows
 
