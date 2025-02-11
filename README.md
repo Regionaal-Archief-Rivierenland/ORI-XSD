@@ -26,5 +26,3 @@ Bovendien bestaat er een [grafische representatie van het informatiemodel.](docs
 * Regionaal Archief Tilburg
 * Regionaal Archief Zutphen
 * Zeeuws Archief
-
-
