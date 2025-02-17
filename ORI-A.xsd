@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://vng.nl/projecten/open-raadsinformatie" targetNamespace="https://vng.nl/projecten/open-raadsinformatie" xmlns:ori="https://vng.nl/projecten/open-raadsinformatie" elementFormDefault="qualified" version="v0.0.8">
-    <xs:element name="ORI">
+    <xs:element name="ORI-A">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="mediabron" type="mediabronGegevens" minOccurs="1" maxOccurs="unbounded">
